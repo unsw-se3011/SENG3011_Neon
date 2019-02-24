@@ -51,6 +51,9 @@ if __name__ == "__main__":
     # dictionary of commandline you input
     args = parser.parse_args()
     
+
+    # could be larger than this 
+    pre_min = 16061615
     while True:
         r = get_request(ym,args.feed)
         # remove the uneccessary \ from json encoding
@@ -60,7 +63,13 @@ if __name__ == "__main__":
         result = parse(list['listview'])
         
         for i in result:
-            print(int(i))
+            # an o(n) solution, instad of sorting it 
+            if int(i) < pre_min:
+                print(int(i))
             if int(i) < args.max_id:
                 exit
+
+        # update the pre min
+        pre_min = int(result[-1])
+        # decrement the month year combo 
         ym.decrease()
