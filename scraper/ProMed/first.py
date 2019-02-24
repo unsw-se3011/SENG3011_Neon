@@ -37,10 +37,25 @@ ym = YearMonth()
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('max_id',
+        help="The maximun id last time left over.",
+        type=int,
+        default = 0
+    )
+    parser.add_argument('feed',
+        help="The feed id we need to scrap.",
+        type=int
+    )
+
+    args = parser.parse_args()
     while True:
-        r = get_request(ym,15)
+        r = get_request(ym,args.feed)
         list = loads(r.text)
         result = parse(list['listview'])
         for i in result:
             print(int(i))
+            if int(i) < args.max_id:
+                exit
         ym.decrease()
