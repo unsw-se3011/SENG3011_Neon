@@ -62,6 +62,9 @@ if __name__ == "__main__":
         # and after parse, the result will be a string of ids array
         result = parse(list['listview'])
         
+        # server doesn't have any more posts
+        if len(result) ==0:
+            exit
         for i in result:
             # an o(n) solution, instad of sorting it 
             if int(i) < pre_min:
