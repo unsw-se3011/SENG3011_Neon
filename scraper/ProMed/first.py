@@ -48,12 +48,17 @@ if __name__ == "__main__":
         help="The feed id we need to scrap.",
         type=int
     )
-
+    # dictionary of commandline you input
     args = parser.parse_args()
+    
     while True:
         r = get_request(ym,args.feed)
+        # remove the uneccessary \ from json encoding
         list = loads(r.text)
+        # we don't need next and previos from return 
+        # and after parse, the result will be a string of ids array
         result = parse(list['listview'])
+        
         for i in result:
             print(int(i))
             if int(i) < args.max_id:
