@@ -1,5 +1,18 @@
 # Scrap
 
+## venv
+
+Setting up the virutal environment 
+
+```bash 
+$ sudo apt install python3-dev 
+$ virtualenv venv `where python3`
+$ source venv/bin/activate
+$ pip install -r requirments.txt
+
+```
+
+
 ## ProMed
 
 Promed doesn't use standard way as html, we need find another way out. Also scraper doesn't design fairly well.
