@@ -46,7 +46,7 @@ class OutebreaknewsSpider(scrapy.Spider):
         date = datetime.strptime(date, '%B %d, %Y')
         yield {
             'headline': str(response.css('div.posttitle h1::text').get().strip()),
-            'date_of_publication':  str(FuzzTime(date, day=True)),
+            'date_of_publication':  str(FuzzTime(date, hour=True)),
             'main_text': ' '.join(
                 response.css('div.content div.postcontent')
                 .css('div.content div.postcontent p::text,span::text')
