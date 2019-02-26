@@ -4,14 +4,14 @@ class FuzzTime(object):
         self.datetime = datetime
         self.data = [datetime.year, datetime.month,
                      datetime.day, datetime.hour, datetime.minute, datetime.second]
-        print(self.data)
+        # print(self.data)
 
         self.data[0] = str(self.data[0])
         self.data[1:] = [t for t in map(
             lambda x: "%02d" % x, self.data[1:]
         )]
 
-        print(self.data)
+        # print(self.data)
         # no fuzz
         fuzz_start = 6
 
