@@ -84,6 +84,7 @@ class OutebreaknewsSpider(scrapy.Spider):
         text = [t for t in text if len(t) > 0]
 
         yield {
+<<<<<<< HEAD
             'headline': replace_unicode(response.css('div.posttitle h1::text').get()),
             'date_of_publication':  str(FuzzTime(date, hour=True)),
             'main_text': ' '.join(text),
@@ -91,6 +92,14 @@ class OutebreaknewsSpider(scrapy.Spider):
                 map(lambda x: replace_unicode(x), response.css(
                     'div.postcontent *::text').getall()
                     )
+=======
+            'headline': str(response.css('div.posttitle h1::text').get().strip()),
+            'date_of_publication':  str(FuzzTime(date, hour=True)),
+            'main_text': ' '.join(
+                response.css('div.content div.postcontent')
+                .css('div.content div.postcontent p::text,span::text')
+                .getall()
+>>>>>>> 9968327c82ca681fb4db5cd8a8e1a8f1158ba371
             ),
             'url': response.url
         }
