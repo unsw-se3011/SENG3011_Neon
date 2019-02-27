@@ -4,6 +4,28 @@ from .FuzzTime import FuzzTime
 from datetime import datetime
 
 
+import cssselect
+
+
+def filter_str(s):
+    if "adsbygoogle" in s:
+        return ''
+    if "disease news and information" in s:
+        return ''
+    if "the Infectious Disease News Facebook page" in s:
+        return ''
+    if 'Image/' in s:
+        return ''
+    return s
+
+
+def replace_unicode(s):
+    # some character of unicode dosen't need to show
+    # and then stip it
+    return str(s).replace('\u00a0', ' ').replace('\\u2019', "'")\
+        .replace('\u2018', '').replace('\xa0', '').strip()
+
+
 class OutebreaknewsSpider(scrapy.Spider):
     name = 'OutbreakNews'
     # allowed_domains = ['http://outbreaknewstoday.com/']
@@ -44,13 +66,31 @@ class OutebreaknewsSpider(scrapy.Spider):
         # parse the time
         date = article.css('div.datsingle::text').get()
         date = datetime.strptime(date, '%B %d, %Y')
+
+        # all the text
+        text = response.css('div.postcontent *::text').getall()
+        # text need to remove
+        bad = response.css('ul li strong a::text').getall()
+        # filter out
+        text = [t for t in text if t not in bad]
+
+        # trim
+        text = [t for t in map(
+            lambda el: filter_str(
+                replace_unicode(el)
+            ), text
+        )]
+        # reduce empty
+        text = [t for t in text if len(t) > 0]
+
         yield {
-            'headline': str(response.css('div.posttitle h1::text').get().strip()),
-            'date_of_publication':  str(FuzzTime(date, day=True)),
-            'main_text': ' '.join(
-                response.css('div.content div.postcontent')
-                .css('div.content div.postcontent p::text,span::text')
-                .getall()
+            'headline': replace_unicode(response.css('div.posttitle h1::text').get()),
+            'date_of_publication':  str(FuzzTime(date, hour=True)),
+            'main_text': ' '.join(text),
+            'all_text': ' '.join(
+                map(lambda x: replace_unicode(x), response.css(
+                    'div.postcontent *::text').getall()
+                    )
             ),
             'url': response.url
         }
