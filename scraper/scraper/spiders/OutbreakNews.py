@@ -2,7 +2,7 @@
 import scrapy
 from .FuzzTime import FuzzTime
 from datetime import datetime
-
+import re
 
 import cssselect
 
@@ -24,6 +24,9 @@ def replace_unicode(s):
     # and then stip it
     return str(s).replace('\u00a0', ' ').replace('\\u2019', "'")\
         .replace('\u2018', '').replace('\xa0', '').strip()
+
+
+listen_filter = re.compile('^LISTEN')
 
 
 class OutebreaknewsSpider(scrapy.Spider):
@@ -71,6 +74,17 @@ class OutebreaknewsSpider(scrapy.Spider):
         text = response.css('div.postcontent *::text').getall()
         # text need to remove
         bad = response.css('ul li strong a::text').getall()
+        # filter out
+        text = [t for t in text if t not in bad]
+
+        # script is not needed
+        bad = response.css('script::text').getall()
+        # filter out
+        text = [t for t in text if t not in bad]
+
+        # listen link is not needed
+        bad = response.css('p strong::text').getall()
+        bad = filter(listen_filter.search, bad)
         # filter out
         text = [t for t in text if t not in bad]
 
