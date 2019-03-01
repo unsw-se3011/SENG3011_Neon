@@ -14,3 +14,29 @@ Sidenote:
 - Scraper and NLPE will wake up once a day to perform data collection and do parsing daily.
 
 ## How parameters passed to our module?
+
+API examples:
+
+
+## Developemnt Platform (Technical Stack)
+
+Main OS: Linux
+
+Frontend: Vue, Vuetify  
+Language: Vue, Javascript, CSS, HTML  
+Packages: Moments, vue2-google-maps, axios, vuex, vue-router
+
+Backend: Django, Django-Rest  
+Language: Python3  
+Packages: Django-rest-cors, Django REST Swagger,django-rest-framework-jwt
+
+Database: PostgreSQL  
+Language: SQL (By ORM from Django)
+
+NLPE: nltk-all  
+Language: Python3  
+Packages: Response, Threading, json
+
+Scraper: Scrapy  
+Language: Python3  
+Packages: lxml, cssselect, Response, json
