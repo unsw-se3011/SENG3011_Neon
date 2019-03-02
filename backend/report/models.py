@@ -6,8 +6,6 @@ class Article(models.Model):
 	headline = models.CharField(max_length=32, default='')
 	date_of_publication = models.DateField()
 	main_text = models.TextField()
-	def __str__(self):
-		return self.headline
 
 class Disease(models.Model):
 	disease_name = models.CharField(null=True,max_length=200,blank=True)
