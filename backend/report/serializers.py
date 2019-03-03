@@ -1,6 +1,7 @@
 from .models import Report,Reportevent,Location,Article,Disease
 from rest_framework import serializers,validators
 from django.db import models
+from django import forms
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -15,9 +16,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Article
 		fields = ('url','headline','date_of_publication','main_text')
-
-	def create(self, validated_data):
-		validated_data[]
+	
 
 class ReporteventSerializer(serializers.ModelSerializer):
 	#location of Reportevent
@@ -30,12 +29,18 @@ class ReporteventSerializer(serializers.ModelSerializer):
 	start_date = serializers.DateField(source = "Reportevent.start_name")
 	#end_date
 	end_date = serializers.DateField(source = "Reportevent.end_name")
-
+	
 	def validate(self, data):
-		if data['start_date'] > data['end_date']:
+		if start_date > end_date:
 			raise serializers.ValidationError("finish must occur after start")
 		return data
 
+	'''def validate(self,cleaned_data):
+		start_date = cleaned_data.get("start_date")
+		end_date = cleaned_data.get("end_date")
+		if end_date < start_date:
+			msg = u"End date should be greater than start date."
+			self._errors["end_date"] = self.error_class([msg])'''
 	class Meta:
 		model = Reportevent
 		fields = ('report_type','start_date','end_date','number_effecet','location_name','latitude','longitude')
