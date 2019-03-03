@@ -41,4 +41,4 @@ GitHub, WeChat, Facebook Messenger, Google Doc
 | Feb 28     | Some backend endpoint is setted up, learning nltk for data extraction.                                                                                         |
 | Mar 1      | Modify repo structure for D1, backend enpoint rush                                                                                                             |
 | Mar 2      | Developing Endpoint                                                                                                                                            |
-| Mar 3      | Documentation of Deliverable 1, Iris is back?                                                                                                                  |
+| Mar 3      | Documentation of Deliverable 1, Iris is back! Working on the backen endpoint                                                                                   |
