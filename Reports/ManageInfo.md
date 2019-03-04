@@ -8,7 +8,7 @@
 
 | Name         | Responsibility                                                                                                             |
 | :----------- | :------------------------------------------------------------------------------------------------------------------------- |
-| Huiyue ZHANG | Scraper>Scrapy>\*(Fail to Complete), Management>Planning>User Story                                                        |
+| Huiyue ZHANG | Scraper>Scrapy>\*(Fail to Complete), Team Management>Product Owner> Design Planning>Report Witing{Epic Story, User Story, Use Cases, Deisgn features}      |
 | Ruofei HUANG | Manager>GitHub>\*, Documents>Deliverable>{Management Information, Design Detail}, Management>Planning>{WBS, Critical Path} |
 | Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                         |
 | Ziqing YAN   | Frontend>Normal INterface>\*                                                                                               |
