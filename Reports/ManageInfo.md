@@ -6,12 +6,12 @@
 
 ### Assigned Responsibility (Iter. 1)
 
-| Name         | Responsibility                                                                                                             |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------- |
-| Huiyue ZHANG | Scraper>Scrapy>\*(Fail to Complete), Team Management>Product Owner> Design Planning>Report Witing{Epic Story, User Story, Use Cases, Deisgn features}      |
-| Ruofei HUANG | Manager>GitHub>\*, Documents>Deliverable>{Management Information, Design Detail}, Management>Planning>{WBS, Critical Path} |
-| Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                         |
-| Ziqing YAN   | Frontend>Normal INterface>\*                                                                                               |
+| Name         | Responsibility                                                                                                                                        |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Huiyue ZHANG | Scraper>Scrapy>\*(Fail to Complete), Team Management>Product Owner> Design Planning>Report Witing{Epic Story, User Story, Use Cases, Deisgn features} |
+| Ruofei HUANG | Manager>GitHub>\*, Documents>Deliverable>{Management Information, Design Detail}, Management>Planning>{WBS, Critical Path}                            |
+| Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                                                    |
+| Ziqing YAN   | Frontend>Normal INterface>\*                                                                                                                          |
 
 ## Iteration Plan
 
@@ -36,9 +36,10 @@ GitHub, WeChat, Facebook Messenger, Google Doc
 | Feb 20     | Decision of api, work distribution, mentoring time; start of User Story and Entity Relationship Diagram, Github, documenting.                                  |
 | Feb 21     | Decision of meeting time                                                                                                                                       |
 | Feb 22     | Finish up User Story, setting up new tasks.                                                                                                                    |
-| Feb 25~26  | Inreamental progress, scraped ProMed’s metadata, data model, vue pages.                                                                                        |
+| Feb 25~26  | Inreamental progress, scraped ProMed’s metadata, data model, vue pages.                                                                                       |
 | Feb 27     | Group Meeting and mentoring session, scrape all the data from Outbreak news today, front-end progress is checked, backen has a hard time to set up those APIs. |
 | Feb 28     | Some backend endpoint is setted up, learning nltk for data extraction.                                                                                         |
 | Mar 1      | Modify repo structure for D1, backend enpoint rush                                                                                                             |
 | Mar 2      | Developing Endpoint                                                                                                                                            |
 | Mar 3      | Documentation of Deliverable 1, Iris is back! Working on the backen endpoint                                                                                   |
+| Mar 4      | Incremental improvement in API! Map interface in frontend. Acceptance Criteria in User Story and some Use case                                                 |
