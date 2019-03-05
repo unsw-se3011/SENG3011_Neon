@@ -61,8 +61,24 @@ class Report(models.Model):
     comment = models.TextField(blank=True)
 
 
+PRESENCE = "P"
+DEATH = "D"
+INFECTED = "I"
+HOSPITALISED = "H"
+RECOVERED = "R"
+
+EVENT_TYPE_CHOICE = (
+    (PRESENCE, 'Presence'),
+    (DEATH, 'Death'),
+    (INFECTED, 'Infected'),
+    (HOSPITALISED, 'Hospitalised'),
+    (RECOVERED, 'Recovered'),
+)
+
+
 class ReportEvent(models.Model):
-    report_type = models.CharField(max_length=200)
+    report = models.ForeignKey(Report, on_delete=models.CASCADE)
+    e_type = models.CharField(max_length=1, choices=EVENT_TYPE_CHOICE)
     # start of the date time
     start_date = models.DateTimeField()
     sd_fuzz = models.CharField(max_length=1, choices=fuzz_choice)
@@ -71,4 +87,3 @@ class ReportEvent(models.Model):
     ed_fuzz = models.CharField(max_length=1, choices=fuzz_choice)
     number_effecet = models.IntegerField(blank=True, null=True)
     location = models.ForeignKey(Location, models.PROTECT)
-    report = models.ForeignKey(Report, on_delete=models.CASCADE)
