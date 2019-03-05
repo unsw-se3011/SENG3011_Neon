@@ -17,26 +17,31 @@ Sidenote:
 
 API examples:
 
-
 ## Developement Platform (Technical Stack)
 
-**Main OS: Linux/Unix** *commonly used by developers*
+**Main OS: Linux/Unix**  
+Reason: Commonly used by developers
 
-**Frontend: Vue, Vuetify** *used to deliver simple and creative UI design*
+**Frontend: Vue, Vuetify**  
+Reason: To deliver simple and responsive UI design  
 Language: Vue, Javascript, CSS, HTML  
 Packages: Moments, vue2-google-maps, axios, vuex, vue-router
 
-**Backend: Django, Django-Rest** *commonly used framework that encourages rapid development and a clean design*
+**Backend: Django, Django-Rest**  
+Reason: Commonly used framework that encourages rapid development and a clean design  
 Language: Python3  
-Packages: Django-rest-cors, Django REST Swagger,django-rest-framework-jwt
+Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
 
-**Database: PostgreSQL** *used to manage the database system for our users*
+**Database: PostgreSQL**  
+Reason: Suitable to store large amount of data  
 Language: SQL (By ORM from Django)
 
-**NLP: nltk-all** *used to analyze large amounts of natural language data*
+**NLP: nltk-all**  
+Reason: Most commonly used NLP (Natural Language Procesing) Packages  
 Language: Python3  
 Packages: Response, Threading, json
 
-**Scraper: Scrapy** *used to frequently gather data from the main data source, Outbreak News Today*
+**Scraper: Scrapy**  
+Reason: Most commonly used scraper framework  
 Language: Python3  
 Packages: lxml, cssselect, Response, json

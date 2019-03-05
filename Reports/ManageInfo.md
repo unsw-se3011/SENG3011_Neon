@@ -4,14 +4,24 @@
 
 ![Work Break Down Structure](img/wbs.png)
 
+## Critical Path Method
+
+### Dependency Graph
+
+![Dependency Graph](img/dependency.png)
+
+### Critical Path
+
+![Critical Path](img/critical_path.png)
+
 ### Assigned Responsibility (Iter. 1)
 
-| Name         | Responsibility                                                                                                                                        |
-| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Huiyue ZHANG | Scraper>Scrapy>\*(Fail to Complete), Team Management>Product Owner> Design Planning>Report Witing{Epic Story, User Story, Use Cases, Deisgn features} |
-| Ruofei HUANG | Manager>GitHub>\*, Documents>Deliverable>{Management Information, Design Detail}, Management>Planning>{WBS, Critical Path}                            |
-| Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                                                    |
-| Ziqing YAN   | Frontend>Normal INterface>\*                                                                                                                          |
+| Name         | Responsibility                                                                                                                                                 |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Huiyue ZHANG | Team Management>Product Owner> Design Planning>Report Witing{Epic Story, User Story, Use Cases, Deisgn features}                                               |
+| Ruofei HUANG | Manager>GitHub>\*, Documents>Deliverable>{Management Information, Design Detail}, Management>Planning>{WBS, Critical Path},Scraper>Scrapy>\*(Fail to Complete) |
+| Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                                                             |
+| Ziqing YAN   | Frontend>Normal INterface>\*                                                                                                                                   |
 
 ## Iteration Plan
 
@@ -43,3 +53,4 @@ GitHub, WeChat, Facebook Messenger, Google Doc
 | Mar 2      | Developing Endpoint                                                                                                                                            |
 | Mar 3      | Documentation of Deliverable 1, Iris is back! Working on the backen endpoint                                                                                   |
 | Mar 4      | Incremental improvement in API! Map interface in frontend. Acceptance Criteria in User Story and some Use case                                                 |
+| Mar 5      | Critical Path                                                                                                                                                  |
