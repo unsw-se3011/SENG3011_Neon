@@ -1,18 +1,22 @@
 from django.db import models
 
+YEAR = "Y"
 MONTH = "M"
 DAY = "D"
 HOUR = "H"
 MINUTE = "I"
 SECOND = "S"
+ACCURATE = "A"
 
 
 fuzz_choice = (
+    (YEAR, "Year"),
     (MONTH, 'Month'),
     (DAY, 'Day'),
     (HOUR, 'Hour'),
     (MINUTE, 'Minute'),
-    (SECOND, 'Second')
+    (SECOND, 'Second'),
+    (ACCURATE, 'Accurate'),
 )
 
 
@@ -21,7 +25,8 @@ class Article(models.Model):
     headline = models.CharField(max_length=512, default='')
     publish = models.DateTimeField()
     # publish fuzz field
-    p_fuzz = models.DateTimeField(max_length=1, choices=fuzz_choice)
+    p_fuzz = models.CharField(
+        max_length=1, choices=fuzz_choice)
     main_text = models.TextField()
 
 

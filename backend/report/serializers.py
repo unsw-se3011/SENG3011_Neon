@@ -2,6 +2,38 @@ from .models import Report, ReportEvent, Location, Article, Disease
 from rest_framework import serializers, validators
 from django.db import models
 from django import forms
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "username",
+            "password",
+            "first_name",
+            "last_name"
+        )
+
+    def update(self, instance, validated_data):
+        # update the user by given validated data
+        user = super(UserSerializer, self)\
+            .update(instance, validated_data)
+        # update it's password
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+    def create(self, validated_data):
+        # create user and udpate it's password
+        user = super(UserSerializer, self)\
+            .create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -10,8 +42,9 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = (
             'url',
             'headline',
-            'date_of_publication',
-            'main_text'
+            'publish',
+            'main_text',
+            'p_fuzz',
         )
 
 
@@ -20,23 +53,13 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = ('name', 'lat', 'lng')
 
-    # def create(self, validated_data):
-    #     # Only create a location if it's exist
-    #     return Location.objects.get_or_create(**validated_data)[0]
-
 
 class ReportEventSerializer(serializers.ModelSerializer):
-    # def validate(self, data):
-    #     if start_date > end_date:
-    #         raise serializers.ValidationError("finish must occur after start")
-    #     return data
+    def validate(self, data):
+        if start_date > end_date:
+            raise serializers.ValidationError("finish must occur after start")
+        return data
 
-    # def validate(self,cleaned_data):
-    #             start_date = cleaned_data.get("start_date")
-    #             end_date = cleaned_data.get("end_date")
-    #             if end_date < start_date:
-    #                     msg = u"End date should be greater than start date."
-    #                     self._errors["end_date"] = self.error_class([msg])
     class Meta:
         model = ReportEvent
         fields = (
@@ -49,31 +72,6 @@ class ReportEventSerializer(serializers.ModelSerializer):
             'location',
             'report'
         )
-
-    # def update(self, instance, validated_data):
-    #     # pop the foreign
-    #     report_data = validated_data.pop("report", {})
-    #     location = Location.objects.get_or_create(
-    #         **(profile_data.pop("location")))[0]
-    #     # push back
-    #     report_data['location'] = location
-    #     # update reportevent
-    #     reportevent = super(ReportEventSerializer, self).update(
-    #         instance, validated_data)
-    #     reportevent.save()
-
-    #     LocationSerializer().update(reportevet.location, validated_data=profile_data)
-    #     return reportevent
-
-    # def create(self, validated_data):
-    #     report_data = validated_data.pop("report", {})
-    #     location = Location.objects.get_or_create(
-    #         **(profile_data.pop("location")))[0]
-    #     report_data['location'] = location
-    #     reportevent = super(ReportEventSerializer, self).create(validated_data)
-    #     reportevent.save()
-    #     LocationSerializer().update(reportevet.location, validated_data=profile_data)
-    #     return reportevent
 
 
 class ReportSerializer(serializers.ModelSerializer):
