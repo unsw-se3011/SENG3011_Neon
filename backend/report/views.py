@@ -1,6 +1,6 @@
-from .models import Report,Reportevent,Article,Location
+from .serializers import *
 from rest_framework import viewsets
-from .serializers import ReportSerializer,ReporteventSerializer,LocationSerializer,ArticleSerializer
+from .serializers import ReportSerializer, ReporteventSerializer, LocationSerializer, ArticleSerializer
 
 
 class ReportViewSet(viewsets.ModelViewSet):
@@ -10,16 +10,19 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
 
+
 class ReporteventViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Reportevent.objects.all()
+    queryset = ReportEvent.objects.all()
     serializer_class = ReporteventSerializer
+
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
 
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
