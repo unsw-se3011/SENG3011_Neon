@@ -35,7 +35,7 @@ class Disease(models.Model):
     """
 
     name = models.CharField(null=True, max_length=200, blank=True)
-    syndromes = models.ManyToManyField(Syndrome, blank=True, null=True)
+    syndromes = models.ManyToManyField(Syndrome, blank=True)
 
 
 class Location(models.Model):
