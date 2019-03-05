@@ -7,7 +7,12 @@ from django import forms
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('url', 'headline', 'date_of_publication', 'main_text')
+        fields = (
+            'url',
+            'headline',
+            'date_of_publication',
+            'main_text'
+        )
 
 
 class LocationSerializer(serializers.ModelSerializer):

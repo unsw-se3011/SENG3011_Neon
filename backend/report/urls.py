@@ -1,7 +1,13 @@
-from django.urls import path
+from django.conf.urls import url, include
+from .views import ReportViewSet, ReportEventViewSet, LocationViewSet, ArticleViewSet
+from rest_framework import routers
 
-# from . import views
-# app_name = 'report'
-# urlpatterns = [
-#     path('', views.ReportList.as_view()),
-# ]
+router = routers.DefaultRouter()
+router.register(r'reports', views.ReportViewSet)
+router.register(r'report_events', views.ReportEventViewSet)
+router.register(r'articles', views.ArticleViewSet)
+router.register(r'location', views.LocationViewSet)
+
+urlpatterns = [
+    url(r'^', include(router.urls))
+]
