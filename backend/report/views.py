@@ -4,6 +4,9 @@ from .serializers import ReportSerializer, ReportEventSerializer, LocationSerial
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -42,12 +45,15 @@ class ReportEventViewSet(viewsets.ModelViewSet):
     queryset = ReportEvent.objects.all()
     serializer_class = ReportEventSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
+
 
 
 class LocationViewSet(viewsets.ModelViewSet):
