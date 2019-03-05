@@ -21,7 +21,7 @@ fuzz_choice = (
 
 
 class Article(models.Model):
-    url = models.URLField()
+    url = models.URLField(primary_key=True)
     headline = models.CharField(max_length=512, default='')
     publish = models.DateTimeField()
     # publish fuzz field
@@ -31,7 +31,7 @@ class Article(models.Model):
 
 
 class Syndrome(models.Model):
-    name = models.CharField(null=True, max_length=200, blank=True)
+    name = models.CharField(max_length=200, primary_key=True)
 
 
 class Disease(models.Model):
@@ -39,8 +39,12 @@ class Disease(models.Model):
     Record the disease name, and it's syndrom
     """
 
-    name = models.CharField(null=True, max_length=200, blank=True)
+    name = models.CharField(max_length=200, primary_key=True)
     syndromes = models.ManyToManyField(Syndrome, blank=True)
+
+    def __str__(self):
+        # to support the disease name shown
+        return self.name
 
 
 class Location(models.Model):

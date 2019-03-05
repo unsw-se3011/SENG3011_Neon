@@ -1,4 +1,4 @@
-from .models import Report, ReportEvent, Location, Article, Disease
+from .models import Report, ReportEvent, Location, Article, Disease, Syndrome
 from rest_framework import serializers, validators
 from django.db import models
 from django import forms
@@ -74,9 +74,26 @@ class ReportEventSerializer(serializers.ModelSerializer):
         )
 
 
+class SyndromeSerializer(serializers.ModelSerializer):
+    class Meta:
+        models = Syndrome
+        fields = (
+            'name'
+        )
+
+
+class DiseaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        models = Disease
+        fields = (
+            'name',
+            'syndromes'
+        )
+
+
 class ReportSerializer(serializers.ModelSerializer):
     # Article details
-    article = ArticleSerializer()
+    article = ArticleSerializer(read_only=True)
     # Reportevent details
     report_event = ReportEventSerializer()
 
@@ -86,5 +103,7 @@ class ReportSerializer(serializers.ModelSerializer):
             'article',
             'disease',
             'syndrome',
-            'comment'
+            'comment',
+            'article',
+            'report_event'
         )

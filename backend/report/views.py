@@ -2,13 +2,13 @@ from .serializers import *
 from rest_framework import viewsets
 from .serializers import ReportSerializer, ReportEventSerializer, LocationSerializer, ArticleSerializer
 from rest_framework.exceptions import NotAuthenticated
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     """
     Get method could only get the element of current user
@@ -32,6 +32,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     """
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class ReportEventViewSet(viewsets.ModelViewSet):
@@ -40,13 +41,16 @@ class ReportEventViewSet(viewsets.ModelViewSet):
     """
     queryset = ReportEvent.objects.all()
     serializer_class = ReportEventSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
