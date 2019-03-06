@@ -30,7 +30,49 @@ ___
 
 
 
-END
+## Passing Parameters and Collecting Results
+
+
+**Input Parameters for API：**
+-
+
+
+**Period of Interst:**
+- time periods cannot be empty
+- end_date must be later than start_date
+```json
+TimePeriod{
+    start_date:  <yyyy-MM-ddTHH:mm:ss>,
+    end_date:    <yyyy-MM-ddTHH:mm:ss>
+};
+
+```
+
+**Keywords:**
+- Keywords are not case sensitive
+- List of key terms are seperated y a comma
+
+```sql
+Keywords{
+    keywords    String
+};
+```
+
+**Location:**
+- Search disease reports by a location name e.g. city, country, state
+
+
+```sql
+location{
+    location    String
+};
+```
+Our API will filter the disease reports according to the time period
+
+
+
+**END**
+-
 ___
 
 
@@ -56,11 +98,6 @@ Sidenote:
 
 API examples:
 
-
-
-## 
-
-## 
 
 
 
