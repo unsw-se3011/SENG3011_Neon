@@ -86,63 +86,63 @@ DELETE
 ## Developement Platform (Technical Stack)
 
 **Main OS: Linux/Unix**  
-Justification: It is commonly used by developers
+*Justification*: It is commonly used by developers
 
-Comparison: Linux/Unix VS Windows
+*Comparison*: Linux/Unix VS Windows
 - Linux/Unix are able to easily install packages via terminal whereas Windows you have to find a website to download. 
 
 
 
 **Frontend: Vue, Vuetify**  
-Justification: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
+*Justification*: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
 
-Comparison: Vue VS React VS Angular
+*Comparison*: Vue VS React VS Angular
 - React is usually used for building mobile apps. 
 - Angular is a full framework and React is more flexible because of set independence. However, React involves more JavaScript than Vue. 
 - Vue has the cleanest framework and libraries; it helps to keep code efficient with the perfect balance of internal dependencies and flexibilities.
 
-Language: Vue, Javascript, CSS, HTML  
-Packages: Moments, vue2-google-maps, axios, vuex, vue-router
+*Language*: Vue, Javascript, CSS, HTML  
+*Packages*: Moments, vue2-google-maps, axios, vuex, vue-router
 
 **Backend: Django, Django-Rest**  
-Justification: Commonly used framework that encourages rapid development and a clean design. It is also easier to stick with a familiar platform, Python. Django is a web browsable API, has authenticated policies, function-based views and extensive documentation. 
+*Justification*: Commonly used framework that encourages rapid development and a clean design. It is also easier to stick with a familiar platform, Python. Django is a web browsable API, has authenticated policies, function-based views and extensive documentation. 
 
-Comparison: Django VS Flask 
+*Comparison*: Django VS Flask 
 - Django provides a full-featured MVC Framework whereas Flask has a micro-framework, providing very little upfront. 
 - Django REST Framework includes flexible support for versioning.
 - Flask does not have a good browsable API option, unlike Django.
 
-Language: Python3  
-Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
+*Language*: Python3  
+*Packages*: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
 
 **Database: PostgreSQL**  
-Justification: It is the default database choice for Django. It is most advanced, SQL-compliant and open-source objective-RDBMS. PostgreSQL is suitable for storing large amount of data.
+*Justification*: It is the default database choice for Django. It is most advanced, SQL-compliant and open-source objective-RDBMS. PostgreSQL is suitable for storing large amount of data.
 
-Comparison: PostgreSQL VS MySQL VS SQLite
+*Comparison*: PostgreSQL VS MySQL VS SQLite
 - PostgreSQL is not just a relational database management system, it is also objective with support for nesting.
 - PostgreSQL is better for reliability and data integrity whereas MySQL handles less reliability.
 - SQLite does not support user management whereas PostgreSQL does.
 
-Language: SQL (By ORM from Django)
+*Language*: SQL (By ORM from Django)
 
 **NLP: nltk-all**  
-Justification: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
+*Justification*: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
 
-Comparison: nltk VS spaCy
+*Comparison*: nltk VS spaCy
 - TBA
 
-Language: Python3  
-Packages: Response, Threading, json
+*Language*: Python3  
+*Packages*: Response, Threading, json
 
 **Scraper: Scrapy**  
-Justification: Most commonly used scraper framework. Scrapy is an asynchronous framework
+*Justification*: Most commonly used scraper framework. Scrapy is an asynchronous framework
 
-Comparison: Scrapy VS Selenium
+*Comparison*: Scrapy VS Selenium
 - Scraping is a lot faster in Scrapy than in Selenium. 
 - Scrapy consumes less memory and lower CPU usage compared to Selenium.
 
-Language: Python3  
-Packages: lxml, cssselect, Response, json
+*Language*: Python3  
+*Packages*: lxml, cssselect, Response, json
 
 
 **END**
