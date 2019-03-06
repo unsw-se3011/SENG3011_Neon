@@ -36,19 +36,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 
-class ArticleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Article
-        fields = (
-            'id',
-            'url',
-            'headline',
-            'publish',
-            'main_text',
-            'p_fuzz',
-        )
-
-
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
@@ -115,10 +102,9 @@ class DiseaseSerializer(serializers.ModelSerializer):
 
 
 class ReportSerializer(serializers.ModelSerializer):
-    # Article details
-    article = ArticleSerializer(read_only=True)
     # Reportevent details
-    report_event = ReportEventSerializer(many=True, read_only=True)
+    report_event = ReportEventSerializer(
+        many=True, read_only=True, source='reportevent_set')
 
     # attach the article while creation
     article_id = serializers.PrimaryKeyRelatedField(
@@ -136,11 +122,26 @@ class ReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = (
             'id',
-            'article',
             'article_id',
             'disease',
             'syndrome',
             'comment',
             'article',
             'report_event'
+        )
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    reports = ReportSerializer(many=True, read_only=True, source='report_set')
+
+    class Meta:
+        model = Article
+        fields = (
+            'id',
+            'url',
+            'headline',
+            'publish',
+            'main_text',
+            'p_fuzz',
+            'reports',
         )

@@ -30,6 +30,15 @@ class UserViewSet(viewsets.ModelViewSet):
         return self.list(request)
 
 
+class ReportEventViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = ReportEvent.objects.all()
+    serializer_class = ReportEventSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
 class ReportViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -37,6 +46,14 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    search_fields = ('article__headline', 'article__main_text')
+    filterset_fields = (
+        'article__headline',
+        'disease',
+        'syndrome',
+    )
+    ordering_fields = ('article__publish',)
 
     def perform_create(self, ser_er):
         # user report serializer to create this report
@@ -66,15 +83,6 @@ class ReportViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError({
                 'report_event': 'Error in createing report events'
             })
-
-
-class ReportEventViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = ReportEvent.objects.all()
-    serializer_class = ReportEventSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
