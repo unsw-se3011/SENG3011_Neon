@@ -1,5 +1,31 @@
 # Design Details - Initial documentation
 
+
+Describe how	you	intend	 to	develop	 the	API	module	and	provide the	ability	 to	run	it	in	Web	
+service	mode
+
+
+## Developing API module
+___
+### Backend
+
+
+### Frontend
+
+
+### Scraping (NLPE & OAU)
+
+
+
+## Linking API to Web service mode
+___
+
+
+END
+___
+
+
+
 ![Architecture Design](img/Architecture.png)
 
 ## How we develop our API module?
