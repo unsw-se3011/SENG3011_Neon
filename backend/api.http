@@ -209,5 +209,13 @@ GET {{baseUrl}}articles/?headline=no HTTP/1.1
 GET {{baseUrl}}articles/?headline=no&ordering=-publish HTTP/1.1
 
 ###
-# In report Search 
+# In report filter
+# because we can't trace the disease and syndrome in the article 
+# due to the limit of django orm 
+GET {{baseUrl}}reports/?syndrome=stomache HTTP/1.1
 
+###
+# disease and syndrome double filter combine. 
+GET {{baseUrl}}reports/?disease=hello1&syndrome=stomache HTTP/1.1
+
+# what filed to search in report? I have no idea.

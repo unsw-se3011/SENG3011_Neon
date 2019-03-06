@@ -91,7 +91,10 @@ class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     search_fields = ('headline', 'main_text')
-    filterset_fields = ('headline', 'id')
+    filterset_fields = (
+        'headline',
+        'id'
+    )
     ordering_fields = ('publish',)
 
 
