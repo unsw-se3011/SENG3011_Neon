@@ -7,18 +7,27 @@ service	mode
 
 ## Developing API module
 ___
-### Backend
+### Design
+- **Scraping:**  we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed. 
+- **Backend:** 
+
+- **Frontend:** our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
+
+### Development
 
 
-### Frontend
+### Document
 
 
-### Scraping (NLPE & OAU)
+### Testing
+
 
 
 
 ## Linking API to Web service mode
 ___
+
+
 
 
 END
@@ -32,7 +41,11 @@ ___
 
 Because we decouple all our module by using JSON and Http Request. We seperate each module easily, which allow us can have different develop cycle.
 
-From the frist stage, we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. Secondly, our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed. Thirdly, our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
+From the frist stage, we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. 
+
+Secondly, our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed. 
+
+Thirdly, our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
 
 Sidenote:
 
@@ -42,6 +55,14 @@ Sidenote:
 ## How parameters passed to our module?
 
 API examples:
+
+
+
+## 
+
+## 
+
+
 
 ## Developement Platform (Technical Stack)
 
