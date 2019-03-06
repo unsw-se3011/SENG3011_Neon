@@ -55,8 +55,13 @@ class ArticleViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
 
 
-
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class DiseaseViewSet(viewsets.ModelViewSet):
+    queryset = Disease.objects.all()
+    serializer_class = DiseaseSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)

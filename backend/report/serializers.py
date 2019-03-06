@@ -5,7 +5,6 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -77,7 +76,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
 
 class SyndromeSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Syndrome
+        model = Syndrome
         fields = (
             'name'
         )
@@ -85,7 +84,7 @@ class SyndromeSerializer(serializers.ModelSerializer):
 
 class DiseaseSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Disease
+        model = Disease
         fields = (
             'name',
             'syndromes'
