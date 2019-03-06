@@ -85,7 +85,7 @@ DELETE
 
 ## Developement Platform (Technical Stack)
 
-**Main OS: Linux/Unix**  
+***Main OS*: Linux/Unix**  
 *Justification*: It is commonly used by developers
 
 *Comparison*: Linux/Unix VS Windows
@@ -93,7 +93,7 @@ DELETE
 
 
 
-**Frontend: Vue, Vuetify**  
+***Frontend*: Vue, Vuetify**  
 *Justification*: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
 
 *Comparison*: Vue VS React VS Angular
@@ -104,7 +104,7 @@ DELETE
 *Language*: Vue, Javascript, CSS, HTML  
 *Packages*: Moments, vue2-google-maps, axios, vuex, vue-router
 
-**Backend: Django, Django-Rest**  
+***Backend*: Django, Django-Rest**  
 *Justification*: Commonly used framework that encourages rapid development and a clean design. It is also easier to stick with a familiar platform, Python. Django is a web browsable API, has authenticated policies, function-based views and extensive documentation. 
 
 *Comparison*: Django VS Flask 
@@ -115,7 +115,7 @@ DELETE
 *Language*: Python3  
 *Packages*: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
 
-**Database: PostgreSQL**  
+***Database*: PostgreSQL**  
 *Justification*: It is the default database choice for Django. It is most advanced, SQL-compliant and open-source objective-RDBMS. PostgreSQL is suitable for storing large amount of data.
 
 *Comparison*: PostgreSQL VS MySQL VS SQLite
@@ -125,7 +125,7 @@ DELETE
 
 *Language*: SQL (By ORM from Django)
 
-**NLP: nltk-all**  
+***NLP*: nltk-all**  
 *Justification*: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
 
 *Comparison*: nltk VS spaCy
@@ -134,7 +134,7 @@ DELETE
 *Language*: Python3  
 *Packages*: Response, Threading, json
 
-**Scraper: Scrapy**  
+***Scraper*: Scrapy**  
 *Justification*: Most commonly used scraper framework. Scrapy is an asynchronous framework
 
 *Comparison*: Scrapy VS Selenium
