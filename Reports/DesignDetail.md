@@ -6,7 +6,7 @@ service	mode
 
 
 ## Developing API module
-___
+
 ### Design
 - **Scraping:**  we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed. 
 - **Backend:** 
@@ -25,22 +25,20 @@ ___
 
 
 ## Linking API to Web service mode
-___
 
 
 
 
-## Passing Parameters and Collecting Results
+
+# Passing Parameters and Collecting Results
 
 
-**Input Parameters for API：**
--
+**Input Parameters for API:**
 
-
-**Period of Interst:**
+*Period of Interst:*
 - time periods cannot be empty
 - end_date must be later than start_date
-```json
+```sql
 TimePeriod{
     start_date:  <yyyy-MM-ddTHH:mm:ss>,
     end_date:    <yyyy-MM-ddTHH:mm:ss>
@@ -48,27 +46,71 @@ TimePeriod{
 
 ```
 
-**Keywords:**
+*Keywords:*
 - Keywords are not case sensitive
 - List of key terms are seperated y a comma
 
 ```sql
 Keywords{
-    keywords    String
+    keywords:    <string>
 };
 ```
 
-**Location:**
+*Location:*
 - Search disease reports by a location name e.g. city, country, state
 
 
 ```sql
 location{
-    location    String
+    location:    <string>
 };
 ```
+
+**Collecting results:**
 Our API will filter the disease reports according to the time period
 
+**Output from API:**
+
+GET
+POST
+DELETE
+
+
+## Developement Platform (Technical Stack)
+
+**Main OS: Linux/Unix**  
+Justification: It is commonly used by developers
+Comparison: 
+
+
+**Frontend: Vue, Vuetify**  
+Justification: To deliver simple and responsive UI design  
+Comparison: 
+Language: Vue, Javascript, CSS, HTML  
+Packages: Moments, vue2-google-maps, axios, vuex, vue-router
+
+**Backend: Django, Django-Rest**  
+Justification: Commonly used framework that encourages rapid development and a clean design  
+Comparison: 
+Language: Python3  
+Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
+
+**Database: PostgreSQL**  
+Justification: Suitable to store large amount of data  
+Comparison: 
+Language: SQL (By ORM from Django)
+
+**NLP: nltk-all**  
+Justification: Most commonly used NLP (Natural Language Procesing) Packages  
+Comparison: 
+Language: Python3  
+Packages: Response, Threading, json
+
+**Scraper: Scrapy**  
+Justification: Most commonly used scraper framework  
+Comparison: 
+Language: Python3  
+Packages: lxml, cssselect, Response, json
 
 
 **END**
@@ -94,38 +136,6 @@ Sidenote:
 - NLPE also will call the Google Map API while parsing the article.
 - Scraper and NLPE will wake up once a day to perform data collection and do parsing daily.
 
-## How parameters passed to our module?
-
-API examples:
 
 
 
-
-## Developement Platform (Technical Stack)
-
-**Main OS: Linux/Unix**  
-Reason: Commonly used by developers
-
-**Frontend: Vue, Vuetify**  
-Reason: To deliver simple and responsive UI design  
-Language: Vue, Javascript, CSS, HTML  
-Packages: Moments, vue2-google-maps, axios, vuex, vue-router
-
-**Backend: Django, Django-Rest**  
-Reason: Commonly used framework that encourages rapid development and a clean design  
-Language: Python3  
-Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
-
-**Database: PostgreSQL**  
-Reason: Suitable to store large amount of data  
-Language: SQL (By ORM from Django)
-
-**NLP: nltk-all**  
-Reason: Most commonly used NLP (Natural Language Procesing) Packages  
-Language: Python3  
-Packages: Response, Threading, json
-
-**Scraper: Scrapy**  
-Reason: Most commonly used scraper framework  
-Language: Python3  
-Packages: lxml, cssselect, Response, json
