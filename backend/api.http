@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MTg2NjI3NCwiZW1haWwiOiIifQ.JH-TDv3GERHEdTRBtUhuutHknDLQjarg_FL0sgRfgGw
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MTg2OTcwNiwiZW1haWwiOiIifQ.t2kDfsW8T4Y8LaolWaDzEWxvoPBBhUyy2gNeRM93yxo
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -40,7 +40,7 @@ Authorization: {{auth}}
 
 {
     "url": "http://localhost:8000/v0/article/",
-    "headline": "another",
+    "headline": "no",
     "publish": "0200-01-01T15:20:00Z",
     "main_text": "helloworld",
     "p_fuzz": "M"
@@ -195,5 +195,19 @@ OPTIONS {{baseUrl}}report_events/ HTTP/1.1
 Content-Type: application/json
 
 
+###
+# Search functionality
 
+GET {{baseUrl}}articles/?search=another HTTP/1.1
+Content-Type: application/json
+
+###
+# filter functionality
+GET {{baseUrl}}articles/?headline=no HTTP/1.1
+
+# ordering the result by decending 
+GET {{baseUrl}}articles/?headline=no&ordering=-publish HTTP/1.1
+
+###
+# In report Search 
 

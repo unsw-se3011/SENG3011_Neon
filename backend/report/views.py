@@ -1,4 +1,5 @@
 from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from .serializers import ReportSerializer, ReportEventSerializer, LocationSerializer, ArticleSerializer
 from rest_framework.exceptions import NotAuthenticated
@@ -61,7 +62,6 @@ class ReportViewSet(viewsets.ModelViewSet):
             raise e
         except Exception as e:
             report.delete()
-            raise e
             print(e)
             raise serializers.ValidationError({
                 'report_event': 'Error in createing report events'
@@ -75,14 +75,16 @@ class ReportEventViewSet(viewsets.ModelViewSet):
     queryset = ReportEvent.objects.all()
     serializer_class = ReportEventSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
+
+    search_fields = ('headline', 'main_text')
+    filterset_fields = ('headline', 'id')
+    ordering_fields = ('publish',)
 
 
 class LocationViewSet(viewsets.ModelViewSet):
