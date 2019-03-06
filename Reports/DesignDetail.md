@@ -1,4 +1,4 @@
-# Design Detail
+# Design Details - Initial documentation
 
 ![Architecture Design](img/Architecture.png)
 
@@ -17,26 +17,31 @@ Sidenote:
 
 API examples:
 
+## Developement Platform (Technical Stack)
 
-## Developemnt Platform (Technical Stack)
+**Main OS: Linux/Unix**  
+Reason: Commonly used by developers
 
-Main OS: Linux
-
-Frontend: Vue, Vuetify  
+**Frontend: Vue, Vuetify**  
+Reason: To deliver simple and responsive UI design  
 Language: Vue, Javascript, CSS, HTML  
 Packages: Moments, vue2-google-maps, axios, vuex, vue-router
 
-Backend: Django, Django-Rest  
+**Backend: Django, Django-Rest**  
+Reason: Commonly used framework that encourages rapid development and a clean design  
 Language: Python3  
-Packages: Django-rest-cors, Django REST Swagger,django-rest-framework-jwt
+Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
 
-Database: PostgreSQL  
+**Database: PostgreSQL**  
+Reason: Suitable to store large amount of data  
 Language: SQL (By ORM from Django)
 
-NLPE: nltk-all  
+**NLP: nltk-all**  
+Reason: Most commonly used NLP (Natural Language Procesing) Packages  
 Language: Python3  
 Packages: Response, Threading, json
 
-Scraper: Scrapy  
+**Scraper: Scrapy**  
+Reason: Most commonly used scraper framework  
 Language: Python3  
 Packages: lxml, cssselect, Response, json
