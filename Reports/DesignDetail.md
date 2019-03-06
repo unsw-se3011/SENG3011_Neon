@@ -1,11 +1,17 @@
 # Design Details - Initial documentation
 
-
-Describe how	you	intend	 to	develop	 the	API	module	and	provide the	ability	 to	run	it	in	Web	
-service	mode
-
-
 ## Developing API module
+
+Firstly,we intend to choose the combination of Python and Django to build up the API server.Both of them provide rich resources and functions for programming and web server development and make the coding become easier.
+
+Then,based on the requirement an API must have basic methods such as GET, POST, PUT and DELETE to allow website could get the information correctly. Since the API server provides these methods we should use in every object, we separate the API for 5 sections by classify its URL.
+
+Based on the functionality,’users’ is for user register and login request which provides authentication for users as well as the management of users.‘Reports’ which provides an interface for getting the whole report contains layout of an outbreak news.’Reports events’ which relays on report provides an interface for getting the detailed information about the report.’Articles’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.’Location’ provides the function of finding all related reports that happened on a specific area.
+
+After we have a structure of API,we need to consider about the data of API.By the suggestion of specification,we intend to use a scraper to gather data frequently. Python scrapy library will be our choice.We are preferring run this service in daily.Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+
+Finally,we will document the API as a readable,user friendly website form.As specification suggestion we will use swagger to document our API. It will develop a clear guide for further website request.It should show all the methods we have,what parameters that function needs,what is the response of the API and what the response indicates also gives example of how to use each function.
+
 
 ### Design
 - **Scraping:**  we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed. 
@@ -71,8 +77,9 @@ Our API will filter the disease reports according to the time period
 
 **Output from API:**
 
-GET
-POST
+GET\
+PUT\
+POST\
 DELETE
 
 
@@ -80,35 +87,60 @@ DELETE
 
 **Main OS: Linux/Unix**  
 Justification: It is commonly used by developers
-Comparison: 
+
+Comparison: Linux/Unix VS Windows
+- Linux/Unix are able to easily install packages via terminal whereas Windows you have to find a website to download. 
+
 
 
 **Frontend: Vue, Vuetify**  
-Justification: To deliver simple and responsive UI design  
-Comparison: 
+Justification: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
+
+Comparison: Vue VS React VS Angular
+- React is usually used for building mobile apps. 
+- Angular is a full framework and React is more flexible because of set independence. However, React involves more JavaScript than Vue. 
+- Vue has the cleanest framework and libraries; it helps to keep code efficient with the perfect balance of internal dependencies and flexibilities.
+
 Language: Vue, Javascript, CSS, HTML  
 Packages: Moments, vue2-google-maps, axios, vuex, vue-router
 
 **Backend: Django, Django-Rest**  
-Justification: Commonly used framework that encourages rapid development and a clean design  
-Comparison: 
+Justification: Commonly used framework that encourages rapid development and a clean design. It is also easier to stick with a familiar platform, Python. Django is a web browsable API, has authenticated policies, function-based views and extensive documentation. 
+
+Comparison: Django VS Flask 
+- Django provides a full-featured MVC Framework whereas Flask has a micro-framework, providing very little upfront. 
+- Django REST Framework includes flexible support for versioning.
+- Flask does not have a good browsable API option, unlike Django.
+
 Language: Python3  
 Packages: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
 
 **Database: PostgreSQL**  
-Justification: Suitable to store large amount of data  
-Comparison: 
+Justification: It is the default database choice for Django. It is most advanced, SQL-compliant and open-source objective-RDBMS. PostgreSQL is suitable for storing large amount of data.
+
+Comparison: PostgreSQL VS MySQL VS SQLite
+- PostgreSQL is not just a relational database management system, it is also objective with support for nesting.
+- PostgreSQL is better for reliability and data integrity whereas MySQL handles less reliability.
+- SQLite does not support user management whereas PostgreSQL does.
+
 Language: SQL (By ORM from Django)
 
 **NLP: nltk-all**  
-Justification: Most commonly used NLP (Natural Language Procesing) Packages  
-Comparison: 
+Justification: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
+
+Comparison: nltk VS spaCy
+- TBA
+
 Language: Python3  
 Packages: Response, Threading, json
 
 **Scraper: Scrapy**  
-Justification: Most commonly used scraper framework  
-Comparison: 
+Justification: Most commonly used scraper framework. Scrapy is an asynchronous framework
+
+Comparison: Scrapy VS Selenium
+- Scraping is a lot faster in Scrapy than in Selenium. 
+- Scrapy consumes less memory and lower CPU usage compared to Selenium.
+
 Language: Python3  
 Packages: lxml, cssselect, Response, json
 
