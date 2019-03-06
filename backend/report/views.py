@@ -65,3 +65,11 @@ class DiseaseViewSet(viewsets.ModelViewSet):
     queryset = Disease.objects.all()
     serializer_class = DiseaseSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class SyndromeViewSet(viewsets.ModelViewSet):
+    queryset = Syndrome.objects.all()
+    serializer_class = SyndromeSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+

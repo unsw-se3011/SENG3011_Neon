@@ -4,7 +4,8 @@ from .views import ReportViewSet,\
     LocationViewSet,\
     ArticleViewSet,\
     UserViewSet,\
-    DiseaseViewSet
+    DiseaseViewSet,\
+    SyndromeViewSet
 from rest_framework import routers
 from django.urls import path
 from rest_framework_jwt.views import obtain_jwt_token
@@ -17,6 +18,7 @@ router.register(r'articles', ArticleViewSet)
 router.register(r'location', LocationViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'diseases', DiseaseViewSet)
+router.register(r'syndromes', SyndromeViewSet)
 
 urlpatterns = [
     path('jwt/', obtain_jwt_token),

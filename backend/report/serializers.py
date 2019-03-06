@@ -78,17 +78,24 @@ class SyndromeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Syndrome
         fields = (
-            'name'
+            'name',
         )
 
 
 class DiseaseSerializer(serializers.ModelSerializer):
+    # syndromes = serializers.StringRelatedField(many=True)
+    syndromes = serializers.PrimaryKeyRelatedField(
+        queryset=Syndrome.objects.all(), many=True)
+
     class Meta:
         model = Disease
         fields = (
             'name',
             'syndromes'
         )
+
+    # def create(self, validated_data):
+    #     raise TypeError("heeoo")
 
 
 class ReportSerializer(serializers.ModelSerializer):
