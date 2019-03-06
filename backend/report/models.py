@@ -21,13 +21,16 @@ fuzz_choice = (
 
 
 class Article(models.Model):
-    url = models.URLField(primary_key=True)
+    url = models.URLField(unique=True)
     headline = models.CharField(max_length=512, default='')
     publish = models.DateTimeField()
     # publish fuzz field
     p_fuzz = models.CharField(
         max_length=1, choices=fuzz_choice)
     main_text = models.TextField()
+
+    def __str__(self):
+        return self.headline
 
 
 class Syndrome(models.Model):
@@ -85,5 +88,6 @@ class ReportEvent(models.Model):
     # end of date time
     end_date = models.DateTimeField()
     ed_fuzz = models.CharField(max_length=1, choices=fuzz_choice)
-    number_effecet = models.IntegerField(blank=True, null=True)
-    location = models.ForeignKey(Location, models.PROTECT)
+    number_effecet = models.IntegerField()
+    location = models.ForeignKey(
+        Location, models.PROTECT, blank=True, null=True)

@@ -40,6 +40,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = (
+            'id',
             'url',
             'headline',
             'publish',
@@ -55,22 +56,37 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class ReportEventSerializer(serializers.ModelSerializer):
+    report_id = serializers.PrimaryKeyRelatedField(
+        queryset=Report.objects.all(), write_only=True)
+    location = LocationSerializer()
+
     def validate(self, data):
-        if start_date > end_date:
+        if data['start_date'] >= data['end_date']:
             raise serializers.ValidationError("finish must occur after start")
+
+        # create location here, use get or create
         return data
+
+    def validate_report_id(self, report_id):
+        # wired case, we only want the report id here,
+        # but it seems the primarykey related field will seek the
+        # object by itself
+        return report_id.id
+
+    def validate_location(self, location):
+        return Location.objects.get_or_create(location)[0]
 
     class Meta:
         model = ReportEvent
         fields = (
-            'report_type',
-            'start_date',
-            'sd_fuzz',
-            'end_date',
-            'ed_fuzz',
-            'number_effecet',
-            'location',
-            'report'
+            "report_id",
+            "e_type",
+            "start_date",
+            "sd_fuzz",
+            "end_date",
+            "ed_fuzz",
+            "number_effecet",
+            "location"
         )
 
 
@@ -102,12 +118,26 @@ class ReportSerializer(serializers.ModelSerializer):
     # Article details
     article = ArticleSerializer(read_only=True)
     # Reportevent details
-    report_event = ReportEventSerializer()
+    report_event = ReportEventSerializer(many=True, read_only=True)
+
+    # attach the article while creation
+    article_id = serializers.PrimaryKeyRelatedField(
+        queryset=Article.objects.all(), write_only=True, source='article')
+
+    # handle these many to many field by using primary key related field
+    disease = serializers.PrimaryKeyRelatedField(
+        queryset=Disease.objects.all(), many=True
+    )
+    syndrome = serializers.PrimaryKeyRelatedField(
+        queryset=Syndrome.objects.all(), many=True
+    )
 
     class Meta:
         model = Report
         fields = (
+            'id',
             'article',
+            'article_id',
             'disease',
             'syndrome',
             'comment',

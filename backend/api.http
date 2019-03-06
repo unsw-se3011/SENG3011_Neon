@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MTg2MjU0NiwiZW1haWwiOiIifQ.jDP290dJ9nppUxC_ccw2yYo23vciW5AFimIP2xQozcM
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MTg2NjI3NCwiZW1haWwiOiIifQ.JH-TDv3GERHEdTRBtUhuutHknDLQjarg_FL0sgRfgGw
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -31,8 +31,6 @@ Content-Type: application/json
 GET {{baseUrl}}articles/ HTTP/1.1
 Content-Type: application/json
 
-{}
-
 ###
 # create article 
 
@@ -49,13 +47,19 @@ Authorization: {{auth}}
 }
 
 
+
+###
+# get signle article 
+GET {{baseUrl}}articles/1/ HTTP/1.1
+Content-Type: application/json
+
+
 ###
 # Get locations
 
 GET {{baseUrl}}location/ HTTP/1.1
 Content-Type: application/json
 
-{}
 
 ###
 # Create locations
@@ -77,10 +81,9 @@ Authorization: {{auth}}
 GET {{baseUrl}}syndromes/ HTTP/1.1
 Content-Type: application/json
 
-{}
 
 ###
-# Get syndromes
+# Create syndromes
 
 POST {{baseUrl}}syndromes/ HTTP/1.1
 Content-Type: application/json
@@ -89,6 +92,14 @@ Authorization: {{auth}}
 {
     "name":"stomache"
 }
+
+
+###
+# Create signle syndrome
+
+GET {{baseUrl}}syndromes/stomache/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
 
 
 ###
@@ -108,8 +119,81 @@ Authorization: {{auth}}
 
 
 {
-    "name": "hello4",
+    "name": "hello1",
     "syndromes": [
         "stomache"
     ]
 }
+
+###
+# Get single diseases
+
+GET {{baseUrl}}diseases/hello1/ HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create reports
+# This is so big, the reason why it's so big, 
+# is to make sure the data integrety 
+# like a datbase transaction, we can only create all the object at once,
+# or we not create it 
+
+POST {{baseUrl}}reports/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+
+{
+    "article_id": 1,
+    "disease": ["hello1"],
+    "syndrome": ["stomache"],
+    "comment": "",
+    "report_events":[
+        {
+            "e_type": "D",
+            "start_date": "2222-02-02T02:02",
+            "sd_fuzz": "H",
+            "end_date": "2222-02-03T02:02",
+            "ed_fuzz": "M",
+            "number_effecet": 12,
+            "location": {
+                "name": "Sydney",
+                "lat": 12.22,
+                "lng": 22.33
+            }
+        }
+    ]
+}
+
+###
+# create reports events 
+
+POST {{baseUrl}}report_events/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+
+{
+    "report_id":1,
+    "e_type": "D",
+    "start_date": "2222-02-02T02:02",
+    "sd_fuzz": "H",
+    "end_date": "2222-02-03T02:02",
+    "ed_fuzz": "M",
+    "number_effecet": 12,
+    "location": {
+        "name": "Sydney",
+        "lat": 12.22,
+        "lng": 22.33
+    }
+}
+
+###
+# Type of reports events's field
+# we should notice it, because it contains many choices field
+
+OPTIONS {{baseUrl}}report_events/ HTTP/1.1
+Content-Type: application/json
+
+
+
+

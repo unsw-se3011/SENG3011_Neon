@@ -37,6 +37,36 @@ class ReportViewSet(viewsets.ModelViewSet):
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
+    def perform_create(self, ser_er):
+        # user report serializer to create this report
+        report = ser_er.save()
+        try:
+            # if len(self.request.data['report_events']) == 0:
+            #     raise serializers.ValidationError({
+            #         "report_events": "report_events at least have one instance"
+            #     })
+
+            for re in self.request.data['report_events']:
+
+                # filling the missing information
+                re['report_id'] = report.id
+                # use re serializer to perform this creation
+                re_s = ReportEventSerializer(data=re)
+                re_s.is_valid(raise_exception=True)
+                # we get the instance
+                re = re_s.save()
+                # wrap the re creation
+                report.reportevent_set.add(re)
+        except serializers.ValidationError as e:
+            raise e
+        except Exception as e:
+            report.delete()
+            raise e
+            print(e)
+            raise serializers.ValidationError({
+                'report_event': 'Error in createing report events'
+            })
+
 
 class ReportEventViewSet(viewsets.ModelViewSet):
     """
@@ -71,5 +101,3 @@ class SyndromeViewSet(viewsets.ModelViewSet):
     queryset = Syndrome.objects.all()
     serializer_class = SyndromeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
