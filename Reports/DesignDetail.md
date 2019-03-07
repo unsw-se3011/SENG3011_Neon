@@ -29,14 +29,17 @@ Finally,we will document the API as a readable,user friendly website form.As spe
 
 ### Testing
 
-## Frontend 
+## Frontend
 
 Base on the doucments provided in the backend phase, we first connect our frontend and backend via some dummy components. In this phase we don't chase on the visual effect and design rules. Then we know what's the difficulties on representing the data in the backend. We can have some draft on how we representing our data, what's component we will use. Then after design, we can directly code it since vuetify have many good qulity and easy to use components which can save our time by skipping the Hi-fi phase. In this stage we might meet some model need to have difficult frontend logic to show it properly, we will introduce some unittest in our fontend to help our developments. After this, we have a pretty and workable frontend web app. Then, we can final tweak our frontend by tweaking colors, adding adpation code for mobile phone and add responsive style to properly display our component on small devices. Finally, we will test our fontend together, find some bugs or make some suggestion to improve our frontend. And we code it for our suggestion from our teammates.
 
-## NLTK/ OAU
+## Scraper
 
+First, we create a new spider for our new datasorce. Then, we test it and scrape some example page from it. In here we divide it into two part. One is for parse the index page which include the links to all the article we want to scrape from. So we parse the index page for the links. Then we can develop our main parse code for the parser of main article. We need to locate the main text document elements. Then we remove the content we don't want such as advertisements, scripts, link to non-article content. Then we wrap all the inforamtion in to Item class we for this website. Use Item pipline and store them as a JSON Lines file. Finally, we use our JSON Lines file and a simple scipt to store our scrapted articles into our backend.
 
+## NLPE/ OAU (Outbreak Aggregation Unit)
 
+We devlop our simple script to interact to our own backend. Then we use our NLP package to tokenise a article, chunking it. Then we apply our code for data extration such as date, disease, syndrome, effect type and so on. We wrap our data into report and some report events in it. In OAU, we instead of extrating data, we develop our geological fence and time fence to detect the outrbeaks then we wrap those reports into a outbreak object. Then we use a small script to store it back to our frontend.
 
 ## Linking API to Web service mode
 
