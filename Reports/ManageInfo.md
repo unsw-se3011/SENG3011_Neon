@@ -23,6 +23,15 @@
 | Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                                                             |
 | Ziqing YAN   | Frontend>Normal INterface>\*                                                                                                                                   |
 
+### Assigned Responsibility (Iter. 2)
+
+| Name         | Responsibility |
+| :----------- | :------------- |
+| Huiyue ZHANG |                |
+| Ruofei HUANG |                |
+| Xinze SONG   |                |
+| Ziqing YAN   |                |
+
 ## Iteration Plan
 
 | Iterations         | Detail                                                                           |
@@ -54,3 +63,6 @@ GitHub, WeChat, Facebook Messenger, Google Doc
 | Mar 3      | Documentation of Deliverable 1, Iris is back! Working on the backen endpoint                                                                                   |
 | Mar 4      | Incremental improvement in API! Map interface in frontend. Acceptance Criteria in User Story and some Use case                                                 |
 | Mar 5      | Critical Path                                                                                                                                                  |
+| Meeting    | Talking about management issues, purpose of website, what's the whole sites structure, problems with current version of document.                              |
+| Mar 6      | Basic version of backend is complete. Handover to Iris and Jeana to write document. Itios to write the NLPE. Merge branch for iteration 1.                     |
+| Mar 7      | Incremental progress of deliverable 1 document                                                                                                                 |
