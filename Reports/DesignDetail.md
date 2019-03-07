@@ -79,7 +79,7 @@ location{
 };
 ```
 
-**Collecting results:**
+**Collecting results & Output from API:**
 Our API will filter the disease reports according to the time period.
 
 Based on the functionality:
@@ -90,14 +90,8 @@ Based on the functionality:
 - ’*Location*’ provides the function of finding all related reports that happened on a specific area.
 
 
-**Output from API:**
+# ADD TABLE
 
-GET\
-PUT\
-POST\
-DELETE
-
-Based on the requirement the API must have basic methods such as GET, POST, PUT and DELETE to connect it to our website effortlessly. Since the API server provides these methods we will use in every object, we separate the API for 5 sections by classify its URL.
 
 
 
