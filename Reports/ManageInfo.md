@@ -43,6 +43,8 @@
 
 ## Software Help Manage Team
 
+<!-- Need to expand the details and how we will use it. -->
+
 GitHub, WeChat, Facebook Messenger, Google Doc
 
 ## Backlog for Daily Progress Checking
