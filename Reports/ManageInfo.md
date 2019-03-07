@@ -25,12 +25,12 @@
 
 ### Assigned Responsibility (Iter. 2)
 
-| Name         | Responsibility |
-| :----------- | :------------- |
-| Huiyue ZHANG |                |
-| Ruofei HUANG |                |
-| Xinze SONG   |                |
-| Ziqing YAN   |                |
+| Name         | Responsibility                               |
+| :----------- | :------------------------------------------- |
+| Huiyue ZHANG | Documents>Deliverable>Design Detail          |
+| Ruofei HUANG | Documents>Deliverable>Management Information |
+| Xinze SONG   | Data Extraction>NLPE>*                       |
+| Ziqing YAN   |                                              |
 
 ## Iteration Plan
 
@@ -40,8 +40,6 @@
 | 2. Week 3 - Week 5 | Backend tests and admin site, attach frontend and backend, Map apis, Evolve NLPE |
 | 3. Week 5 - Week 7 | Second API and NLPE, frontend testing, frontend style correction.                |
 | 4. Week 7 - Week 9 | Prepare for presentation, final touches.                                         |
-
-## User Stories?
 
 ## Software Help Manage Team
 
