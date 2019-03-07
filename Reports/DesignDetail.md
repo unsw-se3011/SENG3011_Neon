@@ -4,17 +4,23 @@
 
 (This is for just backend module, I'm not quite sure that the API module is just backend, or all the module we include in the system.)
 
-We designed the ER diagrame base on the requirement list. Then we create the models of it. The models in Django ORM will map to the database schema. Then we base on the model develop our serializers and viewsets. In this stage, we tests our API at first time. Then we overwrite the function in viewsets and serilaizer we can support the relationships definded in the databse. Then we can test it again in the enpoints. In this stage, we include some basic doucments. We can wrap our output and the input JSON together to the enpoint we want to meet the requirements. Then we finish up the documents. Finally, we tweak our endpoind by adding the search functionlaity and the filter keyword in our enpoint by configure our filter backends. Tweak the permission by adding the permission setting or even write our own permission controll classes. Also add this final piece of software.
+We designed the ER diagram based on the requirement list and then created the module. The models in Django ORM will map to the database schema. Then we base on the model develop our serializers and viewsets. In this stage, we will test our API at first time. Then we overwrite the function in viewsets and serilaizer we can support the relationships definded in the databse. Then we can test it again in the enpoints. In this stage, we include some basic doucments. We can wrap our output and the input JSON together to the enpoint we want to meet the requirements. Then we finish up the documents. Finally, we tweak our endpoint by adding the search functionlaity and the filter keyword in our enpoint by configure our filter backends. Tweak the permission by adding the permission setting or even write our own permission controll classes. Also add this final piece of software.
 
-Firstly,we intend to choose the combination of Python and Django to build up the API server.Both of them provide rich resources and functions for programming and web server development and make the coding become easier.
 
-Then,based on the requirement an API must have basic methods such as GET, POST, PUT and DELETE to allow website could get the information correctly. Since the API server provides these methods we should use in every object, we separate the API for 5 sections by classify its URL.
+Firstly, we intend to choose the combination of Python and Django to build up the API server. Both of them provide rich resources and functions for programming and web server development and make the coding become easier.
 
-Based on the functionality,’users’ is for user register and login request which provides authentication for users as well as the management of users.‘Reports’ which provides an interface for getting the whole report contains layout of an outbreak news.’Reports events’ which relays on report provides an interface for getting the detailed information about the report.’Articles’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.’Location’ provides the function of finding all related reports that happened on a specific area.
+Then, based on the requirement the API must have basic methods such as GET, POST, PUT and DELETE to connect it to our website effortlessly. Since the API server provides these methods we will use in every object, we separate the API for 5 sections by classify its URL.
 
-After we have a structure of API,we need to consider about the data of API.By the suggestion of specification,we intend to use a scraper to gather data frequently. Python scrapy library will be our choice.We are preferring run this service in daily.Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+Based on the functionality:
+- ’*users*’ is for user register and login request which provides authentication for users as well as the management of users. 
+- ‘*Reports*’ provides an interface for the whole report wchich contains layout of an outbreak news. 
+- ’*Reports events*’ which relays on report provides an interface for getting the detailed information about the report.
+- ’*Articles*’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
+- ’*Location*’ provides the function of finding all related reports that happened on a specific area.
 
-Finally,we will document the API as a readable,user friendly website form.As specification suggestion we will use swagger to document our API. It will develop a clear guide for further website request.It should show all the methods we have,what parameters that function needs,what is the response of the API and what the response indicates also gives example of how to use each function.
+After we have a structure of API, we need to consider about the data of API. By the suggestion of specification, we intend to use a scraper to gather data frequently (1-2 times a day). Python scrapy library will be our choice. Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+
+Finally, we will document the API as a readable, user friendly website form. As specification suggested, we will use swagger to document our API. It will develop a clear guide for further website request. It should show all the methods we have, what parameters that function needs, what is the response of the API and what the response indicates also gives example of how to use each function.
 
 ### Design
 
