@@ -66,8 +66,14 @@ We currently designed these endpoints
 "articles": "hostname/api_version/articles/",
 "users": "hostname/api_version/users/",
 "diseases": "hostname/api_version/diseases/",
-"syndromes": "hostname/api_version/syndromes/"
 ```
+
+- '_users_' is for user register and login request which provides authentication for users as well as the management of users.
+- '_Reports_' provides an interface for the whole report wchich contains layout of an outbreak news.
+- '_Reports events_' which relays on report provides an interface for getting the detailed information about the report.
+- '_Articles_' are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
+- '_Location_' provides the function of finding all related reports that happened on a specific area.
+- '_Disease_' Provide the source data of disease, which is helpful information in NLPE.
 
 Also an additional endpoint for authentication
 
@@ -251,54 +257,51 @@ yyyy-MM-ddTHH:mm:ssZ
 
 ## Output of API Modules
 
-Based on the structure of API,we will use JS for requesting data by passing through the parameters.Then the API server will response the JSON object by request URL and parameters.API are currently separate into 5 sections reports,reports_event,article,location and user.Each of them provides related method for getting suitable result.
+We will use pagination in in our output data, since we already face on thousands of objects stored into our database. If we send all the data to our client, out mobile client may not have that much resource to process it.
 
-**Input Parameters for API:**
+### Pagination Result
 
-_Period of Interst:_
+```
+{
+  "count": Integer(Count of the objects returned),
+  "next": String(Url of next pagination result),
+  "previous": String(Url of next previous result),
+  "results": [Objects of result]
+}
+```
 
-- time periods cannot be empty
-- end_date must be later than start_date
+The objects of result is shown in the previous section. Also we need to introduce another object for authentication.
 
-```sql
-TimePeriod{
-    start_date:  <yyyy-MM-ddTHH:mm:ss>,
-    end_date:    <yyyy-MM-ddTHH:mm:ss>
-};
+### Jwt Object
+
+```
+{
+  "token": JWT Token
+}
 
 ```
 
-_Keywords:_
+Also, we will follow the rules that we will return the detail of the objects we just created by post method. Etc
 
-- Keywords are not case sensitive
-- List of key terms are seperated y a comma
-
-```sql
-Keywords{
-    keywords:    <string>
-};
 ```
+Sent:
+{
+    "url": "http://localhost:8000/v0/article/",
+    "headline": "no",
+    "publish": "0200-01-01T15:20:00Z",
+    "main_text": "helloworld",
+    "p_fuzz": "M"
+}
 
-_Location:_
-
-- Search disease reports by a location name e.g. city, country, state
-
-```sql
-location{
-    location:    <string>
-};
+Receive:
+{
+    "url": "http://localhost:8000/v0/article/",
+    "headline": "no",
+    "publish": "0200-01-01T15:20:00Z",
+    "main_text": "helloworld",
+    "p_fuzz": "M"
+}
 ```
-
-**Collecting results & Output from API:**
-Our API will filter the disease reports according to the time period.
-
-Based on the functionality:
-
-- '_users_' is for user register and login request which provides authentication for users as well as the management of users.
-- '_Reports_' provides an interface for the whole report wchich contains layout of an outbreak news.
-- '_Reports events_' which relays on report provides an interface for getting the detailed information about the report.
-- '_Articles_' are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
-- '_Location_' provides the function of finding all related reports that happened on a specific area.
 
 ## Developement Platform (Technical Stack)
 
