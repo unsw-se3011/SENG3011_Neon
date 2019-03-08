@@ -74,12 +74,170 @@ hostname/Endpoint_name/?page=5&disease=hello1&search=another
 
 ### POST Params
 
-All of our post data is send it as JSON object, we won't send any form data to our api endpints. 
+All of our post data is send it as JSON object, we won't send any form data to our api endpints.
 
+#### Article Object
 
+```
+{
+    "url": "http://localhost:8000/v0/article/",
+    "headline": "no",
+    "publish": "0200-01-01T15:20:00Z",
+    "main_text": "helloworld",
+    "p_fuzz": "M"
+}
+```
 
+#### Location Object
 
+```
+{
+    "name": "Sydney",
+    "lat": 12.22,
+    "lng": 22.33
+}
+```
 
+#### Syndrome Object
+
+```
+{
+    "name": String
+}
+```
+
+#### Disease Object
+
+```
+{
+    "name": "hello1",
+    "syndromes": [
+        "stomache"
+    ]
+}
+```
+
+#### Report Object
+
+```
+{
+    "article_id": 1,
+    "disease": ["hello1"],
+    "syndrome": ["stomache"],
+    "comment": "",
+    "report_events":[
+        {
+            "e_type": "D",
+            "start_date": "2222-02-02T02:02",
+            "sd_fuzz": "H",
+            "end_date": "2222-02-03T02:02",
+            "ed_fuzz": "M",
+            "number_effecet": 12,
+            "location": {
+                "name": "Sydney",
+                "lat": 12.22,
+                "lng": 22.33
+            }
+        }
+    ]
+}
+```
+
+#### Report Event Object
+
+```
+{
+    "report_id":1,
+    "e_type": "D",
+    "start_date": "2222-02-02T02:02",
+    "sd_fuzz": "H",
+    "end_date": "2222-02-03T02:02",
+    "ed_fuzz": "M",
+    "number_effecet": 12,
+    "location": {
+        "name": "Sydney",
+        "lat": 12.22,
+        "lng": 22.33
+    }
+}
+```
+
+#### Report Event Type Choice
+
+This is the choice of store the report event type.
+
+```
+"choices": [
+    {
+        "value": "P",
+        "display_name": "Presence"
+    },
+    {
+        "value": "D",
+        "display_name": "Death"
+    },
+    {
+        "value": "I",
+        "display_name": "Infected"
+    },
+    {
+        "value": "H",
+        "display_name": "Hospitalised"
+    },
+    {
+        "value": "R",
+        "display_name": "Recovered"
+    }
+]
+```
+
+#### Datetime Fuzz Choice
+
+This is support for the unclear date time, since the 'xx' will introduce problem on parse the datetime field and it's not standard in bakend. So we explicity store the fuzz as another filed to indicate the fuzz level in the datetime.
+
+```
+"choices": [
+    {
+        "value": "Y",
+        "display_name": "Year"
+    },
+    {
+        "value": "M",
+        "display_name": "Month"
+    },
+    {
+        "value": "D",
+        "display_name": "Day"
+    },
+    {
+        "value": "H",
+        "display_name": "Hour"
+    },
+    {
+        "value": "I",
+        "display_name": "Minute"
+    },
+    {
+        "value": "S",
+        "display_name": "Second"
+    },
+    {
+        "value": "A",
+        "display_name": "Accurate"
+    }
+]
+```
+
+#### User Object
+
+```
+{
+    "username": "ttt",
+    "password": "apple123",
+    "first_name": "Toby",
+    "last_name": "HUANG"
+}
+```
 
 ## Output of API Modules
 
