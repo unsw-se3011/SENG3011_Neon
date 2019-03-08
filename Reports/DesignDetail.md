@@ -1,17 +1,15 @@
 # Design Details - Initial documentation
 
-# 1.Describe how you intend to develop the API module and provide the ability to run it in Web service mode
-
+## How We Develop API Module
 
 ### Design
 
 - **Scraping:** we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed.\
-After we have a structure of API, we need to consider about the data of API. By the suggestion of specification, we intend to use a scraper to gather data frequently (1-2 times a day). Python scrapy library will be our choice. Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+  After we have a structure of API, we need to consider about the data of API. By the suggestion of specification, we intend to use a scraper to gather data frequently (1-2 times a day). Python scrapy library will be our choice. Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
 
 - **Backend:** Our data will be stored by postgreSQL.All the information will be separated into different table, such as user information will be stored in a table call user,all the username and its corresponding password will be recorded.Also,the reports will be stored in a table called report and important information will be extract and define into column.
 
-
-- **Frontend:** our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
+* **Frontend:** our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
 
 ### Development
 
@@ -19,21 +17,24 @@ We designed the ER diagram based on the requirement list and then created the mo
 
 ![Architecture Design](img/Architecture.png)
 
-
 ### Document
+
 We will document the API as a readable, user friendly website form. As specification suggested, we will use swagger to document our API. It will develop a clear guide for further website request. It should show all the methods we have, what parameters that function needs, what is the response of the API and what the response indicates also gives example of how to use each function.
 
-
 ### Testing
-- **Unit Testing** 
+
+- **Unit Testing**
 - **Functional Testing**
 
- In summary,we are going to use Vue and Vuefity as our major platform to develop our frontend the actual website online.On the other side,we are use combination of Python and Django as our platform to develop the API module, for further documenting API we use Swagger to build a readable web form guide for website developer. Based on the development of the API,we use JS in frontend to request API by passing through the require parameters such as token,date range,keyword and location etc.. As result, API will response a json object contains the related reports or user's information.
+In summary,we are going to use Vue and Vuefity as our major platform to develop our frontend the actual website online.On the other side,we are use combination of Python and Django as our platform to develop the API module, for further documenting API we use Swagger to build a readable web form guide for website developer. Based on the development of the API,we use JS in frontend to request API by passing through the require parameters such as token,date range,keyword and location etc.. As result, API will response a json object contains the related reports or user's information.
 
-# 2. Discuss your current thinking about how parameters can be passed to your module and how results are collected. Show an example of a possible interaction. (e.g.- sample HTTP calls with URL	and parameters) 
+## Set API Module to Service Mode
+
+## Input of API Modules
+
+## Output of API Modules
 
 Based on the structure of API,we will use JS for requesting data by passing through the parameters.Then the API server will response the JSON object by request URL and parameters.API are currently separate into 5 sections reports,reports_event,article,location and user.Each of them provides related method for getting suitable result.
-# Passing Parameters and Collecting Results
 
 **Input Parameters for API:**
 
@@ -75,21 +76,14 @@ location{
 Our API will filter the disease reports according to the time period.
 
 Based on the functionality:
-- ’*users*’ is for user register and login request which provides authentication for users as well as the management of users. 
-- ‘*Reports*’ provides an interface for the whole report wchich contains layout of an outbreak news. 
-- ’*Reports events*’ which relays on report provides an interface for getting the detailed information about the report.
-- ’*Articles*’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
-- ’*Location*’ provides the function of finding all related reports that happened on a specific area.
 
+- ’_users_’ is for user register and login request which provides authentication for users as well as the management of users.
+- ‘_Reports_’ provides an interface for the whole report wchich contains layout of an outbreak news.
+- ’_Reports events_’ which relays on report provides an interface for getting the detailed information about the report.
+- ’_Articles_’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
+- ’_Location_’ provides the function of finding all related reports that happened on a specific area.
 
 ## ADD TABLE
-![API example](img/t1.PNG)
-![](img/t2.PNG)
-![](img/t2-1.PNG)
-![](img/t3.PNG)
-
-
-# 3. Present and justify implementation language,development and	deployment environment (e.g.Linux,Windows) and specific libraries	that you plan to use.
 
 ## Developement Platform (Technical Stack)
 
@@ -135,7 +129,6 @@ _Comparison_: PostgreSQL VS MySQL VS SQLite
 
 _Language_: SQL (By ORM from Django)
 
-
 **_NLP_: spaCy**  
 _Justification_: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
 
@@ -149,7 +142,6 @@ _Comparison_: nltk VS spaCy
 _Language_: Python3  
 _Packages_: Response, Threading, json
 
-
 **_Scraper_: Scrapy**  
 _Justification_: Most commonly used scraper framework. Scrapy is an asynchronous framework
 
@@ -161,10 +153,9 @@ _Comparison_: Scrapy VS Selenium
 _Language_: Python3  
 _Packages_: lxml, cssselect, Response, json
 
-
-
-
 ## **END**
+
+## Deploy Environment
 
 ---
 
