@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MTg2OTcwNiwiZW1haWwiOiIifQ.t2kDfsW8T4Y8LaolWaDzEWxvoPBBhUyy2gNeRM93yxo
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MjA1ODQ5MiwiZW1haWwiOiIifQ.sG1B2X40pYfuMuCDzI5wVadubKJErX3MKb_gMpbqJvU
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -193,6 +193,7 @@ Authorization: {{auth}}
 
 OPTIONS {{baseUrl}}report_events/ HTTP/1.1
 Content-Type: application/json
+Authorization: {{auth}}
 
 
 ###

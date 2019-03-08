@@ -23,6 +23,15 @@
 | Xinze SONG   | Backend>RESTful Endpoint>\*, Documents>Communicating>API Documents                                                                                             |
 | Ziqing YAN   | Frontend>Normal INterface>\*                                                                                                                                   |
 
+### Assigned Responsibility (Iter. 2)
+
+| Name         | Responsibility                               |
+| :----------- | :------------------------------------------- |
+| Huiyue ZHANG | Documents>Deliverable>Design Detail          |
+| Ruofei HUANG | Documents>Deliverable>Management Information |
+| Xinze SONG   | Data Extraction>NLPE>*                       |
+| Ziqing YAN   |                                              |
+
 ## Iteration Plan
 
 | Iterations         | Detail                                                                           |
@@ -32,11 +41,21 @@
 | 3. Week 5 - Week 7 | Second API and NLPE, frontend testing, frontend style correction.                |
 | 4. Week 7 - Week 9 | Prepare for presentation, final touches.                                         |
 
-## User Stories?
-
 ## Software Help Manage Team
 
-GitHub, WeChat, Facebook Messenger, Google Doc
+<!-- Need to expand the details and how we will use it. -->
+
+### GitHub/ Repo Project
+
+Github is commonly use and be assigned as a repo manage platform by this course. Also the Project feature in the GitHub repo is a replacement of Trello. It's easy to use and we don't need to sign in to another website to manage the repository.
+
+### WeChat
+
+Since all of teamates are Chinese, we are using WeChat for all day. So the message in WeChat won't be missed by our teamates.
+
+### Google Doc
+
+Google Doc allow us to edit a same time. It's very suitable for us to work together about same documents and share the information about this project.
 
 ## Backlog for Daily Progress Checking
 
@@ -54,3 +73,7 @@ GitHub, WeChat, Facebook Messenger, Google Doc
 | Mar 3      | Documentation of Deliverable 1, Iris is back! Working on the backen endpoint                                                                                   |
 | Mar 4      | Incremental improvement in API! Map interface in frontend. Acceptance Criteria in User Story and some Use case                                                 |
 | Mar 5      | Critical Path                                                                                                                                                  |
+| Meeting    | Talking about management issues, purpose of website, what's the whole sites structure, problems with current version of document.                              |
+| Mar 6      | Basic version of backend is complete. Handover to Iris and Jeana to write document. Itios to write the NLPE. Merge branch for iteration 1.                     |
+| Mar 7      | Incremental progress of deliverable 1 document                                                                                                                 |
+| Mar 7      | Design documentation.                                                                                                                                          |
