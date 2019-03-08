@@ -30,9 +30,56 @@ In summary,we are going to use Vue and Vuefity as our major platform to develop 
 
 ## Set API Module to Service Mode
 
-In development, we 
+### Backend
+
+In development, we use the simple http service provided in the manage.py; but it's not sufficient to run in the in production level. In the production level, we will use the wsgi interface in Django and use nginx as webserver. Furthermore, we will set up HTTPS to increase the security of our website. Last but not least, the defult python runtime is slow, so we will use pypy to increase the efficiency of python and increase the performance of website.
+
+### Frontend
+
+In development, we also will use the simple https service provide in the "yarn serve" scipt. In production, we will first complie it into a simplified js and css. Then we will pass it into a nginx container, and serve it at port 80.
+
+### Docker
+
+We will use container to host our PostgreSQL, and all our web service (include backend and frontend). This is not only help use quickly deloy our web service, but also give us the ablitiy to introduce the CI/CD process in the future.
 
 ## Input of API Modules
+
+We will try our best to follow the style of RESTful Api.
+
+### URL Params
+
+This is only use to solve the item of an endpoint. Such as
+
+```
+hostname/Endpoint_name/:id/
+```
+
+where id maybe a string or an interger which is the primary key of the object we want to get.
+
+### GET Params
+
+We only pass the get params when we use the filter backend or pagination. Such as
+
+```
+hostname/Endpoint_name/?page=5
+hostname/Endpoint_name/?disease=hello1
+hostname/Endpoint_name/?search=another
+```
+
+Also, we can combine these params as many as we want, by adding '&' between them.
+
+```
+hostname/Endpoint_name/?page=5&disease=hello1&search=another
+```
+
+### POST Params
+
+All of our post data is send it as JSON object, we won't send any form data to our api endpints. 
+
+
+
+
+
 
 ## Output of API Modules
 
