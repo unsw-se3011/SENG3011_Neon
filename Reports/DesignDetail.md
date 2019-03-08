@@ -56,6 +56,25 @@ hostname/Endpoint_name/:id/
 
 where id maybe a string or an interger which is the primary key of the object we want to get.
 
+### Enpoint Name
+
+We currently designed these endpoints
+
+```
+"reports": "hostname/api_version/reports/",
+"report_events": "hostname/api_version/report_events/",
+"articles": "hostname/api_version/articles/",
+"users": "hostname/api_version/users/",
+"diseases": "hostname/api_version/diseases/",
+"syndromes": "hostname/api_version/syndromes/"
+```
+
+Also an additional endpoint for authentication
+
+```
+"jwt": "hostname/api_version/jwt/"
+```
+
 ### GET Params
 
 We only pass the get params when we use the filter backend or pagination. Such as
@@ -80,11 +99,11 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 ```
 {
-    "url": "http://localhost:8000/v0/article/",
-    "headline": "no",
-    "publish": "0200-01-01T15:20:00Z",
-    "main_text": "helloworld",
-    "p_fuzz": "M"
+    "url": String,
+    "headline": String,
+    "publish": Datetime,
+    "main_text": String,
+    "p_fuzz": Datetime Fuzz Choice
 }
 ```
 
@@ -92,9 +111,9 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 ```
 {
-    "name": "Sydney",
-    "lat": 12.22,
-    "lng": 22.33
+    "name": String,
+    "lat": Number(Decimal),
+    "lng": Number(Decimal)
 }
 ```
 
@@ -110,9 +129,9 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 ```
 {
-    "name": "hello1",
+    "name": String,
     "syndromes": [
-        "stomache"
+        String(Syndrome Primary Key)
     ]
 }
 ```
@@ -121,44 +140,29 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 ```
 {
-    "article_id": 1,
-    "disease": ["hello1"],
-    "syndrome": ["stomache"],
+    "article_id": Integer(Article Primary Key),
+    "disease": [String(Disease Primary Key)],
+    "syndrome": [String(Syndrome Primary Key)],
     "comment": "",
     "report_events":[
-        {
-            "e_type": "D",
-            "start_date": "2222-02-02T02:02",
-            "sd_fuzz": "H",
-            "end_date": "2222-02-03T02:02",
-            "ed_fuzz": "M",
-            "number_effecet": 12,
-            "location": {
-                "name": "Sydney",
-                "lat": 12.22,
-                "lng": 22.33
-            }
-        }
+        Report Event Objects
     ]
 }
 ```
 
 #### Report Event Object
 
+This will only be included in report object, so we won't need to send the report id again.
+
 ```
 {
-    "report_id":1,
-    "e_type": "D",
-    "start_date": "2222-02-02T02:02",
-    "sd_fuzz": "H",
-    "end_date": "2222-02-03T02:02",
-    "ed_fuzz": "M",
-    "number_effecet": 12,
-    "location": {
-        "name": "Sydney",
-        "lat": 12.22,
-        "lng": 22.33
-    }
+    "e_type": Report Event Type Choice,
+    "start_date": Datetime,
+    "sd_fuzz": Datetime Fuzz Choice,
+    "end_date": Datetime,
+    "ed_fuzz": Datetime Fuzz Choice,
+    "number_effecet": Integer,
+    "location": Location Object
 }
 ```
 
@@ -228,14 +232,20 @@ This is support for the unclear date time, since the 'xx' will introduce problem
 ]
 ```
 
+#### Datetime
+
+```
+yyyy-MM-ddTHH:mm:ssZ
+```
+
 #### User Object
 
 ```
 {
-    "username": "ttt",
-    "password": "apple123",
-    "first_name": "Toby",
-    "last_name": "HUANG"
+    "username": String,
+    "password": String,
+    "first_name": String,
+    "last_name": String
 }
 ```
 
