@@ -32,7 +32,7 @@ We will document the API as a readable, user friendly website form. As specifica
 
 # 2. Discuss your current thinking about how parameters can be passed to your module and how results are collected. Show an example of a possible interaction. (e.g.- sample HTTP calls with URL	and parameters) 
 
-
+Based on the structure of API,we will use JS for requesting data by passing through the parameters.Then the API server will response the JSON object by request URL and parameters.API are currently separate into 5 sections reports,reports_event,article,location and user.Each of them provides related method for getting suitable result.
 # Passing Parameters and Collecting Results
 
 **Input Parameters for API:**
@@ -135,7 +135,8 @@ _Comparison_: PostgreSQL VS MySQL VS SQLite
 
 _Language_: SQL (By ORM from Django)
 
-**_NLP_: nltk-all**  
+
+**_NLP_: spaCy**  
 _Justification_: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
 
 _Comparison_: nltk VS spaCy
@@ -144,8 +145,10 @@ _Comparison_: nltk VS spaCy
 - NLTK is a string processing library (returns lists of strings) whereas spaCy uses object-oriented approach (returns document object whose words and sentences are objects themselves)
 - NLTK is better for sentence tokenization, but spaCy is a lot faster for word tokenization and part-of speech tagging
 
+![](img/time.PNG)
 _Language_: Python3  
 _Packages_: Response, Threading, json
+
 
 **_Scraper_: Scrapy**  
 _Justification_: Most commonly used scraper framework. Scrapy is an asynchronous framework
