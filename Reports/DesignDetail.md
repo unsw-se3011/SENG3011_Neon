@@ -30,6 +30,8 @@ In summary,we are going to use Vue and Vuefity as our major platform to develop 
 
 ## Set API Module to Service Mode
 
+In development, we 
+
 ## Input of API Modules
 
 ## Output of API Modules
