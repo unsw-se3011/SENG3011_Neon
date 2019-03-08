@@ -1,21 +1,21 @@
 # Design Details - Initial documentation
 
-## How We Develop API Module
+## Overall Design
 
-### Design
-
-- **Scraping:** we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed.\
-  After we have a structure of API, we need to consider about the data of API. By the suggestion of specification, we intend to use a scraper to gather data frequently (1-2 times a day). Python scrapy library will be our choice. Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+![Architecture Design](img/Architecture.png)
 
 - **Backend:** Our data will be stored by postgreSQL.All the information will be separated into different table, such as user information will be stored in a table call user,all the username and its corresponding password will be recorded.Also,the reports will be stored in a table called report and important information will be extract and define into column.
 
-* **Frontend:** our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
+- **Scraping:** We scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request. our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed.\
+  After we have a structure of API, we need to consider about the data of API. By the suggestion of specification, we intend to use a scraper to gather data frequently (1-2 times a day). Python scrapy library will be our choice. Since we already choose reliable and official API it will help us to filter some articles we do not need it.These data will be analysed and defined as outbreak by our server and breakdown into a report object stored in our database.
+
+- **Frontend:** Our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
+
+## How We Develop API Module
 
 ### Development
 
 We designed the ER diagram based on the requirement list and then created the module. The models in Django ORM will map to the database schema. Then we base on the model develop our serializers and viewsets. In this stage, we will test our API. Then we overwrite the function in viewsets and serilaizer we can support the relationships definded in the databse. Then we can test it again in the enpoints. In this stage, we include some basic doucments. We can wrap our output and the input JSON together to the enpoint we want to meet the requirements. Then we finish up the documents. Finally, we tweak our endpoint by adding the search functionlaity and the filter keyword in our enpoint by configure our filter backends. Tweak the permission by adding the permission setting or even write our own permission controll classes. Also add this final piece of software.
-
-![Architecture Design](img/Architecture.png)
 
 ### Document
 
@@ -77,13 +77,11 @@ Our API will filter the disease reports according to the time period.
 
 Based on the functionality:
 
-- ’_users_’ is for user register and login request which provides authentication for users as well as the management of users.
-- ‘_Reports_’ provides an interface for the whole report wchich contains layout of an outbreak news.
-- ’_Reports events_’ which relays on report provides an interface for getting the detailed information about the report.
-- ’_Articles_’ are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
-- ’_Location_’ provides the function of finding all related reports that happened on a specific area.
-
-## ADD TABLE
+- '_users_' is for user register and login request which provides authentication for users as well as the management of users.
+- '_Reports_' provides an interface for the whole report wchich contains layout of an outbreak news.
+- '_Reports events_' which relays on report provides an interface for getting the detailed information about the report.
+- '_Articles_' are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
+- '_Location_' provides the function of finding all related reports that happened on a specific area.
 
 ## Developement Platform (Technical Stack)
 
@@ -138,7 +136,7 @@ _Comparison_: nltk VS spaCy
 - NLTK is a string processing library (returns lists of strings) whereas spaCy uses object-oriented approach (returns document object whose words and sentences are objects themselves)
 - NLTK is better for sentence tokenization, but spaCy is a lot faster for word tokenization and part-of speech tagging
 
-![](img/time.PNG)
+![nltk and spaCy Compare](img/time.PNG)
 _Language_: Python3  
 _Packages_: Response, Threading, json
 
