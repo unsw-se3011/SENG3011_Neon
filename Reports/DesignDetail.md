@@ -50,7 +50,7 @@ We will try our best to follow the style of RESTful Api.
 
 This is only use to solve the item of an endpoint. Such as
 
-```
+```HTTP
 hostname/Endpoint_name/:id/
 ```
 
@@ -60,7 +60,7 @@ where id maybe a string or an interger which is the primary key of the object we
 
 We currently designed these endpoints
 
-```
+```JSON
 "reports": "hostname/api_version/reports/",
 "report_events": "hostname/api_version/report_events/",
 "articles": "hostname/api_version/articles/",
@@ -68,16 +68,16 @@ We currently designed these endpoints
 "diseases": "hostname/api_version/diseases/",
 ```
 
-- '_users_' is for user register and login request which provides authentication for users as well as the management of users.
+- '_Users_' is for user register and login request which provides authentication for users as well as the management of users.
 - '_Reports_' provides an interface for the whole report wchich contains layout of an outbreak news.
-- '_Reports events_' which relays on report provides an interface for getting the detailed information about the report.
+- '_Reports Events_' which relays on report provides an interface for getting the detailed information about the report.
 - '_Articles_' are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
 - '_Location_' provides the function of finding all related reports that happened on a specific area.
 - '_Disease_' Provide the source data of disease, which is helpful information in NLPE.
 
 Also an additional endpoint for authentication
 
-```
+```JSON
 "jwt": "hostname/api_version/jwt/"
 ```
 
@@ -85,7 +85,7 @@ Also an additional endpoint for authentication
 
 We only pass the get params when we use the filter backend or pagination. Such as
 
-```
+```url
 hostname/Endpoint_name/?page=5
 hostname/Endpoint_name/?disease=hello1
 hostname/Endpoint_name/?search=another
@@ -93,7 +93,7 @@ hostname/Endpoint_name/?search=another
 
 Also, we can combine these params as many as we want, by adding '&' between them.
 
-```
+```url
 hostname/Endpoint_name/?page=5&disease=hello1&search=another
 ```
 
@@ -103,7 +103,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 #### Article Object
 
-```
+```JSON
 {
     "url": String,
     "headline": String,
@@ -115,7 +115,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 #### Location Object
 
-```
+```JSON
 {
     "name": String,
     "lat": Number(Decimal),
@@ -125,7 +125,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 #### Syndrome Object
 
-```
+```JSON
 {
     "name": String
 }
@@ -133,7 +133,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 #### Disease Object
 
-```
+```JSON
 {
     "name": String,
     "syndromes": [
@@ -144,7 +144,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 #### Report Object
 
-```
+```JSON
 {
     "article_id": Integer(Article Primary Key),
     "disease": [String(Disease Primary Key)],
@@ -160,7 +160,7 @@ All of our post data is send it as JSON object, we won't send any form data to o
 
 This will only be included in report object, so we won't need to send the report id again.
 
-```
+```JSON
 {
     "e_type": Report Event Type Choice,
     "start_date": Datetime,
@@ -176,7 +176,7 @@ This will only be included in report object, so we won't need to send the report
 
 This is the choice of store the report event type.
 
-```
+```JSON
 "choices": [
     {
         "value": "P",
@@ -205,7 +205,7 @@ This is the choice of store the report event type.
 
 This is support for the unclear date time, since the 'xx' will introduce problem on parse the datetime field and it's not standard in bakend. So we explicity store the fuzz as another filed to indicate the fuzz level in the datetime.
 
-```
+```JSON
 "choices": [
     {
         "value": "Y",
@@ -240,13 +240,13 @@ This is support for the unclear date time, since the 'xx' will introduce problem
 
 #### Datetime
 
-```
+```JSON
 yyyy-MM-ddTHH:mm:ssZ
 ```
 
 #### User Object
 
-```
+```JSON
 {
     "username": String,
     "password": String,
@@ -261,7 +261,7 @@ We will use pagination in in our output data, since we already face on thousands
 
 ### Pagination Result
 
-```
+```JSON
 {
   "count": Integer(Count of the objects returned),
   "next": String(Url of next pagination result),
@@ -274,7 +274,7 @@ The objects of result is shown in the previous section. Also we need to introduc
 
 ### Jwt Object
 
-```
+```JSON
 {
   "token": JWT Token
 }
@@ -283,7 +283,7 @@ The objects of result is shown in the previous section. Also we need to introduc
 
 Also, we will follow the rules that we will return the detail of the objects we just created by post method. Etc
 
-```
+```JSON
 Sent:
 {
     "url": "http://localhost:8000/v0/article/",
@@ -371,35 +371,70 @@ _Comparison_: Scrapy VS Selenium
 _Language_: Python3  
 _Packages_: lxml, cssselect, Response, json
 
-## **END**
+## Development Environement
+
+### General
+
+We will use VS Code as our main code editor. Because it has many extension which is developed by the community. It support:
+
+- Powerful linting in both main language we use -- vue(Javascript) and python3
+- Good performance.
+- REST Client for interative documentation.
+- Free to use.
+- Cross platform.
+
+### Backend
+
+We will use virtual environment provided by python. It's a tool to isolated python envrionment. We also use a requirement list of the package we use to provide a unified development environment.
+
+### REST Client Extension
+
+This extension could provide us a
+
+- Interative Documentation of backend API
+- Easy to use and understand
+- Basic testing cases
+- See the interation in realtime
+
+### Frontend
+
+We use yarn as our default package manager. It provides
+
+- Easy to use command line interface.
+- Quicker in solving dependencies.
+- Default choice in nodejs community.
+
+Also we will use vue-ui to help us in development.
+
+- Provides curtial infromation about compiled output
+- Userfriendly interface
+- Package management tool remap to Web-ui.
 
 ## Deploy Environment
 
----
+We has purchased vultr vps to host all our frontend and backend server. Because it's
 
-## Frontend
+- Cheap
+- Like a real machine
+- Can be build as a docker host
+- Public IP
+- High avalibility
 
-Base on the doucments provided in the backend phase, we first connect our frontend and backend via some dummy components. In this phase we don't chase on the visual effect and design rules. Then we know what's the difficulties on representing the data in the backend. We can have some draft on how we representing our data, what's component we will use. Then after design, we can directly code it since vuetify have many good qulity and easy to use components which can save our time by skipping the Hi-fi phase. In this stage we might meet some model need to have difficult frontend logic to show it properly, we will introduce some unittest in our fontend to help our developments. After this, we have a pretty and workable frontend web app. Then, we can final tweak our frontend by tweaking colors, adding adpation code for mobile phone and add responsive style to properly display our component on small devices. Finally, we will test our fontend together, find some bugs or make some suggestion to improve our frontend. And we code it for our suggestion from our teammates.
+Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are
 
-## Scraper
+- Compute intensive
+- Time comsuming
+- Internal code may change a lot
+- Doesn't need to run in 24*7
 
-First, we create a new spider for our new datasorce. Then, we test it and scrape some example page from it. In here we divide it into two part. One is for parse the index page which include the links to all the article we want to scrape from. So we parse the index page for the links. Then we can develop our main parse code for the parser of main article. We need to locate the main text document elements. Then we remove the content we don't want such as advertisements, scripts, link to non-article content. Then we wrap all the inforamtion in to Item class we for this website. Use Item pipline and store them as a JSON Lines file. Finally, we use our JSON Lines file and a simple scipt to store our scrapted articles into our backend.
+Futhermore, we will follow the tech trend on containerlise our service. Because, devOps is facing
 
-## NLPE/ OAU (Outbreak Aggregation Unit)
+- Diverage environment between develop, testting and deploy environment.
+- Diverage tool chain between frontend, backend, database and testing.
+- Tedious and high pertential to make mistakes in manualy configuation.
 
-We devlop our simple script to interact to our own backend. Then we use our NLP package to tokenise a article, chunking it. Then we apply our code for data extration such as date, disease, syndrome, effect type and so on. We wrap our data into report and some report events in it. In OAU, we instead of extrating data, we develop our geological fence and time fence to detect the outrbeaks then we wrap those reports into a outbreak object. Then we use a small script to store it back to our frontend.
+By using Docker, we can
 
-## How we develop our API module?
-
-Because we decouple all our module by using JSON and Http Request. We seperate each module easily, which allow us can have different develop cycle.
-
-From the frist stage, we scraped all of our data and extract the main content from htmp, then push them all to our backend via multiple http request.
-
-Secondly, our own developed Natural Lange Parser Engine (NLPE) will wake up and using a distributed iterator to extract one by one. NLPE will have another http request to backend to created report and report event if the article is parsed.
-
-Thirdly, our user can use our frontend to view all our data in backend via RESTful APIs. In the fronend, to show the map and location of a ourtbreak, we will use Google Maps APIs.
-
-Sidenote:
-
-- NLPE also will call the Google Map API while parsing the article.
-- Scraper and NLPE will wake up once a day to perform data collection and do parsing daily.
+- Unified environement in all phases of development.
+- Automatice the setup process of virtual environment.
+- Don't need to change the tool chain when facing different situation.
