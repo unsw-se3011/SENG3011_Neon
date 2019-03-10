@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MjA1ODQ5MiwiZW1haWwiOiIifQ.sG1B2X40pYfuMuCDzI5wVadubKJErX3MKb_gMpbqJvU
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MjIzOTc3NiwiZW1haWwiOiIifQ.8w48ZXzb4M3VbS7xvec8_CJma0_oOVH4C4P8INaNZxQ
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -19,7 +19,7 @@ POST {{baseUrl}}users/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "ttt",
+    "username": "ttt2",
     "password": "apple123",
     "first_name": "Toby",
     "last_name": "HUANG"
@@ -57,7 +57,7 @@ Content-Type: application/json
 ###
 # Get locations
 
-GET {{baseUrl}}location/ HTTP/1.1
+GET {{baseUrl}}location/1 HTTP/1.1
 Content-Type: application/json
 
 
@@ -73,6 +73,33 @@ Authorization: {{auth}}
     "lat": 12.22,
     "lng": 22.33
 }
+
+###
+# Update locations
+
+PUT  {{baseUrl}}location/1/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+
+{
+    "name": "Sydney Harbour Bridge",
+    "lat": 22.33,
+    "lng": 12.22
+}
+
+###
+# Create locations
+
+DELETE  {{baseUrl}}location/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+
+{
+    "name": "Sydney",
+    "lat": 12.22,
+    "lng": 22.33
+}
+
 
 
 ###

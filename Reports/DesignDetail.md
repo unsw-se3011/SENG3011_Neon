@@ -110,7 +110,9 @@ We will use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch/#s
 5. Handle View method
 6. Go through some middlewares
 
-### Query String Paramters
+### URL Parameter
+
+### Query String Parameters
 
 The string parameters are:
 
@@ -135,6 +137,210 @@ Request body is handled in step 5 and it's futher handle inside view by:
 5. Do the operation to the object defined by the view
 
 ## Collecting Results from Our API Module
+
+### Format of API Output
+
+Our API will follow the RESTful design.
+
+#### HTTP Headers
+
+The content type is json and we will use use http state code to indicate the action's status. Here's an example
+
+```
+HTTP/1.1 200 OK
+Date: Sun, 10 Mar 2019 17:18:44 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept
+Allow: POST, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 171
+```
+
+#### HTTP Body
+
+Our HTTP body is a JSON object.
+
+```
+{
+  "Key": Value
+}
+```
+
+### How to Send back to Requester
+
+Since we are using django rest, a lot of work is finished by built-in functions.
+
+1. View prepared the result as QuerySet object
+2. Handle the middleware operations to the QuerySet
+3. Serialize the QuerySet by Serializer
+4. Wrap the serialized object with Response object
+5. Response object is return back to WSGI client
+6. Prepare the data by Response object and send back to web server
+7. Send the response to client
+
+### Example Interations
+
+#### Create An Entity
+
+Request:
+
+```
+POST {{baseUrl}}users/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "ttt2",
+    "password": "apple123",
+    "first_name": "Toby",
+    "last_name": "HUANG"
+}
+```
+
+Response:
+
+```
+HTTP/1.1 201 Created
+Date: Sun, 10 Mar 2019 17:31:02 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 66
+
+{
+  "id": 2,
+  "username": "ttt2",
+  "first_name": "Toby",
+  "last_name": "HUANG"
+}
+```
+
+#### List Entities
+
+Request:
+
+```
+GET {{baseUrl}}location/ HTTP/1.1
+Content-Type: application/json
+```
+
+Response:
+
+```
+HTTP/1.1 200 OK
+Date: Sun, 10 Mar 2019 17:32:42 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 133
+
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "Sydney",
+      "lat": "12.22000000000000000000",
+      "lng": "22.33000000000000000000"
+    }
+  ]
+}
+```
+
+#### Get A Single Entity
+
+Request:
+
+```
+GET {{baseUrl}}location/1 HTTP/1.1
+Content-Type: application/json
+```
+
+Response:
+
+```
+HTTP/1.1 200 OK
+Date: Sun, 10 Mar 2019 17:34:14 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 81
+
+{
+  "name": "Sydney",
+  "lat": "12.22000000000000000000",
+  "lng": "22.33000000000000000000"
+}
+```
+
+#### Update An Entity
+
+Request:
+
+```
+POST  {{baseUrl}}location/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+
+{
+    "name": "Sydney",
+    "lat": 12.22,
+    "lng": 22.33
+}
+```
+
+Response:
+
+```
+HTTP/1.1 201 Created
+Date: Sun, 10 Mar 2019 17:38:05 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 81
+
+{
+  "name": "Sydney",
+  "lat": "12.22000000000000000000",
+  "lng": "22.33000000000000000000"
+}
+```
+
+#### Delete An Entity
+
+Request:
+
+```
+DELETE  {{baseUrl}}location/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{auth}}
+```
+
+Response:
+
+```
+HTTP/1.1 405 Method Not Allowed
+Date: Sun, 10 Mar 2019 17:39:25 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 43
+
+{
+  "detail": "Method \"DELETE\" not allowed."
+}
+```
 
 ## Implementation Language
 
