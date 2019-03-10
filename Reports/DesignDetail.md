@@ -344,6 +344,135 @@ Content-Length: 43
 
 ## Implementation Language
 
-## Development Environment
+**_Main OS_: Linux/Unix**  
+_Comparison_: Linux/Unix VS Windows
 
-## Deploy Environement
+- Linux/Unix are able to easily install packages via terminal whereas Windows you have to find a website to download.
+- Linux/Unix supports many compiler languages and libraries required for developers
+
+**_Frontend_: Vue, Vuetify**  
+_Justification_: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
+
+_Comparison_: Vue VS React VS Angular
+
+- Angular is a full framework and React is more flexible because of set independence. However, React involves more JavaScript than Vue.
+- Vue has the cleanest framework and libraries; it helps to keep code efficient with the perfect balance of internal dependencies and flexibilities.
+- React requires a lot of modern JavaScript knowledge that Vue does not.
+
+_Language_: Vue, Javascript, CSS, HTML  
+_Packages_: Moments, vue2-google-maps, axios, vuex, vue-router
+
+**_Backend_: Django, Django-Rest**  
+_Justification_: Commonly used framework that encourages rapid development and a clean design. It is also easier to stick with a familiar platform, Python. Django is a web browsable API, has authenticated policies, function-based views and extensive documentation.
+
+_Comparison_: Django VS Flask
+
+- Django provides a full-featured MVC Framework whereas Flask has a micro-framework, providing very little upfront.
+- Django REST Framework includes flexible support for versioning.
+- Flask does not have a good browsable API option, unlike Django.
+
+_Language_: Python3  
+_Packages_: Django-rest-cors, Django REST Swagger, django-rest-framework-jwt
+
+**_Database_: PostgreSQL**  
+_Justification_: It is the default database choice for Django. It is most advanced, SQL-compliant and open-source objective-RDBMS. PostgreSQL is suitable for storing large amount of data.
+
+_Comparison_: PostgreSQL VS MySQL VS SQLite
+
+- PostgreSQL is not just a relational database management system, it is also objective with support for nesting.
+- PostgreSQL is better for reliability and data integrity whereas MySQL handles less reliability.
+- SQLite does not support user management whereas PostgreSQL does.
+
+_Language_: SQL (By ORM from Django)
+
+**_NLP_: spaCy**  
+_Justification_: Most commonly used NLP (Natural Language Procesing) Packages. NLTK has tools for almost all NLP tasks.
+
+_Comparison_: nltk VS spaCy
+
+- NLTK has a lot of algorithms for a problem to choose from (good for researchers) and it is harder for a developer to use, whereas spaCy only keep the best algorithm for a particular problem so it is easier to find and use.
+- NLTK is a string processing library (returns lists of strings) whereas spaCy uses object-oriented approach (returns document object whose words and sentences are objects themselves)
+- NLTK is better for sentence tokenization, but spaCy is a lot faster for word tokenization and part-of speech tagging
+
+![nltk and spaCy Compare](img/time.PNG)
+_Language_: Python3  
+_Packages_: Response, Threading, json
+
+**_Scraper_: Scrapy**  
+_Justification_: Most commonly used scraper framework. Scrapy is an asynchronous framework
+
+_Comparison_: Scrapy VS Selenium
+
+- Scraping is a lot faster in Scrapy than in Selenium.
+- Scrapy consumes less memory and lower CPU usage compared to Selenium.
+
+_Language_: Python3  
+_Packages_: lxml, cssselect, Response, json
+
+## Development Environement
+
+### General
+
+We will use VS Code as our main code editor. Because it has many extension which is developed by the community. It support:
+
+- Powerful linting in both main language we use -- vue(Javascript) and python3
+- Good performance.
+- REST Client for interative documentation.
+- Free to use.
+- Cross platform.
+
+### Backend
+
+We will use virtual environment provided by python. It's a tool to isolated python envrionment. We also use a requirement list of the package we use to provide a unified development environment.
+
+### REST Client Extension
+
+This extension could provide us a
+
+- Interative Documentation of backend API
+- Easy to use and understand
+- Basic testing cases
+- See the interation in realtime
+
+### Frontend
+
+We use yarn as our default package manager. It provides
+
+- Easy to use command line interface.
+- Quicker in solving dependencies.
+- Default choice in nodejs community.
+
+Also we will use vue-ui to help us in development.
+
+- Provides curtial infromation about compiled output
+- Userfriendly interface
+- Package management tool remap to Web-ui.
+
+## Deploy Environment
+
+We has purchased vultr vps to host all our frontend and backend server. Because it's
+
+- Cheap
+- Like a real machine
+- Can be build as a docker host
+- Public IP
+- High avalibility
+
+Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are
+
+- Compute intensive
+- Time comsuming
+- Internal code may change a lot
+- Doesn't need to run in 24\*7
+
+Futhermore, we will follow the tech trend on containerlise our service. Because, devOps is facing
+
+- Diverage environment between develop, testting and deploy environment.
+- Diverage tool chain between frontend, backend, database and testing.
+- Tedious and high pertential to make mistakes in manualy configuation.
+
+By using Docker, we can
+
+- Unified environement in all phases of development.
+- Automatice the setup process of virtual environment.
+- Don't need to change the tool chain when facing different situation.
