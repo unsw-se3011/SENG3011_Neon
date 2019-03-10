@@ -99,6 +99,19 @@ We plan to use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch
   - User and registered user read resources
   - Unregistered user to register and login
 
+### Manual Discovery
+
+We use the index approach of discovery and it will be publish in root of endpoints which can be only register by amdin.
+
+### Web Service Security
+
+- Medthod security is provided by Permission Class and validation methods
+- Transport security will be provide by HTTPS (HTTP over TLS)
+
+### Service Reliability
+
+This is provide as an imporvement, we will achieve this by docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
+
 ## Passing Parameters to Our API Module
 
 ### General Part
@@ -374,7 +387,7 @@ _Comparison_: Linux/Unix VS Windows
 - Linux/Unix supports many compiler languages and libraries required for developers
 
 **_Frontend_: Vue, Vuetify**  
-_Justification_: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
+_Justification_: It delivers simple, attractive and responsive UI design. It is well built and has a flat learning curve.
 
 _Comparison_: Vue VS React VS Angular
 
