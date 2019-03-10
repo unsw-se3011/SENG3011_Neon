@@ -101,6 +101,39 @@ We will use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch/#s
 
 ## Passing Parameters to Our API Module
 
+### General Part
+
+1. Request go in to web server (Nginx, Apache)
+2. Call to WSGI(Web Server Gateway Interface) to Django backend
+3. Route the request to particular View (inside Viewset)
+4. Go through some middlewares
+5. Handle View method
+6. Go through some middlewares
+
+### Query String Paramters
+
+The string parameters are:
+
+- Search keywords
+- Filter parameter Keys and values
+- Pagination information
+
+They're parse inside step 4 and step 6 which are handled inside built-in functions.
+
+### Request Header
+
+The request header will contain two parameters, which are "Content-Type" and "Authorization". There're handle inside step 4.
+
+### Request Body
+
+Request body is handled in step 5 and it's futher handle inside view by:
+
+1. Passing all the data into the Serilizer class
+2. Process by built-in validation methods by Type
+3. Process by user defined validtation criteria
+4. Return to view as a serlized object
+5. Do the operation to the object defined by the view
+
 ## Collecting Results from Our API Module
 
 ## Implementation Language
