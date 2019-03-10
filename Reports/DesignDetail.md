@@ -342,6 +342,32 @@ Content-Length: 43
 }
 ```
 
+Or:
+
+```
+HTTP/1.1 301 Moved Permanently
+Date: Sun, 10 Mar 2019 17:48:46 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+```
+
+#### Signature Expired Exception
+
+```
+HTTP/1.1 401 Unauthorized
+Date: Sun, 10 Mar 2019 17:44:34 GMT
+Server: WSGIServer/0.2 CPython/3.6.7
+Content-Type: application/json
+WWW-Authenticate: JWT realm="api"
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 35
+
+{
+  "detail": "Signature has expired."
+}
+```
+
 ## Implementation Language
 
 **_Main OS_: Linux/Unix**  
