@@ -26,7 +26,7 @@ We will document the API as a readable, user friendly website form. As specifica
 - **Unit Testing**
 - **Functional Testing**
 
-In summary,we are going to use Vue and Vuefity as our major platform to develop our frontend the actual website online.On the other side,we are use combination of Python and Django as our platform to develop the API module, for further documenting API we use Swagger to build a readable web form guide for website developer. Based on the development of the API,we use JS in frontend to request API by passing through the require parameters such as token,date range,keyword and location etc.. As result, API will response a json object contains the related reports or user's information.
+In summary, we are going to use Vue and Vuefity as our major platform to develop our frontend the actual website online.On the other side,we are use combination of Python and Django as our platform to develop the API module, for further documenting API we use Swagger to build a readable web form guide for website developer. Based on the development of the API,we use JS in frontend to request API by passing through the require parameters such as token,date range,keyword and location etc. As result, API will response a json object contains the related reports or user's information.
 
 ## Set API Module to Service Mode
 
@@ -71,7 +71,7 @@ We currently designed these endpoints
 - '_Users_' is for user register and login request which provides authentication for users as well as the management of users.
 - '_Reports_' provides an interface for the whole report wchich contains layout of an outbreak news.
 - '_Reports Events_' which relays on report provides an interface for getting the detailed information about the report.
-- '_Articles_' are the original resources that we scrap from the official outbreak websites provides and interface for getting the completed article which users might need to use.
+- '_Articles_' are the original resources that we scrape from the official outbreak websites provides and interface for getting the completed article which users might need to use.
 - '_Location_' provides the function of finding all related reports that happened on a specific area.
 - '_Disease_' Provide the source data of disease, which is helpful information in NLPE.
 
@@ -303,14 +303,19 @@ Receive:
 }
 ```
 
+![API example](img/t1.PNG)
+![](img/t2.PNG)
+![](img/t2-1.PNG)
+![](img/t3.PNG)
+
+
 ## Developement Platform (Technical Stack)
 
 **_Main OS_: Linux/Unix**  
-_Justification_: It is commonly used by developers
-
 _Comparison_: Linux/Unix VS Windows
 
 - Linux/Unix are able to easily install packages via terminal whereas Windows you have to find a website to download.
+- Linux/Unix supports many compiler languages and libraries required for developers
 
 **_Frontend_: Vue, Vuetify**  
 _Justification_: It delivers simple, attractive and responsive UI design. It is well built and has easy architecture.
