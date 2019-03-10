@@ -44,7 +44,60 @@ We will try to do these to help us test our backend API:
 
 ## Running Our API in Web Service Mode
 
+We want to build a reliable and secure API module and our agent will follow the RESTful design to communicate.
 
+### The Architectural Model
+
+We will use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch/#service_oriented_architecture) in Web Services and Arichitecural Style.
+
+- Agent
+  - Requester Agent:
+    - Signle page web app
+    - Natual Language Process Engine
+    - Outbreak Aggreagation Unit
+  - Provider Agent:
+    - Django Backend
+- Person or Organization
+  - Own by team Neon
+- Action
+  - Create, Update and Delete on resources
+  - Read and Search on Resources
+  - Comment on Resource
+  - Register account
+  - Authenticate
+- Policy
+  - Only Administrator can perform Create, Update and Delete on resources
+  - Anyone can Read and Search on Resources
+  - Registered user can Comment on Resource
+  - Anyone can Register
+  - Registered user can authenticate
+- Goal State
+  - Resources are correctly managed by Administrator
+  - Registered User can comment on Resource
+  - User can register
+  - Registered user can be authenticated
+- Service Role
+  - Researcher
+  - Admin
+  - Natural Language Process Unit (Machine)
+  - Outbreak Aggregation Unit (Machine)
+- Message
+  - Resources
+  - Authenticate Information
+  - Comments
+- Service Interface
+  - Web Interface
+    - REST Endpoints
+    - Swagger Documents
+    - JSON Web Token Endpoint
+  - Service Semantics
+    - RESTful Design
+    - JWT Authentication
+- Service Task
+  - Admin login and manage Resources
+  - Registered user login and comments on Resources
+  - User and registered user read resources
+  - Unregistered user to register and login
 
 ## Passing Parameters to Our API Module
 
