@@ -322,9 +322,9 @@ _Justification_: It delivers simple, attractive and responsive UI design. It is 
 
 _Comparison_: Vue VS React VS Angular
 
-- React is usually used for building mobile apps.
 - Angular is a full framework and React is more flexible because of set independence. However, React involves more JavaScript than Vue.
 - Vue has the cleanest framework and libraries; it helps to keep code efficient with the perfect balance of internal dependencies and flexibilities.
+- React requires a lot of modern JavaScript knowledge that Vue does not.
 
 _Language_: Vue, Javascript, CSS, HTML  
 _Packages_: Moments, vue2-google-maps, axios, vuex, vue-router
