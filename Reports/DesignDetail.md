@@ -104,16 +104,16 @@ We plan to use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch
 
 ### Manual Discovery
 
-We use the index approach of discovery and it will be publish in root of endpoints which can be only register by amdin.
+We use the index approach of discovery and it will be published in root of endpoints which can be only register by admin.
 
 ### Web Service Security
 
-- Medthod security is provided by Permission Class and validation methods
-- Transport security will be provide by HTTPS (HTTP over TLS)
+- Method security is provided by Permission Class and validation methods
+- Transport security will be provided by HTTPS (HTTP over TLS)
 
 ### Service Reliability
 
-This is provide as an imporvement, we will achieve this by docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
+This will provide an improvement, we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
 
 ## Passing Parameters to Our API Module
 
@@ -452,11 +452,11 @@ _Packages_: lxml, cssselect, Response, json
 
 ### General
 
-We use VS Code as our main code editor. Because it has many extension which is developed by the community. It supports:
+We use VS Code as our main code editor. Because it includes many extensions that are developed by the community. It supports:
 
-- Powerful linting in both main language we use -- Vue(Javascript) and python3
+- Powerful linter in the main languages we use -- Vue(Javascript) and python3
 - Good performance.
-- REST Client for interative documentation.
+- REST Client for interactive documentation.
 - Free to use.
 - Cross-platform.
 
@@ -506,7 +506,7 @@ Also, we will use our home server to host the scrapy and NLPE. Because running t
 
 Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing
 
-- Diverge environment between develop, testting and deploy environment.
+- Diverge environment between develop, testing and deploy environment.
 - Diverge toolchain between frontend, backend, database and testing.
 - Has a high potential to make mistakes during manual configuration.
 
