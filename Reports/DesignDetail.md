@@ -13,6 +13,7 @@ Design details discuss in our group meetings, and we are following these steps:
 5. Decide what endpoints we need to include
 
 ### ER Diagram for API Module
+
 ![ER Diagram](img/erd.png)
 
 ### Implementation
@@ -127,6 +128,19 @@ This will be an additional feature; we will achieve this by the docker. We will 
 6. Go through some middlewares
 
 ### URL Parameter
+
+This is only use to solve the item of an endpoint. Such as
+
+```
+hostname/Endpoint_name/:id/
+```
+
+where id maybe a string or an interger which is the primary key of the object we want to read, update or delete. This parameter is handle during step 3, which is a value controll in directrion to correct view. Also it will use in the step 5:
+
+1. Id value get into View method
+2. Get the QuerySet by Id value
+3. Put the QuerySet data into Serilizer object
+4. Generate the output by Serilizered object, or peforme action on object and generate output.
 
 ### Query String Parameters
 
