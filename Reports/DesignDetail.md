@@ -12,6 +12,10 @@ Design details discuss in our group meetings, and we are following these steps:
 4. Design how to decouple the data
 5. Decide what endpoints we need to include
 
+### ER Diagram for API Module
+
+![ER Diagram](img/erd.png)
+
 ### Implementation
 
 The implementation steps are as follow:
@@ -42,7 +46,7 @@ We plan to do these to help us test our backend API:
 - Develop our endpoint test cases by Django Unit Test
 - Develop test cases for our internal method by using Django Unit Test
 
-## Running Our API in Web Service Mode
+## Running our API in Web Service Mode
 
 We want to build a reliable and secure API module, and our agents follow the RESTful design to communicate.
 
@@ -101,29 +105,43 @@ We plan to use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch
 
 ### Manual Discovery
 
-We use the index approach of discovery and it will be publish in root of endpoints which can be only register by amdin.
+We use the index approach of discovery and it will be published in root of endpoints which can be only register by admin.
 
 ### Web Service Security
 
-- Medthod security is provided by Permission Class and validation methods
-- Transport security will be provide by HTTPS (HTTP over TLS)
+- Method security is provided by Permission Class and validation methods
+- Transport security will be provided by HTTPS (HTTP over TLS)
 
 ### Service Reliability
 
-This is provide as an imporvement, we will achieve this by docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
+This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability.
 
 ## Passing Parameters to Our API Module
 
-### General Part
+### Summary
 
-1. Request go into web server (Nginx, Apache)
-2. Call to WSGI(Web Server Gateway Interface) to Django backend
+1. Request goes into web server (Nginx, Apache)
+2. Calls WSGI(Web Server Gateway Interface) to Django backend
 3. Route the request to particular View (inside Viewset)
 4. Go through some middlewares
 5. Handle View method
 6. Go through some middlewares
 
 ### URL Parameter
+
+This will only be used to solve the item of an endpoint. Such as:
+
+```
+hostname/Endpoint_name/:id/
+```
+
+where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter will be handled during step 3, which controls the value of a particular View. It will also be used in step 5:
+
+1. The Router will check the _id_ value and return the corresponding method
+2. _id_ value sent to View method
+3. Gets the QuerySet by _id_ value
+4. Puts the QuerySet data into Serilizer object
+5. Generates the output by Serilizered object, or peform actions on object and generate output.
 
 ### Query String Parameters
 
@@ -156,7 +174,7 @@ Our API follow the RESTful design.
 
 #### HTTP Headers
 
-The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example
+The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example:
 
 ```
 HTTP/1.1 200 OK
@@ -179,14 +197,14 @@ Our HTTP body is a JSON object.
 }
 ```
 
-### How to Send back to Requester
+### Sending response to client
 
 1. View prepared the result as QuerySet object
 2. Handle the middleware operations to the QuerySet
 3. Serialise the QuerySet by Serializer
 4. Wrap the serialised object with the Response object
 5. The response object is returned to WSGI client
-6. Prepare the data by Response object and send back to the web server
+6. Prepare the data by the Response object and send it back to the web server
 7. Send the response to the client
 
 ### Example Interactions
@@ -194,6 +212,7 @@ Our HTTP body is a JSON object.
 #### Create An Entity
 
 Request:
+
 
 ```
 POST {{baseUrl}}users/ HTTP/1.1
@@ -304,6 +323,7 @@ Authorization: {{auth}}
     "lat": 12.22,
     "lng": 22.33
 }
+
 ```
 
 Response:
@@ -449,11 +469,11 @@ _Packages_: lxml, cssselect, Response, json
 
 ### General
 
-We use VS Code as our main code editor. Because it has many extension which is developed by the community. It supports:
+We use VS Code as our main code editor. Because it includes many extensions that are developed by the community. It supports:
 
-- Powerful linting in both main language we use -- Vue(Javascript) and python3
+- Powerful linter in the main languages we use -- Vue(Javascript) and python3
 - Good performance.
-- REST Client for interative documentation.
+- REST Client for interactive documentation.
 - Free to use.
 - Cross-platform.
 
@@ -474,6 +494,7 @@ This extension could provide us with a
 
 We use yarn as our default package manager. It provides
 
+
 - Easy to use command line interface.
 - Quicker in solving dependencies.
 - Default choice in nodejs community.
@@ -486,28 +507,29 @@ Also, we will use Vue-UI to help us in our development.
 
 ## Deploy Environment
 
-We have purchased Vultr VPS to host all our frontend and backend server. Because it's
+We have purchased Vultr VPS to host all our frontend and backend server. Some advantages include:
 
-- Cheap
-- Like a real machine
-- Can be built as a docker host
-- Public IP
-- High availability
+- It is cheap
+- It is like a real machine
+- It can be built as a docker host
+- It has ublic IP
+- It has high availability
 
-Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are
+Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
+
 
 - Compute-intensive
 - Time-consuming
 - The internal code may change a lot
 - Doesn't need to run in 24\*7
 
-Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing
+Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing:
 
-- Diverge environment between develop, testting and deploy environment.
+- Diverge environment between develop, testing and deploy environment.
 - Diverge toolchain between frontend, backend, database and testing.
 - Has a high potential to make mistakes during manual configuration.
 
-By using Docker, we can
+By using Docker, we can:
 
 - Provide a unified environment in all phases of development.
 - Automate the process of setting up the virtual environment.
