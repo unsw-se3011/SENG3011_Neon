@@ -213,6 +213,7 @@ Our HTTP body is a JSON object.
 
 Request:
 
+
 ```
 POST {{baseUrl}}users/ HTTP/1.1
 Content-Type: application/json
@@ -322,6 +323,7 @@ Authorization: {{auth}}
     "lat": 12.22,
     "lng": 22.33
 }
+
 ```
 
 Response:
@@ -492,6 +494,7 @@ This extension could provide us with a
 
 We use yarn as our default package manager. It provides
 
+
 - Easy to use command line interface.
 - Quicker in solving dependencies.
 - Default choice in nodejs community.
@@ -513,6 +516,7 @@ We have purchased Vultr VPS to host all our frontend and backend server. Some ad
 - It has high availability
 
 Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
+
 
 - Compute-intensive
 - Time-consuming
