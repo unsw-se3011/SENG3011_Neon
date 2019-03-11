@@ -113,7 +113,7 @@ We use the index approach of discovery and it will be published in root of endpo
 
 ### Service Reliability
 
-This will provide an improvement, we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
+This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
 
 ## Passing Parameters to Our API Module
 
