@@ -113,14 +113,14 @@ We use the index approach of discovery and it will be published in root of endpo
 
 ### Service Reliability
 
-This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability. 
+This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability.
 
 ## Passing Parameters to Our API Module
 
-### General Part
+### Summary
 
-1. Request go into web server (Nginx, Apache)
-2. Call to WSGI(Web Server Gateway Interface) to Django backend
+1. Request goes into web server (Nginx, Apache)
+2. Calls WSGI(Web Server Gateway Interface) to Django backend
 3. Route the request to particular View (inside Viewset)
 4. Go through some middlewares
 5. Handle View method
@@ -159,7 +159,7 @@ Our API follow the RESTful design.
 
 #### HTTP Headers
 
-The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example
+The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example:
 
 ```
 HTTP/1.1 200 OK
@@ -182,14 +182,14 @@ Our HTTP body is a JSON object.
 }
 ```
 
-### How to Send back to Requester
+### Sending response to client
 
 1. View prepared the result as QuerySet object
 2. Handle the middleware operations to the QuerySet
 3. Serialise the QuerySet by Serializer
 4. Wrap the serialised object with the Response object
 5. The response object is returned to WSGI client
-6. Prepare the data by Response object and send back to the web server
+6. Prepare the data by the Response object and send it back to the web server
 7. Send the response to the client
 
 ### Example Interactions
@@ -489,28 +489,28 @@ Also, we will use Vue-UI to help us in our development.
 
 ## Deploy Environment
 
-We have purchased Vultr VPS to host all our frontend and backend server. Because it's
+We have purchased Vultr VPS to host all our frontend and backend server. Some advantages include:
 
-- Cheap
-- Like a real machine
-- Can be built as a docker host
-- Public IP
-- High availability
+- It is cheap
+- It is like a real machine
+- It can be built as a docker host
+- It has ublic IP
+- It has high availability
 
-Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are
+Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
 
 - Compute-intensive
 - Time-consuming
 - The internal code may change a lot
 - Doesn't need to run in 24\*7
 
-Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing
+Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing:
 
 - Diverge environment between develop, testing and deploy environment.
 - Diverge toolchain between frontend, backend, database and testing.
 - Has a high potential to make mistakes during manual configuration.
 
-By using Docker, we can
+By using Docker, we can:
 
 - Provide a unified environment in all phases of development.
 - Automate the process of setting up the virtual environment.
