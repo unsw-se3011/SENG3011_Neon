@@ -135,12 +135,13 @@ This will only be used to solve the item of an endpoint. Such as:
 hostname/Endpoint_name/:id/
 ```
 
-where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter is handled during step 3, which is a value control in direction to correct view. It will also be used in step 5:
+where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter will be handled during step 3, which controls the value of a particular View. It will also be used in step 5:
 
-1. _id_ value sent to View method
-2. Gets the QuerySet by _id_ value
-3. Puts the QuerySet data into Serilizer object
-4. Generates the output by Serilizered object, or peform actions on object and generate output.
+1. The Router will check the _id_ value and return the corresponding method
+2. _id_ value sent to View method
+3. Gets the QuerySet by _id_ value
+4. Puts the QuerySet data into Serilizer object
+5. Generates the output by Serilizered object, or peform actions on object and generate output.
 
 ### Query String Parameters
 
