@@ -129,18 +129,18 @@ This will be an additional feature; we will achieve this by the docker. We will 
 
 ### URL Parameter
 
-This is only use to solve the item of an endpoint. Such as
+This will only be used to solve the item of an endpoint. Such as:
 
 ```
 hostname/Endpoint_name/:id/
 ```
 
-where id maybe a string or an interger which is the primary key of the object we want to read, update or delete. This parameter is handle during step 3, which is a value controll in directrion to correct view. Also it will use in the step 5:
+where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter is handled during step 3, which is a value control in direction to correct view. It will also be used in step 5:
 
-1. Id value get into View method
-2. Get the QuerySet by Id value
-3. Put the QuerySet data into Serilizer object
-4. Generate the output by Serilizered object, or peforme action on object and generate output.
+1. _id_ value sent to View method
+2. Gets the QuerySet by _id_ value
+3. Puts the QuerySet data into Serilizer object
+4. Generates the output by Serilizered object, or peform actions on object and generate output.
 
 ### Query String Parameters
 
