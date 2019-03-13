@@ -1,0 +1,8 @@
+#!/bin/bash
+if (($# != 1))
+then
+    echo "$0 <Service_Name>"
+    exit 1
+fi
+# this command will attach to the running backend container
+sudo docker exec -i -t "seng3011_neon_$1_1" /bin/bash
