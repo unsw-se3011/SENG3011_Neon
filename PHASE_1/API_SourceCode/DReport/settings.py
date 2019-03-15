@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'report.apps.ReportConfig',
     'rest_framework',
     'django_filters',
+    'corsheaders',
     'rest_framework_swagger',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'DReport.urls'
 
