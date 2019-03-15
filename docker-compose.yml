@@ -3,12 +3,17 @@ version: "3"
 services:
   db:
     image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=AnApple123
+      - POSTGRES_USER=root
+    volumes: 
+      - partyWhipData:/var/lib/postgresql/data
   web:
     build: PHASE_1/API_SourceCode/
-    command: python manage.py runserver 0.0.0.0:8000
-    # volumes:
-    #   - .:/code
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - db
+volumes: 
+  partyWhipData:
