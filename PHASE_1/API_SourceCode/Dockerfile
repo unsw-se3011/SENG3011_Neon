@@ -4,7 +4,7 @@ WORKDIR /app/
 ADD . /app/
 
 # uWSGI will listen on this port
-EXPOSE 8000
+# EXPOSE 8000
 
 RUN pip install --no-cache-dir -r requirements.txt
 # Add any custom, static environment variables needed by Django or your settings file here:

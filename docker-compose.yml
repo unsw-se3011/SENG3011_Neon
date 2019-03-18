@@ -11,9 +11,14 @@ services:
       - ProjectNeonData:/var/lib/postgresql/data
   web:
     build: PHASE_1/API_SourceCode/
-    ports:
-      - 8000:8000
+    # ports:
+    #   - 8000:8000
     depends_on:
       - db
+  nginx: 
+    build: .
+    restart: always
+    ports:
+      - 8000:80
 volumes: 
   ProjectNeonData:
