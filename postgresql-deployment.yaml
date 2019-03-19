@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neon-pgsql
+  labels:
+    app: neon
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: neon
+    tier: pgsql
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgsql-pv-claim
+  labels:
+    app: neon
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: neon-pgsql
+  labels:
+    app: neon
+spec:
+  selector:
+    matchLabels:
+      app: neon
+      tier: pgsql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: neon
+        tier: pgsql
+    spec:
+      containers:
+      - image: postgres
+        name: pgsql
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pgsql-secret
+              key: password
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: pgsql-secret
+              key: username
+        ports:
+        - containerPort: 3306
+          name: pgsql
+        volumeMounts:
+        - name: pgsql-persistent-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: pgsql-persistent-storage
+        persistentVolumeClaim:
+          claimName: pgsql-pv-claim
+
+# setup the secret 
+#  kubectl create secret generic pgsql-secret --from-literal=username=root --from-literal=password=AnApple123
