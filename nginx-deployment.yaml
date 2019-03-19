@@ -32,16 +32,11 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: neon-nginx 
-        name: neon
-        ports:
-        - containerPort: 80
-          name: nginx
-      - image: neon-backend 
-        name: backend
+      - image: tecty/neon-backend 
+        name: web
         env:
         - name: DB_HOST
-          value: neon-pgsql
+          value: tecty/neon-pgsql
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -52,6 +47,11 @@ spec:
             secretKeyRef:
               name: pgsql-secret
               key: username
+      - image: tecty/neon-nginx 
+        name: neon
+        ports:
+        - containerPort: 80
+          name: nginx
       #   ports:
       #   - containerPort:80
       #     name: backend
