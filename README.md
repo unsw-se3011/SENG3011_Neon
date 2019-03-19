@@ -38,7 +38,21 @@ $ git push --set-upstream origin YOUR_BRANCH_NAME
 First, we need to install:
 [Docker Community Edition](https://docs.docker.com/install/#releases)
 and
-[Docker Compose](https://docs.docker.com/compose/install/#install-compose)  
+[Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+
+### Deploy Environment (temporary)
+
+```bash 
+# start the deploy env 
+docker-compose up 
+# end it ( otherwise it will keep running in background)
+docker-compose down 
+
+# kill it to rebuild 
+docker-compose down --rmi all
+
+```
+
 
 ## APIs Documents
 
@@ -52,7 +66,9 @@ ext install humao.rest-client
 
 ## URLs
 
-| URL                                                        | Detail              |
-| :--------------------------------------------------------- | :------------------ |
-| [http://localhost:8080/](http://localhost:8080/)           | Home Page (Backend) |
-| [http://localhost:8000/admin](http://localhost:8000/admin) | Django admin        |
+| URL                                                                        | Detail              |
+| :------------------------------------------------------------------------- | :------------------ |
+| [http://whiteboard.house:8000/](http://whiteboard.house:8000/)             | Home Page (Backend) |
+| [http://whiteboard.house:8000/v0/](http://whiteboard.house:8000/v0/)          | Api Root            |
+| [http://whiteboard.house:8000/v0/swagger/](http://whiteboard.house:8000/v0/swagger/)  | Swagger Documents   |
+| [http://whiteboard.house:8000/admin/](http://whiteboard.house:8000/admin/) | Django admin        |

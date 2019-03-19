@@ -101,15 +101,27 @@ class DiseaseSerializer(serializers.ModelSerializer):
     #     raise TypeError("heeoo")
 
 
+class ArticleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Article
+        fields = (
+            'id',
+            'url',
+            'headline',
+            'publish',
+            'main_text',
+            'p_fuzz',
+        )
+
+
 class ReportSerializer(serializers.ModelSerializer):
     # Reportevent details
     report_event = ReportEventSerializer(
         many=True, read_only=True, source='reportevent_set')
 
     # attach the article while creation
-    article_id = serializers.PrimaryKeyRelatedField(
-        queryset=Article.objects.all(), write_only=True, source='article')
-
+    article = ArticleSerializer(read_only =True)
     # handle these many to many field by using primary key related field
     disease = serializers.PrimaryKeyRelatedField(
         queryset=Disease.objects.all(), many=True
@@ -122,26 +134,10 @@ class ReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = (
             'id',
-            'article_id',
+            'article',
             'disease',
             'syndrome',
             'comment',
             'article',
             'report_event'
-        )
-
-
-class ArticleSerializer(serializers.ModelSerializer):
-    reports = ReportSerializer(many=True, read_only=True, source='report_set')
-
-    class Meta:
-        model = Article
-        fields = (
-            'id',
-            'url',
-            'headline',
-            'publish',
-            'main_text',
-            'p_fuzz',
-            'reports',
         )
