@@ -77,3 +77,9 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Mar 6      | Basic version of backend is complete. Handover to Iris and Jeana to write document. Itios to write the NLPE. Merge branch for iteration 1.                     |
 | Mar 7      | Incremental progress of deliverable 1 document                                                                                                                 |
 | Mar 7      | Design documentation.                                                                                                                                          |
+| Mar 11     | Another version of Design documentation.                                                                                                                       |
+| Mar 13     | Actual start of iteration 2, assigned works to frontend, CICD, NLPE .                                                                                          |
+| Mar 15     | Login in frontend, Some parser by Spacy, buy a domain and server for this project, dockerlise our backend.                                                     |
+| Mar 18     | Increamental inproment in atural language parser, deploy backend by docker-compose.                                                                            |
+| Mar 20     | Swich back to nltk for parser, three parser is set up, k8s delopment file is done, improment in frontend.                                                      |
+| Mar 21     | Searching and filtering in backend.                                                                                                                            |
