@@ -86,7 +86,6 @@ class SyndromeSerializer(serializers.ModelSerializer):
 
 
 class DiseaseSerializer(serializers.ModelSerializer):
-    # syndromes = serializers.StringRelatedField(many=True)
     syndromes = serializers.PrimaryKeyRelatedField(
         queryset=Syndrome.objects.all(), many=True)
 
@@ -97,8 +96,6 @@ class DiseaseSerializer(serializers.ModelSerializer):
             'syndromes'
         )
 
-    # def create(self, validated_data):
-    #     raise TypeError("heeoo")
 
 
 class ArticleSerializer(serializers.ModelSerializer):

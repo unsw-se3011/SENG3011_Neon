@@ -82,9 +82,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'root',
-        'USER': os.getenv('DB_USER','root'),
-        'PASSWORD': os.getenv('DB_PASSWORD','AnApple123'),
-        'HOST': os.getenv('DB_HOST','db'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'AnApple123'),
+        'HOST': os.getenv('DB_HOST', 'db'),
         'PORT': '5432',
     }
 }
@@ -145,3 +145,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100
 }
+
+SEARCH_PARAM = "key`terms"
