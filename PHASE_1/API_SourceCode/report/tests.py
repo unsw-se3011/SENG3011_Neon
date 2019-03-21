@@ -1,19 +1,24 @@
 from django.test import TestCase
 from .models import ReportEvent, Report, Article
+from django.utils.dateparse import parse_datetime
+
+
+def parseDatetime(date_time):
+    return parse_datetime(date_time)
 
 
 class ReportEventCase(TestCase):
 
     def create_report(self):
         article = Article.objects.create(
-            "http://example.com/" + str(self.article_id),
-            "example",
-            "2222-02-02T02:02",
-            "D",
-            "example text"
+            url="http://example.com/" + str(self.article_id),
+            headline="example",
+            publish=parseDatetime("2222-02-02T02:02Z"),
+            p_fuzz="D",
+            main_text="example text"
         )
         report = Report.objects.create(
-            article
+            article=article
         )
         self.article_id += 1
         return report
@@ -23,9 +28,18 @@ class ReportEventCase(TestCase):
 
         report = self.create_report()
         ReportEvent.objects.create(
-            report, "D", "2222-02-02T02:02",
-            "D", "2222-02-02T02:02", 10
+            report=report, e_type="D",
+            start_date=parseDatetime("2222-02-02T02:02Z"),
+            sd_fuzz="D",
+            end_date=parseDatetime("2222-02-02T02:02Z"),
+            number_effect=10
         )
 
     def test_create_reports(self):
         self.assertEqual(Report.objects.count(), 1)
+
+    def test_filter_datetime(self):
+        res = Report.objects.filter(
+            reportevent__start_date__gte=parseDatetime("2222-02-02T00:00:00Z")
+        )
+        self.assertEqual(res.count(), 1)

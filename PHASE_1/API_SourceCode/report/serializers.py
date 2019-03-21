@@ -74,7 +74,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
             "sd_fuzz",
             "end_date",
             "ed_fuzz",
-            "number_effecet",
+            "number_effect",
             "location"
         )
 

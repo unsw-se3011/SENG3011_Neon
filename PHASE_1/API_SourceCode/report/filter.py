@@ -2,6 +2,7 @@ from rest_framework.filters import BaseFilterBackend
 from django.db.models import Q
 from rest_framework.compat import coreapi, coreschema
 from datetime import datetime
+from django.utils.dateparse import parse_datetime
 
 
 class DatetimeFilter(BaseFilterBackend):
@@ -52,3 +53,25 @@ class DatetimeFilter(BaseFilterBackend):
             ),
         ]
 
+
+class ReportEventDatetimeRangeFilter(BaseFilterBackend):
+    """
+    This could only be use at report class
+    """
+
+    def filter_queryset(self, request, queryset, view):
+        start_date = datetime.strptime(
+            request.query_params.get(
+                "start_date", None), '%Y-%m-%dT%H:%M:%S'
+        )
+        end_date = datetime.strptime(
+            request.query_params.get("end_date", None), '%Y-%m-%dT%H:%M:%S'
+        )
+
+        if not start_date or not end_date:
+            return queryset
+        print("imhere")
+        queryset.filter(
+            Q(**{search_filed + "__gte": start_date}) &
+            Q(**{search_filed + "__lte": end_date}))
+        return queryset
