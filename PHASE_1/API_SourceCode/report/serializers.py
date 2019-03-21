@@ -51,6 +51,8 @@ class ReportEventSerializer(serializers.ModelSerializer):
         if data['start_date'] >= data['end_date']:
             raise serializers.ValidationError("finish must occur after start")
 
+        # base on fuzz, we send it to the last date it can be or first date it can be to support better filter
+
         # create location here, use get or create
         return data
 
@@ -97,7 +99,6 @@ class DiseaseSerializer(serializers.ModelSerializer):
         )
 
 
-
 class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -118,7 +119,7 @@ class ReportSerializer(serializers.ModelSerializer):
         many=True, read_only=True, source='reportevent_set')
 
     # attach the article while creation
-    article = ArticleSerializer(read_only =True)
+    article = ArticleSerializer(read_only=True)
     # handle these many to many field by using primary key related field
     disease = serializers.PrimaryKeyRelatedField(
         queryset=Disease.objects.all(), many=True

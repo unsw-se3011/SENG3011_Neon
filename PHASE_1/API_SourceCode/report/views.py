@@ -90,6 +90,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         'headline',
         'id'
     )
+    time_field = 'publish'
     ordering_fields = ('publish',)
 
 

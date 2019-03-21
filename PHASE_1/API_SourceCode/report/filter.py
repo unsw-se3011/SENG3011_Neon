@@ -1,6 +1,7 @@
 from rest_framework.filters import BaseFilterBackend
 from django.db.models import Q
 from rest_framework.compat import coreapi, coreschema
+from datetime import datetime
 
 
 class DatetimeFilter(BaseFilterBackend):
@@ -13,12 +14,17 @@ class DatetimeFilter(BaseFilterBackend):
         if not search_filed:
             return queryset
 
-        start_date = request.query_params.get("start_date", None)
-        end_date = request.query_params.get("end_date", None)
+        start_date = datetime.strptime(
+            request.query_params.get(
+                "start_date", None), '%Y-%m-%dT%H:%M:%S'
+        )
+        end_date = datetime.strptime(
+            request.query_params.get("end_date", None), '%Y-%m-%dT%H:%M:%S'
+        )
 
         if not start_date or not end_date:
             return queryset
-
+        print("imhere")
         queryset.filter(
             Q(**{search_filed + "__gte": start_date}) &
             Q(**{search_filed + "__lte": end_date}))
@@ -45,3 +51,4 @@ class DatetimeFilter(BaseFilterBackend):
                 )
             ),
         ]
+
