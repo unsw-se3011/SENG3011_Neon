@@ -26,10 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # general urls from api
     path(
-        'api-auth/', include('rest_framework.urls', namespace='rest_framework')
+        'api-auth/', include('rest_framework.urls')
     ),
     path(
-        'accounts/', include('rest_framework.urls', namespace='rest_framework')
+        'accounts/', include('rest_framework.urls')
     ),
     path('v0/', include('report.urls'))
 ]

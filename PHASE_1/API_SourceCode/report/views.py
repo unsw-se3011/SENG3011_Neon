@@ -59,11 +59,6 @@ class ReportViewSet(viewsets.ModelViewSet):
         # user report serializer to create this report
         report = ser_er.save()
         try:
-            # if len(self.request.data['report_events']) == 0:
-            #     raise serializers.ValidationError({
-            #         "report_events": "report_events at least have one instance"
-            #     })
-
             for re in self.request.data['report_events']:
 
                 # filling the missing information
