@@ -22,26 +22,30 @@ TEXTS = [
     "There is no treatment, and symptoms usually resolve themselves within a few weeks.",
     "Mumps is usually a mild disease in children, but adults may have more serious disease with complications.",
     "Complications can include deafness and encephalitis.",
-    "Encephalitis is inflammation of the brain." ,
+    "Encephalitis is inflammation of the brain.",
     "The MMR vaccine is safe and effective.",
     "Two doses of MMR vaccine are 88 percent effective in preventing mumps.",
     "It is a live virus vaccine and is not recommended for pregnant women or patients with a weakened immune system.",
     "Adults born before 1957 are generally considered to be immune to mumps and do not need to receive the MMR vaccine."
 ]
 TRAIN_DATA = [
-    ("Encephalitis is inflammation of the brain.",{"entities": [(0, 12, LABEL1)]}),
-    ( "Haemorrhagic Fever",{"entities": [(0, 18, LABEL1)]}),
-    ("Acute Flacid Paralysis",{"entities": [(0, 22, LABEL1)]}),
-    ("Acute gastroenteritis",{"entities": [(0, 21, LABEL1)]}),
-    ("Acute respiratory syndrome",{"entities": [(0, 26, LABEL1)]}),
-    ("Influenza-like illness",{"entities": [(0, 22, LABEL1)]}),
-    ("Acute fever and rash",{"entities": [(0, 20, LABEL1)]}),
-    ("Fever of unknown Origin",{"entities": [(0, 23, LABEL1)]}),
-    ("Meningitis",{"entities": [(0, 10, LABEL1)]}),
-    ("Encephalitis",{"entities": [(0, 12, LABEL1)]}),
-    ("Two doses of MMR vaccine are 88 percent effective in preventing mumps.", {"entities": []}),
-    ("Complications can include deafness and encephalitis.",{"entities": [(39, 51, LABEL1)]},),
+    ("Encephalitis is inflammation of the brain.",
+     {"entities": [(0, 12, LABEL1)]}),
+    ("Haemorrhagic Fever", {"entities": [(0, 18, LABEL1)]}),
+    ("Acute Flacid Paralysis", {"entities": [(0, 22, LABEL1)]}),
+    ("Acute gastroenteritis", {"entities": [(0, 21, LABEL1)]}),
+    ("Acute respiratory syndrome", {"entities": [(0, 26, LABEL1)]}),
+    ("Influenza-like illness", {"entities": [(0, 22, LABEL1)]}),
+    ("Acute fever and rash", {"entities": [(0, 20, LABEL1)]}),
+    ("Fever of unknown Origin", {"entities": [(0, 23, LABEL1)]}),
+    ("Meningitis", {"entities": [(0, 10, LABEL1)]}),
+    ("Encephalitis", {"entities": [(0, 12, LABEL1)]}),
+    ("Two doses of MMR vaccine are 88 percent effective in preventing mumps.",
+     {"entities": []}),
+    ("Complications can include deafness and encephalitis.",
+     {"entities": [(39, 51, LABEL1)]},),
 ]
+
 
 @plac.annotations(
     model=("Model name. Defaults to blank 'en' model.", "option", "m", str),
@@ -49,14 +53,14 @@ TRAIN_DATA = [
 )
 def main(model, n_iter=30):
 
-    #load existing spaCy model
+    # load existing spaCy model
     if model is not None:
-        nlp = spacy.load(model) 
+        nlp = spacy.load(model)
         print("Loaded model '%s'" % model)
     else:
 
         # create blank Language class
-        nlp = spacy.blank("en") 
+        nlp = spacy.blank("en")
         print("Created blank 'en' model")
 
     # Add entity recognizer to model if it's not in the pipeline
@@ -81,11 +85,11 @@ def main(model, n_iter=30):
 
     # get names of other pipes to disable them during training
     other_pipes = [pipe for pipe in nlp.pipe_names if pipe != "ner"]
-    
+
     # only train NER
-    with nlp.disable_pipes(*other_pipes):  
+    with nlp.disable_pipes(*other_pipes):
         sizes = compounding(1.0, 4.0, 1.001)
-       
+
         # batch up the examples using spaCy's minibatch
         for itn in range(n_iter):
             random.shuffle(TRAIN_DATA)
@@ -93,12 +97,13 @@ def main(model, n_iter=30):
             losses = {}
             for batch in batches:
                 texts, annotations = zip(*batch)
-                nlp.update(texts, annotations, sgd=optimizer, drop=0.35, losses=losses)
+                nlp.update(texts, annotations, sgd=optimizer,
+                           drop=0.35, losses=losses)
 
     print("Loaded model '%s'" % model)
     print("Processing %d texts" % len(TEXTS))
-   
-    #test the above texts
+
+    # test the above texts
     for text in TEXTS:
         doc = nlp(text)
         for ent in doc.ents:
@@ -106,7 +111,8 @@ def main(model, n_iter=30):
                 print(ent.label_, ent.text)
             if ent.label_ == "Disease":
                 print(ent.label_, ent.text)
-    
+
+
 '''
 #try to extract information from above 
 def extract_currency_relations(doc):
