@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticate
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
-from .filter import ReportEventDatetimeRangeFilter
+from .filter import ReportEventDatetimeRangeFilter, KeytermFilter
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -48,14 +48,21 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (ReportEventDatetimeRangeFilter,)
+    filter_backends = (
+        ReportEventDatetimeRangeFilter,
+        DjangoFilterBackend, KeytermFilter,
+    )
 
     search_fields = (
         'article__headline', 'article__main_text',
         'disease__name', 'syndrome__name',
-        )
+    )
     filterset_fields = (
         'article__headline',
+        'reportevent__location__continent',
+        'reportevent__location__country',
+        'reportevent__location__state',
+        'reportevent__location__city',
         'disease',
         'syndrome',
     )

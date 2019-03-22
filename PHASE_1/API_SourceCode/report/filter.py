@@ -1,4 +1,4 @@
-from rest_framework.filters import BaseFilterBackend
+from rest_framework.filters import BaseFilterBackend, SearchFilter
 from django.db.models import Q
 from rest_framework.compat import coreapi, coreschema
 from datetime import datetime
@@ -108,3 +108,7 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
                 )
             ),
         ]
+
+
+class KeytermFilter(SearchFilter):
+    search_param = "key_term"
