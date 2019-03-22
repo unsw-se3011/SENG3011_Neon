@@ -39,7 +39,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('name', 'lat', 'lng')
+        fields = (
+            'name',
+            'lat',
+            'lng',
+            'continent',
+            'country',
+            'state',
+            'city'
+        )
 
 
 class ReportEventSerializer(serializers.ModelSerializer):

@@ -50,7 +50,10 @@ class ReportViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (ReportEventDatetimeRangeFilter,)
 
-    search_fields = ('article__headline', 'article__main_text')
+    search_fields = (
+        'article__headline', 'article__main_text',
+        'disease__name', 'syndrome__name',
+        )
     filterset_fields = (
         'article__headline',
         'disease',
