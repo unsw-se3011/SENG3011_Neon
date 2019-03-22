@@ -8,6 +8,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticate
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
+from .filter import ReportEventDatetimeRangeFilter, KeytermFilter
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -46,10 +48,21 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (
+        ReportEventDatetimeRangeFilter,
+        DjangoFilterBackend, KeytermFilter,
+    )
 
-    search_fields = ('article__headline', 'article__main_text')
+    search_fields = (
+        'article__headline', 'article__main_text',
+        'disease__name', 'syndrome__name',
+    )
     filterset_fields = (
         'article__headline',
+        'reportevent__location__continent',
+        'reportevent__location__country',
+        'reportevent__location__state',
+        'reportevent__location__city',
         'disease',
         'syndrome',
     )
@@ -59,11 +72,6 @@ class ReportViewSet(viewsets.ModelViewSet):
         # user report serializer to create this report
         report = ser_er.save()
         try:
-            # if len(self.request.data['report_events']) == 0:
-            #     raise serializers.ValidationError({
-            #         "report_events": "report_events at least have one instance"
-            #     })
-
             for re in self.request.data['report_events']:
 
                 # filling the missing information
@@ -95,6 +103,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         'headline',
         'id'
     )
+    time_field = 'publish'
     ordering_fields = ('publish',)
 
 
