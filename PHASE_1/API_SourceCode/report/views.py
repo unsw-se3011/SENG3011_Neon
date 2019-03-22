@@ -48,7 +48,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    # filter_backends = (ReportEventDatetimeRangeFilter,)
+    filter_backends = (ReportEventDatetimeRangeFilter,)
 
     search_fields = ('article__headline', 'article__main_text')
     filterset_fields = (

@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MzIxMzE4MSwiZW1haWwiOiIifQ.Xlg6fxDDnDQ712Fi9VwSHqVFOxN-I0TTLdWFYpSt_4k
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MzIxNDA3MSwiZW1haWwiOiIifQ.2NtKbt2tby5Z3TSfCU_0F3Rn-Ggs4Vb7koqv4mQS4LQ
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -157,7 +157,7 @@ Content-Type: application/json
 Authorization: {{auth}}
 
 {
-    "article_id": 2,
+    "article_id": 1,
     "disease": ["hello1"],
     "syndrome": ["stomache"],
     "comment": "",

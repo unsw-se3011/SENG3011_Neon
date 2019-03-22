@@ -59,10 +59,12 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
     """
 
     def filter_queryset(self, request, queryset, view):
+
         try:
             start_date = parse_datetime(
                 request.query_params.get(
-                    "start_date", None)
+                    "start_date", None
+                )
             )
             end_date = parse_datetime(
                 request.query_params.get("end_date", None)
@@ -70,7 +72,7 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
         except Exception as e:
             return queryset
 
-        queryset.filter(
+        return queryset.filter(
             Q(
                 reportevent__start_date__gte=start_date,
                 reportevent__start_date__lte=end_date
@@ -84,7 +86,6 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
                 reportevent__end_date__gte=end_date
             )
         )
-        return queryset
 
     def get_schema_fields(self, view):
         return [
