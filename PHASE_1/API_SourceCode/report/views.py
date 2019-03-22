@@ -8,6 +8,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticate
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
+from .filter import ReportEventDatetimeRangeFilter
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -46,6 +48,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    # filter_backends = (ReportEventDatetimeRangeFilter,)
 
     search_fields = ('article__headline', 'article__main_text')
     filterset_fields = (

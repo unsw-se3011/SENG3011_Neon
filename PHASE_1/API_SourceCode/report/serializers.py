@@ -74,7 +74,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
             "sd_fuzz",
             "end_date",
             "ed_fuzz",
-            "number_effect",
+            "number_affected",
             "location"
         )
 
@@ -124,6 +124,8 @@ class ReportSerializer(serializers.ModelSerializer):
     disease = serializers.PrimaryKeyRelatedField(
         queryset=Disease.objects.all(), many=True
     )
+    article_id = serializers.PrimaryKeyRelatedField(
+        queryset=Article.objects.all(), write_only=True, source='article')
     syndrome = serializers.PrimaryKeyRelatedField(
         queryset=Syndrome.objects.all(), many=True
     )
@@ -133,6 +135,7 @@ class ReportSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'article',
+            'article_id',
             'disease',
             'syndrome',
             'comment',

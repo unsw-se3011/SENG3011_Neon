@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MjIzOTc3NiwiZW1haWwiOiIifQ.8w48ZXzb4M3VbS7xvec8_CJma0_oOVH4C4P8INaNZxQ
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MzIxMzE4MSwiZW1haWwiOiIifQ.Xlg6fxDDnDQ712Fi9VwSHqVFOxN-I0TTLdWFYpSt_4k
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -19,7 +19,7 @@ POST {{baseUrl}}users/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "ttt2",
+    "username": "ttt",
     "password": "apple123",
     "first_name": "Toby",
     "last_name": "HUANG"
@@ -39,7 +39,7 @@ Content-Type: application/json
 Authorization: {{auth}}
 
 {
-    "url": "http://localhost:8000/v0/article/",
+    "url": "http://localhost:8000/v0/article/0",
     "headline": "no",
     "publish": "0200-01-01T15:20:00Z",
     "main_text": "helloworld",
@@ -86,20 +86,6 @@ Authorization: {{auth}}
     "lat": 22.33,
     "lng": 12.22
 }
-
-###
-# Create locations
-
-DELETE  {{baseUrl}}location/ HTTP/1.1
-Content-Type: application/json
-Authorization: {{auth}}
-
-{
-    "name": "Sydney",
-    "lat": 12.22,
-    "lng": 22.33
-}
-
 
 
 ###
@@ -171,7 +157,7 @@ Content-Type: application/json
 Authorization: {{auth}}
 
 {
-    "article_id": 1,
+    "article_id": 2,
     "disease": ["hello1"],
     "syndrome": ["stomache"],
     "comment": "",
@@ -182,7 +168,7 @@ Authorization: {{auth}}
             "sd_fuzz": "H",
             "end_date": "2222-02-03T02:02",
             "ed_fuzz": "M",
-            "number_effecet": 12,
+            "number_affected": 12,
             "location": {
                 "name": "Sydney",
                 "lat": 12.22,

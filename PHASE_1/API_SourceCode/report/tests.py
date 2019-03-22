@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import ReportEvent, Report, Article
 from django.utils.dateparse import parse_datetime
+from rest_framework.test import APIRequestFactory, RequestsClient
 
 
 def parseDatetime(date_time):
@@ -32,14 +33,23 @@ class ReportEventCase(TestCase):
             start_date=parseDatetime("2222-02-02T02:02Z"),
             sd_fuzz="D",
             end_date=parseDatetime("2222-02-02T02:02Z"),
-            number_effect=10
+            number_affected=10
         )
+
+        self.factory = APIRequestFactory()
+        self.client = RequestsClient()
 
     def test_create_reports(self):
         self.assertEqual(Report.objects.count(), 1)
 
-    def test_filter_datetime(self):
-        res = Report.objects.filter(
-            reportevent__start_date__gte=parseDatetime("2222-02-02T00:00:00Z")
-        )
-        self.assertEqual(res.count(), 1)
+    def test_filter_datetime_simple_include(self):
+        # use factory to get the response
+        response = self.client.get(
+            "http://localhost:8000/v0/reports/?start_date=2222-02-02T02:02:00Z&end_date=2222-03-02T02:02:10Z")
+        self.assertEqual(response.json()['count'], 1)
+
+    def test_filter_datetime_simple_not_include(self):
+        # use factory to get the response
+        response = self.client.get(
+            "http://localhost:8000/v0/reports/?start_date=2223-02-02T02:02:00Z&end_date=2223-03-02T02:02:10Z")
+        self.assertEqual(response.json()['count'], 0)
