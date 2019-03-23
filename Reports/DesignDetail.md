@@ -47,15 +47,16 @@ We plan to do these to help us test our backend API:
 
 
 ## Running our API in Web Service Mode
-Web Services facilitate machine to machine communication. A client sends requests over the internet and a server receives that request, process it and returns a response.
+Web Services facilitate machine to machine communication. 
 
-Our memssage format is JSON because it is easily consumed by other applications.
+While SOAP is an official protocol, REST is an architectural style; it lays down a set of guidelines to provide a RESTful web service, for example, stateless existence and the use of HTTP status codes. 
 
-.......
+Therefore, our agents follow a clear RESTful design because REST has a more flexible architecture which is reliable and secure.
+
+The REST architecture allows API providers to deliver data in multiple formats like HTML and JSON.
+Our memssage format is JSON because it is easily consumed by other applications. The lightweight and human-readable JSON format is ideal for data interchange over the internet.
 
 
-
-We want to build a reliable and secure API module, hence our agents follow a clear RESTful design to communicate.
 
 
 ## Passing Parameters to Our API Module
