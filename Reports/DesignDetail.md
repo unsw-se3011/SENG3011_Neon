@@ -2,22 +2,20 @@
 
 ## API Module Development
 
-### Design
+### Designing the API
 
 Design details discuss in our group meetings, and we are following these steps:
 
-1. Discuss overall service structure
+1. Discuss overall service structure thorugh building ER diagrams which allows everyone to have a good understanding of our project goal and theme
 2. Identify the iteration pattern between server and client
-3. Collect all the information need to be included in endpoints
-4. Design how to decouple the data
+3. Design how to decouple the data
+4. List all the API endpoints needed and the parameters and data requirements for them
 5. Decide what endpoints we need to include
+6. Collect fake data to start scraping infomation off outbreaknewstoday.com 
 
-### ER Diagram for API Module
 
-![ER Diagram](img/erd.png)
-
-### Implementation
-
+### Implementing API endpoints
+#NEED UPDATE
 The implementation steps are as follow:
 
 1. Design the ER diagram
@@ -41,10 +39,11 @@ We plan to use these to document our API:
 ### Testing
 
 We plan to do these to help us test our backend API:
+-	We will build our endpoint test cases by Django Unit Test 
+- We will not only develop test cases for our internal method using unit tests as well as useing manual black-box testing to test our API from sample database to ensure the right output
+-	We will also implement the CI/CD pipeline to ensure the ordering of structured tests to be checked when publishing to our website 
 
-- REST Client's interactive API documents
-- Develop our endpoint test cases by Django Unit Test
-- Develop test cases for our internal method by using Django Unit Test
+
 
 ## Running our API in Web Service Mode
 
