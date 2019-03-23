@@ -27,6 +27,7 @@ The implementation steps are as follow:
 7. Include the filter Middleware to support Search and filter
 8. Testing filter functionality
 
+
 ### Documentation
 
 We plan to use these to document our API:
@@ -46,78 +47,22 @@ We plan to do these to help us test our backend API:
 
 
 ## Running our API in Web Service Mode
+Web Services facilitate machine to machine communication. A client sends requests over the internet and a server receives that request, process it and returns a response.
 
-We want to build a reliable and secure API module, and our agents follow the RESTful design to communicate.
+Our memssage format is JSON because it is easily consumed by other applications.
 
-### The Architectural Model
+.......
 
-We plan to use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch/#service_oriented_architecture) in Web Services and Architectural Style.
 
-- Agent
-  - Requester Agent:
-    - Single page web app
-    - Natural Language Process Engine
-    - Outbreak Aggregation Unit
-  - Provider Agent:
-    - Django Backend
-- Person or Organization
-  - Own by team Neon
-- Action
-  - Create, Update and Delete on resources
-  - Read and Search on Resources
-  - Comment on Resource
-  - Register account
-  - Authenticate
-- Policy
-  - Only Administrator can perform Create, Update and Delete on resources
-  - Anyone can Read and Search on Resources
-  - Registered user can Comment on Resource
-  - Anyone can Register
-  - Registered user can authenticate
-- Goal State
-  - Administrator correctly manages resources
-  - Registered User can comment on Resource
-  - User can register
-  - Registered user can be authenticated
-- Service Role
-  - Researcher
-  - Admin
-  - Natural Language Process Unit (Machine)
-  - Outbreak Aggregation Unit (Machine)
-- Message
-  - Resources
-  - Authenticate Information
-  - Comments
-- Service Interface
-  - Web Interface
-    - REST Endpoints
-    - Swagger Documents
-    - JSON Web Token Endpoint
-  - Service Semantics
-    - RESTful Design
-    - JWT Authentication
-- Service Task
-  - Admin login and manage Resources
-  - Registered user login and comments on Resources
-  - User and registered user read resources
-  - Unregistered user to register and login
 
-### Manual Discovery
+We want to build a reliable and secure API module, hence our agents follow a clear RESTful design to communicate.
 
-We use the index approach of discovery and it will be published in root of endpoints which can be only register by admin.
-
-### Web Service Security
-
-- Method security is provided by Permission Class and validation methods
-- Transport security will be provided by HTTPS (HTTP over TLS)
-
-### Service Reliability
-
-This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability.
 
 ## Passing Parameters to Our API Module
 
-### Summary
+### How it is passed
+<  **using query string parameters or sending parameters in the body of a post request. I would like to see you discuss and justify why you chose one of those or an alternate solution.** >
+
 
 1. Request goes into web server (Nginx, Apache)
 2. Calls WSGI(Web Server Gateway Interface) to Django backend
@@ -126,47 +71,33 @@ This will be an additional feature; we will achieve this by the docker. We will 
 5. Handle View method
 6. Go through some middlewares
 
-### URL Parameter
+Users have to input 3 main information strings:
+1.	Period of interest (date format):
+  -	Start_date: yyyy-MM-ddTHH:mm:ss (not null)
+  -	End_date: yyyy-MM-ddTHH:mm:ss (not null)
+2.	Key_terms (string format):
+  -	Keywords: xxx,yyy
+    -	Where xxx and yyy are the terms you want to search.
+    -	These terms can be empty
+    -	Our API is not case sensitive
+3.	Location (string format):
+  -	Location: xxx
+    -	Where xxx is the place user is interested in
+    -	Our API will automatically find all the parent of a location. 
+iii.	E.g. location=Kensington, our API will auto complete:
+  -	Suburb = Kensington
+  -	City = Sydney
+  -	State = NSW
+  -	Country = Australia
+  iv.	E.g. location= NSW, our API will auto complete:
+  -	State = NSW
+  -	Country = Australia
 
-This will only be used to solve the item of an endpoint. Such as:
+Hence, will return all articles related within NSW, including Kensington and Sydney.
 
-```
-hostname/Endpoint_name/:id/
-```
-
-where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter will be handled during step 3, which controls the value of a particular View. It will also be used in step 5:
-
-1. The Router will check the _id_ value and return the corresponding method
-2. _id_ value sent to View method
-3. Gets the QuerySet by _id_ value
-4. Puts the QuerySet data into Serilizer object
-5. Generates the output by Serilizered object, or peform actions on object and generate output.
-
-### Query String Parameters
-
-The string parameters are:
-
-- Search keywords
-- Filter parameter Keys and values
-- Pagination information
-
-They're parsed inside step 4 and step 6 which are handled inside built-in functions.
-
-### Request Header
-
-The request header contains two parameters, which are "Content-Type" and "Authorization". There're handle inside step 4.
-
-### Request Body
-
-The request body is handled in step 5, and it's further handled inside view by:
-
-1. Passing all the data into the Serializer class
-2. Built-in validation and user-defined validation check
-3. Return to view as a serialised object
-4. Do the operation to the object defined by the view
 
 ## Collecting Results from Our API Module
-
+< **Tell me what format the results are going to be sent in, where in the response they are going to be sent, possibly other characteristics of the response sent back by the server (e.g. headers, especially content type)** >
 ### The Format of API Output
 
 Our API follow the RESTful design.
