@@ -11,10 +11,10 @@ Design details discuss in our group meetings, and we are following these steps:
 3. Design how to decouple the data
 4. List all the API endpoints needed and the parameters and data requirements for them
 5. Decide what endpoints we need to include
-6. Collect fake data to start scraping infomation off outbreaknewstoday.com 
-
+6. Collect fake data to start scraping infomation off outbreaknewstoday.com
 
 ### Implementing API endpoints
+
 #NEED UPDATE
 The implementation steps are as follow:
 
@@ -26,7 +26,6 @@ The implementation steps are as follow:
 6. Implement the swagger documentation
 7. Include the filter Middleware to support Search and filter
 8. Testing filter functionality
-
 
 ### Documentation
 
@@ -40,30 +39,27 @@ We plan to use these to document our API:
 ### Testing
 
 We plan to do these to help us test our backend API:
--	We will build our endpoint test cases by Django Unit Test 
+
+- We will build our endpoint test cases by Django Unit Test
 - We will not only develop test cases for our internal method using unit tests as well as useing manual black-box testing to test our API from sample database to ensure the right output
--	We will also implement the CI/CD pipeline to ensure the ordering of structured tests to be checked when publishing to our website 
-
-
+- We will also implement the CI/CD pipeline to ensure the ordering of structured tests to be checked when publishing to our website
 
 ## Running our API in Web Service Mode
-Web Services facilitate machine to machine communication. 
 
-While SOAP is an official protocol, REST is an architectural style; it lays down a set of guidelines to provide a RESTful web service, for example, stateless existence and the use of HTTP status codes. 
+Web Services facilitate machine to machine communication.
+
+While SOAP is an official protocol, REST is an architectural style; it lays down a set of guidelines to provide a RESTful web service, for example, stateless existence and the use of HTTP status codes.
 
 Therefore, our agents follow a clear RESTful design because REST has a more flexible architecture which is reliable and secure.
 
 The REST architecture allows API providers to deliver data in multiple formats like HTML and JSON.
 Our memssage format is JSON because it is easily consumed by other applications. The lightweight and human-readable JSON format is ideal for data interchange over the internet.
 
-
-
-
 ## Passing Parameters to Our API Module
 
 ### How it is passed
-<  **using query string parameters or sending parameters in the body of a post request. I would like to see you discuss and justify why you chose one of those or an alternate solution.** >
 
+< **using query string parameters or sending parameters in the body of a post request. I would like to see you discuss and justify why you chose one of those or an alternate solution.** >
 
 1. Request goes into web server (Nginx, Apache)
 2. Calls WSGI(Web Server Gateway Interface) to Django backend
@@ -73,50 +69,111 @@ Our memssage format is JSON because it is easily consumed by other applications.
 6. Go through some middlewares
 
 Users have to input 3 main information strings:
-1.	Period of interest (date format):
-  -	Start_date: yyyy-MM-ddTHH:mm:ss (not null)
-  -	End_date: yyyy-MM-ddTHH:mm:ss (not null)
-2.	Key_terms (string format):
-  -	Keywords: xxx,yyy
-    -	Where xxx and yyy are the terms you want to search.
-    -	These terms can be empty
-    -	Our API is not case sensitive
-3.	Location (string format):
-  -	Location: xxx
-    -	Where xxx is the place user is interested in
-    -	Our API will automatically find all the parent of a location. 
-iii.	E.g. location=Kensington, our API will auto complete:
-  -	Suburb = Kensington
-  -	City = Sydney
-  -	State = NSW
-  -	Country = Australia
-  iv.	E.g. location= NSW, our API will auto complete:
-  -	State = NSW
-  -	Country = Australia
+
+1. Period of interest (date format):
+
+   - Start_date: yyyy-MM-ddTHH:mm:ss (not null)
+   - End_date: yyyy-MM-ddTHH:mm:ss (not null)
+
+2. Key_terms (string format):
+
+   - Keywords: xxx,yyy
+     - Where xxx and yyy are the terms you want to search.
+     - These terms can be empty
+     - Our API is not case sensitive
+
+3. Location (string format):
+
+   - Location: xxx - Where xxx is the place user is interested in - Our API will automatically find all the parent of a location.
+     iii. E.g. location=Kensington, our API will auto complete:
+   - Suburb = Kensington
+   - City = Sydney
+   - State = NSW
+   - Country = Australia  
+     iv. E.g. location= NSW, our API will auto complete:
+   - State = NSW
+   - Country = Australia
 
 Hence, will return all articles related within NSW, including Kensington and Sydney.
 
-
 ## Collecting Results from Our API Module
+
 < **Tell me what format the results are going to be sent in, where in the response they are going to be sent, possibly other characteristics of the response sent back by the server (e.g. headers, especially content type)** >
+
 ### The Format of API Output
 
 Our API follow the RESTful design.
 
 #### HTTP Headers
 
-The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example:
+To pass the JSON object as body, we set our `Content-Type` in HTTP header as `application/json`; such as
 
 ```
-HTTP/1.1 200 OK
-Date: Sun, 10 Mar 2019 17:18:44 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
 Content-Type: application/json
-Vary: Accept
-Allow: POST, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 171
 ```
+
+Also, at `options` filed, we are specified the action user can take by their permission.
+
+```
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+```
+
+If they are not logined, or the object doesn't have that action, they will be restrited in some actions.
+
+```
+Allow: GET, HEAD, OPTIONS
+```
+
+Also, we will use HTTP Status code to indicate the result of performed action
+
+| HTTP Status Code |      Meaning |
+| :--------------- | -----------: |
+| 2xx              |      Success |
+| 3xx              |  Redirection |
+| 4xx              | Client Error |
+| 5xx              | Server Error |
+
+Further more, some status has extended meaning when we following RESTful design.
+
+| HTTP Status Code |                                        Meaning |
+| :--------------- | ---------------------------------------------: |
+| 200              |                                        Success |
+| 201              |                               Resource created |
+| 203              |                          Credential is expired |
+| 301              |                                 Delete success |
+| 307              |                                    Redirection |
+| 400              |                      Request is not sufficient |
+| 401              |                            Authorized required |
+| 403              |                                  Access Denied |
+| 404              |                          Not Found error Error |
+| 405              |                          Action is not allowed |
+| 408              |                                 Action timeout |
+| 500              | Some bugs is triggered during handling request |
+| 501              |                      Action is not implemented |
+| 503              |                                 Server is down |
+
+#### Query String
+
+This part is description about the information packed in the query string (URL) when usign `GET` HTTP method. Format are as follow:
+
+| Field name | Format                                  |             Example |
+| :--------- | --------------------------------------- | ------------------: |
+| start_date | ISO-DateTime Format                     | 2015-10-01T08:45:10 |
+| end_date   | ISO-DateTime Format                     | 2015-11-01T19:37:12 |
+| keyterm    | String, with `,` or `<space>`as divider |        Anthrax,Zika |
+| continent  | String                                  |             Oceania |
+| country    | String                                  |           Australia |
+| state      | String                                  |                 NSW |
+| city       | String                                  |              Sydney |
+
+(Currently, we design our location is as four hirachical level, store in backend.)  
+We will join these parameter by HTTP standard. Hence, the sample request is:
+
+```
+http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-11-01T19:37:12&keyterm=Anthrax,Zika&continent=Oceania&country=Australia&state=NSW&city=Sydney
+```
+
+<!-- TODO: END HERE -->
 
 #### HTTP Body
 
@@ -128,22 +185,11 @@ Our HTTP body is a JSON object.
 }
 ```
 
-### Sending response to client
-
-1. View prepared the result as QuerySet object
-2. Handle the middleware operations to the QuerySet
-3. Serialise the QuerySet by Serializer
-4. Wrap the serialised object with the Response object
-5. The response object is returned to WSGI client
-6. Prepare the data by the Response object and send it back to the web server
-7. Send the response to the client
-
 ### Example Interactions
 
 #### Create An Entity
 
 Request:
-
 
 ```
 POST {{baseUrl}}users/ HTTP/1.1
@@ -425,7 +471,6 @@ This extension could provide us with a
 
 We use yarn as our default package manager. It provides
 
-
 - Easy to use command line interface.
 - Quicker in solving dependencies.
 - Default choice in nodejs community.
@@ -447,7 +492,6 @@ We have purchased Vultr VPS to host all our frontend and backend server. Some ad
 - It has high availability
 
 Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
-
 
 - Compute-intensive
 - Time-consuming
