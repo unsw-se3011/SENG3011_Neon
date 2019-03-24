@@ -2,6 +2,10 @@
 
 ## API Module Development
 
+### Web Server
+
+We are decide to develop a WEB API using REST base communication and secure by HTTP via SSL (HTTPS).
+
 ### Designing the API
 
 Design details discuss in our group meetings, and we are following these steps:
