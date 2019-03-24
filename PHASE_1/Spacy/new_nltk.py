@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!python3
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import wordnet,stopwords
 
@@ -30,9 +30,9 @@ disease = ['unknown','other','anthrax cutaneous','anthrax gastrointestinous','an
 
 # event_type
 event_type = ['presence','death','infected','hospitalised','recovered']
-clean_tokens = list()
-clean_tokens2 = list()
-clean_tokens3 = list()
+clean_tokens = []
+clean_tokens2 = []
+clean_tokens3 = []
 lemmas_sent = []
 # countries
 country_list = ['Afghanistan','Albania','Algeria','Andorra','Angola','Anguilla','Antigua &amp; Barbuda','Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia &amp; Herzegovina','Botswana','Brazil','British Virgin Islands','Brunei','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cape Verde','Cayman Islands','Chad','Chile','China','Colombia','Congo','Cook Islands','Costa Rica','Cote D Ivoire','Croatia','Cruise Ship','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Estonia','Ethiopia','Falkland Islands','Faroe Islands','Fiji','Finland','France','French Polynesia','French West Indies','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece','Greenland','Grenada','Guam','Guatemala','Guernsey','Guinea','Guinea Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kuwait','Kyrgyz Republic','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macau','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Mauritania','Mauritius','Mexico','Moldova','Monaco','Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Namibia','Nepal','Netherlands','Netherlands Antilles','New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar','Reunion','Romania','Russia','Rwanda','Saint Pierre &amp; Miquelon','Samoa','San Marino','Satellite','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sri Lanka','St Kitts &amp; Nevis','St Lucia','St Vincent','St. Lucia','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor LEste','Togo','Tonga','Trinidad &amp; Tobago','Tunisia','Turkey','Turkmenistan','Turks &amp; Caicos','Uganda','Ukraine','United Arab Emirates','United Kingdom','Uruguay','Uzbekistan','Venezuela','Vietnam','Virgin Islands (US)','Yemen','Zambia','Zimbabwe']
@@ -58,10 +58,10 @@ for text in TEXTS:
     for tag in tagged_sent:
         wordnet_pos = get_wordnet_pos(tag[1]) or wordnet.NOUN
         lemmas_sent.append(wnl.lemmatize(tag[0], pos='n'))  # 词形还原
-   # finder = BigramCollocationFinder.from_words(mytext)
-   # scored = finder.scor e_ngrams(bigramgram_measures.raw_freq)
-   # sorted(bigram for bigram,score in scored)
-   # print(scored)
+    # finder = BigramCollocationFinder.from_words(mytext)
+    # scored = finder.scor e_ngrams(bigramgram_measures.raw_freq)
+    # sorted(bigram for bigram,score in scored)
+    # print(scored)
     # remove all useless word
     for token in mytext:
         if token not in sr:
@@ -97,7 +97,7 @@ for subtree1 in tree1.subtrees():
 grammar = "NP: {<JJ><CD><TO><VB><CD>}"
 cp = nltk.RegexpParser(grammar)
 tree = cp.parse(pos_tags4)
-date1=list()
+date1=[]
 for subtree in tree.subtrees():
     if subtree.label() == 'NP':
         for word,pos in subtree.leaves():
@@ -107,8 +107,8 @@ for x in range(len(date1)):
     f.write(date1[x]+" ")
 f.write("\n")
 # syndrome match
-syndrome1=list()
-#syndrome2 = list()
+syndrome1=[]
+#syndrome2 = []
 for word, pos in pos_tags: 
     #print(word, pos)                 
     for i in syndrome:
@@ -122,7 +122,7 @@ for x in range(len(syndrome1)):
     f.write(syndrome1[x]+"\n")
 
 # disease match
-disease1 = list()
+disease1 = []
 for word, pos in pos_tags:  
     for i in disease:
         # print(i)
@@ -135,7 +135,7 @@ for x in range(len(disease1)):
     f.write(disease1[x]+"\n")
 
 # event_type match
-event_type1 = list()
+event_type1 = []
 for word, pos in pos_tags3:  
     for i in event_type:
         # print(i)
@@ -148,7 +148,7 @@ for x in range(len(event_type1)):
     f.write(event_type1[x]+"\n")
 
 # Country
-country =list()
+country =[]
 for word,pos in pos_tags2:
     for i in country_list:
         if(word == i):
