@@ -15,17 +15,33 @@ Design details discuss in our group meetings, and we are following these steps:
 
 ### Implementing API endpoints
 
-#NEED UPDATE
 The implementation steps are as follow:
 
 1. Design the ER diagram
+   - Deisgn be table structure
+   - Design basic relationship between each model
+   - Design which field will include
+   - Design what table cotain which field
 2. Map the ER diagram to models in Django
+    - Map the relationship as Django relationships (one-to-many, many-to-many or even one-to-one)
+    - Map the field as Django Model field in different type
 3. Develop the Serializer and ViewSet class for the models
+    - Map the Model's field to serializer's field
+    - Define custom model serilizers
+    - Define the create method in different model
+    - Attach Serializer to ViewSet
 4. Register ViewSet to route in Django
+    - Map a ViewSet as an API-endpoint in Django
 5. Testing our endpoint
+    - Create REST-Client interative documents
+    - Create Django's unit-test
 6. Implement the swagger documentation
+    - Install created app to Django
 7. Include the filter Middleware to support Search and filter
+    - Install the filter and search middleware
+    - Define the model-field need to be search in each model in their own ViewSet
 8. Testing filter functionality
+    - Use REST Client to do some basic test
 
 ### Documentation
 
