@@ -8,6 +8,7 @@ from nltk.collocations import *
 from nltk import pos_tag
 import nltk
 from nltk.stem import WordNetLemmatizer
+import json
 
 TEXTS = ["The Pat Walker Health Center at the University of Arkansas issued in Japan a campus health advisory after the Arkansas Department of Health (ADH) identified three confirmed cases and one suspected case of mumps on the University of Arkansas (UA) at Fayetteville campus in the last few weeks. Infographic aimed at college students depicting symptoms of mumps and steps they can take to protect themselves. Those who may have been exposed have receive additional communication and information from Pat Walker Health Center. ADH is working closely with the UA Fayetteville campus to alert students and staff who may have been in close contact with the confirmed cases. These close contacts, as well as anyone with an MMR vaccine exemption on campus, are encouraged to seek vaccination. MMR vaccines are available at the Washington County Local Health Unit, and are also available at many doctors\u2019 offices or local pharmacies. Vaccines are also available to the UA Fayetteville community at the Pat Walker Health Center on campus From August 2016 to August 2017, Arkansas experienced the second-largest mumps outbreak in the United States in the last 30 years. Nearly 3,000 mumps cases related to the outbreak during that period were identified. Texas measles case count at eight as of mid-February According to the Centers for Disease Control and Prevention (CDC), mumps is a viral illness that is transmitted by direct contact with respiratory droplets or saliva from an infected person. It is best known for painful, swollen salivary glands that show up as puffy cheeks and swollen jaw. Boys may also have painful, swollen testicles. In some of these cases, fertility can be affected. Other symptoms include fever, headache, muscles aches, tiredness, and loss of appetite. There is no treatment, and symptoms usually resolve themselves within a few weeks. Mumps is usually a mild disease in children, but adults may have more serious disease with complications. Complications can include deafness and encephalitis. Encephalitis is inflammation of the brain. The MMR vaccine is safe and effective. Two doses of MMR vaccine are 88 percent effective in preventing mumps. It is a live virus vaccine and is not recommended for pregnant women or patients with a weakened immune system. Adults born before 1957 are generally considered to be immune to mumps and do not need to receive the MMR vaccine."]
 def get_wordnet_pos(tag):
@@ -30,9 +31,12 @@ disease = ['unknown','other','anthrax cutaneous','anthrax gastrointestinous','an
 
 # event_type
 event_type = ['presence','death','infected','hospitalised','recovered']
+#get all lower case clean_tokens
 clean_tokens = list()
-clean_tokens2 = list()
-clean_tokens3 = list()
+#get original text to match the country eg: Japan
+country_tokens = list()
+#get stem_tokens due to the part of speech processing
+stem_tokens = list()
 lemmas_sent = []
 # countries
 country_list = ['Afghanistan','Albania','Algeria','Andorra','Angola','Anguilla','Antigua &amp; Barbuda','Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia &amp; Herzegovina','Botswana','Brazil','British Virgin Islands','Brunei','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cape Verde','Cayman Islands','Chad','Chile','China','Colombia','Congo','Cook Islands','Costa Rica','Cote D Ivoire','Croatia','Cruise Ship','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Estonia','Ethiopia','Falkland Islands','Faroe Islands','Fiji','Finland','France','French Polynesia','French West Indies','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece','Greenland','Grenada','Guam','Guatemala','Guernsey','Guinea','Guinea Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kuwait','Kyrgyz Republic','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macau','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Mauritania','Mauritius','Mexico','Moldova','Monaco','Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Namibia','Nepal','Netherlands','Netherlands Antilles','New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar','Reunion','Romania','Russia','Rwanda','Saint Pierre &amp; Miquelon','Samoa','San Marino','Satellite','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sri Lanka','St Kitts &amp; Nevis','St Lucia','St Vincent','St. Lucia','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor LEste','Togo','Tonga','Trinidad &amp; Tobago','Tunisia','Turkey','Turkmenistan','Turks &amp; Caicos','Uganda','Ukraine','United Arab Emirates','United Kingdom','Uruguay','Uzbekistan','Venezuela','Vietnam','Virgin Islands (US)','Yemen','Zambia','Zimbabwe']
@@ -46,11 +50,11 @@ for text in TEXTS:
 
     # transfer all cases to lower cases
     text1 = str.lower(text)
-
-    #divide text to word with tokenize
+    #divide text to word with tokenize for lower cases
     mytext = word_tokenize(text1)
     #divide text to word wth tokenize with initial case to match the countries
-    mytext2 = word_tokenize(text)
+    Country_text = word_tokenize(text)
+    
     #get the word pos
     tagged_sent = pos_tag(mytext)
     wnl = WordNetLemmatizer()
@@ -62,50 +66,56 @@ for text in TEXTS:
    # scored = finder.scor e_ngrams(bigramgram_measures.raw_freq)
    # sorted(bigram for bigram,score in scored)
    # print(scored)
-    # remove all useless word
+
+    # remove all useless word in all lower cases
     for token in mytext:
         if token not in sr:
             clean_tokens.append(token)
-        
-    for token in mytext2:
+    
+    #remove all useless word for match country     
+    for token in Country_text:
         if token not in sr:
-            clean_tokens2.append(token)
+            country_tokens.append(token)
+    
     #get token after lemmas
     for token in lemmas_sent:
         if token not in sr:
-            clean_tokens3.append(token)
+            stem_tokens.append(token)
+            
 #store the initial text
 pos_tags = nltk.pos_tag(clean_tokens)
 #store the initial text
-pos_tags2 = nltk.pos_tag(clean_tokens2)
-#print(pos_tags2)
-pos_tags3 = nltk.pos_tag(clean_tokens3)
+country_tags = nltk.pos_tag(country_tokens)
+#print(country_tags)
+event_tags = nltk.pos_tag(stem_tokens)
+
 pos_tags4 = nltk.pos_tag(lemmas_sent)
 f = open('Output.txt', 'w')
 #effect_number (need improve after)
 grammar = "NP: {<CD><NNS>}"
 cp = nltk.RegexpParser(grammar)
 tree1 = cp.parse(pos_tags4)
+people = list()
 for subtree1 in tree1.subtrees():
     if subtree1.label() == 'NP':
         for word, pos in subtree1.leaves():
            if (pos == 'CD'):
-               f.write("Effect Number :")
-               f.write(word+'\n')
+              people.append(word)
+
 #date
 #one of type to match the date need improve after
 grammar = "NP: {<JJ><CD><TO><VB><CD>}"
 cp = nltk.RegexpParser(grammar)
 tree = cp.parse(pos_tags4)
-date1=list()
+date = list()
+date1= list()
 for subtree in tree.subtrees():
     if subtree.label() == 'NP':
         for word,pos in subtree.leaves():
-            date1.append(word) 
-f.write("Date :")
-for x in range(len(date1)):
-    f.write(date1[x]+" ")
-f.write("\n")
+            date.append(word)         
+date = ' '.join(date)
+date1.append(date)
+
 # syndrome match
 syndrome1=list()
 #syndrome2 = list()
@@ -117,9 +127,6 @@ for word, pos in pos_tags:
             if word not in syndrome1:
                 syndrome1.append(word)
            # syndrome2 = unique(syndrome1)
-for x in range(len(syndrome1)):
-    f.write("Syndrome :")
-    f.write(syndrome1[x]+"\n")
 
 # disease match
 disease1 = list()
@@ -130,35 +137,32 @@ for word, pos in pos_tags:
             if word not in disease1:
                 disease1.append(word)
 
-for x in range(len(disease1)):
-    f.write("Disease :")
-    f.write(disease1[x]+"\n")
-
 # event_type match
 event_type1 = list()
-for word, pos in pos_tags3:  
+for word, pos in event_tags:  
     for i in event_type:
         # print(i)
         if (word == i):
             if word not in event_type1:
                 event_type1.append(word)
 
-for x in range(len(event_type1)):
-    f.write("Event_Type :")
-    f.write(event_type1[x]+"\n")
-
 # Country
 country =list()
-for word,pos in pos_tags2:
+for word,pos in country_tags:
     for i in country_list:
         if(word == i):
             if word not in country:
                 country.append(word)
 
-for x in range(len(country)):
-    f.write("Location :")
-    f.write(country[x]+"\n")
-f.close()
+report = list()
+report.append(people)
+report.append(date1)
+report.append(syndrome1)
+report.append(disease1)
+report.append(country)
+report.append(event_type1)
+print(json.dumps(report, sort_keys=True,
+           indent=4, separators=(',', ': ')))
 
 # tokenized_sentences = [nltk.word_tokenize(text) for text in TEXTS]
 # # tag sentences and use nltk's Named Entity Chunker

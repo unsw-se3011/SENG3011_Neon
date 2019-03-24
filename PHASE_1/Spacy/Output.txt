@@ -1,7 +1,0 @@
-Effect Number :3,000
-Date :august 2016 to august 2017 
-Syndrome :encephalitis
-Disease :mumps
-Disease :measles
-Event_Type :infected
-Location :Japan
