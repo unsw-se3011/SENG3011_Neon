@@ -77,12 +77,6 @@ ext install humao.rest-client
 
 The generated swagger is incorrect in some cases such as the `POST` method for `report` and `report_event` classes. The lecturer said we can use another API document for D2. You can directly hit the API Root specified above. The query string parameter is handle in the filtets section in the supported pages.
 
-![filter](img/filter.png)
-
-By use the HTML from, the experience is better than Swagger.
-
-![form](img/html_form.png)
-
 Also, we are mainly using [REST Client in vscode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for the cases that not fit in both auto-generated documentation. Such as creating `report` and `report_event`.  
 The document file is in: [PHASE_1/API_Documentation/api.http](PHASE_1/API_Documentation/api.http)
 

@@ -10,6 +10,8 @@ from rest_framework import filters
 
 from .filter import ReportEventDatetimeRangeFilter, KeytermFilter
 
+import traceback
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -72,8 +74,7 @@ class ReportViewSet(viewsets.ModelViewSet):
         # user report serializer to create this report
         report = ser_er.save()
         try:
-            for re in self.request.data['report_events']:
-
+            for re in self.request.data.get('report_events', []):
                 # filling the missing information
                 re['report_id'] = report.id
                 # use re serializer to perform this creation
@@ -87,7 +88,7 @@ class ReportViewSet(viewsets.ModelViewSet):
             raise e
         except Exception as e:
             report.delete()
-            print(e)
+
             raise serializers.ValidationError({
                 'report_event': 'Error in createing report events'
             })
