@@ -2,32 +2,50 @@
 
 ## API Module Development
 
-### Design
+### Web Server
+
+We are decide to develop a WEB API using REST base communication and secure by HTTP via SSL (HTTPS).
+
+### Designing the API
 
 Design details discuss in our group meetings, and we are following these steps:
 
-1. Discuss overall service structure
+1. Discuss overall service structure thorugh building ER diagrams which allows everyone to have a good understanding of our project goal and theme
 2. Identify the iteration pattern between server and client
-3. Collect all the information need to be included in endpoints
-4. Design how to decouple the data
+3. Design how to decouple the data
+4. List all the API endpoints needed and the parameters and data requirements for them
 5. Decide what endpoints we need to include
+6. Collect fake data to start scraping infomation off outbreaknewstoday.com
 
-### ER Diagram for API Module
-
-![ER Diagram](img/erd.png)
-
-### Implementation
+### Implementing API endpoints
 
 The implementation steps are as follow:
 
 1. Design the ER diagram
+   - Deisgn be table structure
+   - Design basic relationship between each model
+   - Design which field will include
+   - Design what table cotain which field
 2. Map the ER diagram to models in Django
+    - Map the relationship as Django relationships (one-to-many, many-to-many or even one-to-one)
+    - Map the field as Django Model field in different type
 3. Develop the Serializer and ViewSet class for the models
+    - Map the Model's field to serializer's field
+    - Define custom model serilizers
+    - Define the create method in different model
+    - Attach Serializer to ViewSet
 4. Register ViewSet to route in Django
+    - Map a ViewSet as an API-endpoint in Django
 5. Testing our endpoint
+    - Create REST-Client interative documents
+    - Create Django's unit-test
 6. Implement the swagger documentation
+    - Install created app to Django
 7. Include the filter Middleware to support Search and filter
+    - Install the filter and search middleware
+    - Define the model-field need to be search in each model in their own ViewSet
 8. Testing filter functionality
+    - Use REST Client to do some basic test
 
 ### Documentation
 
@@ -42,129 +60,55 @@ We plan to use these to document our API:
 
 We plan to do these to help us test our backend API:
 
-- REST Client's interactive API documents
-- Develop our endpoint test cases by Django Unit Test
-- Develop test cases for our internal method by using Django Unit Test
+- We will build our endpoint test cases by Django Unit Test
+- We will not only develop test cases for our internal method using unit tests as well as useing manual black-box testing to test our API from sample database to ensure the right output
+- We will also implement the CI/CD pipeline to ensure the ordering of structured tests to be checked when publishing to our website
 
 ## Running our API in Web Service Mode
 
-We want to build a reliable and secure API module, and our agents follow the RESTful design to communicate.
+Web Services facilitate machine to machine communication.
 
-### The Architectural Model
+While SOAP is an official protocol, REST is an architectural style; it lays down a set of guidelines to provide a RESTful web service, for example, stateless existence and the use of HTTP status codes.
 
-We plan to use the [Service Oriented Architecture](https://www.w3.org/TR/ws-arch/#service_oriented_architecture) in Web Services and Architectural Style.
+Therefore, our agents follow a clear RESTful design because REST has a more flexible architecture which is reliable and secure.
 
-- Agent
-  - Requester Agent:
-    - Single page web app
-    - Natural Language Process Engine
-    - Outbreak Aggregation Unit
-  - Provider Agent:
-    - Django Backend
-- Person or Organization
-  - Own by team Neon
-- Action
-  - Create, Update and Delete on resources
-  - Read and Search on Resources
-  - Comment on Resource
-  - Register account
-  - Authenticate
-- Policy
-  - Only Administrator can perform Create, Update and Delete on resources
-  - Anyone can Read and Search on Resources
-  - Registered user can Comment on Resource
-  - Anyone can Register
-  - Registered user can authenticate
-- Goal State
-  - Administrator correctly manages resources
-  - Registered User can comment on Resource
-  - User can register
-  - Registered user can be authenticated
-- Service Role
-  - Researcher
-  - Admin
-  - Natural Language Process Unit (Machine)
-  - Outbreak Aggregation Unit (Machine)
-- Message
-  - Resources
-  - Authenticate Information
-  - Comments
-- Service Interface
-  - Web Interface
-    - REST Endpoints
-    - Swagger Documents
-    - JSON Web Token Endpoint
-  - Service Semantics
-    - RESTful Design
-    - JWT Authentication
-- Service Task
-  - Admin login and manage Resources
-  - Registered user login and comments on Resources
-  - User and registered user read resources
-  - Unregistered user to register and login
+The REST architecture allows API providers to deliver data in multiple formats like HTML and JSON.
+Our memssage format is JSON because it is easily consumed by other applications. The lightweight and human-readable JSON format is ideal for data interchange over the internet.
 
-### Manual Discovery
+## Passing Parameters to our API Module
 
-We use the index approach of discovery and it will be published in root of endpoints which can be only register by admin.
+We will use query string parameters to pass requests and we will inspect the URI query part to gain access to these parameter values. 
 
-### Web Service Security
+We did not choose to send parameters in the body of a POST request because when executing a POST request, the client is actually submitting a new document to the remote host. Since we do not need to submit new information to the server for searching articles, POST request is not that suitable in passing parameters to our API.
 
-- Method security is provided by Permission Class and validation methods
-- Transport security will be provided by HTTPS (HTTP over TLS)
 
-### Service Reliability
+Users have to input 3 main information strings:
 
-This will be an additional feature; we will achieve this by the docker. We will build a kubernetes cluster to reduce the risk of single point failure and provide the high-availability.
+1. Period of interest (date format):
 
-## Passing Parameters to Our API Module
+   - Start_date: yyyy-MM-ddTHH:mm:ss (not null)
+   - End_date: yyyy-MM-ddTHH:mm:ss (not null)
 
-### Summary
+2. Key_terms (string format):
 
-1. Request goes into web server (Nginx, Apache)
-2. Calls WSGI(Web Server Gateway Interface) to Django backend
-3. Route the request to particular View (inside Viewset)
-4. Go through some middlewares
-5. Handle View method
-6. Go through some middlewares
+   - Keyterm: xxx,yyy
+     - Where xxx and yyy are the terms you want to search.
+     - These terms can be empty
+     - Our API is not case sensitive
 
-### URL Parameter
+3. Location (string format):
 
-This will only be used to solve the item of an endpoint. Such as:
+   - Location: xxx - Where xxx is the place user is interested in - Our API will automatically find all the parent of a location.
+     iii. E.g. location=Kensington, our API will auto complete:
+   - Suburb = Kensington
+   - City = Sydney
+   - State = NSW
+   - Country = Australia  
+     iv. E.g. location= NSW, our API will auto complete:
+   - State = NSW
+   - Country = Australia
 
-```
-hostname/Endpoint_name/:id/
-```
-
-where _id_ maybe a string or an integer which is the primary key of the object we want to read, update or delete. This parameter will be handled during step 3, which controls the value of a particular View. It will also be used in step 5:
-
-1. The Router will check the _id_ value and return the corresponding method
-2. _id_ value sent to View method
-3. Gets the QuerySet by _id_ value
-4. Puts the QuerySet data into Serilizer object
-5. Generates the output by Serilizered object, or peform actions on object and generate output.
-
-### Query String Parameters
-
-The string parameters are:
-
-- Search keywords
-- Filter parameter Keys and values
-- Pagination information
-
-They're parsed inside step 4 and step 6 which are handled inside built-in functions.
-
-### Request Header
-
-The request header contains two parameters, which are "Content-Type" and "Authorization". There're handle inside step 4.
-
-### Request Body
-
-The request body is handled in step 5, and it's further handled inside view by:
-
-1. Passing all the data into the Serializer class
-2. Built-in validation and user-defined validation check
-3. Return to view as a serialised object
-4. Do the operation to the object defined by the view
+Hence, will return all articles related within NSW, including Kensington and Sydney.
 
 ## Collecting Results from Our API Module
 
@@ -174,228 +118,71 @@ Our API follow the RESTful design.
 
 #### HTTP Headers
 
-The content type is JSON, and we use HTTP state code to indicate the action's status. Here's an example:
+To pass the JSON object as body, we set our `Content-Type` in HTTP header as `application/json`; such as
 
 ```
-HTTP/1.1 200 OK
-Date: Sun, 10 Mar 2019 17:18:44 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept
-Allow: POST, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 171
-```
-
-#### HTTP Body
-
-Our HTTP body is a JSON object.
-
-```
-{
-  "Key": Value
-}
-```
-
-### Sending response to client
-
-1. View prepared the result as QuerySet object
-2. Handle the middleware operations to the QuerySet
-3. Serialise the QuerySet by Serializer
-4. Wrap the serialised object with the Response object
-5. The response object is returned to WSGI client
-6. Prepare the data by the Response object and send it back to the web server
-7. Send the response to the client
-
-### Example Interactions
-
-#### Create An Entity
-
-Request:
-
-
-```
-POST {{baseUrl}}users/ HTTP/1.1
-Content-Type: application/json
-
-{
-    "username": "ttt2",
-    "password": "apple123",
-    "first_name": "Toby",
-    "last_name": "HUANG"
-}
-```
-
-Response:
-
-```
-HTTP/1.1 201 Created
-Date: Sun, 10 Mar 2019 17:31:02 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept, Cookie
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 66
-
-{
-  "id": 2,
-  "username": "ttt2",
-  "first_name": "Toby",
-  "last_name": "HUANG"
-}
-```
-
-#### List Entities
-
-Request:
-
-```
-GET {{baseUrl}}location/ HTTP/1.1
 Content-Type: application/json
 ```
 
-Response:
+Also, at `options` filed, we are specified the action user can take by their permission.
 
 ```
-HTTP/1.1 200 OK
-Date: Sun, 10 Mar 2019 17:32:42 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept, Cookie
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 133
-
-{
-  "count": 1,
-  "next": null,
-  "previous": null,
-  "results": [
-    {
-      "name": "Sydney",
-      "lat": "12.22000000000000000000",
-      "lng": "22.33000000000000000000"
-    }
-  ]
-}
-```
-
-#### Get A Single Entity
-
-Request:
-
-```
-GET {{baseUrl}}location/1 HTTP/1.1
-Content-Type: application/json
-```
-
-Response:
-
-```
-HTTP/1.1 200 OK
-Date: Sun, 10 Mar 2019 17:34:14 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept, Cookie
 Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 81
-
-{
-  "name": "Sydney",
-  "lat": "12.22000000000000000000",
-  "lng": "22.33000000000000000000"
-}
 ```
 
-#### Update An Entity
-
-Request:
+If they are not logined, or the object doesn't have that action, they will be restrited in some actions.
 
 ```
-POST  {{baseUrl}}location/ HTTP/1.1
-Content-Type: application/json
-Authorization: {{auth}}
-
-{
-    "name": "Sydney",
-    "lat": 12.22,
-    "lng": 22.33
-}
-
+Allow: GET, HEAD, OPTIONS
 ```
 
-Response:
+Also, we will use HTTP Status code to indicate the result of performed action
+
+| HTTP Status Code |      Meaning |
+| :--------------- | -----------: |
+| 2xx              |      Success |
+| 3xx              |  Redirection |
+| 4xx              | Client Error |
+| 5xx              | Server Error |
+
+Further more, some status has extended meaning when we following RESTful design.
+
+| HTTP Status Code |                                        Meaning |
+| :--------------- | ---------------------------------------------: |
+| 200              |                                        Success |
+| 201              |                               Resource created |
+| 203              |                          Credential is expired |
+| 301              |                                 Delete success |
+| 307              |                                    Redirection |
+| 400              |                      Request is not sufficient |
+| 401              |                            Authorized required |
+| 403              |                                  Access Denied |
+| 404              |                          Not Found error Error |
+| 405              |                          Action is not allowed |
+| 408              |                                 Action timeout |
+| 500              | Some bugs is triggered during handling request |
+| 501              |                      Action is not implemented |
+| 503              |                                 Server is down |
+
+#### Query String
+
+This part is description about the information packed in the query string (URL) when usign `GET` HTTP method. Format are as follow:
+
+| Field name | Format                                  |             Example |
+| :--------- | --------------------------------------- | ------------------: |
+| start_date | ISO-DateTime Format                     | 2015-10-01T08:45:10 |
+| end_date   | ISO-DateTime Format                     | 2015-11-01T19:37:12 |
+| keyterm    | String, with `,` or `<space>`as divider |        Anthrax,Zika |
+| continent  | String                                  |             Oceania |
+| country    | String                                  |           Australia |
+| state      | String                                  |                 NSW |
+| city       | String                                  |              Sydney |
+
+(Currently, we design our location is as four hirachical level, store in backend.)  
+We will join these parameter by HTTP standard. Hence, the sample request is:
 
 ```
-HTTP/1.1 201 Created
-Date: Sun, 10 Mar 2019 17:38:05 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 81
-
-{
-  "name": "Sydney",
-  "lat": "12.22000000000000000000",
-  "lng": "22.33000000000000000000"
-}
-```
-
-#### Delete An Entity
-
-Request:
-
-```
-DELETE  {{baseUrl}}location/ HTTP/1.1
-Content-Type: application/json
-Authorization: {{auth}}
-```
-
-Response:
-
-```
-HTTP/1.1 405 Method Not Allowed
-Date: Sun, 10 Mar 2019 17:39:25 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-Vary: Accept
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 43
-
-{
-  "detail": "Method \"DELETE\" not allowed."
-}
-```
-
-Or:
-
-```
-HTTP/1.1 301 Moved Permanently
-Date: Sun, 10 Mar 2019 17:48:46 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-```
-
-#### Signature Expired Exception
-
-```
-HTTP/1.1 401 Unauthorized
-Date: Sun, 10 Mar 2019 17:44:34 GMT
-Server: WSGIServer/0.2 CPython/3.6.7
-Content-Type: application/json
-WWW-Authenticate: JWT realm="api"
-Vary: Accept
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 35
-
-{
-  "detail": "Signature has expired."
-}
+http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-11-01T19:37:12&keyterm=Anthrax,Zika&continent=Oceania&country=Australia&state=NSW&city=Sydney
 ```
 
 ## Implementation Language
@@ -494,7 +281,6 @@ This extension could provide us with a
 
 We use yarn as our default package manager. It provides
 
-
 - Easy to use command line interface.
 - Quicker in solving dependencies.
 - Default choice in nodejs community.
@@ -516,7 +302,6 @@ We have purchased Vultr VPS to host all our frontend and backend server. Some ad
 - It has high availability
 
 Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
-
 
 - Compute-intensive
 - Time-consuming

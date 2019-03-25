@@ -30,7 +30,7 @@
 | Huiyue ZHANG | Documents>Deliverable>Design Detail          |
 | Ruofei HUANG | Documents>Deliverable>Management Information |
 | Xinze SONG   | Data Extraction>NLPE>*                       |
-| Ziqing YAN   |                                              |
+| Ziqing YAN   | Frontend>Normal INterface>\*                 |
 
 ## Iteration Plan
 
@@ -83,3 +83,6 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Mar 18     | Increamental inproment in atural language parser, deploy backend by docker-compose.                                                                            |
 | Mar 20     | Swich back to nltk for parser, three parser is set up, k8s delopment file is done, improment in frontend.                                                      |
 | Mar 21     | Searching and filtering in backend.                                                                                                                            |
+| Mar 23     | Refined Design document and some discussion, some parser is finished.                                                                                          |
+| Mar 24     | Design documentation, location filter support, comments on the current parser.                                                                                 |
+| Mar 25     | Replace old swagger engine, debug the swagger doucment, d2 document, finalise the design document.                                                             |

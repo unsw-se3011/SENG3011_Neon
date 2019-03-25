@@ -8,7 +8,7 @@ from .views import ReportViewSet,\
     SyndromeViewSet
 from rest_framework import routers
 from django.urls import path
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 # swagger
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -40,6 +40,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('jwt/', obtain_jwt_token),
+    url(r'^jwt_refresh/', refresh_jwt_token),
     url(r'^swagger(?P<format>\.json|\.yaml)$',
         schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger',
