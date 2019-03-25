@@ -91,7 +91,7 @@ Users have to input 3 main information strings:
 
 2. Key_terms (string format):
 
-   - Keywords: xxx,yyy
+   - Keyterm: xxx,yyy
      - Where xxx and yyy are the terms you want to search.
      - These terms can be empty
      - Our API is not case sensitive
@@ -111,8 +111,6 @@ Users have to input 3 main information strings:
 Hence, will return all articles related within NSW, including Kensington and Sydney.
 
 ## Collecting Results from Our API Module
-
-< **Tell me what format the results are going to be sent in, where in the response they are going to be sent, possibly other characteristics of the response sent back by the server (e.g. headers, especially content type)** >
 
 ### The Format of API Output
 
