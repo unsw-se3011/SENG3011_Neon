@@ -112,3 +112,70 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
 
 class KeytermFilter(SearchFilter):
     search_param = "key_term"
+
+
+class LocationFilter(BaseFilterBackend):
+    """
+    This could only be use at report class
+    """
+
+    def filter_queryset(self, request, queryset, view):
+        # all the field we need
+        continent = request.query_params.get("continent", None)
+        country = request.query_params.get("country", None)
+        state = request.query_params.get("state", None)
+        city = request.query_params.get("city", None)
+
+        if continent:
+            queryset = queryset.filter(
+                reportevent__location__continent=continent)
+        if country:
+            queryset = queryset.filter(
+                reportevent__location__country=country)
+        if state:
+            queryset = queryset.filter(
+                reportevent__location__state=state)
+        if city:
+            queryset = queryset.filter(
+                reportevent__location__city=city)
+        return queryset
+
+    def get_schema_fields(self, view):
+        return [
+            coreapi.Field(
+                name="continent",
+                required=False,
+                location='query',
+                schema=coreschema.String(
+                    title="continent",
+                    description="continent of the event occour"
+                )
+            ),
+            coreapi.Field(
+                name="country",
+                required=False,
+                location='query',
+                schema=coreschema.String(
+                    title="country",
+                    description="country of the event occour"
+                )
+            ),
+            coreapi.Field(
+                name="state",
+                required=False,
+                location='query',
+                schema=coreschema.String(
+                    title="state",
+                    description="state of the event occour"
+                )
+            ),
+            coreapi.Field(
+                name="city",
+                required=False,
+                location='query',
+                schema=coreschema.String(
+                    title="city",
+                    description="city of the event occour "
+                )
+            ),
+        ]
