@@ -66,9 +66,28 @@ ext install humao.rest-client
 
 ## URLs
 
-| URL                                                                        | Detail              |
-| :------------------------------------------------------------------------- | :------------------ |
-| [http://whiteboard.house:8000/](http://whiteboard.house:8000/)             | Home Page (Backend) |
-| [http://whiteboard.house:8000/v0/](http://whiteboard.house:8000/v0/)          | Api Root            |
-| [http://whiteboard.house:8000/v0/swagger/](http://whiteboard.house:8000/v0/swagger/)  | Swagger Documents   |
-| [http://whiteboard.house:8000/admin/](http://whiteboard.house:8000/admin/) | Django admin        |
+| URL                                                                                  | Detail              |
+| :----------------------------------------------------------------------------------- | :------------------ |
+| [http://whiteboard.house:8000/](http://whiteboard.house:8000/)                       | Home Page (Backend) |
+| [http://whiteboard.house:8000/v0/](http://whiteboard.house:8000/v0/)                 | Api Root            |
+| [http://whiteboard.house:8000/v0/swagger/](http://whiteboard.house:8000/v0/swagger/) | Swagger Documents   |
+| [http://whiteboard.house:8000/admin/](http://whiteboard.house:8000/admin/)           | Django admin        |
+
+## For D2 Justification
+
+The generated swagger is incorrect in some cases such as the `POST` method for `report` and `report_event` classes. The lecturer said we can use another API document for D2. You can directly hit the API Root specified above. The query string parameter is handle in the filtets section in the supported pages.
+
+![filter](img/filter.png)
+
+By use the HTML from, the experience is better than Swagger.
+
+![form](img/html_form.png)
+
+Also, we are mainly using [REST Client in vscode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for the cases that not fit in both auto-generated documentation. Such as creating `report` and `report_event`.  
+The document file is in: [PHASE_1/API_Documentation/api.http](PHASE_1/API_Documentation/api.http)
+
+![create report](img/report.png)
+
+You can copy the body of the report example an paste into `swagger` or `django rest documentation` and try it out, that will do too.
+
+![swagger creation](img/swagger.png)
