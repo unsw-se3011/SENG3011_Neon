@@ -66,18 +66,18 @@ ext install humao.rest-client
 
 ## URLs
 
-| URL                                                                                            | Detail               |
-| :--------------------------------------------------------------------------------------------- | :------------------- |
-| [http://neon.whiteboard.house:8000/](http://neon.whiteboard.house:8000/)                       | Home Page (frontend) |
-| [http://neon.whiteboard.house:8000/v0/](http://neon.whiteboard.house:8000/v0/)                 | Api Root             |
-| [http://neon.whiteboard.house:8000/v0/swagger/](http://neon.whiteboard.house:8000/v0/swagger/) | Swagger Documents    |
-| [http://neon.whiteboard.house:8000/admin/](http://neon.whiteboard.house:8000/admin/)           | Django admin         |
+| URL                                                                                  | Detail               |
+| :----------------------------------------------------------------------------------- | :------------------- |
+| [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                       | Home Page (frontend) |
+| [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                 | Api Root             |
+| [http://neon.whiteboard.house/v0/swagger/](http://neon.whiteboard.house/v0/swagger/) | Swagger Documents    |
+| [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)           | Django admin         |
 
-## For D2 Justification
+## For D2
 
-The generated swagger is incorrect in some cases such as the `POST` method for `report` and `report_event` classes. The lecturer said we can use another API document for D2. You can directly hit the API Root specified above. The query string parameter is handle in the filtets section in the supported pages.
+The generated swagger is incorrect in some cases such as the `POST` body method for `report` and `report_event` classes. Furthermore, we can not modify the example input object due to the restriction of framework.  
 
-Also, we are mainly using [REST Client in vscode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for the cases that not fit in both auto-generated documentation. Such as creating `report` and `report_event`.  
+So, we are mainly using [REST Client in vscode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for the cases that not fit in auto-generated documentation. Such as creating `report` and `report_event`.
 The document file is in: [PHASE_1/API_Documentation/api.http](PHASE_1/API_Documentation/api.http)
 
 ![create report](img/report.png)
@@ -85,3 +85,50 @@ The document file is in: [PHASE_1/API_Documentation/api.http](PHASE_1/API_Docume
 You can copy the body of the report example an paste into `swagger` or `django rest documentation` and try it out, that will do too.
 
 ![swagger creation](img/swagger.png)
+
+Some data is imported, you can use this admin account for testting, create user is in `POST /users/`.
+
+```
+username: neon
+password: apple123
+```
+
+For security reason, `GET /users/` only will return the current logined user. The ID is start from `1`, so the default value of `0` need to be change in most of the send object.
+
+### Order of testting
+
+If you want to add values into backend, you will faced on the foreign key constrain. The better way to do this is to create those object in this recommended order.  
+(Location object will be automatically created in report event)
+
+```
+Register new user -> Login 
+Create Syndrome -> Create Disease -> Create Report ( -> Create Report Event)
+```
+
+### Outlier Object
+
+You can copy and paste the none default Report Object here (this is written in [REST Client API Document](PHASE_1/API_Documentation/api.http)):
+
+```
+{
+    "article_id": 1,
+    "disease": ["hello1"],
+    "syndrome": ["stomache"],
+    "comment": "",
+    "report_events":[
+        {
+            "e_type": "D",
+            "start_date": "2222-02-02T02:02",
+            "sd_fuzz": "H",
+            "end_date": "2222-02-03T02:02",
+            "ed_fuzz": "M",
+            "number_affected": 12,
+            "location": {
+                "name": "Sydney",
+                "lat": 12.22,
+                "lng": 22.33
+            }
+        }
+    ]
+}
+```
