@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1Mzg0MjQ1MywiZW1haWwiOiIifQ.qGln1I0YImoAuagn_3tEoBSH_AueQEWzeggzJajkJDs
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTM4NDM1NzksImVtYWlsIjoiIn0.O5Tv6Su0AwN7c0tRHjHZM9O1XFJkMxm4Da6iJ9z9eU4
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -6,7 +6,7 @@ POST {{baseUrl}}jwt/ HTTP/1.1
 Content-Type: application/json
 
 {
-	"username": "ttt" ,
+	"username": "neon" ,
 	"password": "apple123"
 }
 
@@ -79,6 +79,8 @@ Authorization: {{auth}}
     "state": "NSW",
     "city": "Sydney"
 }
+
+    
 
 
 ###

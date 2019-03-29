@@ -12,42 +12,45 @@ info:
 host: "neon.whiteboard.house"
 basePath: "/v0"
 tags:
-- name: "Report"
-  description: "Report of an outbreak."
-  externalDocs:
-    description: "Find out more"
-    url: "http://neon.whiteboard.house"
+  - name: "Report"
+    description: "Report of an outbreak."
+    externalDocs:
+      description: "Find out more"
+      url: "http://neon.whiteboard.house"
 schemes:
-- "http"
+  - "http"
 paths:
   /reports/:
     get:
       tags:
-      - "Report"
+        - "Report"
       summary: "Add a new pet to the store"
       description: ""
       operationId: "addPet"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: path
-        name: userId
-        schema:
-          type: integer
-        required: false
-        description: Numeric ID of the user to get
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: false
+          description: Numeric ID of the user to get
       responses:
         200:
           description: ""
         405:
           description: "Invalid input"
       security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
+        - petstore_auth:
+            - "write:pets"
+            - "read:pets"
 definitions:
+  Report: 
+    type: "object"
+    
   Order:
     type: "object"
     properties:
@@ -67,9 +70,9 @@ definitions:
         type: "string"
         description: "Order Status"
         enum:
-        - "placed"
-        - "approved"
-        - "delivered"
+          - "placed"
+          - "approved"
+          - "delivered"
       complete:
         type: "boolean"
         default: false
@@ -122,8 +125,8 @@ definitions:
   Pet:
     type: "object"
     required:
-    - "name"
-    - "photoUrls"
+      - "name"
+      - "photoUrls"
     properties:
       id:
         type: "integer"
@@ -151,9 +154,9 @@ definitions:
         type: "string"
         description: "pet status in the store"
         enum:
-        - "available"
-        - "pending"
-        - "sold"
+          - "available"
+          - "pending"
+          - "sold"
     xml:
       name: "Pet"
   ApiResponse:
