@@ -66,12 +66,13 @@ ext install humao.rest-client
 
 ## URLs
 
-| URL                                                                                  | Detail               |
-| :----------------------------------------------------------------------------------- | :------------------- |
-| [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                       | Home Page (frontend) |
-| [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                 | Api Root             |
-| [http://neon.whiteboard.house/v0/swagger/](http://neon.whiteboard.house/v0/swagger/) | Swagger Documents    |
-| [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)           | Django admin         |
+| URL                                                                                                | Detail               |
+| :------------------------------------------------------------------------------------------------- | :------------------- |
+| [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                                     | Home Page (frontend) |
+| [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                               | Api Root             |
+| [http://neon.whiteboard.house/v0/swagger/](http://neon.whiteboard.house/v0/swagger/)               | Swagger Documents    |
+| [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)                         | Django admin         |
+| [http://neon.whiteboard.house/log/access_log.txt](http://neon.whiteboard.house/log/access_log.txt) | Access Log           |
 
 ## For D2
 

@@ -10,7 +10,10 @@ FROM nginx:stable-alpine as production-stage
 ADD PHASE_1/API_SourceCode/static /usr/share/nginx/html/static
 # copy the server config to direct the dynamic reponse to 
 # python backend 
-COPY nginx.conf /etc/nginx/conf.d/default.conf 
+COPY PHASE_1/nginx/default.conf /etc/nginx/conf.d/default.conf 
+
+RUN mkdir -p /usr/share/nginx/html/log/
+RUN touch /usr/share/nginx/html/log/access_log.txt
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
