@@ -47,9 +47,10 @@ if __name__ == "__main__":
 
     it = iter(fileinput.input(files=args.file))
 
-    while True:
-        j_dict = loads(next(it))
-        print(j_dict['main_text'])
+    j_dict = loads(next(it))
+    print(j_dict['main_text'])
+
+
 # sentence = "Hello, this is a test for nltk testing"
 # s1 = "This is a sample sentence, showing off the stop words filtration."
 # stop_words = set(stopwords.words('english'))
