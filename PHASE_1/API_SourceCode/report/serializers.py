@@ -118,6 +118,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'publish',
             'main_text',
             'p_fuzz',
+            'img'
         )
 
 

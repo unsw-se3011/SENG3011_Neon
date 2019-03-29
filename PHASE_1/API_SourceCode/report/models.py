@@ -28,6 +28,7 @@ class Article(models.Model):
     p_fuzz = models.CharField(
         max_length=1, choices=fuzz_choice)
     main_text = models.TextField()
+    img = models.URLField(blank=True)
 
     def __str__(self):
         return self.headline

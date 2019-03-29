@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MzQ3Mjc4MywiZW1haWwiOiIifQ.uj05KGu2wTNeQJ5oiuJ3ozG8hrzjCcZU2f6sMJ0RZ0U
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1Mzg0MjQ1MywiZW1haWwiOiIifQ.qGln1I0YImoAuagn_3tEoBSH_AueQEWzeggzJajkJDs
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -43,7 +43,8 @@ Authorization: {{auth}}
     "headline": "no",
     "publish": "0200-01-01T15:20:00Z",
     "main_text": "helloworld",
-    "p_fuzz": "M"
+    "p_fuzz": "M",
+    "img": "http://localhost:8000/v0/article/0.png"
 }
 
 
