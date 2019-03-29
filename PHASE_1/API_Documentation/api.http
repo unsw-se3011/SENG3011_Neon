@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTM4NDM1NzksImVtYWlsIjoiIn0.O5Tv6Su0AwN7c0tRHjHZM9O1XFJkMxm4Da6iJ9z9eU4
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTM4NDQ3ODQsImVtYWlsIjoiIn0.9unITyla1DHXMp54WUju5qHj77BF7C-GuDfRMHhTWlE
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -141,12 +141,16 @@ Authorization: {{auth}}
 
 
 {
-    "name": "hello1",
-    "syndromes": [
-        "stomache"
-    ]
+    "name": "hello1"
 }
 
+
+# {
+#     "name": "hello1",
+#     "syndromes": [
+#         "stomache"
+#     ]
+# }
 ###
 # Get single diseases
 

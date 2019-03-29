@@ -3,4 +3,5 @@
 sleep 10
 
 ./manage.py migrate 
+
 ./manage.py loaddata data.json

@@ -97,7 +97,7 @@ class SyndromeSerializer(serializers.ModelSerializer):
 
 class DiseaseSerializer(serializers.ModelSerializer):
     syndromes = serializers.PrimaryKeyRelatedField(
-        queryset=Syndrome.objects.all(), many=True)
+        queryset=Syndrome.objects.all(), many=True, required=False)
 
     class Meta:
         model = Disease
