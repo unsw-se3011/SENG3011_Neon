@@ -16,7 +16,7 @@ from nltk.corpus import gutenberg
 from json import loads
 import json
 import fileinput
-from new_nltk import initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
+from new_nltk import match_pub_date, match_places, initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
 
 # # sample text
 # sample = gutenberg.raw(
@@ -46,37 +46,45 @@ if __name__ == "__main__":
     print(args.file)
 
     it = iter(fileinput.input(files=args.file))
+    while True:
+        j_dict = loads(next(it))
+        # print(j_dict['main_text'])
 
-    j_dict = loads(next(it))
-    # print(j_dict['main_text'])
+        TEXTS = []
+        TEXTS = j_dict['main_text']
 
-    TEXTS = []
-    TEXTS = j_dict['main_text']
-    # print(TEXTS)
+        pub_date = match_pub_date(j_dict['date_of_publication'])
+        # print(TEXTS)
+        places = match_places(TEXTS)
+        pos_tags = initial_text(TEXTS)
+        # print(pos_tags)
+        event_tags = noun_text(TEXTS)
+        country_tags = country_text(TEXTS)
+        people_tags = noun_text(TEXTS)
+        date_tags = noun_text(TEXTS)
 
-    pos_tags = initial_text(j_dict['main_text'])
-    # print(pos_tags)
-    event_tags = noun_text(TEXTS)
-    country_tags = country_text(TEXTS)
-    people_tags = noun_text(TEXTS)
-    date_tags = noun_text(TEXTS)
+        syndrome = match_syndrome(pos_tags)
+        disease = match_disease(pos_tags)
+        event_type = match_event(event_tags)
+        country = match_country(country_tags)
+        people = match_people(people_tags)
+        date = match_date(date_tags)
 
-    syndrome = match_syndrome(pos_tags)
-    disease = match_disease(pos_tags)
-    event_type = match_event(event_tags)
-    country = match_country(country_tags)
-    people = match_people(people_tags)
-    date = match_date(date_tags)
-
-    report = list()
-    report.append(people)
-    report.append(date)
-    report.append(syndrome)
-    report.append(disease)
-    report.append(country)
-    report.append(event_type)
-    print(json.dumps(report, sort_keys=True,
-                     indent=4, separators=(',', ': ')))
+        report = list()
+        report.append(people)
+        if len(date) == 0:
+            report.append(pub_date)
+        if len(date) != 0:
+            report.append(date)
+        report.append(syndrome)
+        report.append(disease)
+        if len(country) == 0:
+            report.append(places.countries)
+        if len(country) != 0:
+            report.append(country)
+        report.append(event_type)
+        print(json.dumps(report, sort_keys=True,
+                         indent=4, separators=(',', ': ')))
 # sentence = "Hello, this is a test for nltk testing"
 # s1 = "This is a sample sentence, showing off the stop words filtration."
 # stop_words = set(stopwords.words('english'))

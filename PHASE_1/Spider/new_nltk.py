@@ -1,4 +1,5 @@
 #! /usr/bin/python3
+from geotext import GeoText
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import wordnet,stopwords
 
@@ -9,6 +10,8 @@ from nltk import pos_tag
 import nltk
 from nltk.stem import WordNetLemmatizer
 import json
+import geograpy
+
 
 def get_wordnet_pos(tag):
     if tag.startswith('J'):
@@ -91,6 +94,7 @@ def noun_text(TEXTS):
 # country_tags = country_text(TEXTS)
 # people_tags = noun_text(TEXTS)
 # date_tags = noun_text(TEXTS)
+TEXTS = ["The Pat Walker Health Center at the University of Arkansas issued a campus health advisory after the Arkansas Department of Health (ADH) identified three confirmed cases and one suspected case of mumps on the University of Arkansas (UA) at Fayetteville campus in the last few weeks. Infographic aimed at college students depicting symptoms of mumps and steps they can take to protect themselves. Those who may have been exposed have receive additional communication and information from Pat Walker Health Center. ADH is working closely with the UA Fayetteville campus to alert students and staff who may have been in close contact with the confirmed cases. These close contacts, as well as anyone with an MMR vaccine exemption on campus, are encouraged to seek vaccination. MMR vaccines are available at the Washington County Local Health Unit, and are also available at many doctors\u2019 offices or local pharmacies. Vaccines are also available to the UA Fayetteville community at the Pat Walker Health Center on campus From August 2016 to August 2017, Arkansas experienced the second-largest mumps outbreak in the United States in the last 30 years. Nearly 3,000 mumps cases related to the outbreak during that period were identified. Texas measles case count at eight as of mid-February According to the Centers for Disease Control and Prevention (CDC), mumps is a viral illness that is transmitted by direct contact with respiratory droplets or saliva from an infected person. It is best known for painful, swollen salivary glands that show up as puffy cheeks and swollen jaw. Boys may also have painful, swollen testicles. In some of these cases, fertility can be affected. Other symptoms include fever, headache, muscles aches, tiredness, and loss of appetite. There is no treatment, and symptoms usually resolve themselves within a few weeks. Mumps is usually a mild disease in children, but adults may have more serious disease with complications. Complications can include deafness and encephalitis. Encephalitis is inflammation of the brain. The MMR vaccine is safe and effective. Two doses of MMR vaccine are 88 percent effective in preventing mumps. It is a live virus vaccine and is not recommended for pregnant women or patients with a weakened immune system. Sydney Adults born before 1957 are generally considered to be immune to mumps and do not need to receive the MMR vaccine."]
 
 def match_syndrome(pos_tags):
     # syndrome
@@ -148,6 +152,11 @@ def match_country(pos_tags):
                 if word not in country:
                     country.append(word)
     return country
+#try to match the places under the country
+def match_places(TEXTS):
+    text_input = TEXTS
+    places = geograpy.get_place_context(text=text_input)
+    return places
 
 # this function is wrong, this function only works for one (the first) article 
 def match_people(pos_tags):
@@ -180,7 +189,15 @@ def match_date(pos_tags):
     date = ' '.join(date)
     date1.append(date)
     return date1
-
+# if can not match the date, we can put into the publication date
+def match_pub_date(TEXTS):
+    pub_date = list()
+    pub_date1 = list()
+    for i in TEXTS:
+        pub_date.append(i)
+    pub_date = ''.join(pub_date)
+    pub_date1.append(pub_date)
+    return pub_date1
 # syndrome = match_syndrome(pos_tags)
 # disease = match_disease(pos_tags)
 # event_type = match_event(event_tags)
