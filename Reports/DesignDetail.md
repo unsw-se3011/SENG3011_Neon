@@ -98,17 +98,17 @@ Users have to input 3 main information strings:
 
 3. Location (string format):
 
-   - Location: xxx - Where xxx is the place user is interested in - Our API will automatically find all the parent of a location.
-     iii. E.g. location=Kensington, our API will auto complete:
-   - Suburb = Kensington
-   - City = Sydney
-   - State = NSW
-   - Country = Australia  
-     iv. E.g. location= NSW, our API will auto complete:
-   - State = NSW
-   - Country = Australia
-
-Hence, will return all articles related within NSW, including Kensington and Sydney.
+   - Location: xxx 
+        - Where xxx is the place user is interested in - Our API will automatically find all the parent of that location.
+        - E.g. If location=Kensington, our API will auto complete:
+            - Suburb = Kensington
+            - City = Sydney
+            - State = NSW
+            - Country = Australia  
+        - E.g. If location= NSW, our API will auto complete:
+            - State = NSW
+            - Country = Australia
+        - Hence our website will return all articles within NSW, including Kensington and Sydney.
 
 ## Collecting Results from Our API Module
 
@@ -184,6 +184,14 @@ We will join these parameter by HTTP standard. Hence, the sample request is:
 ```
 http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-11-01T19:37:12&keyterm=Anthrax,Zika&continent=Oceania&country=Australia&state=NSW&city=Sydney
 ```
+
+## Challenges Addressed
+Passing Location Parameter:
+- In order to implement a correct location search function, we require the ability to access all parent nodes of a location. However, this is really time consuming for the user because they will need to indicate all information such as Country, State, City and more.
+- For example, Sydney's parent node is NSW, NSW's parent node is Australia; this way if the user query NSW, we can identify that Sydney is part of NSW and return the articles whose location is Sydney as well as NSW. 
+- To solve this problem, our API currently only require the user to specify one particular location e.g. NSW or Sydney while our backend will auto generate all the information linking the parent nodes. This makes our website more user friendly.
+
+
 
 ## Implementation Language
 
