@@ -11,6 +11,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import json
 import geograpy
+import csv
 
 
 def get_wordnet_pos(tag):
@@ -155,8 +156,19 @@ def match_country(pos_tags):
 #try to match the places under the country
 def match_places(TEXTS):
     text_input = TEXTS
+    places1=list()
     places = geograpy.get_place_context(text=text_input)
-    return places
+    with open('world-cities.csv', 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            for i in places.countries:
+                if row['name'] == i:
+                    if i not in places1:
+                        places1.append(i)
+                if row['country'] == i:
+                    if i not in places1:
+                        places1.append(i)
+    return places1
 
 # this function is wrong, this function only works for one (the first) article 
 def match_people(pos_tags):

@@ -18,6 +18,8 @@ import json
 import fileinput
 from new_nltk import match_pub_date, match_places, initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
 
+
+import jsonlines
 # # sample text
 # sample = gutenberg.raw(
 #     "/Users/iriszhang/Desktop/ProjectNeon-w1-nltk/scraper/oubreak.jl")
@@ -55,7 +57,9 @@ if __name__ == "__main__":
 
         pub_date = match_pub_date(j_dict['date_of_publication'])
         # print(TEXTS)
+        places1 = list()
         places = match_places(TEXTS)
+
         pos_tags = initial_text(TEXTS)
         # print(pos_tags)
         event_tags = noun_text(TEXTS)
@@ -69,22 +73,9 @@ if __name__ == "__main__":
         country = match_country(country_tags)
         people = match_people(people_tags)
         date = match_date(date_tags)
-
-        report = list()
-        report.append(people)
-        if len(date) == 0:
-            report.append(pub_date)
-        if len(date) != 0:
-            report.append(date)
-        report.append(syndrome)
-        report.append(disease)
-        if len(country) == 0:
-            report.append(places.countries)
-        if len(country) != 0:
-            report.append(country)
-        report.append(event_type)
-        print(json.dumps(report, sort_keys=True,
-                         indent=4, separators=(',', ': ')))
+        with jsonlines.open('output.jl', mode='a') as writer:
+            writer.write(
+                {'date': pub_date, 'location': places, 'Type': event_type, 'people': people, 'syndrome': syndrome, 'disease': disease})
 # sentence = "Hello, this is a test for nltk testing"
 # s1 = "This is a sample sentence, showing off the stop words filtration."
 # stop_words = set(stopwords.words('english'))
