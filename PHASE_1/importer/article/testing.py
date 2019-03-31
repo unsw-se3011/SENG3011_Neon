@@ -35,25 +35,27 @@ if __name__ == "__main__":
 
     nl = Nlpe(j_dict['main_text'])
 
-    pub_date = j_dict['date_of_publication']
-    # print(TEXTS)
     places1 = list()
 
-    pos_tags = nl.initial_text()
-    event_tags = nl.noun_text()
-    country_tags = nl.country_text()
-    people_tags = nl.noun_text()
-    date_tags = nl.noun_text()
-
-    # print(pos_tags)
+    # get those values
     places = nl.get_places()
-    syndrome = nl.get_syndrome(pos_tags)
-    disease = nl.get_disease(pos_tags)
-    event_type = nl.get_event(event_tags)
-    country = nl.get_country(country_tags)
-    people = nl.get_people(people_tags)
-    date = nl.get_date(date_tags)
+    syndrome = nl.get_syndrome()
+    disease = nl.get_disease()
+    event_type = nl.get_event()
+    country = nl.get_country()
+    people = nl.get_people()
+    date = nl.get_date()
 
     # print the output
-    print({'date': pub_date, 'country': places, 'Type': event_type,
-           'people': people, 'syndrome': syndrome, 'disease': disease})
+    print(
+        json.dumps(
+            {
+                'date': date,
+                'country': places,
+                'Type': event_type,
+                'people': people,
+                'syndrome': syndrome,
+                'disease': disease
+            }
+        )
+    )

@@ -28,9 +28,24 @@ COUNTRY_LIST = [
     'Afghanistan','Albania','Algeria','Andorra','Angola','Anguilla','Antigua &amp; Barbuda','Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia &amp; Herzegovina','Botswana','Brazil','British Virgin Islands','Brunei','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cape Verde','Cayman Islands','Chad','Chile','China','Colombia','Congo','Cook Islands','Costa Rica','Cote D Ivoire','Croatia','Cruise Ship','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Estonia','Ethiopia','Falkland Islands','Faroe Islands','Fiji','Finland','France','French Polynesia','French West Indies','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece','Greenland','Grenada','Guam','Guatemala','Guernsey','Guinea','Guinea Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kuwait','Kyrgyz Republic','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macau','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Mauritania','Mauritius','Mexico','Moldova','Monaco','Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Namibia','Nepal','Netherlands','Netherlands Antilles','New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar','Reunion','Romania','Russia','Rwanda','Saint Pierre &amp; Miquelon','Samoa','San Marino','Satellite','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sri Lanka','St Kitts &amp; Nevis','St Lucia','St Vincent','St. Lucia','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor LEste','Togo','Tonga','Trinidad &amp; Tobago','Tunisia','Turkey','Turkmenistan','Turks &amp; Caicos','Uganda','Ukraine','United Arab Emirates','United Kingdom','Uruguay','Uzbekistan','Venezuela','Vietnam','Virgin Islands (US)','Yemen','Zambia','Zimbabwe'
 ]
 
+# import city to memory 
+CITIES = []
+with open('world-cities.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        row = list(row.items())
+        CITIES.append({
+            'city': row[0][1], 'country': row[1][1], 'state': row[2][1]
+        })
+
 class Nlpe(object):
     def __init__(self, text):
         self.text = text
+        self.pos_tags = self.initial_text()
+        self.event_tags = self.noun_text()
+        self.country_tags = self.country_text()
+        self.people_tags = self.noun_text()
+        self.date_tags = self.noun_text()
 
     def get_wordnet_pos(self, tag):
         if tag.startswith('J'):
@@ -107,80 +122,78 @@ class Nlpe(object):
         #print(pos_tags)
         return pos_tags
 
-    def get_syndrome(self, pos_tags):
+    def get_syndrome(self):
         # syndrome
         # syndrome match
-        syndrome1 = list()
+        syndrome_set = set()
         #syndrome2 = list()
-        for word, pos in pos_tags:
+        for word, pos in self.pos_tags:
             #print(word, pos)
-            for i in SYNDROME:
-                # print(i)
-                if (word == i):
-                    if word not in syndrome1:
-                        syndrome1.append(word)
-        return syndrome1
+            if word in SYNDROME:
+                syndrome_set.add(word)
+        return [t for t in  syndrome_set]
 
 
-    def get_disease(self, pos_tags):
+    def get_disease(self):
         # disease match
-        disease1 = list()
-        for word, pos in pos_tags:
-            for i in DISEASE:
-                # print(i)
-                if (word == i):
-                    if word not in disease1:
-                        disease1.append(word)
-        return disease1
+        disease1 = set()
+        for word, pos in self.pos_tags:
+            if word in DISEASE:
+                disease1.add(word)
+        return [t for t in disease1]
 
-    def get_event(self, pos_tags):
-        # event_type
-        
+    def get_event(self):
         # event_type match
-        event_type1 = list()
-        for word, pos in pos_tags:
-            for i in EVENT_TYPE:
-                # print(i)
-                if (word == i):
-                    if word not in event_type1:
-                        event_type1.append(word)
-        return event_type1
+        event_type_set = set()
+        for word, pos in self.event_tags:
+            if word in EVENT_TYPE:
+                event_type_set.add(word)
+        # from set to array 
+        return [t for t in event_type_set]
 
-    def get_country(self, pos_tags):
+    def get_country(self):
         # this function can ONLY match the country name but not including city, state etc.
-        # countries
-        
         # Country
-        country = list()
-        for word, pos in pos_tags:
-            for c in COUNTRY_LIST:
-                if(word == c):
-                    if word not in country:
-                        country.append(word)
-        return country
+        country = set()
+        for word, pos in self.country_tags:
+            if word in COUNTRY_LIST:
+                country.add(word)
+        return [t for t in country]
     #try to match the places under the country
     def get_places(self):
+
+        """"
+        Why i need to open the dataset every time i parse this  
+        """
         text_input = self.text
-        places1=list()
+        location_dict={}
         places = geograpy.get_place_context(text=text_input)
-        with open('world-cities.csv', 'r') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                for i in places.countries:
-                    if row['name'] == i:
-                        if i not in places1:
-                            places1.append(i)
-                    if row['country'] == i:
-                        if i not in places1:
-                            places1.append(i)
-        return places1
+
+        for city_dict in CITIES: 
+            if city_dict['city'] in places.countries: 
+                location_dict[city_dict['city']] = {
+                    'country': city_dict['country'],
+                    'state': city_dict['state'],
+                    'city': city_dict['city'], 
+                }
+            if city_dict['state'] in places.countries:
+                location_dict[city_dict['state']] = {
+                    'state': city_dict['state'],
+                    'country': city_dict['country']
+                }
+            if city_dict['country'] in places.countries:
+                location_dict[city_dict['country']] = {
+                    'country': city_dict['country'],
+                }
+        return list(location_dict.values())
 
     # this function is wrong, this function only works for one (the first) article 
-    def get_people(self, pos_tags):
+    def get_people(self):
         #effect_number (need improve after)
-        grammar = "NP: {<CD><NNS>}"               # this grammar is used to match people 
+        # this grammar is used to match people 
+        grammar = "NP: {<CD><NNS>}"               
         cp = nltk.RegexpParser(grammar)
-        tree1 = cp.parse(pos_tags)
+        tree1 = cp.parse(self.people_tags)
         people = list()
         for subtree1 in tree1.subtrees():
             if subtree1.label() == 'NP':
@@ -190,13 +203,13 @@ class Nlpe(object):
         return people
 
     # this function is wrong, this function only works for one (the first) article
-    def get_date(self, pos_tags):
+    def get_date(self):
         #date
         #one of type to match the date need improve after
         # this grammar is used to match date
-        grammar = "NP: {<JJ><CD><TO><VB><CD>}"
+        grammar = "NP: {<JJ><CD>(<TO><VB><CD>)?}"
         cp = nltk.RegexpParser(grammar)
-        tree = cp.parse(pos_tags)
+        tree = cp.parse(self.date_tags)
         date = list()
         date1 = list()
         for subtree in tree.subtrees():
