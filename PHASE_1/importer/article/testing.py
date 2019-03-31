@@ -1,5 +1,5 @@
 #! python3
-from new_nltk import match_pub_date, match_places, initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
+from nlpe import match_pub_date, match_places, initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
 import fileinput
 import json
 from json import loads
@@ -32,7 +32,6 @@ if __name__ == "__main__":
         j_dict = loads(next(it))
         # print(j_dict['main_text'])
 
-        TEXTS = []
         TEXTS = j_dict['main_text']
 
         pub_date = match_pub_date(j_dict['date_of_publication'])
