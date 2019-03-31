@@ -8,7 +8,7 @@ Project Neon have been working hard to ensure that our API is not only functiona
 ## Testing Environment:
 **Testing Tool & their limitations:**
 1.	Jmeter (Performance testing)
-2.	Postman (black box testing)
+2.	Swagger (black box testing)
 3.	Django Unit testing (white box testing)
 
 
@@ -36,7 +36,6 @@ Initially, the test cases only contained correct input. Then we added tests for 
 
 2.Test for Incorrectness and Errors:
 -	different status codes
-
 
 
 
