@@ -1,13 +1,41 @@
 #! python3
 from nlpe import Nlpe
 import fileinput
-import json
 from json import loads
-from nltk.corpus import gutenberg
-from nltk.tokenize import sent_tokenize, PunktSentenceTokenizer
-from nltk.stem import *
-from nltk.corpus import *
-from nltk.tokenize import *  # sent_tokenize, word_tokenize
+import json
+import threading
+import time
+import multiprocessing
+
+
+def send_article(article):
+    article = loads(article)
+    nl = Nlpe(article['headline']+" "+article['main_text'])
+
+    # get those values
+    places = nl.get_places()
+    syndrome = nl.get_syndrome()
+    disease = nl.get_disease()
+    event_type = nl.get_event()
+    country = nl.get_country()
+    people = nl.get_people()
+    date = nl.get_date()
+
+    print(
+        json.dumps(
+            {
+                'article': article,
+                'date': date,
+                'country': places,
+                'Type': event_type,
+                'people': people,
+                'syndrome': syndrome,
+                'disease': disease
+            }
+        )
+    )
+
+
 # print("imhere")
 if __name__ == "__main__":
     import argparse
@@ -28,34 +56,9 @@ if __name__ == "__main__":
 
     # while is here
 
+    out = open('output.jl', 'w+')
+
     it = iter(fileinput.input(files=args.file))
 
-    j_dict = loads(next(it))
-    # print(j_dict['main_text'])
-
-    nl = Nlpe(j_dict['main_text'])
-
-    places1 = list()
-
-    # get those values
-    places = nl.get_places()
-    syndrome = nl.get_syndrome()
-    disease = nl.get_disease()
-    event_type = nl.get_event()
-    country = nl.get_country()
-    people = nl.get_people()
-    date = nl.get_date()
-
-    # print the output
-    print(
-        json.dumps(
-            {
-                'date': date,
-                'country': places,
-                'Type': event_type,
-                'people': people,
-                'syndrome': syndrome,
-                'disease': disease
-            }
-        )
-    )
+    with multiprocessing.Pool() as pool:
+        pool.map(send_article, it)

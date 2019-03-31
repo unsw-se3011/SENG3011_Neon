@@ -12,6 +12,7 @@ from nltk.stem import WordNetLemmatizer
 import json
 import geograpy
 import csv
+from word2number import w2n
 
 # constants 
 SYNDROME = [
@@ -41,7 +42,7 @@ with open('world-cities.csv', 'r') as csvfile:
 class Nlpe(object):
     def __init__(self, text):
         self.text = text
-        self.pos_tags = self.initial_text()
+        self.pos_tags = self.parse_pos_tags()
         self.event_tags = self.noun_text()
         self.country_tags = self.country_text()
         self.people_tags = self.noun_text()
@@ -60,7 +61,7 @@ class Nlpe(object):
             return None
 
     # convert all self.text to lowercase, delete stop words 
-    def initial_text(self):
+    def parse_pos_tags(self):
         sr = stopwords.words('english')
         #get all lower case clean_tokens
         clean_tokens = list()
@@ -200,6 +201,11 @@ class Nlpe(object):
                 for word, pos in subtree1.leaves():
                     if (pos == 'CD'):
                         people.append(word)
+        people = [t.replace(',','') for t in people]
+        try:
+            people = [w2n.word_to_num(t) for t in people]
+        except ValueError as e:
+            return []
         return people
 
     # this function is wrong, this function only works for one (the first) article
