@@ -28,7 +28,7 @@ SYNDROME_MAP = {
 }
 
 
-BASE_URL = 'http://localhost:8000/v0/'
+BASE_URL = 'http://neon.whiteboard.house/v0/'
 # # auth by the default admin user
 # response = requests.post(
 #     BASE_URL+'jwt/',
@@ -152,14 +152,12 @@ class Worker(threading.Thread):
 
                 try:
                     # send the article
-                    ret = self.send_article()
+                    self.send_article()
                     # send the report && report event
-                    ret = self.send_report()
+                    self.send_report()
                 except requests.HTTPError as e:
-                    print(self.j_dict['article']['url'])
-                    print(ret.content)
-                    continue
-
+                    print(str(counter) + ": " + self.j_dict['article']['url'])
+                    self.my_lock.release()
                 # time.sleep(1)
         except StopIteration as e:
             # we expect this error, do nothing
@@ -202,7 +200,7 @@ if __name__ == "__main__":
 
     # import disease
     it = iter(fileinput.input(files='output.jl'))
-    for i in range(2):
+    for i in range(8):
         workers.append(Worker(it))
 
     # print(mk_report(loads(next(it))))
