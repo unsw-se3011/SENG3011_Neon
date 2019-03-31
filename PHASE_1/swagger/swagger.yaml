@@ -33,24 +33,9 @@ paths:
           description: 'End datetime of the event occur. Expect  2019-03-31T01:56:55'
           required: false
           type: string
-        - name: continent
+        - name: location
           in: query
           description: "continent of the event occur. Expect 'Australia'"
-          required: false
-          type: string
-        - name: country
-          in: query
-          description: country of the event occur
-          required: false
-          type: string
-        - name: state
-          in: query
-          description: state of the event occur
-          required: false
-          type: string
-        - name: city
-          in: query
-          description: 'city of the event occur '
           required: false
           type: string
         - name: key_term
@@ -268,7 +253,6 @@ definitions:
         $ref: '#/definitions/Location'
   Report:
     required:
-      - article_id
       - disease
       - syndrome
     type: object
@@ -279,9 +263,6 @@ definitions:
         readOnly: true
       article:
         $ref: '#/definitions/Article'
-      article_id:
-        title: Article id
-        type: integer
       disease:
         type: array
         items:
