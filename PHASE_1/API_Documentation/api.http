@@ -252,6 +252,10 @@ GET {{baseUrl}}reports/?disease=hello1&syndrome=stomache HTTP/1.1
 GET {{baseUrl}}reports/?start_date=2223-02-02T02:02:00Z&end_date=2223-03-02T02:02:10Z
 
 ###
+# filter error 
+GET {{baseUrl}}reports/?start_date=2223-03-02T02:02:10Z&end_date=2223-02-02T02:02:00Z
+
+###
 # Filter against locations
 GET {{baseUrl}}reports/?reportevent__location__continent=oceania&reportevent__location__country=Austrialia&reportevent__location__state=NSW&reportevent__location__city=Sydney
 

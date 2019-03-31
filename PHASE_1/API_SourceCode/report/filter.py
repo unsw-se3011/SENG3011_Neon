@@ -3,7 +3,7 @@ from django.db.models import Q
 from rest_framework.compat import coreapi, coreschema
 from datetime import datetime
 from django.utils.dateparse import parse_datetime
-
+from rest_framework.serializers import ValidationError
 
 
 class DatetimeFilter(BaseFilterBackend):
@@ -26,6 +26,8 @@ class DatetimeFilter(BaseFilterBackend):
 
         if not start_date or not end_date:
             return queryset
+
+            
         queryset.filter(
             Q(**{search_filed + "__gte": start_date}) &
             Q(**{search_filed + "__lte": end_date}))
@@ -73,7 +75,13 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
         except Exception as e:
             return queryset
 
-        
+        # Else: there's both start date and end date 
+
+        if start_date> end_date:
+            # validate both is in order 
+            raise ValidationError({
+                'date': 'Start date must be earlier than end date.'
+            })
         return queryset.filter(
             Q(
                 reportevent__start_date__gte=start_date,

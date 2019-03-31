@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key special-key` to test the authorization     filters."
   version: "1.0.0"
   title: "Swagger Petstore"
   termsOfService: "http://swagger.io/terms/"
@@ -16,36 +16,38 @@ tags:
     description: "Report of an outbreak."
     externalDocs:
       description: "Find out more"
-      url: "http://neon.whiteboard.house"
+      url: "http://neon.whiteboard.house/"
 schemes:
   - "http"
 paths:
   /reports/:
     get:
+      tags:
+        - "Report"
       parameters:
         - name: start_date
           in: query
-          description: 'Start datetime of the event occur. Expect 2019-03-31T01:56:55'
+          description: "Start datetime of the event occur. Expect '2018-03-31T01:56:55'"
           required: false
           type: string
         - name: end_date
           in: query
-          description: 'End datetime of the event occur. Expect  2019-03-31T01:56:55'
+          description: "End datetime of the event occur. Expect '2019-03-31T01:56:55' and later than start_date " 
           required: false
           type: string
         - name: location
           in: query
-          description: "continent of the event occur. Expect 'Australia'"
+          description: "Location of the event occur (this is case insensitive). Expect 'Australia' or 'aus'"
           required: false
           type: string
         - name: key_term
           in: query
-          description: A search term.
+          description: "A search term (this is case insensitive and seperate by ','). Expect 'Anthrax,Zika' "
           required: false
           type: string
       responses:
         '200':
-          description: ''
+          description: 'OK'
           schema:
             required:
               - count
@@ -66,8 +68,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/Report'
-      tags:
-        - reports
+        '400':
+          description: 'Bad Request'
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                example: 'Start date must be earlier than end date.'
+        '500':
+          description: 'Internal Server Error'
 definitions:
   Article:
     required:
@@ -321,3 +331,13 @@ definitions:
         title: Last name
         type: string
         maxLength: 150
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message
