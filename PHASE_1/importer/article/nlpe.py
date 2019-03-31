@@ -176,15 +176,19 @@ class Nlpe(object):
                     'country': city_dict['country'],
                     'state': city_dict['state'],
                     'city': city_dict['city'], 
+                    'name': city_dict['city'],
                 }
             if city_dict['state'] in places.countries:
                 location_dict[city_dict['state']] = {
                     'state': city_dict['state'],
-                    'country': city_dict['country']
+                    'country': city_dict['country'],
+                    'name': city_dict['state'],
+
                 }
             if city_dict['country'] in places.countries:
                 location_dict[city_dict['country']] = {
                     'country': city_dict['country'],
+                    'name': city_dict['country'],
                 }
         return list(location_dict.values())
 

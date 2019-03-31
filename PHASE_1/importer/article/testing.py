@@ -8,7 +8,7 @@ import time
 import multiprocessing
 
 
-def send_article(article):
+def parse_article(article):
     article = loads(article)
     nl = Nlpe(article['headline']+" "+article['main_text'])
 
@@ -32,7 +32,7 @@ def send_article(article):
                 'syndrome': syndrome,
                 'disease': disease
             }
-        )
+        ) + '\n'
     )
 
 
@@ -61,4 +61,4 @@ if __name__ == "__main__":
     it = iter(fileinput.input(files=args.file))
 
     with multiprocessing.Pool() as pool:
-        pool.map(send_article, it)
+        pool.map(parse_article, it)
