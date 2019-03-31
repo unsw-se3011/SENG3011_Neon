@@ -1,5 +1,5 @@
 #! python3
-from nlpe import match_pub_date, match_places, initial_text, noun_text, country_text, match_syndrome, match_disease, match_event, match_country, match_people, match_date
+from nlpe import Nlpe
 import fileinput
 import json
 from json import loads
@@ -26,31 +26,33 @@ if __name__ == "__main__":
     # without dealing with lock
     print(args.file)
 
+    # while is here
+
     it = iter(fileinput.input(files=args.file))
 
-    while True:
-        j_dict = loads(next(it))
-        # print(j_dict['main_text'])
+    j_dict = loads(next(it))
+    # print(j_dict['main_text'])
 
-        TEXTS = j_dict['main_text']
+    nl = Nlpe(j_dict['main_text'])
 
-        pub_date = match_pub_date(j_dict['date_of_publication'])
-        # print(TEXTS)
-        places1 = list()
-        places = match_places(TEXTS)
+    pub_date = j_dict['date_of_publication']
+    # print(TEXTS)
+    places1 = list()
+    places = nl.get_places()
 
-        pos_tags = initial_text(TEXTS)
-        # print(pos_tags)
-        event_tags = noun_text(TEXTS)
-        country_tags = country_text(TEXTS)
-        people_tags = noun_text(TEXTS)
-        date_tags = noun_text(TEXTS)
+    pos_tags = nl.initial_text()
+    event_tags = nl.noun_text()
+    country_tags = nl.country_text()
+    people_tags = nl.noun_text()
+    date_tags = nl.noun_text()
 
-        syndrome = match_syndrome(pos_tags)
-        disease = match_disease(pos_tags)
-        event_type = match_event(event_tags)
-        country = match_country(country_tags)
-        people = match_people(people_tags)
-        date = match_date(date_tags)
-        print({'date': pub_date, 'location': places, 'Type': event_type,
-               'people': people, 'syndrome': syndrome, 'disease': disease})
+    # print(pos_tags)
+
+    syndrome = nl.get_syndrome(pos_tags)
+    disease = nl.get_disease(pos_tags)
+    event_type = nl.get_event(event_tags)
+    country = nl.get_country(country_tags)
+    people = nl.get_people(people_tags)
+    date = nl.get_date(date_tags)
+    print({'date': pub_date, 'location': places, 'Type': event_type,
+           'people': people, 'syndrome': syndrome, 'disease': disease})
