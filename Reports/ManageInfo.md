@@ -32,6 +32,15 @@
 | Xinze SONG   | Data Extraction>NLPE>*                       |
 | Ziqing YAN   | Frontend>Normal INterface>\*                 |
 
+### Assigned Responsibility (Iter. 3)
+
+| Name         | Responsibility |
+| :----------- | :------------- |
+| Huiyue ZHANG |                |
+| Ruofei HUANG |                |
+| Xinze SONG   |                |
+| Ziqing YAN   |                |
+
 ## Iteration Plan
 
 | Iterations         | Detail                                                                           |
@@ -86,3 +95,7 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Mar 23     | Refined Design document and some discussion, some parser is finished.                                                                                          |
 | Mar 24     | Design documentation, location filter support, comments on the current parser.                                                                                 |
 | Mar 25     | Replace old swagger engine, debug the swagger doucment, d2 document, finalise the design document.                                                             |
+| Mar 27     | Swagger need imporvement, reduce the enpoint in the document and add expect value. Need to impove the NLPE for more parser. Need to add a img url for article. |
+| Mar 27     | Swagger document start to redo. Location logic need to modify. Teststing document and log file clarifications. Search component in frontend.                   |
+| Mar 29     | Expose log file, add img url in backend. Half way of the swagger documents.                                                                                    |
+| Mar 31     | Merge the spacy into master. Swagger document and server is setted up. Tweaked the location filter.                                                            |
