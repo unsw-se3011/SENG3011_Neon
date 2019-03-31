@@ -30,7 +30,16 @@
 | Huiyue ZHANG | Documents>Deliverable>Design Detail          |
 | Ruofei HUANG | Documents>Deliverable>Management Information |
 | Xinze SONG   | Data Extraction>NLPE>*                       |
-| Ziqing YAN   |                                              |
+| Ziqing YAN   | Frontend>Normal INterface>\*                 |
+
+### Assigned Responsibility (Iter. 3)
+
+| Name         | Responsibility |
+| :----------- | :------------- |
+| Huiyue ZHANG |                |
+| Ruofei HUANG |                |
+| Xinze SONG   |                |
+| Ziqing YAN   |                |
 
 ## Iteration Plan
 
@@ -77,3 +86,16 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Mar 6      | Basic version of backend is complete. Handover to Iris and Jeana to write document. Itios to write the NLPE. Merge branch for iteration 1.                     |
 | Mar 7      | Incremental progress of deliverable 1 document                                                                                                                 |
 | Mar 7      | Design documentation.                                                                                                                                          |
+| Mar 11     | Another version of Design documentation.                                                                                                                       |
+| Mar 13     | Actual start of iteration 2, assigned works to frontend, CICD, NLPE .                                                                                          |
+| Mar 15     | Login in frontend, Some parser by Spacy, buy a domain and server for this project, dockerlise our backend.                                                     |
+| Mar 18     | Increamental inproment in atural language parser, deploy backend by docker-compose.                                                                            |
+| Mar 20     | Swich back to nltk for parser, three parser is set up, k8s delopment file is done, improment in frontend.                                                      |
+| Mar 21     | Searching and filtering in backend.                                                                                                                            |
+| Mar 23     | Refined Design document and some discussion, some parser is finished.                                                                                          |
+| Mar 24     | Design documentation, location filter support, comments on the current parser.                                                                                 |
+| Mar 25     | Replace old swagger engine, debug the swagger doucment, d2 document, finalise the design document.                                                             |
+| Mar 27     | Swagger need imporvement, reduce the enpoint in the document and add expect value. Need to impove the NLPE for more parser. Need to add a img url for article. |
+| Mar 27     | Swagger document start to redo. Location logic need to modify. Teststing document and log file clarifications. Search component in frontend.                   |
+| Mar 29     | Expose log file, add img url in backend. Half way of the swagger documents.                                                                                    |
+| Mar 31     | Merge the spacy into master. Swagger document and server is setted up. Tweaked the location filter.                                                            |

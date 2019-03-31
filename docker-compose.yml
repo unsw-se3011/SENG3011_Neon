@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=AnApple123
+      - POSTGRES_USER=root
+    volumes: 
+      - ProjectNeonData:/var/lib/postgresql/data
+  web:
+    build: PHASE_1/API_SourceCode/
+    restart: always
+    depends_on:
+      - db
+  nginx: 
+    build: .
+    restart: always
+    ports:
+      - 8000:80
+  swagger: 
+    build: PHASE_1/swagger
+    restart: always
+volumes: 
+  ProjectNeonData:

@@ -25,17 +25,16 @@ SECRET_KEY = '#1%8zzovwa4a6$i1h$+-vuvjps2*)-^_pan7ufdgx^lpojily6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'report.apps.ReportConfig',
+    'report',
     'rest_framework',
     'django_filters',
     'corsheaders',
-    'rest_framework_swagger',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -145,3 +144,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100
 }
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+SEARCH_PARAM = "keyterms"

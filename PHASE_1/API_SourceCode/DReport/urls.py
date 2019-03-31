@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import generic
 from rest_framework import routers
-from report import views
 from rest_framework_jwt.views import obtain_jwt_token
 
 
@@ -25,7 +24,8 @@ urlpatterns = [
     # the endpoint for admin site
     path('admin/', admin.site.urls),
     # general urls from api
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('jwt/', obtain_jwt_token),
+    path(
+        'api-auth/', include('rest_framework.urls')
+    ),
     path('v0/', include('report.urls'))
 ]

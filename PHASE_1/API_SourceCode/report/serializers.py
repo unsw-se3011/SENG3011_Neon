@@ -39,7 +39,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('name', 'lat', 'lng')
+        fields = (
+            'name',
+            'lat',
+            'lng',
+            'continent',
+            'country',
+            'state',
+            'city'
+        )
 
 
 class ReportEventSerializer(serializers.ModelSerializer):
@@ -50,6 +58,8 @@ class ReportEventSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if data['start_date'] >= data['end_date']:
             raise serializers.ValidationError("finish must occur after start")
+
+        # base on fuzz, we send it to the last date it can be or first date it can be to support better filter
 
         # create location here, use get or create
         return data
@@ -72,7 +82,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
             "sd_fuzz",
             "end_date",
             "ed_fuzz",
-            "number_effecet",
+            "number_affected",
             "location"
         )
 
@@ -86,9 +96,8 @@ class SyndromeSerializer(serializers.ModelSerializer):
 
 
 class DiseaseSerializer(serializers.ModelSerializer):
-    # syndromes = serializers.StringRelatedField(many=True)
     syndromes = serializers.PrimaryKeyRelatedField(
-        queryset=Syndrome.objects.all(), many=True)
+        queryset=Syndrome.objects.all(), many=True, required=False)
 
     class Meta:
         model = Disease
@@ -97,42 +106,8 @@ class DiseaseSerializer(serializers.ModelSerializer):
             'syndromes'
         )
 
-    # def create(self, validated_data):
-    #     raise TypeError("heeoo")
-
-
-class ReportSerializer(serializers.ModelSerializer):
-    # Reportevent details
-    report_event = ReportEventSerializer(
-        many=True, read_only=True, source='reportevent_set')
-
-    # attach the article while creation
-    article_id = serializers.PrimaryKeyRelatedField(
-        queryset=Article.objects.all(), write_only=True, source='article')
-
-    # handle these many to many field by using primary key related field
-    disease = serializers.PrimaryKeyRelatedField(
-        queryset=Disease.objects.all(), many=True
-    )
-    syndrome = serializers.PrimaryKeyRelatedField(
-        queryset=Syndrome.objects.all(), many=True
-    )
-
-    class Meta:
-        model = Report
-        fields = (
-            'id',
-            'article_id',
-            'disease',
-            'syndrome',
-            'comment',
-            'article',
-            'report_event'
-        )
-
 
 class ArticleSerializer(serializers.ModelSerializer):
-    reports = ReportSerializer(many=True, read_only=True, source='report_set')
 
     class Meta:
         model = Article
@@ -143,5 +118,36 @@ class ArticleSerializer(serializers.ModelSerializer):
             'publish',
             'main_text',
             'p_fuzz',
-            'reports',
+            'img'
+        )
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    # Reportevent details
+    report_event = ReportEventSerializer(
+        many=True, read_only=True, source='reportevent_set')
+
+    # attach the article while creation
+    article = ArticleSerializer(read_only=True)
+    # handle these many to many field by using primary key related field
+    disease = serializers.PrimaryKeyRelatedField(
+        queryset=Disease.objects.all(), many=True
+    )
+    article_id = serializers.PrimaryKeyRelatedField(
+        queryset=Article.objects.all(), write_only=True, source='article')
+    syndrome = serializers.PrimaryKeyRelatedField(
+        queryset=Syndrome.objects.all(), many=True
+    )
+
+    class Meta:
+        model = Report
+        fields = (
+            'id',
+            'article',
+            'article_id',
+            'disease',
+            'syndrome',
+            'comment',
+            'article',
+            'report_event'
         )

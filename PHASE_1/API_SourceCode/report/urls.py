@@ -8,9 +8,10 @@ from .views import ReportViewSet,\
     SyndromeViewSet
 from rest_framework import routers
 from django.urls import path
-from rest_framework_jwt.views import obtain_jwt_token
-from rest_framework_swagger.views import get_swagger_view
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework import permissions
 
+# register viewset
 router = routers.DefaultRouter()
 router.register(r'reports', ReportViewSet)
 router.register(r'report_events', ReportEventViewSet)
@@ -20,11 +21,8 @@ router.register(r'users', UserViewSet)
 router.register(r'diseases', DiseaseViewSet)
 router.register(r'syndromes', SyndromeViewSet)
 
-schema_view = get_swagger_view(title='Project Neon API')
-
 urlpatterns = [
     path('jwt/', obtain_jwt_token),
-
-    url(r'^', include(router.urls)),
-    url('swagger/', schema_view)
+    url(r'^jwt_refresh/', refresh_jwt_token),
+    url(r'^', include(router.urls))
 ]
