@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InR0dCIsImV4cCI6MTU1MzQ3Mjc4MywiZW1haWwiOiIifQ.uj05KGu2wTNeQJ5oiuJ3ozG8hrzjCcZU2f6sMJ0RZ0U
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTM4NDQ3ODQsImVtYWlsIjoiIn0.9unITyla1DHXMp54WUju5qHj77BF7C-GuDfRMHhTWlE
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -6,7 +6,7 @@ POST {{baseUrl}}jwt/ HTTP/1.1
 Content-Type: application/json
 
 {
-	"username": "ttt" ,
+	"username": "neon" ,
 	"password": "apple123"
 }
 
@@ -43,7 +43,8 @@ Authorization: {{auth}}
     "headline": "no",
     "publish": "0200-01-01T15:20:00Z",
     "main_text": "helloworld",
-    "p_fuzz": "M"
+    "p_fuzz": "M",
+    "img": "http://localhost:8000/v0/article/0.png"
 }
 
 
@@ -78,6 +79,8 @@ Authorization: {{auth}}
     "state": "NSW",
     "city": "Sydney"
 }
+
+    
 
 
 ###
@@ -138,12 +141,16 @@ Authorization: {{auth}}
 
 
 {
-    "name": "hello1",
-    "syndromes": [
-        "stomache"
-    ]
+    "name": "hello1"
 }
 
+
+# {
+#     "name": "hello1",
+#     "syndromes": [
+#         "stomache"
+#     ]
+# }
 ###
 # Get single diseases
 
@@ -243,6 +250,10 @@ GET {{baseUrl}}reports/?disease=hello1&syndrome=stomache HTTP/1.1
 # filter in report base on time 
 
 GET {{baseUrl}}reports/?start_date=2223-02-02T02:02:00Z&end_date=2223-03-02T02:02:10Z
+
+###
+# filter error 
+GET {{baseUrl}}reports/?start_date=2223-03-02T02:02:10Z&end_date=2223-02-02T02:02:00Z
 
 ###
 # Filter against locations

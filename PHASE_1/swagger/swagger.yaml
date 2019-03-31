@@ -1,0 +1,343 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "qycity@outlook.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "neon.whiteboard.house"
+basePath: "/v0"
+tags:
+  - name: "Report"
+    description: "Report of an outbreak."
+    externalDocs:
+      description: "Find out more"
+      url: "http://neon.whiteboard.house/"
+schemes:
+  - "http"
+paths:
+  /reports/:
+    get:
+      tags:
+        - "Report"
+      parameters:
+        - name: start_date
+          in: query
+          description: "Start datetime of the event occur. Expect '2018-03-31T01:56:55'"
+          required: false
+          type: string
+        - name: end_date
+          in: query
+          description: "End datetime of the event occur. Expect '2019-03-31T01:56:55' and later than start_date " 
+          required: false
+          type: string
+        - name: location
+          in: query
+          description: "Location of the event occur (this is case insensitive). Expect 'Australia' or 'aus'"
+          required: false
+          type: string
+        - name: key_term
+          in: query
+          description: "A search term (this is case insensitive and seperate by ','). Expect 'Anthrax,Zika' "
+          required: false
+          type: string
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Report'
+        '400':
+          description: 'Bad Request'
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                example: 'Start date must be earlier than end date.'
+        '500':
+          description: 'Internal Server Error'
+definitions:
+  Article:
+    required:
+      - url
+      - publish
+      - main_text
+      - p_fuzz
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      url:
+        title: Url
+        type: string
+        format: uri
+        maxLength: 200
+        minLength: 1
+      headline:
+        title: Headline
+        type: string
+        maxLength: 512
+        minLength: 1
+      publish:
+        title: Publish
+        type: string
+        format: date-time
+      main_text:
+        title: Main text
+        type: string
+        minLength: 1
+      p_fuzz:
+        title: P fuzz
+        type: string
+        enum:
+          - Y
+          - M
+          - D
+          - H
+          - I
+          - S
+          - A
+      img:
+        title: Img
+        type: string
+        format: uri
+        maxLength: 200
+  Disease:
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 200
+        minLength: 1
+      syndromes:
+        type: array
+        items:
+          type: string
+        uniqueItems: true
+  JSONWebToken:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  RefreshJSONWebToken:
+    required:
+      - token
+    type: object
+    properties:
+      token:
+        title: Token
+        type: string
+        minLength: 1
+  Location:
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 512
+        minLength: 1
+      lat:
+        title: Lat
+        type: string
+        format: decimal
+        x-nullable: true
+      lng:
+        title: Lng
+        type: string
+        format: decimal
+        x-nullable: true
+      continent:
+        title: Continent
+        type: string
+        maxLength: 512
+      country:
+        title: Country
+        type: string
+        maxLength: 512
+      state:
+        title: State
+        type: string
+        maxLength: 512
+      city:
+        title: City
+        type: string
+        maxLength: 512
+  ReportEvent:
+    required:
+      - report_id
+      - e_type
+      - start_date
+      - sd_fuzz
+      - end_date
+      - ed_fuzz
+      - number_affected
+      - location
+    type: object
+    properties:
+      report_id:
+        title: Report id
+        type: integer
+      e_type:
+        title: E type
+        type: string
+        enum:
+          - P
+          - D
+          - I
+          - H
+          - R
+      start_date:
+        title: Start date
+        type: string
+        format: date-time
+      sd_fuzz:
+        title: Sd fuzz
+        type: string
+        enum:
+          - Y
+          - M
+          - D
+          - H
+          - I
+          - S
+          - A
+      end_date:
+        title: End date
+        type: string
+        format: date-time
+      ed_fuzz:
+        title: Ed fuzz
+        type: string
+        enum:
+          - Y
+          - M
+          - D
+          - H
+          - I
+          - S
+          - A
+      number_affected:
+        title: Number affected
+        type: integer
+        maximum: 2147483647
+        minimum: -2147483648
+      location:
+        $ref: '#/definitions/Location'
+  Report:
+    required:
+      - disease
+      - syndrome
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      article:
+        $ref: '#/definitions/Article'
+      disease:
+        type: array
+        items:
+          type: string
+        uniqueItems: true
+      syndrome:
+        type: array
+        items:
+          type: string
+        uniqueItems: true
+      comment:
+        title: Comment
+        type: string
+      report_event:
+        type: array
+        items:
+          $ref: '#/definitions/ReportEvent'
+        readOnly: true
+  Syndrome:
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 200
+        minLength: 1
+  User:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      first_name:
+        title: First name
+        type: string
+        maxLength: 30
+      last_name:
+        title: Last name
+        type: string
+        maxLength: 150
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message

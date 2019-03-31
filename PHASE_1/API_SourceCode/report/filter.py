@@ -3,6 +3,7 @@ from django.db.models import Q
 from rest_framework.compat import coreapi, coreschema
 from datetime import datetime
 from django.utils.dateparse import parse_datetime
+from rest_framework.serializers import ValidationError
 
 
 class DatetimeFilter(BaseFilterBackend):
@@ -25,6 +26,8 @@ class DatetimeFilter(BaseFilterBackend):
 
         if not start_date or not end_date:
             return queryset
+
+            
         queryset.filter(
             Q(**{search_filed + "__gte": start_date}) &
             Q(**{search_filed + "__lte": end_date}))
@@ -72,6 +75,13 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
         except Exception as e:
             return queryset
 
+        # Else: there's both start date and end date 
+
+        if start_date> end_date:
+            # validate both is in order 
+            raise ValidationError({
+                'date': 'Start date must be earlier than end date.'
+            })
         return queryset.filter(
             Q(
                 reportevent__start_date__gte=start_date,
@@ -125,19 +135,30 @@ class LocationFilter(BaseFilterBackend):
         country = request.query_params.get("country", None)
         state = request.query_params.get("state", None)
         city = request.query_params.get("city", None)
+        location = request.query_params.get("location", None)
 
         if continent:
             queryset = queryset.filter(
-                reportevent__location__continent=continent)
+                reportevent__location__continent__icontains=continent)
         if country:
             queryset = queryset.filter(
-                reportevent__location__country=country)
+                reportevent__location__country__icontains=country)
         if state:
             queryset = queryset.filter(
-                reportevent__location__state=state)
+                reportevent__location__state__icontains=state)
         if city:
             queryset = queryset.filter(
-                reportevent__location__city=city)
+                reportevent__location__city__icontains=city)
+        if location:
+            queryset = queryset.filter(
+                Q(reportevent__location__continent__icontains = location )|
+                Q(reportevent__location__country__icontains = location )|
+                Q(reportevent__location__state__icontains = location )|
+                Q(reportevent__location__city__icontains = location )|
+                Q(reportevent__location__name__icontains = location )
+            )
+        # distinct the result, because we may have duplicate result 
+        queryset= queryset.distinct()
         return queryset
 
     def get_schema_fields(self, view):

@@ -28,6 +28,7 @@ class Article(models.Model):
     p_fuzz = models.CharField(
         max_length=1, choices=fuzz_choice)
     main_text = models.TextField()
+    img = models.URLField(blank=True)
 
     def __str__(self):
         return self.headline
@@ -52,12 +53,14 @@ class Disease(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=512)
-    continent = models.CharField(max_length=512, blank=True)
-    country = models.CharField(max_length=512, blank=True)
-    state = models.CharField(max_length=512, blank=True)
-    city = models.CharField(max_length=512, blank=True)
-    lat = models.DecimalField(max_digits=24, decimal_places=20)
-    lng = models.DecimalField(max_digits=24, decimal_places=20)
+    continent = models.CharField(max_length=512, blank=True, default="")
+    country = models.CharField(max_length=512, blank=True, default="")
+    state = models.CharField(max_length=512, blank=True, default="")
+    city = models.CharField(max_length=512, blank=True, default="")
+    lat = models.DecimalField(
+        max_digits=24, decimal_places=20, null=True, blank=True)
+    lng = models.DecimalField(
+        max_digits=24, decimal_places=20, null=True, blank=True)
 
 
 class Report(models.Model):
