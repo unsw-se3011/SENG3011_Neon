@@ -29,7 +29,6 @@ import jsonlines
 # for x in range(5):
 #     print(tok[x])
 #     print('\n')
-
 if __name__ == "__main__":
     import argparse
 
@@ -48,9 +47,10 @@ if __name__ == "__main__":
     print(args.file)
 
     it = iter(fileinput.input(files=args.file))
+
     while True:
         j_dict = loads(next(it))
-        # print(j_dict['main_text'])
+        print(j_dict['main_text'])
 
         TEXTS = []
         TEXTS = j_dict['main_text']
