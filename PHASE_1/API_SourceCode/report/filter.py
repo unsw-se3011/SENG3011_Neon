@@ -27,7 +27,6 @@ class DatetimeFilter(BaseFilterBackend):
         if not start_date or not end_date:
             return queryset
 
-            
         queryset.filter(
             Q(**{search_filed + "__gte": start_date}) &
             Q(**{search_filed + "__lte": end_date}))
@@ -73,12 +72,14 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
                 request.query_params.get("end_date", None)
             )
         except Exception as e:
+            # not input start_date or end_date
+            raise ValidationError({
+                'date': 'Both start date and end date are reuiqred.'
+            })
             return queryset
 
-        # Else: there's both start date and end date 
-
-        if start_date> end_date:
-            # validate both is in order 
+        if start_date > end_date:
+            # validate both is in order
             raise ValidationError({
                 'date': 'Start date must be earlier than end date.'
             })
@@ -151,14 +152,14 @@ class LocationFilter(BaseFilterBackend):
                 reportevent__location__city__icontains=city)
         if location:
             queryset = queryset.filter(
-                Q(reportevent__location__continent__icontains = location )|
-                Q(reportevent__location__country__icontains = location )|
-                Q(reportevent__location__state__icontains = location )|
-                Q(reportevent__location__city__icontains = location )|
-                Q(reportevent__location__name__icontains = location )
+                Q(reportevent__location__continent__icontains=location) |
+                Q(reportevent__location__country__icontains=location) |
+                Q(reportevent__location__state__icontains=location) |
+                Q(reportevent__location__city__icontains=location) |
+                Q(reportevent__location__name__icontains=location)
             )
-        # distinct the result, because we may have duplicate result 
-        queryset= queryset.distinct()
+        # distinct the result, because we may have duplicate result
+        queryset = queryset.distinct()
         return queryset
 
     def get_schema_fields(self, view):

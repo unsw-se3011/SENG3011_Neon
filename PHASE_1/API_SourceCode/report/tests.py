@@ -8,7 +8,7 @@ def parseDatetime(date_time):
     return parse_datetime(date_time)
 
 
-class ReportEventCase(TestCase):
+class ReportCase(TestCase):
 
     def create_report(self):
         article = Article.objects.create(
@@ -53,3 +53,9 @@ class ReportEventCase(TestCase):
         response = self.client.get(
             "http://localhost:8000/v0/reports/?start_date=2223-02-02T02:02:00Z&end_date=2223-03-02T02:02:10Z")
         self.assertEqual(response.json()['count'], 0)
+
+    def test_not_input_start_date_and_end_date(self):
+        # use factory to get the response
+        response = self.client.get(
+            "http://localhost:8000/v0/reports/")
+        self.assertEqual(response.status_code, 400)
