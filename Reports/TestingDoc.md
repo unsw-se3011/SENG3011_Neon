@@ -18,48 +18,53 @@ for testing. For JMeter performance testing, Java 8+ and software download is re
 
 **Black-box testing**: <br>
 Swagger (used for testing) <br>
+Limitation: 
+- Multiple requests at the same time is not supported<br>
+- Testing results could not be stored<br>
+- Test case are not easy to change <br>
+
+Testing process:
 1.	A list of test cases and their expected results were documented and the request URL were passed into Swagger
 2.	Tests included checking the status, the body and the content type of the response
 
 Initially, the test cases only contained correct input. Then we added tests for incorrect output to check error handling of the API.
 
-Limitation: 
-- Multiple requests at the same time is not supported<br>
-- Testing results could not be stored<br>
-- Test case are not easy to change
-
 **White-box testing**: <br>
 
 Django Unit testing (used for testing) <br>
-1.	API module was broken down and major methods are testing by individual unit tests through Django unit test.
-2. URL reachable test is running by checkout the connection state from response header
 
 Limitation: 
 - Multiple requests at the same time is not supported<br>
 - Testing results could not be stored<br>
+  
+Testing process:
+1.	API module was broken down and major methods are testing by individual unit tests through Django unit test.
+1. URL reachable test is running by checkout the connection state from response header
+
 
 JMeter also is a type of white-box testing<br>
-1.  The test pass is only when the input request is right and the response connection status is 200.
-Details will be talked below.
+1.  Only Code 200 connection status response will consider as pass test in JMeter. Details will be talked below.
 
 **Performance testing**: <br>
 
 JMeter (used for testing) <br>
+Limitation: 
+- Random input data for group testing is not supported
+  
+Testing process:
 1.  API functions could be tested by defining different test cases 
 2.  By runing the test project, all the test cases that has been define will request the API 
 3.  By changing the Thread Group the tests will be run in different time, for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
 4.  All the test result and responses will be stored in Results Tree for checking. The test will be passed only when the response status is 200
 
-Limitation: 
-- Random input data for group testing is not supported
-
 
 Shell Script (used for testing) <br>
-1. By pre-define format text file, running different requests for curl in the shell script
-2. Compute the average response time and by curl the output of returns 
-
 Limitation :
 - Input data is not easy to change
+
+Testing process:
+1. By pre-define format text file, running different requests for curl in the shell script
+2. Compute the average response time and by curl the output of returns 
 
 
 
