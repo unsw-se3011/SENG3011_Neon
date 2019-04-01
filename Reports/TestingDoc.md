@@ -6,9 +6,16 @@ Project Neon have been working hard to ensure that our API is not only functiona
 
 Initially, we must run our backend in address: http://localhost:8000/ waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing.  
-By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger. For Django unit tests, set up virtual environment, install requirement.txt run
+By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger.  
+For Django unit tests, we can follow these steps:
 
 ```bash
+# pwd: SENG3011_Neon/PHASE_1/API_SourceCode
+# setting up the virtual environments
+virtualenv venv -p `which python3`
+source venv/bin/activate
+pip install -r requirements.txt
+# running the tests
 ./manage.py test
 ```
 
@@ -49,7 +56,7 @@ Testing process:
 
 JMeter also is a type of white-box testing
 
-1.  Only Code 200 connection status response will consider as pass test in JMeter. Details will be talked below.
+1. Only Code 200 connection status response will consider as pass test in JMeter. Details will be talked below.
 
 **Performance testing**:
 
