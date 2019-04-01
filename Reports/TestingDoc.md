@@ -114,9 +114,7 @@ _Results:_ Code 200 OK, returns list of results within the date range, and order
 
 White-box Testing:
 
-## < ADD INFO >
-
-**Test for Incorrectness and Errors:**
+## Test for Incorrectness and Errors
 
 Black-box Testing:
 
@@ -154,10 +152,9 @@ Input example :
 Output example :
 ![white-box](img/white-box.PNG)
 
-## < ADD INFO >
+## Performance Testing
 
-Test for Performance:
-Shell script tesing:
+### Shell script tesing:
 
 - Testing average time for requesting, by record the time for each response in 10 times and expected the average time will not longer than 1s for all test cases
   ![10 times testing](img/test1.PNG)
@@ -165,7 +162,7 @@ Shell script tesing:
   ![all testing](img/test2-1.PNG)
   ![all testing](img/test2-2.PNG)
 
-JMeter testing:
+### JMeter testing:
 
 - Testing for 10 users are requesting for our API at the same time expect the responses are stable for all requests.
   ![input](img/j-2.PNG)
