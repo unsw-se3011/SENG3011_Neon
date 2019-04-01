@@ -19,8 +19,7 @@ pip install -r requirements.txt
 ./manage.py test
 ```
 
- For JMeter performance testing, Java 8+ and software download is required. Finally, for Shell script make sure you are installed curl and bc command for bash.
-
+For JMeter performance testing, Java 8+ and software download is required. Finally, for Shell script make sure you are installed curl and bc command for bash.
 
 ## Testing Tools and Process
 
@@ -164,11 +163,6 @@ Output example :
 - Testing for 10 users are requesting for our API at the same time expect the responses are stable for all requests.
   ![input](img/j-2.PNG)
   ![output](img/j-1.PNG)
-
-
-
-
-
 
 Overall, the output of for all testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
 
