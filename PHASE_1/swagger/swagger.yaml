@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "This a simple epidemics prodictor for SENG3011 project."
+  description: "An epidemic predictor based on live medical reports from the given website (Outbreak News Today)"
   version: "1.0.0"
   title: "Project Neon"
   termsOfService: "http://swagger.io/terms/"
