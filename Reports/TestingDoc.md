@@ -2,7 +2,7 @@
 
 Project Neon have been working hard to ensure that our API is not only functional, but will also provide accurate and efficient data.
 
-## Tesing environment
+## Testing environment
 
 Initially, we must run our backend in address: [http://localhost:8000/](http://localhost:8000/) waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing.  
@@ -21,7 +21,6 @@ pip install -r requirements.txt
 
 for testing. For JMeter performance testing, Java 8+ and software download is required. Finally for Shell script make sure you are installed curl and bc command for bash.
 
-**< describe the testing processes used in the development of API, referring to the data and scripts included in Phase_1 folder. >**
 
 ## Testing Tools and Process
 
@@ -82,9 +81,7 @@ Testing process:
 1. By pre-define format text file, running different requests for curl in the shell script
 2. Compute the average response time and by curl the output of returns
 
-## Overview of Test Cases, Test Data and Test API results: <EXAMPLE from test data>
-
-**Test Data:**
+## Overview of Test Cases, Test Data and Test API results
 
 **Tests for Correctness:**
 
@@ -154,7 +151,7 @@ Output example :
 
 ## Performance Testing
 
-### Shell script tesing:
+### Shell script testing:
 
 - Testing average time for requesting, by record the time for each response in 10 times and expected the average time will not longer than 1s for all test cases
   ![10 times testing](img/test1.PNG)
@@ -168,7 +165,10 @@ Output example :
   ![input](img/j-2.PNG)
   ![output](img/j-1.PNG)
 
-## < Describe the output of testing and what actions you took to improve the test results. >
+
+
+
+
 
 Overall, the ouput of for all testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
 
