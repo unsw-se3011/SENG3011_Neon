@@ -81,7 +81,6 @@ We will use query string parameters to pass requests and we will inspect the URI
 
 We did not choose to send parameters in the body of a POST request because when executing a POST request, the client is actually submitting a new document to the remote host. Since we do not need to submit new information to the server for searching articles, POST request is not that suitable in passing parameters to our API.
 
-
 Users have to input 3 main information strings:
 
 1. Period of interest (date format):
@@ -186,12 +185,29 @@ http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-
 ```
 
 ## Challenges Addressed
-Passing Location Parameter:
-- In order to implement a correct location search function, we require the ability to access all parent nodes of a location. However, this is really time consuming for the user because they will need to indicate all information such as Country, State, City and more.
-- For example, Sydney's parent node is NSW, NSW's parent node is Australia; this way if the user query NSW, we can identify that Sydney is part of NSW and return the articles whose location is Sydney as well as NSW. 
-- To solve this problem, our API currently only require the user to specify one particular location e.g. NSW or Sydney while our backend will auto generate all the information linking the parent nodes. This makes our website more user friendly.
 
-
+1. Search in Location Hierarchy
+   - Store each hierarchy of match location into backend as four fields in location table
+   - When matching in NLPE, we match to its full hierarchy from a dataset  
+2. The Perforamance issue in NLPE
+   - We localise our computation request from NLPE
+   - NLPE as another client to the backend
+   - Use multi-processing to speed up NLPE
+   - Use multi-threading to speed up the storing data in the backend
+3. Multi-words Matching issue in NLPE
+   - Remove tense before matching each word
+   - Create a mapping from disease's logogram to its full name
+4. Matching natural language date and time
+   - Find as much as date and time as possible
+   - If the year is not given, we must have the context of the published date
+5. Duplicate data after scraping
+   - Use URL as a key, filter out the request we have visited
+6. Performance issue in API
+   - Use PostgreSQL instead of SQLite
+   - Pre-process as much as we can to the data source
+   - Dockerlise all the services we provide
+   - If we need to scale to multiple machines, we can deploy via Kubernetes
+     - The consistency of the log file will not preserved when deploying via Kubernetes
 
 ## Implementation Language
 
