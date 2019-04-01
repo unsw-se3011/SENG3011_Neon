@@ -4,9 +4,9 @@ Project Neon have been working hard to ensure that our API is not only functiona
 
 ## Tesing environment
 
-Initially, we must run our backend in address: http://localhost:8000/ waiting for request.
+Initially, we must run our backend in address: [http://localhost:8000/](http://localhost:8000/) waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing.  
-By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger.  
+By Swagger, we need to open the url of [http://neon.whiteboard.house/swagger/#/Report/get*reports*](http://localhost:8000/) and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger.  
 For Django unit tests, we can follow these steps:
 
 ```bash
@@ -23,7 +23,7 @@ for testing. For JMeter performance testing, Java 8+ and software download is re
 
 **< describe the testing processes used in the development of API, referring to the data and scripts included in Phase_1 folder. >**
 
-## Testing Tools and Process:
+## Testing Tools and Process
 
 **Black-box testing**:  
 Swagger (used for testing)  
@@ -67,10 +67,10 @@ Limitation:
 
 Testing process:
 
-1.  API functions could be tested by defining different test cases
-2.  By runing the test project, all the test cases that has been define will request the API
-3.  By changing the Thread Group the tests will be run in different time, for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
-4.  All the test result and responses will be stored in Results Tree for checking. The test will be passed only when the response status is 200
+1. API functions could be tested by defining different test cases
+2. By runing the test project, all the test cases that has been define will request the API
+3. By changing the Thread Group the tests will be run in different time, for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
+4. All the test result and responses will be stored in Results Tree for checking. The test will be passed only when the response status is 200
 
 Shell Script (used for testing)  
 Limitation :
