@@ -2,6 +2,11 @@
 Project Neon have been working hard to ensure that our API is not only functional, but will also provide accurate and efficient data. 
 
 
+## Tesing environment
+Initially, we must run our backend in address: http://localhost:8000/ waiting for request.
+Then we use tools or scripts passing through the inputs and request the url base on the address for testing. <br>
+By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger. For Django unit tests, we need a plugin named ESLint for geting the result response. For JMeter performance testing, Java 8+ and software download is required. Finally for Shell script make sure you are installed curl and bc command for bash.
+
 **< describe the testing processes used in the development of API,  referring to the data and scripts included in Phase_1 folder. >**
 
 
