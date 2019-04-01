@@ -46,18 +46,65 @@ Shell Script (used for testing) <br>
 
 ## Overview of Test Cases, Test Data and Test API results: <EXAMPLE from test data>
 
-
-1.Tests for Correctness:
--   Location = Kensington 
--	Location = Sydney
--	Location = Australia 
-
-2.Test for Incorrectness and Errors:
--	different status codes
+**Test Data:**
 
 
+**Tests for Correctness:**
 
-3.Test for Performance:<br>
+Black-box Testing:
+```
+Query:
+
+start_date=2018-03-31T01:56:55
+end_date=2019-03-31T01:56:55
+location=Australia
+key_term=Anthrax,Zika
+```
+_Results:_  Code 200 OK, returns list of results within the date range, location including areas specified as Sydney, and include all keyterms.
+
+```
+Query:
+
+start_date=2018-03-31T01:56:55
+end_date=2019-03-31T01:56:55
+location=
+key_term=
+```
+_Results:_  Code 200 OK, returns list of results within the date range, and order reports worldwide by newest date.
+
+
+
+White-box Testing:
+## < ADD INFO >
+
+
+**Test for Incorrectness and Errors:**
+
+Black-box Testing:
+
+```
+Query:
+
+start_date=2018-03-31T01:56:55
+end_date=2018-03-30T01:56:55
+location=
+key_term=
+```
+_Results:_  Code 400 Bad Request, with response: "date": "Start date must be earlier than end date."
+```
+Query:
+
+start_date=2018-03-31
+end_date=2019-03-31
+location=Australia
+key_term=Anthrax,Zika
+```
+_Results:_  Code 500 Internal Server Error, with response: "not supported between instances of 'NoneType' and 'NoneType'"
+
+
+White-box Testing:
+## < ADD INFO >
+Test for Performance:<br>
 Shell script tesing:
 -   Testing average time for requesting, by record the time for each response in 10 times and expected the average time will not longer than 1s for all test cases
 ![10 times testing](img/test1.PNG)
@@ -70,5 +117,6 @@ JMeter testing:
 ![input](img/j-2.PNG)
 ![output](img/j-1.PNG)
 
-
 ## < Describe the output of testing and what actions you took to improve the test results. >
+
+Overall, the ouput of black-box testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
