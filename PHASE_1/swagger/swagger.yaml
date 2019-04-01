@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "This a simple epidemics prodictor for SENG3011 project."
+  description: "An epidemic predictor based on live medical reports from the given website (Outbreak News Today)"
   version: "1.0.0"
   title: "Project Neon"
   termsOfService: "http://swagger.io/terms/"
@@ -27,27 +27,27 @@ paths:
       parameters:
         - name: start_date
           in: query
-          description: "Start datetime of the event occur. Expect '2018-03-31T01:56:55'"
-          required: false
+          description: "Start datetime of the event occur. Expect input='2018-03-31T01:56:55'"
+          required: true
           type: string
         - name: end_date
           in: query
-          description: "End datetime of the event occur. Expect '2019-03-31T01:56:55' and later than start_date " 
-          required: false
+          description: "End datetime of the event occur. Expect input='2019-03-31T01:56:55' and later than start_date "
+          required: true
           type: string
         - name: location
           in: query
-          description: "Location of the event occur (this is case insensitive). Expect 'Australia' or 'aus'"
+          description: "Location of the event occur (this is case insensitive). Expect input='Australia' or Expect input='aus'"
           required: false
           type: string
         - name: key_term
           in: query
-          description: "A search term (this is case insensitive and seperate by ','). Expect 'Anthrax,Zika' "
+          description: "A search term (this is case insensitive and seperate by ','). Expect input='Anthrax,Zika'  "
           required: false
           type: string
       responses:
-        '200':
-          description: 'OK'
+        "200":
+          description: "OK"
           schema:
             required:
               - count
@@ -67,17 +67,17 @@ paths:
               results:
                 type: array
                 items:
-                  $ref: '#/definitions/Report'
-        '400':
-          description: 'Bad Request'
+                  $ref: "#/definitions/Report"
+        "400":
+          description: "Bad Request"
           schema:
             type: object
             properties:
               date:
                 type: string
-                example: 'Start date must be earlier than end date.'
-        '500':
-          description: 'Internal Server Error'
+                example: "Start date must be earlier than end date."
+        "500":
+          description: "Internal Server Error"
 definitions:
   Article:
     required:
@@ -260,7 +260,7 @@ definitions:
         maximum: 2147483647
         minimum: -2147483648
       location:
-        $ref: '#/definitions/Location'
+        $ref: "#/definitions/Location"
   Report:
     required:
       - disease
@@ -272,7 +272,7 @@ definitions:
         type: integer
         readOnly: true
       article:
-        $ref: '#/definitions/Article'
+        $ref: "#/definitions/Article"
       disease:
         type: array
         items:
@@ -289,7 +289,7 @@ definitions:
       report_event:
         type: array
         items:
-          $ref: '#/definitions/ReportEvent'
+          $ref: "#/definitions/ReportEvent"
         readOnly: true
   Syndrome:
     required:
@@ -313,7 +313,8 @@ definitions:
         readOnly: true
       username:
         title: Username
-        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+        description:
+          Required. 150 characters or fewer. Letters, digits and @/./+/-/_
           only.
         type: string
         pattern: ^[\w.@+-]+$
