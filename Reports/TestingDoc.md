@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ./manage.py test
 ```
 
-for testing. For JMeter performance testing, Java 8+ and software download is required. Finally for Shell script make sure you are installed curl and bc command for bash.
+ For JMeter performance testing, Java 8+ and software download is required. Finally, for Shell script make sure you are installed curl and bc command for bash.
 
 
 ## Testing Tools and Process
@@ -30,7 +30,7 @@ Limitation:
 
 - Multiple requests at the same time is not supported
 - Testing results could not be stored
-- Test case are not easy to change
+- Test cases are not easy to change
 
 Testing process:
 
@@ -67,12 +67,12 @@ Limitation:
 Testing process:
 
 1. API functions could be tested by defining different test cases
-2. By runing the test project, all the test cases that has been define will request the API
+2. By running the test project, all the test cases that has been define will request the API
 3. By changing the Thread Group the tests will be run in different time, for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
 4. All the test result and responses will be stored in Results Tree for checking. The test will be passed only when the response status is 200
 
 Shell Script (used for testing)  
-Limitation :
+Limitation:
 
 - Input data is not easy to change
 
@@ -170,8 +170,8 @@ Output example :
 
 
 
-Overall, the ouput of for all testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
+Overall, the output of for all testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
 
-However in white-box testing the response of filter is run out of time and failed the test. We change the logic of filter implementation and hence solve the problem of overtime.
+However, in white-box testing the response of filter is run out of time and failed the test. We change the logic of filter implementation and hence solve the problem of overtime.
 
 Also in the performance testing, the database that we used is not support high volume of visiting, so we change database from sqlite to postgresql for better performance.
