@@ -53,7 +53,6 @@ docker-compose down --rmi all
 
 ```
 
-
 ## APIs Documents
 
 The api document is in [api.http](./api.http); You need to run it via [vscode Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
@@ -66,13 +65,13 @@ ext install humao.rest-client
 
 ## URLs
 
-| URL                                                                                                | Detail               |
-| :------------------------------------------------------------------------------------------------- | :------------------- |
-| [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                                     | Home Page (frontend) |
-| [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                               | Api Root             |
-| [http://neon.whiteboard.house/swagger/](http://neon.whiteboard.house/v0/swagger/)                  | Swagger Documents    |
-| [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)                         | Django admin         |
-| [http://neon.whiteboard.house/log/access_log.txt](http://neon.whiteboard.house/log/access_log.txt) | Access Log           |
+| URL                                                                                                 | Detail               |
+| :-------------------------------------------------------------------------------------------------- | :------------------- |
+| [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                                      | Home Page (frontend) |
+| [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                                | Api Root             |
+| [http://neon.whiteboard.house/swagger/](http://neon.whiteboard.house/swagger/#/Report/get_reports_) | Swagger Documents    |
+| [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)                          | Django admin         |
+| [http://neon.whiteboard.house/log/access_log.txt](http://neon.whiteboard.house/log/access_log.txt)  | Access Log           |
 
 ## For D2
 

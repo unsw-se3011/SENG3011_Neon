@@ -252,8 +252,12 @@ GET {{baseUrl}}reports/?disease=hello1&syndrome=stomache HTTP/1.1
 GET {{baseUrl}}reports/?start_date=2223-02-02T02:02:00Z&end_date=2223-03-02T02:02:10Z
 
 ###
-# filter error 
+# filter error: end < start 
 GET {{baseUrl}}reports/?start_date=2223-03-02T02:02:10Z&end_date=2223-02-02T02:02:00Z
+
+###
+# filter error not input 
+GET {{baseUrl}}reports/
 
 ###
 # Filter against locations
