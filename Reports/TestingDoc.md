@@ -157,3 +157,19 @@ Overall, the ouput of for all testing had no major problems. One improvement for
 However in white-box testing the response of filter is run out of time and failed the test. We change the logic of filter implementation and hence solve the problem of overtime.
 
 Also in the performance testing, the database that we used is not support high volume of visiting, so we change database from sqlite to postgresql for better performance.
+
+## Challenges Addressed
+1. Search in Location Hierarchy   
+- Store each hierarchy of match location into backend as four fields in location table   - When matching in NLPE, we match to its full hierarchy from a dataset  
+2. The Perforamance issue in NLPE   
+- We localise our computation request from NLPE  
+- NLPE as another client to the backend   
+- Use multi-processing to speed up NLPE   
+- Use multi-threading to speed up the storing data in the backend3. Multi-words Matching issue in NLPE  - Remove tense before matching each word   
+- Create a mapping from disease's logogram to its full name4. Matching natural language date and time  - Find as much as date and time as possible   
+- If the year is not given, we must have the context of the published date5. Duplicate data after scraping   
+- Use URL as a key, filter out the request we have visited6. Performance issue in API   
+- Use PostgreSQL instead of SQLite   
+- Pre-process as much as we can to the data source   - Dockerlise all the services we provide   
+- If we need to scale to multiple machines, we can deploy via Kubernetes     
+- The consistency of the log file will not preserved when deploying via Kubernetes
