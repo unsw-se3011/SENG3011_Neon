@@ -70,7 +70,7 @@ ext install humao.rest-client
 | :------------------------------------------------------------------------------------------------- | :------------------- |
 | [http://neon.whiteboard.house/](http://neon.whiteboard.house/)                                     | Home Page (frontend) |
 | [http://neon.whiteboard.house/v0/](http://neon.whiteboard.house/v0/)                               | Api Root             |
-| [http://neon.whiteboard.house/swagger/](http://neon.whiteboard.house/v0/swagger/)                  | Swagger Documents    |
+| [http://neon.whiteboard.house/swagger/](http://neon.whiteboard.house/swagger/#/Report/get_reports_)                  | Swagger Documents    |
 | [http://neon.whiteboard.house/admin/](http://neon.whiteboard.house/admin/)                         | Django admin         |
 | [http://neon.whiteboard.house/log/access_log.txt](http://neon.whiteboard.house/log/access_log.txt) | Access Log           |
 
