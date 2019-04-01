@@ -5,7 +5,11 @@ Project Neon have been working hard to ensure that our API is not only functiona
 ## Tesing environment
 Initially, we must run our backend in address: http://localhost:8000/ waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing. <br>
-By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger. For Django unit tests, we need a plugin named ESLint for geting the result response. For JMeter performance testing, Java 8+ and software download is required. Finally for Shell script make sure you are installed curl and bc command for bash.
+By Swagger, we need to open the url of http://neon.whiteboard.house/swagger/#/Report/get_reports_ and simlply test by typing in the request body for each function. However there is no any specific requirements for Swagger. For Django unit tests, set up virtual environment, install requirement.txt run 
+```bash
+./manage.py test 
+```
+for testing. For JMeter performance testing, Java 8+ and software download is required. Finally for Shell script make sure you are installed curl and bc command for bash.
 
 **< describe the testing processes used in the development of API,  referring to the data and scripts included in Phase_1 folder. >**
 
@@ -28,19 +32,23 @@ Limitation:
 
 Django Unit testing (used for testing) <br>
 1.	API module was broken down and major methods are testing by individual unit tests through Django unit test.
+2. URL reachable test is running by checkout the connection state from response header
 
 Limitation: 
 - Multiple requests at the same time is not supported<br>
 - Testing results could not be stored<br>
 
+JMeter also is a type of white-box testing<br>
+1.  The test pass is only when the input request is right and the response connection status is 200.
+Details will be talked below.
 
 **Performance testing**: <br>
 
 JMeter (used for testing) <br>
 1.  API functions could be tested by defining different test cases 
 2.  By runing the test project, all the test cases that has been define will request the API 
-3.  By changing the Thread Group the tests will be run in different time for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
-4.  All the test result and responses will be stored in Results Tree for checking 
+3.  By changing the Thread Group the tests will be run in different time, for example it can simulate that we have 5 users request for the same time and the defined test cases will be run in 5 times each
+4.  All the test result and responses will be stored in Results Tree for checking. The test will be passed only when the response status is 200
 
 Limitation: 
 - Random input data for group testing is not supported
@@ -88,7 +96,6 @@ _Results:_  Code 200 OK, returns list of results within the date range, and orde
 White-box Testing:
 ## < ADD INFO >
 
-
 **Test for Incorrectness and Errors:**
 
 Black-box Testing:
@@ -113,7 +120,17 @@ key_term=Anthrax,Zika
 _Results:_  Code 500 Internal Server Error, with response: "not supported between instances of 'NoneType' and 'NoneType'"
 
 
-White-box Testing:
+White-box Testing: <br>
+Input are stored in file api.http in PHASE_1 API_Documentationn in every branch for Django unit testing <br>
+Terminal testing result:
+![django-1](img/result-1.PNG)
+Virtual studio test example:
+![django](img/result.PNG)
+Also JMeter tests are stored in PHASE_1 TestScripts in testing branch and examples are decribed below in performance testing section<br>
+Input example :
+![white-box1](img/white-1.PNG)
+Output example :
+![white-box](img/white-box.PNG)
 ## < ADD INFO >
 Test for Performance:<br>
 Shell script tesing:
@@ -130,4 +147,8 @@ JMeter testing:
 
 ## < Describe the output of testing and what actions you took to improve the test results. >
 
-Overall, the ouput of black-box testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
+Overall, the ouput of for all testing had no major problems. One improvement for future deliverables is to develop better scrapping system so more reports are returned responding to a query.
+
+However in white-box testing the response of filter is run out of time and failed the test. We change the logic of filter implementation and hence solve the problem of overtime.
+
+Also in the performance testing, the database that we used is not support high volume of visiting, so we change database from sqlite to postgresql for better performance.
