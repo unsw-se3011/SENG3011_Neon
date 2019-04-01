@@ -42,6 +42,8 @@ Initially, the test cases only contained correct input. Then we added tests for 
 
 Black-box Testing:
 ```
+Query:
+
 start_date=2018-03-31T01:56:55
 end_date=2019-03-31T01:56:55
 location=Australia
@@ -50,6 +52,8 @@ key_term=Anthrax,Zika
 _Results:_  Code 200 OK, returns list of results within the date range, location including areas specified as Sydney, and include all keyterms.
 
 ```
+Query:
+
 start_date=2018-03-31T01:56:55
 end_date=2019-03-31T01:56:55
 location=
@@ -68,6 +72,8 @@ White-box Testing:
 Black-box Testing:
 
 ```
+Query:
+
 start_date=2018-03-31T01:56:55
 end_date=2018-03-30T01:56:55
 location=
@@ -75,6 +81,8 @@ key_term=
 ```
 _Results:_  Code 400 Bad Request, with response: "date": "Start date must be earlier than end date."
 ```
+Query:
+
 start_date=2018-03-31
 end_date=2019-03-31
 location=Australia
