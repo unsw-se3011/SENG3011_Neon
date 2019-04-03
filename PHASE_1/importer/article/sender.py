@@ -64,7 +64,7 @@ def mk_article(data):
 
     article = data['article']
     return {
-        'publish': article['date_of_publication'][:10] + 'T00:00',
+        'date_of_publication': article['date_of_publication'][:10] + 'T00:00',
         'p_fuzz': 'H',
         "url": article['url'],
         "headline": article['headline'],
