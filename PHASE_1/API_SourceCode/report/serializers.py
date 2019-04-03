@@ -53,7 +53,11 @@ class LocationSerializer(serializers.ModelSerializer):
 class ReportEventSerializer(serializers.ModelSerializer):
     report_id = serializers.PrimaryKeyRelatedField(
         queryset=Report.objects.all(), write_only=True)
-    location = LocationSerializer(required = False)
+    location = LocationSerializer(required=False)
+    event_type = serializers.CharField(
+        source='event_type_full', read_only=True
+    )
+    e_type = serializers.CharField(write_only=True)
 
     def validate(self, data):
         if data['start_date'] > data['end_date']:
@@ -77,6 +81,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
         model = ReportEvent
         fields = (
             "report_id",
+            "event_type",
             "e_type",
             "start_date",
             "sd_fuzz",
@@ -115,7 +120,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'id',
             'url',
             'headline',
-            'publish',
+            'date_of_publication',
             'main_text',
             'p_fuzz',
             'img'
@@ -124,7 +129,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 class ReportSerializer(serializers.ModelSerializer):
     # Reportevent details
-    report_event = ReportEventSerializer(
+    report_events = ReportEventSerializer(
         many=True, read_only=True, source='reportevent_set')
 
     # attach the article while creation
@@ -149,5 +154,5 @@ class ReportSerializer(serializers.ModelSerializer):
             'syndrome',
             'comment',
             'article',
-            'report_event'
+            'report_events'
         )
