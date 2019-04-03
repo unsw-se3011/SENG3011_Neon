@@ -37,7 +37,7 @@ paths:
           type: string
         - name: location
           in: query
-          description: "Location of the event occur (this is case insensitive). Expect input='Australia' or Expect input='aus' foramt='String'"
+          description: "Location of the event occur (this is case insensitive). Expect input='United States' or Expect input='united states' foramt='String'"
           required: false
           type: string
         - name: key_term
