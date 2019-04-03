@@ -85,6 +85,14 @@ EVENT_TYPE_CHOICE = (
     (RECOVERED, 'Recovered'),
 )
 
+EVENT_TYPE_MAP = {
+    PRESENCE: 'Presence',
+    DEATH: 'Death',
+    INFECTED: 'Infected',
+    HOSPITALISED: 'Hospitalised',
+    RECOVERED: 'Recovered',
+}
+
 
 class ReportEvent(models.Model):
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
@@ -98,3 +106,7 @@ class ReportEvent(models.Model):
     number_affected = models.IntegerField(blank=True, null=True)
     location = models.ForeignKey(
         Location, models.PROTECT, blank=True, null=True)
+
+    @property
+    def event_type_full(self):
+        return EVENT_TYPE_MAP[self.e_type]

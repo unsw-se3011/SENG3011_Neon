@@ -54,6 +54,10 @@ class ReportEventSerializer(serializers.ModelSerializer):
     report_id = serializers.PrimaryKeyRelatedField(
         queryset=Report.objects.all(), write_only=True)
     location = LocationSerializer(required=False)
+    event_type = serializers.CharField(
+        source='event_type_full', read_only=True
+    )
+    e_type = serializers.CharField(write_only=True)
 
     def validate(self, data):
         if data['start_date'] > data['end_date']:
@@ -77,6 +81,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
         model = ReportEvent
         fields = (
             "report_id",
+            "event_type",
             "e_type",
             "start_date",
             "sd_fuzz",
