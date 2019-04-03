@@ -4,7 +4,7 @@ We use Swagger for black-box testing, documented in Reports/TestingDoc.md on git
 
 ## Whitebox testing
 
-We use Django unit tests, defined in [test.py](../PHASE_1/API_SourceCode/report/tests.py) and sample result is in [django.out](PHASE_1/TestScripts/django.out).
+We use Django unit tests, defined in [test.py](../API_SourceCode/report/tests.py) and sample result is in [django.out](PHASE_1/TestScripts/django.out).
 
 ## Black Box testing
 
