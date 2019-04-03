@@ -27,22 +27,22 @@ paths:
       parameters:
         - name: start_date
           in: query
-          description: "Start datetime of the event occur. Expect input='2018-03-31T01:56:55'"
+          description: "Start datetime of the event occur. Expect input='2017-03-31T01:56:55' format='yyyy-mm-ddThh:mm:ss'"
           required: true
           type: string
         - name: end_date
           in: query
-          description: "End datetime of the event occur. Expect input='2019-03-31T01:56:55' and later than start_date "
+          description: "End datetime of the event occur. Expect input='2019-03-31T01:56:55' format='yyyy-mm-ddThh:mm:ss' and later than start_date "
           required: true
           type: string
         - name: location
           in: query
-          description: "Location of the event occur (this is case insensitive). Expect input='Australia' or Expect input='aus'"
+          description: "Location of the event occur (this is case insensitive). Expect input='Australia' or Expect input='aus' foramt='String'"
           required: false
           type: string
         - name: key_term
           in: query
-          description: "A search term (this is case insensitive and seperate by ','). Expect input='Anthrax,Zika'  "
+          description: "A search term (this is case insensitive and seperate by ','). Expect input='Anthrax,Zika'  forma='String[,String]*' "
           required: false
           type: string
       responses:
