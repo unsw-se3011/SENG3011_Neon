@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTM4NDQ3ODQsImVtYWlsIjoiIn0.9unITyla1DHXMp54WUju5qHj77BF7C-GuDfRMHhTWlE
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTQyNjU5NDMsImVtYWlsIjoiIn0.27FXwrnkrw-GL1J87C1wmY1nKv1B_7gWNWD0mujUSL8
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -205,7 +205,7 @@ Authorization: {{auth}}
     "sd_fuzz": "H",
     "end_date": "2222-02-03T02:02",
     "ed_fuzz": "M",
-    "number_effecet": 12,
+    "number_affected": 12,
     "location": {
         "name": "Sydney",
         "lat": 12.22,
