@@ -129,7 +129,7 @@ def mk_report(j_dict):
                 report_event['location'] = state_list[0]
             elif country_list:
                 report_event['location'] = country_list[0]
-        data['report_event'] = [report_event]
+        data['report_events'] = [report_event]
     for key, value in data.items():
         # check all the field has data
         if value:
@@ -197,11 +197,14 @@ class Worker(threading.Thread):
             # attach article id
             report['article_id'] = self.id
 
-            print(dumps(report))
-            exit()
+            # print(dumps(report))
+            # exit()
             # push request
             self.my_lock.acquire()
-            mk_request('reports', report)
+            try:
+                mk_request('reports', report)
+            except Exception as e:
+                print(dumps(report))
             self.my_lock.release()
 
 

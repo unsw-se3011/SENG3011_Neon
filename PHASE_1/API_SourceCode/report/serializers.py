@@ -53,7 +53,7 @@ class LocationSerializer(serializers.ModelSerializer):
 class ReportEventSerializer(serializers.ModelSerializer):
     report_id = serializers.PrimaryKeyRelatedField(
         queryset=Report.objects.all(), write_only=True)
-    location = LocationSerializer()
+    location = LocationSerializer(required = False)
 
     def validate(self, data):
         if data['start_date'] > data['end_date']:

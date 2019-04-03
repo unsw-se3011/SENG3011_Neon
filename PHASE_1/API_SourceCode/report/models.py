@@ -95,6 +95,6 @@ class ReportEvent(models.Model):
     # end of date time
     end_date = models.DateTimeField()
     ed_fuzz = models.CharField(max_length=1, choices=fuzz_choice)
-    number_affected = models.IntegerField()
+    number_affected = models.IntegerField(blank=True, null=True)
     location = models.ForeignKey(
         Location, models.PROTECT, blank=True, null=True)
