@@ -6,7 +6,7 @@ import requests
 import threading
 import time
 import fileinput
-
+from traceback import print_exc
 
 PRESENCE = "P"
 DEATH = "D"
@@ -28,10 +28,10 @@ SYNDROME_MAP = {
 }
 
 
-# BASE_URL = 'http://neon.whiteboard.house/v0/'
-BASE_URL = 'http://localhost:8000/v0/'
+BASE_URL = 'http://neon.whiteboard.house/v0/'
+# BASE_URL = 'http://localhost:8000/v0/'
 
-THREAD_COUNT = 2
+THREAD_COUNT = 4
 
 token = ""
 
@@ -78,14 +78,18 @@ def refresh_token():
 
     # hold the lock to refresh the token
     for i in range(THREAD_COUNT):
-        print("acuireing - " + str(i))
+        print("acuireing lock - " + str(i))
         request_sem.acquire()
 
     response = requests.post(
         BASE_URL+'jwt/',
         data={"username": "neon", "password": "apple123"}
     )
+    old_token = token
     token = "JWT " + response.json()['token']
+
+    if old_token != token:
+        print("get Refreshed token")
 
     # release the lock for thead to make request
     for i in range(THREAD_COUNT):
@@ -94,7 +98,7 @@ def refresh_token():
 
     print("set up another timer")
     # set up another timer for next refresh
-    threading.Timer(20, refresh_token).start()
+    threading.Timer(30, refresh_token).start()
 
 
 def mk_report(j_dict):
@@ -177,6 +181,8 @@ class Worker(threading.Thread):
                     self.send_report()
                 except requests.HTTPError as e:
                     print(str(counter) + ": " + self.j_dict['article']['url'])
+                    print(dumps(mk_article(self.j_dict)))
+                    print_exc()
                 # time.sleep(1)
         except StopIteration as e:
             # we expect this error, do nothing
