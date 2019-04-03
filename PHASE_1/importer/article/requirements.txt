@@ -33,4 +33,5 @@ tinysegmenter==0.3
 tldextract==2.2.1
 typed-ast==1.3.1
 urllib3==1.24.1
+word2number==1.1
 wrapt==1.11.1

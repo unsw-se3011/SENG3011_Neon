@@ -1,7 +1,7 @@
 #!python3
 
 # prompts:
-from json import loads,dumps
+from json import loads, dumps
 import requests
 import threading
 import time
@@ -30,27 +30,30 @@ SYNDROME_MAP = {
 
 # BASE_URL = 'http://neon.whiteboard.house/v0/'
 BASE_URL = 'http://localhost:8000/v0/'
-# # auth by the default admin user
-# response = requests.post(
-#     BASE_URL+'jwt/',
-#     data={"username": "neon", "password": "apple123"}
-# )
+
+THREAD_COUNT = 2
+
 token = ""
 
 input_lock = threading.Lock()
 input_count = 0
 
-request_locks = []
+request_sem = threading.Semaphore(THREAD_COUNT)
 
 
 def mk_request(endpoint, data):
     global token
+
+    request_sem.acquire()
+
     # making the request
     req = requests.post(
         BASE_URL+endpoint + '/',
         json=data,
         headers={'Authorization': token, 'Content-Type': 'application/json'}
     )
+    request_sem.release()
+
     # raise if there's an error
     req.raise_for_status()
 
@@ -61,7 +64,7 @@ def mk_article(data):
 
     article = data['article']
     return {
-        'publish':article['date_of_publication'][:10] + 'T00:00',
+        'publish': article['date_of_publication'][:10] + 'T00:00',
         'p_fuzz': 'H',
         "url": article['url'],
         "headline": article['headline'],
@@ -70,23 +73,28 @@ def mk_article(data):
     }
 
 
-
 def refresh_token():
-    global token, request_locks
+    global token, request_sem
 
-    # acquire lock
-    [l.acquire() for l in request_locks]
+    # hold the lock to refresh the token
+    for i in range(THREAD_COUNT):
+        print("acuireing - " + str(i))
+        request_sem.acquire()
 
     response = requests.post(
         BASE_URL+'jwt/',
         data={"username": "neon", "password": "apple123"}
     )
     token = "JWT " + response.json()['token']
-    # release the lock for request
-    [l.release() for l in request_locks]
 
+    # release the lock for thead to make request
+    for i in range(THREAD_COUNT):
+        print("releasing - " + str(i))
+        request_sem.release()
+
+    print("set up another timer")
     # set up another timer for next refresh
-    threading.Timer(240, refresh_token)
+    threading.Timer(20, refresh_token).start()
 
 
 def mk_report(j_dict):
@@ -142,9 +150,6 @@ class Worker(threading.Thread):
         global request_locks
         threading.Thread.__init__(self)
         self.it = iteratable
-        # add my lock to global stage
-        self.my_lock = threading.Lock()
-        request_locks.append(self.my_lock)
 
     def run(self):
         global input_lock, input_count
@@ -172,7 +177,6 @@ class Worker(threading.Thread):
                     self.send_report()
                 except requests.HTTPError as e:
                     print(str(counter) + ": " + self.j_dict['article']['url'])
-                    self.my_lock.release()
                 # time.sleep(1)
         except StopIteration as e:
             # we expect this error, do nothing
@@ -181,12 +185,10 @@ class Worker(threading.Thread):
     def send_article(self):
         # lock this request
         # make up the article object
-        article =  mk_article(self.j_dict)
-        
-        self.my_lock.acquire()
+        article = mk_article(self.j_dict)
+
         # send the request through the network
-        ret = mk_request('articles',article)
-        self.my_lock.release()
+        ret = mk_request('articles', article)
         self.id = ret.json()['id']
 
     def send_report(self):
@@ -200,12 +202,10 @@ class Worker(threading.Thread):
             # print(dumps(report))
             # exit()
             # push request
-            self.my_lock.acquire()
             try:
                 mk_request('reports', report)
             except Exception as e:
                 print(dumps(report))
-            self.my_lock.release()
 
 
 if __name__ == "__main__":
@@ -224,7 +224,7 @@ if __name__ == "__main__":
     # print((loads(next(it))))
     # print(dumps(mk_article(loads(next(it)))))
     # print(dumps(mk_report(loads(next(it)))))
-    for i in range(5):
+    for i in range(THREAD_COUNT*2):
         workers.append(Worker(it))
 
     # print(mk_report(loads(next(it))))
