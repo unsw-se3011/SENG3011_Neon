@@ -23,7 +23,7 @@ fuzz_choice = (
 class Article(models.Model):
     url = models.URLField(unique=True)
     headline = models.CharField(max_length=512, default='')
-    publish = models.DateTimeField()
+    date_of_publication = models.DateTimeField()
     # publish fuzz field
     p_fuzz = models.CharField(
         max_length=1, choices=fuzz_choice)
