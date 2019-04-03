@@ -1,7 +1,7 @@
 #!python3
 
 # prompts:
-from json import loads
+from json import loads,dumps
 import requests
 import threading
 import time
@@ -28,7 +28,8 @@ SYNDROME_MAP = {
 }
 
 
-BASE_URL = 'http://neon.whiteboard.house/v0/'
+# BASE_URL = 'http://neon.whiteboard.house/v0/'
+BASE_URL = 'http://localhost:8000/v0/'
 # # auth by the default admin user
 # response = requests.post(
 #     BASE_URL+'jwt/',
@@ -54,6 +55,20 @@ def mk_request(endpoint, data):
     req.raise_for_status()
 
     return req
+
+
+def mk_article(data):
+
+    article = data['article']
+    return {
+        'publish':article['date_of_publication'][:10] + 'T00:00',
+        'p_fuzz': 'H',
+        "url": article['url'],
+        "headline": article['headline'],
+        "main_text": article['main_text'],
+        "img": ""
+    }
+
 
 
 def refresh_token():
@@ -165,14 +180,12 @@ class Worker(threading.Thread):
 
     def send_article(self):
         # lock this request
-        # print(self.j_dict['article'])
-        self.j_dict['article']['publish'] = \
-            self.j_dict['article']['date_of_publication'][:10] + 'T00:00'
-
-        self.j_dict['article']['p_fuzz'] = 'H'
-
+        # make up the article object
+        article =  mk_article(self.j_dict)
+        
         self.my_lock.acquire()
-        ret = mk_request('articles', self.j_dict['article'])
+        # send the request through the network
+        ret = mk_request('articles',article)
         self.my_lock.release()
         self.id = ret.json()['id']
 
@@ -184,6 +197,8 @@ class Worker(threading.Thread):
             # attach article id
             report['article_id'] = self.id
 
+            print(dumps(report))
+            exit()
             # push request
             self.my_lock.acquire()
             mk_request('reports', report)
@@ -200,7 +215,13 @@ if __name__ == "__main__":
 
     # import disease
     it = iter(fileinput.input(files='output.jl'))
-    for i in range(8):
+
+    # print(next(it))
+
+    # print((loads(next(it))))
+    # print(dumps(mk_article(loads(next(it)))))
+    # print(dumps(mk_report(loads(next(it)))))
+    for i in range(5):
         workers.append(Worker(it))
 
     # print(mk_report(loads(next(it))))

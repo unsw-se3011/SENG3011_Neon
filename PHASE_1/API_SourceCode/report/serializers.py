@@ -56,7 +56,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
     location = LocationSerializer()
 
     def validate(self, data):
-        if data['start_date'] >= data['end_date']:
+        if data['start_date'] > data['end_date']:
             raise serializers.ValidationError("finish must occur after start")
 
         # base on fuzz, we send it to the last date it can be or first date it can be to support better filter
