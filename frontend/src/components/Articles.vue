@@ -2,9 +2,8 @@
 <template>
 <v-container grid-list-xl>
   <v-layout wrap>
-  <!--  <v-flex v-for="i in 3" :key="`4${i}`" xs4 mr-4 mb-4 ml-4 mt-4> -->
     <v-flex xs4
-        v-for="(item, index) in wholeResponse"
+        v-for="(item, index) in wholeResponse.slice(offset,offset+10)"
         :key="index"
         mb-2>
       <v-card>
@@ -37,14 +36,15 @@
             >
              {{item.title}}
             </v-subheader>-->
-             <a v-bind:href="item.url" style="color:orange;font-size:20px;font-weight:bold;text-decoration: none;">
-              {{ item.headline}}
+             <a v-bind:href="item.article.url" style="color:orange;font-size:20px;font-weight:bold;text-decoration: none;">
+              {{ item.article.headline}}
              </a>
              <div>
              </div>
-             <div> Publish Date : {{ item.publish.substring(0,10) + " " + item.publish.substring(11,19) }} </div>
-            <div> Disease : {{ item.reports }} </div>
-            <div> {{ item.main_text }} </div>
+             <!--<div> Publish Date : {{ item.article.date_of_publication.substring(0,10) + " " + item.article.date_of_publication.substring(11,19) }} </div>-->
+            Publish Date : {{ item.article.date_of_publication |  dateStr}}
+            <div> Disease : {{ item.disease }} </div>
+            <div> {{ item.article.main_text | liveSubstr }} </div>
         <v-card-actions>
             <div class="text-xs-center">
             <v-dialog
@@ -54,7 +54,6 @@
               <v-btn
                 slot="activator"
                 color="orange"
-                dark
                 flat
               >
                 Explore
@@ -66,20 +65,23 @@
                   style="color:orange;font-weight:bold;"
                 >
                  <a v-bind:href="item.url" style="color:orange;font-size:20px;font-weight:bold">
-                    {{ item.headline }}
+                    {{ item.article.headline}}
                    </a>
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>
                   <div style="color:orange">
-                    <div> Disease : {{ item.reports }} </div>
-                    <div> Syndrome : {{ item.reports }} </div>
+                    <div> Disease : {{ item.disease }} </div>
+                    <div> Syndrome : {{ item.syndrome }} </div>
                     <div> Type : {{ type }} </div>
-                    <div> Date : {{ dDate }} </div>
-                    <div> Location : {{ location }} </div>
-                    <div> Number effect : {{ effect }} </div>
+                    <div> Start Date : {{ item.report_events[0].start_date | dateStr }} </div>
+                <!--    <div v-if="item.report_events[0].location.city && item.report_events[0].location.country"> Location : {{ item.report_events[0].location + "," + item.report_events[0].location}} </div> -->
+                    <div v-for="(city,country) in item.report_events[0].location" :key="country">
+                        {{ city }}
+                    </div>
+                    <div> Number effect : {{  item.report_events[0].number_affected }} </div>
                   </div>
-                  {{ detailText }}
+                  {{ item.article.main_text }}
                 </v-card-text>
                 <div>
                   <v-toolbar
@@ -130,6 +132,23 @@
       </v-card>
     </v-flex>
   </v-layout>
+  <v-btn v-if="offset > 0"
+     color="orange"
+    flat
+    @click="offset=offset-10;"
+  >
+    Prev
+  </v-btn>
+  <v-btn v-if="result === false && (offset+10) < count"
+    color="orange"
+    flat
+    @click="offset=offset+10"
+  >
+    Next
+  </v-btn>
+   <router-link v-if="result" to='/' style="text-decoration: none; font-size:30px">
+       Oops! No result, back to search >>
+  </router-link>
 </v-container>
 </template>
 
@@ -138,7 +157,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      url: 'http://neon.whiteboard.house/v0/#/reports/?start_date=',
+      url: 'http://neon.whiteboard.house/v0/reports/?start_date=',
       wholeResponse: [],
       comment: '',
       img: '',
@@ -149,19 +168,28 @@ export default {
       ],
       sampleImage: '../public/img/outbreak.PNG',
       dialog: false,
-      headline: 'First aid',
+      offset: 0,
       publish: new Date().toISOString().substr(0, 10),
-      disease: 'H5N1',
+      result: false,
       syndrome: 'something',
       dDate: new Date().toISOString().substr(0, 10),
       type: 'Death',
-      mainText: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.',
       details: '',
-      location: 'somewhere',
-      effect: '12',
-      detailText: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+      count: 200,
+      effect: '12'
     }
   },
+  filters: {
+
+    liveSubstr: function (string) {
+      return string.substring(0, 30) + '...'
+    },
+    dateStr: function (string) {
+      return string.substring(0, 10) + ' ' + string.substring(11, 19)
+    }
+
+  },
+
   methods: {
     submit: function () {
       console.log(`${this.comment}`)
@@ -169,13 +197,29 @@ export default {
     }
   },
   mounted () {
+    this.url = this.url + this.$route.params.start + 'T00:00:00&end_date=' + this.$route.params.end + 'T00:00:00'
+    console.log(this.$route.params.start)
+    console.log(this.$route.params.end)
+    console.log(this.$route.params.keyword)
+    console.log(this.$route.params.location)
+    if (this.$route.params.location !== '/') {
+      this.url = this.url + '&location=' + this.$route.params.location
+    }
+    if (this.$route.params.keyword !== '/') {
+      this.url = this.url + '&key_term=' + this.$route.params.keyword
+    }
+    console.log(this.url)
     axios
       .get(this.url)
       .then(response => {
         console.log(response.data)
+        this.count = response.data.count
         if (response.data.count !== 0) {
           this.wholeResponse = response.data.results
-          console.log(`${this.wholeResponse[0].headline}`)
+          console.log(`${this.wholeResponse[0].article.headline}`)
+          console.log(`${this.wholeResponse[0].report_events[0].location.city}`)
+        } else {
+          this.result = true
         }
       })
       .catch(error => {

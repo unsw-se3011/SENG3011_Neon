@@ -18,16 +18,16 @@ export default {
       items: [
         {
           src: 'https://steamcdn-a.akamaihd.net/steam/apps/514990/header.jpg?t=1523490090'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
         }
+      //  {
+        //  src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+        // },
+      //  {
+        //   src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+        // },
+        // {
+        // src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+        // }
       ]
     }
   }

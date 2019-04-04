@@ -1,7 +1,7 @@
 module.exports = {
   assetsDir: 'static',
   devServer: {
-    proxy: 'http://localhost:8000/'
+    proxy: 'http://localhost:6000'
   },
   chainWebpack: (config) => {
     config.module

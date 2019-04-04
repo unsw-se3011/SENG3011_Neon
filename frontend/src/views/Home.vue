@@ -8,7 +8,7 @@
     <Intro/>
     <h1>Today is {{date}}</h1>
     <h2><SearchBar/> </h2>
-    <Article/>
+    <p  style="color:#A9A9A9;font-size:15px"> *Start date and end date could not be the same </p>
     <Footer/>
   </div>
 </template>
@@ -17,13 +17,11 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Intro from '@/components/Intro.vue'
 import Footer from '@/components/Footer.vue'
-import Article from '@/components/Articles.vue'
 import SearchBar from '@/components/SearchBar.vue'
 @Component({
   components: {
     Intro,
     Footer,
-    Article,
     SearchBar
   }
 })

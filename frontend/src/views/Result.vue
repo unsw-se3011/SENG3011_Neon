@@ -1,18 +1,23 @@
-<!-- display the rearch result search term stored in url requested -->
+
 <template>
   <div class="result">
-    <h1>Showing result</h1>
+    <Article/>
+    <Footer/>
   </div>
 </template>
 
-<script>
-import axios from 'axios'
-export default {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Article from '@/components/Articles.vue'
+@Component({
+  components: {
+    Article
+  }
+})
+export default class Result extends Vue {
   data () {
     return {
-
     }
   }
 }
 </script>
->
