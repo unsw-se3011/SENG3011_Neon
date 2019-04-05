@@ -3,7 +3,7 @@
 <v-container grid-list-xl>
   <v-layout wrap>
     <v-flex xs4
-        v-for="(item, index) in wholeResponse.slice(offset,offset+10)"
+        v-for="(item, index) in wholeResponse.slice(offset,offset+12)"
         :key="index"
         mb-2>
       <v-card>
@@ -19,23 +19,6 @@
         >
         </v-img>
 
-     <!--   <v-card-title primary-title>
-          <div>
-            <v-btn icon href="" style="color:orange;">
-             {{ item.title }}
-            </v-btn>
-            <div> Publish Date : {{ item.publishedAt }} </div>
-            <div> Disease : {{ disease }} </div>
-            <div> {{ mainText }} </div>
-          </div>
-        </v-card-title> -->
-        <!--    <v-subheader
-              v-if="item.title"
-              :key="item.title"
-              style="color:orange"
-            >
-             {{item.title}}
-            </v-subheader>-->
              <a v-bind:href="item.article.url" style="color:orange;font-size:20px;font-weight:bold;text-decoration: none;">
               {{ item.article.headline}}
              </a>
@@ -55,33 +38,33 @@
                 slot="activator"
                 color="orange"
                 flat
+                @click="attract(item)"
               >
                 Explore
               </v-btn>
-
+               
               <v-card>
                 <v-card-title
                   class="headline"
                   style="color:orange;font-weight:bold;"
                 >
-                 <a v-bind:href="item.url" style="color:orange;font-size:20px;font-weight:bold">
-                    {{ item.article.headline}}
+                 <a v-bind:href="headlineUrl" style="color:orange;font-size:20px;font-weight:bold">
+                    {{ headline }}
                    </a>
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>
                   <div style="color:orange">
-                    <div> Disease : {{ item.disease }} </div>
-                    <div> Syndrome : {{ item.syndrome }} </div>
+                    <div> Disease : {{ disease }} </div>
+                    <div> Syndrome : {{ syndrome }} </div>
                     <div> Type : {{ type }} </div>
-                    <div> Start Date : {{ item.report_events[0].start_date | dateStr }} </div>
+                    <div> Start Date : {{ start_date }} </div>
                 <!--    <div v-if="item.report_events[0].location.city && item.report_events[0].location.country"> Location : {{ item.report_events[0].location + "," + item.report_events[0].location}} </div> -->
-                    <div v-for="(city,country) in item.report_events[0].location" :key="country">
-                        {{ city }}
+                    <div> Location : {{ location }}
                     </div>
-                    <div> Number effect : {{  item.report_events[0].number_affected }} </div>
+                    <div> Number effect : {{  effect }} </div>
                   </div>
-                  {{ item.article.main_text }}
+                  {{ details }}
                 </v-card-text>
                 <div>
                   <v-toolbar
@@ -102,7 +85,7 @@
                     </v-text-field>
                   </v-toolbar>
                 </div>
-                <template v-for="(index) in item.comment">
+                <template v-for="(index) in comments">
                    <v-list
                       two-line
                      :key="index.name"
@@ -135,14 +118,14 @@
   <v-btn v-if="offset > 0"
      color="orange"
     flat
-    @click="offset=offset-10;"
+    @click="offset=offset-12;"
   >
     Prev
   </v-btn>
-  <v-btn v-if="result === false && (offset+10) < count"
+  <v-btn v-if="result === false && (offset+12) < count"
     color="orange"
     flat
-    @click="offset=offset+10"
+    @click="offset=offset+12"
   >
     Next
   </v-btn>
@@ -159,6 +142,7 @@ export default {
     return {
       url: 'http://neon.whiteboard.house/v0/reports/?start_date=',
       wholeResponse: [],
+      comments: [],
       comment: '',
       img: '',
       list: [
@@ -166,17 +150,22 @@ export default {
           comment: 'good article'
         }
       ],
+      headline: '',
+      headlineUrl: '',
+      disease: '',
+      syndrome: '',
+      start_date: '',
+      location: '',
       sampleImage: '../public/img/outbreak.PNG',
       dialog: false,
       offset: 0,
       publish: new Date().toISOString().substr(0, 10),
       result: false,
-      syndrome: 'something',
       dDate: new Date().toISOString().substr(0, 10),
-      type: 'Death',
+      type: '',
       details: '',
       count: 200,
-      effect: '12'
+      effect: ''
     }
   },
   filters: {
@@ -189,42 +178,58 @@ export default {
     }
 
   },
-
+  mounted: function () {
+    this.getData()
+  },
   methods: {
+    attract: function(Obj){
+        console.log(Obj);
+        console.log(Obj.article.url);
+        this.headlineUrl = Obj.article.url
+        this.headline = Obj.article.headline
+        this.disease = Obj.disease.toString()
+        this.syndrome = Obj.syndrome.toString()
+        this.type = Obj.report_events[0].event_type
+        this.start_date = Obj.report_events[0].start_date.substring(0, 10) + ' ' + Obj.report_events[0].start_date.substring(11, 19)
+        this.location = Obj.report_events[0].location.city + ', ' + Obj.report_events[0].location.state + ', ' + Obj.report_events[0].location.country
+        this.details = Obj.article.main_text
+        this.effect = Obj.report_events[0].number_affected
+        this.comments = Obj.comment
+    },
     submit: function () {
       console.log(`${this.comment}`)
       this.comment = ''
+    },
+    getData: function () {
+      this.url = this.url + this.$route.params.start + 'T00:00:00&end_date=' + this.$route.params.end + 'T00:00:00'
+      console.log(this.$route.params.start)
+      console.log(this.$route.params.end)
+      console.log(this.$route.params.keyword)
+      console.log(this.$route.params.location)
+      if (this.$route.params.location !== '/') {
+        this.url = this.url + '&location=' + this.$route.params.location
+      }
+      if (this.$route.params.keyword !== '/') {
+        this.url = this.url + '&key_term=' + this.$route.params.keyword
+      }
+      console.log(this.url)
+      axios
+        .get(this.url)
+        .then(response => {
+          console.log(response.data)
+          this.count = response.data.count
+          if (response.data.count !== 0) {
+            this.wholeResponse = response.data.results
+            console.log(`${this.wholeResponse[0].article.headline}`)
+            console.log(`${this.wholeResponse[0].report_events[0].location.city}`)
+          } else {
+            this.result = true
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
-  },
-  mounted () {
-    this.url = this.url + this.$route.params.start + 'T00:00:00&end_date=' + this.$route.params.end + 'T00:00:00'
-    console.log(this.$route.params.start)
-    console.log(this.$route.params.end)
-    console.log(this.$route.params.keyword)
-    console.log(this.$route.params.location)
-    if (this.$route.params.location !== '/') {
-      this.url = this.url + '&location=' + this.$route.params.location
-    }
-    if (this.$route.params.keyword !== '/') {
-      this.url = this.url + '&key_term=' + this.$route.params.keyword
-    }
-    console.log(this.url)
-    axios
-      .get(this.url)
-      .then(response => {
-        console.log(response.data)
-        this.count = response.data.count
-        if (response.data.count !== 0) {
-          this.wholeResponse = response.data.results
-          console.log(`${this.wholeResponse[0].article.headline}`)
-          console.log(`${this.wholeResponse[0].report_events[0].location.city}`)
-        } else {
-          this.result = true
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
   }
 }
 </script>
