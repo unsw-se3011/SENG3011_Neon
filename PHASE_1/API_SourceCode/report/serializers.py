@@ -75,7 +75,10 @@ class ReportEventSerializer(serializers.ModelSerializer):
         return report_id.id
 
     def validate_location(self, location):
-        return Location.objects.get_or_create(location)[0]
+        # dump the get or create 
+        location = LocationSerializer().create(location)
+
+        return location
 
     class Meta:
         model = ReportEvent

@@ -230,6 +230,7 @@ if __name__ == "__main__":
     # print((loads(next(it))))
     # print(dumps(mk_article(loads(next(it)))))
     # print(dumps(mk_report(loads(next(it)))))
+
     for i in range(THREAD_COUNT*2):
         workers.append(Worker(it))
 
