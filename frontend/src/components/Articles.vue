@@ -8,16 +8,12 @@
         mb-2>
       <v-card>
         <v-img
-          v-if="item.imageUrl != null"
-          v-bind:url = item.imageUrl
+          v-if="item.article.img !== '' "
+          v-bind:url = item.article.img
           aspect-ratio="2.75"
         ></v-img>
-        <v-img
-          v-else
-          v-bind:href=sampleImage
-          aspect-ratio="2.75"
-        >
-        </v-img>
+        <v-img v-else :src="image"  aspect-ratio="2.75"> </v-img>
+      <!--  <img  :src="images.sample"> -->
 
              <a v-bind:href="item.article.url" style="color:orange;font-size:20px;font-weight:bold;text-decoration: none;">
               {{ item.article.headline}}
@@ -81,9 +77,17 @@
                         v-model="comment"
                         @keyup.enter="submit"
                     >
+                    
                       <!--  <input icon="search" type="text" v-model="search" placeholder="Search disease" @keyup.enter="submit" /> -->
                     </v-text-field>
                   </v-toolbar>
+                  <v-alert
+                          :value="false"
+                          type="error"
+                          v-model="warn"
+                  >
+                  Pleaser login first
+                  </v-alert>
                 </div>
                 <template v-for="(index) in comments">
                    <v-list
@@ -140,6 +144,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      warn: false,
       url: 'http://neon.whiteboard.house/v0/reports/?start_date=',
       wholeResponse: [],
       comments: [],
@@ -156,7 +161,6 @@ export default {
       syndrome: '',
       start_date: '',
       location: '',
-      sampleImage: '../public/img/outbreak.PNG',
       dialog: false,
       offset: 0,
       publish: new Date().toISOString().substr(0, 10),
@@ -165,7 +169,9 @@ export default {
       type: '',
       details: '',
       count: 200,
-      effect: ''
+      effect: '',
+      token: '',
+      image: require('@/assets/outbreak.png')
     }
   },
   filters: {
@@ -198,6 +204,22 @@ export default {
     },
     submit: function () {
       console.log(`${this.comment}`)
+      this.token = localStorage.getItem("token")
+      console.log(`${this.token}`)
+      if(this.token !== '' && this.token !== null){
+        axios
+          .post('http://neon.whiteboard.house/v0/RefreshJSONWebToken/',{
+              token: this.token
+          })
+           .then((response) => {
+            console.log(response)
+           }, (error) => {
+            console.log(error)
+          })
+      }
+      else{
+          this.warn = true
+      }
       this.comment = ''
     },
     getData: function () {

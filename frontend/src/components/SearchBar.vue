@@ -97,13 +97,13 @@
               GO!
           </v-btn>
         </router-link>
-         <router-link v-if="city && date !== date2" :to="{ name: 'result', params: { start:this.date,end:this.date2,keyword:'/',location:this.city}}">
+         <router-link v-else-if="city && date !== date2" :to="{ name: 'result', params: { start:this.date,end:this.date2,keyword:'/',location:this.city}}">
        <!-- <router-link to='/map' style="text-decoration: none;">-->
           <v-btn flat>
               GO!
           </v-btn>
         </router-link>
-        <router-link v-if="date !== date2" :to="{ name: 'result', params: { start:this.date,end:this.date2,keyword:'/',location:'/'}}">
+        <router-link v-else-if="date !== date2" :to="{ name: 'result', params: { start:this.date,end:this.date2,keyword:'/',location:'/'}}">
        <!-- <router-link to='/map' style="text-decoration: none;">-->
           <v-btn flat>
               GO!
