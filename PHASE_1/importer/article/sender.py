@@ -34,6 +34,7 @@ BASE_URL = 'http://localhost:8000/v0/'
 THREAD_COUNT = 4
 
 token = ""
+timer = None
 
 input_lock = threading.Lock()
 input_count = 0
@@ -74,7 +75,7 @@ def mk_article(data):
 
 
 def refresh_token():
-    global token, request_sem
+    global token, request_sem, timer
 
     # hold the lock to refresh the token
     for i in range(THREAD_COUNT):
@@ -98,7 +99,8 @@ def refresh_token():
 
     print("set up another timer")
     # set up another timer for next refresh
-    threading.Timer(30, refresh_token).start()
+    timer = threading.Timer(30, refresh_token)
+    timer.start()
 
 
 def mk_report(j_dict):
@@ -156,7 +158,7 @@ class Worker(threading.Thread):
         self.it = iteratable
 
     def run(self):
-        global input_lock, input_count
+        global input_lock, input_count, timer
         try:
             while True:
                 # locking it to prevent some issue
@@ -185,8 +187,9 @@ class Worker(threading.Thread):
                     print_exc()
                 # time.sleep(1)
         except StopIteration as e:
+            input_lock.release()
             # we expect this error, do nothing
-            pass
+            timer.cancel()
 
     def send_article(self):
         # lock this request
