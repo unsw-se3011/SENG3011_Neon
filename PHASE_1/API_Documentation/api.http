@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTQyODQ3NzksImVtYWlsIjoiIn0._x4mQ6BCKdrfq6t-w_UEOM4LJRr0y5GZ480k6K_tPdE
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTQ1MjMwNTUsImVtYWlsIjoiIn0.hk8Y9COkjVRJ_ps2VB3QVPM2B3pLVpskfenwkpXp_yM
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -41,7 +41,7 @@ Authorization: {{auth}}
 {
     "url": "http://localhost:8000/v0/article/0",
     "headline": "no",
-    "publish": "0200-01-01T15:20:00Z",
+    "date_of_publication": "0200-01-01T15:20:00Z",
     "main_text": "helloworld",
     "p_fuzz": "M",
     "img": "http://localhost:8000/v0/article/0.png"

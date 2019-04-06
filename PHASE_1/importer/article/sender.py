@@ -28,8 +28,8 @@ SYNDROME_MAP = {
 }
 
 
-BASE_URL = 'http://neon.whiteboard.house/v0/'
-# BASE_URL = 'http://localhost:8000/v0/'
+# BASE_URL = 'http://neon.whiteboard.house/v0/'
+BASE_URL = 'http://localhost:8000/v0/'
 
 THREAD_COUNT = 4
 
@@ -230,6 +230,7 @@ if __name__ == "__main__":
     # print((loads(next(it))))
     # print(dumps(mk_article(loads(next(it)))))
     # print(dumps(mk_report(loads(next(it)))))
+
     for i in range(THREAD_COUNT*2):
         workers.append(Worker(it))
 
