@@ -1,12 +1,12 @@
 #!python3
 
 # prompts:
-from json import loads
+from json import loads, dumps
 import requests
 import threading
 import time
 import fileinput
-
+from traceback import print_exc
 
 PRESENCE = "P"
 DEATH = "D"
@@ -28,50 +28,77 @@ SYNDROME_MAP = {
 }
 
 
-BASE_URL = 'http://neon.whiteboard.house/v0/'
-# # auth by the default admin user
-# response = requests.post(
-#     BASE_URL+'jwt/',
-#     data={"username": "neon", "password": "apple123"}
-# )
+# BASE_URL = 'http://neon.whiteboard.house/v0/'
+BASE_URL = 'http://localhost:8000/v0/'
+
+THREAD_COUNT = 4
+
 token = ""
 
 input_lock = threading.Lock()
 input_count = 0
 
-request_locks = []
+request_sem = threading.Semaphore(THREAD_COUNT)
 
 
 def mk_request(endpoint, data):
     global token
+
+    request_sem.acquire()
+
     # making the request
     req = requests.post(
         BASE_URL+endpoint + '/',
         json=data,
         headers={'Authorization': token, 'Content-Type': 'application/json'}
     )
+    request_sem.release()
+
     # raise if there's an error
     req.raise_for_status()
 
     return req
 
 
-def refresh_token():
-    global token, request_locks
+def mk_article(data):
 
-    # acquire lock
-    [l.acquire() for l in request_locks]
+    article = data['article']
+    return {
+        'date_of_publication': article['date_of_publication'][:10] + 'T00:00',
+        'p_fuzz': 'H',
+        "url": article['url'],
+        "headline": article['headline'],
+        "main_text": article['main_text'],
+        "img": ""
+    }
+
+
+def refresh_token():
+    global token, request_sem
+
+    # hold the lock to refresh the token
+    for i in range(THREAD_COUNT):
+        print("acuireing lock - " + str(i))
+        request_sem.acquire()
 
     response = requests.post(
         BASE_URL+'jwt/',
         data={"username": "neon", "password": "apple123"}
     )
+    old_token = token
     token = "JWT " + response.json()['token']
-    # release the lock for request
-    [l.release() for l in request_locks]
 
+    if old_token != token:
+        print("get Refreshed token")
+
+    # release the lock for thead to make request
+    for i in range(THREAD_COUNT):
+        print("releasing - " + str(i))
+        request_sem.release()
+
+    print("set up another timer")
     # set up another timer for next refresh
-    threading.Timer(240, refresh_token)
+    threading.Timer(30, refresh_token).start()
 
 
 def mk_report(j_dict):
@@ -114,7 +141,7 @@ def mk_report(j_dict):
                 report_event['location'] = state_list[0]
             elif country_list:
                 report_event['location'] = country_list[0]
-        data['report_event'] = [report_event]
+        data['report_events'] = [report_event]
     for key, value in data.items():
         # check all the field has data
         if value:
@@ -127,9 +154,6 @@ class Worker(threading.Thread):
         global request_locks
         threading.Thread.__init__(self)
         self.it = iteratable
-        # add my lock to global stage
-        self.my_lock = threading.Lock()
-        request_locks.append(self.my_lock)
 
     def run(self):
         global input_lock, input_count
@@ -157,7 +181,8 @@ class Worker(threading.Thread):
                     self.send_report()
                 except requests.HTTPError as e:
                     print(str(counter) + ": " + self.j_dict['article']['url'])
-                    self.my_lock.release()
+                    print(dumps(mk_article(self.j_dict)))
+                    print_exc()
                 # time.sleep(1)
         except StopIteration as e:
             # we expect this error, do nothing
@@ -165,15 +190,11 @@ class Worker(threading.Thread):
 
     def send_article(self):
         # lock this request
-        # print(self.j_dict['article'])
-        self.j_dict['article']['publish'] = \
-            self.j_dict['article']['date_of_publication'][:10] + 'T00:00'
+        # make up the article object
+        article = mk_article(self.j_dict)
 
-        self.j_dict['article']['p_fuzz'] = 'H'
-
-        self.my_lock.acquire()
-        ret = mk_request('articles', self.j_dict['article'])
-        self.my_lock.release()
+        # send the request through the network
+        ret = mk_request('articles', article)
         self.id = ret.json()['id']
 
     def send_report(self):
@@ -184,10 +205,13 @@ class Worker(threading.Thread):
             # attach article id
             report['article_id'] = self.id
 
+            # print(dumps(report))
+            # exit()
             # push request
-            self.my_lock.acquire()
-            mk_request('reports', report)
-            self.my_lock.release()
+            try:
+                mk_request('reports', report)
+            except Exception as e:
+                print(dumps(report))
 
 
 if __name__ == "__main__":
@@ -200,7 +224,14 @@ if __name__ == "__main__":
 
     # import disease
     it = iter(fileinput.input(files='output.jl'))
-    for i in range(8):
+
+    # print(next(it))
+
+    # print((loads(next(it))))
+    # print(dumps(mk_article(loads(next(it)))))
+    # print(dumps(mk_report(loads(next(it)))))
+
+    for i in range(THREAD_COUNT*2):
         workers.append(Worker(it))
 
     # print(mk_report(loads(next(it))))

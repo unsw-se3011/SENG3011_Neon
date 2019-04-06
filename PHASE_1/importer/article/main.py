@@ -56,8 +56,6 @@ if __name__ == "__main__":
 
     # while is here
 
-    out = open('output.jl', 'w+')
-
     it = iter(fileinput.input(files=args.file))
 
     with multiprocessing.Pool() as pool:
