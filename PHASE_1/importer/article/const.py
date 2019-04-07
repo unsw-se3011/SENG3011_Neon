@@ -158,3 +158,19 @@ with open('world-cities.csv', 'r') as csvfile:
         CITIES.append({
             'city': row[0][1], 'country': row[1][1], 'state': row[2][1]
         })
+
+"""
+Syndrome parser support 
+"""
+ATOMIC_SYNDROME = {
+    'syndrome_word': 'atom_sydrome_name'
+}
+
+
+SYNDROME = {
+    'syndrome_name': [
+        'atom_sydrome_name1',
+        'atom_sydrome_name2',
+        'atom_sydrome_name3'
+    ]
+}
