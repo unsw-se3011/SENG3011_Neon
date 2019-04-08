@@ -1,7 +1,11 @@
 <template>
-  <v-container grid-list-xs>
+  <v-container fluid grid-list-xs>
     <h2>Report List</h2>
-    {{ reports }}
+    <v-progress-circular
+      indeterminate
+      color="primary"
+      v-if="waiting"
+    ></v-progress-circular>
   </v-container>
 </template>
 
@@ -9,7 +13,7 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  computed: mapState("search", ["reports"]),
+  computed: mapState("search", ["reports", "waiting"]),
   methods: {
     ...mapActions("search", ["refresh_data"])
   },

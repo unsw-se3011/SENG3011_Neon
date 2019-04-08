@@ -48,17 +48,33 @@ export default {
     },
     add_reports: (state, value) => {
       state.reports = [...state.reports, ...value];
-      // release the lock
       state.waiting = false;
+      // release the lock
     }
   },
   actions: {
-    refresh_data: async ({ state, commit }) => {
+    fetch_reports: async ({ commit, dispatch }, next) => {
+      /**
+       * self recursing to fetch the data as a background activity
+       */
+      // remove the base url to get ride of cor
+      next = next.replace("http://localhost:8000/v0", "");
+
+      let ret = await axios.get(next);
+      commit("add_reports", ret.data.results);
+      // recursive self
+      if (ret.data.next) {
+        console.log(ret.data.next);
+        dispatch("fetch_reports", ret.data.next);
+      }
+    },
+    refresh_data: async ({ state, commit, dispatch }) => {
       // should fetch two database
       // console.log("try to fetch the data");
       // console.log(new Date(Date.parse(state.start_date)).toISOString());
       // console.log(new Date(Date.parse(state.end_date)).toISOString());
-
+      // start the transaction of db update
+      commit("commit_waiting");
       let ret = await axios.get("/reports/", {
         params: {
           start_date: new Date(Date.parse(state.start_date)).toISOString(),
@@ -67,6 +83,11 @@ export default {
           key_term: state.key_term
         }
       });
+
+      // this action probably will overflow the device
+      // if (ret.data.next) {
+      //   dispatch("fetch_reports", ret.data.next);
+      // }
       commit("add_reports", ret.data.results);
       return ret;
     }
