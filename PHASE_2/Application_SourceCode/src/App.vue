@@ -1,6 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" fixed app>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      fixed
+      app
+    >
       <v-list dense>
         <template v-for="item in items">
           <v-layout v-if="item.heading" :key="item.heading" row align-center>
@@ -57,7 +62,7 @@
         class="pl-5 hidden-sm-and-down"
         @submit="try_submit"
       ></v-text-field>
-      <v-btn icon flat @click.stop="show_filter = true">
+      <v-btn icon flat @click.stop="toggle_filter()">
         <v-icon>filter_list</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -68,7 +73,7 @@
 
     <v-content>
       <v-container fluid fill-height>
-        <filterDialog/>
+        <filterDialog />
         <v-layout justify-center align-center>
           <v-tooltip right>
             <template v-slot:activator="{ on }">
@@ -100,6 +105,7 @@
 
 <script>
 import filterDialog from "@/components/filterDialog.vue";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   data: () => ({
@@ -140,6 +146,7 @@ export default {
     source: String
   },
   methods: {
+    ...mapMutations("search", ["toggle_filter"]),
     try_submit() {
       console.log("hjer");
     }

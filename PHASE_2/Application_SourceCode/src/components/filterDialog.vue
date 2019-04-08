@@ -1,36 +1,52 @@
 <template>
-  <v-dialog v-model="show_filter" width="800px">
+  <v-dialog v-model="filter_show" width="800px">
     <v-card>
-      <v-card-title class="grey lighten-4 py-4 title">Create contact</v-card-title>
+      <v-card-title class="grey lighten-4 py-4 title">Filters</v-card-title>
       <v-container grid-list-sm class="pa-4">
         <v-layout row wrap>
-          <v-flex xs12 align-center justify-space-between>
-            <v-layout align-center>
-              <v-avatar size="40px" class="mr-3">
-                <img src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png" alt>
-              </v-avatar>
-              <v-text-field placeholder="Name"></v-text-field>
-            </v-layout>
+          <v-flex xs6>
+            <v-menu
+              ref="startdate_menu"
+              :close-on-content-click="false"
+              v-model="startdate_menu"
+              :nudge-right="40"
+              lazy
+              transition="scale-transition"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <v-text-field
+                slot="activator"
+                v-model="start_date"
+                label="Start Date"
+                prepend-icon="event"
+                readonly
+              ></v-text-field>
+              <v-date-picker v-model="start_date" landscape />
+            </v-menu>
           </v-flex>
           <v-flex xs6>
-            <v-text-field prepend-icon="business" placeholder="Company"></v-text-field>
-          </v-flex>
-          <v-flex xs6>
-            <v-text-field placeholder="Job title"></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-text-field prepend-icon="mail" placeholder="Email"></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-text-field
-              type="tel"
-              prepend-icon="phone"
-              placeholder="(000) 000 - 0000"
-              mask="phone"
-            ></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-text-field prepend-icon="notes" placeholder="Notes"></v-text-field>
+            <v-menu
+              ref="enddate_menu"
+              :close-on-content-click="false"
+              v-model="enddate_menu"
+              :nudge-right="40"
+              lazy
+              transition="scale-transition"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <v-text-field
+                slot="activator"
+                v-model="end_date"
+                label="End Date"
+                prepend-icon="event"
+                readonly
+              ></v-text-field>
+              <v-date-picker v-model="end_date" landscape />
+            </v-menu>
           </v-flex>
         </v-layout>
       </v-container>
@@ -44,13 +60,47 @@
   </v-dialog>
 </template>
 
-
 <script>
+import { mapMutations, mapActions } from "vuex";
+
 export default {
-  props: {
-    show: Boolean
-  },
   // we use vuex to pass the filter's information0
-  data() {}
+  data() {
+    return {
+      startdate_menu: false,
+      enddate_menu: false
+    };
+  },
+  computed: {
+    // double bind to vuex state
+    filter_show: {
+      get() {
+        return this.$store.state.search.filter_show;
+      },
+      set() {
+        this.$store.commit("search/toggle_filter");
+      }
+    },
+    start_date: {
+      get() {
+        return this.$store.state.search.start_date;
+      },
+      set(val) {
+        this.$store.commit("search/set_start_date", val);
+      }
+    },
+    end_date: {
+      get() {
+        return this.$store.state.search.end_date;
+      },
+      set(val) {
+        this.$store.commit("search/set_end_date", val);
+      }
+    }
+  },
+  methods: {
+    ...mapMutations("search", ["toggle_filter"]),
+    ...mapActions("search", ["refresh_data"])
+  }
 };
 </script>
