@@ -58,9 +58,10 @@
         solo-inverted
         hide-details
         prepend-inner-icon="search"
+        v-model="key_term"
         label="Search"
         class="pl-5 hidden-sm-and-down"
-        @submit="try_submit"
+        @change="refresh_data"
       ></v-text-field>
       <v-btn icon flat @click.stop="toggle_filter()">
         <v-icon>filter_list</v-icon>
@@ -72,32 +73,9 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fluid>
         <filterDialog />
-        <v-layout justify-center align-center>
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn :href="source" icon large target="_blank" v-on="on">
-                <v-icon large>code</v-icon>
-              </v-btn>
-            </template>
-            <span>Source</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                large
-                href="https://codepen.io/johnjleider/pen/EQOYVV"
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-codepen</v-icon>
-              </v-btn>
-            </template>
-            <span>Codepen</span>
-          </v-tooltip>
-        </v-layout>
+        <router-view />
       </v-container>
     </v-content>
   </v-app>
@@ -145,11 +123,20 @@ export default {
   props: {
     source: String
   },
+  computed: {
+    // double bind to vuex state
+    key_term: {
+      get() {
+        return this.$store.state.search.key_term;
+      },
+      set(val) {
+        this.$store.commit("search/set_key_term", val);
+      }
+    }
+  },
   methods: {
     ...mapMutations("search", ["toggle_filter"]),
-    try_submit() {
-      console.log("hjer");
-    }
+    ...mapActions("search", ["refresh_data"])
   },
   components: {
     filterDialog

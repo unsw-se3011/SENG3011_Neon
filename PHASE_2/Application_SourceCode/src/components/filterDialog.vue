@@ -48,13 +48,21 @@
               <v-date-picker v-model="end_date" landscape />
             </v-menu>
           </v-flex>
+          <v-flex sm12>
+            <v-text-field
+              slot="activator"
+              v-model="location"
+              label="Location"
+              prepend-icon="place"
+            ></v-text-field>
+          </v-flex>
         </v-layout>
       </v-container>
       <v-card-actions>
         <v-btn flat color="primary">More</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="dialog = false">Cancel</v-btn>
-        <v-btn flat @click="dialog = false">Save</v-btn>
+        <v-btn flat color="primary" @click="toggle_filter">Cancel</v-btn>
+        <v-btn flat @click="confirm">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -68,7 +76,10 @@ export default {
   data() {
     return {
       startdate_menu: false,
-      enddate_menu: false
+      enddate_menu: false,
+      start_date: this.$store.state.search.start_date,
+      end_date: this.$store.state.search.end_date,
+      location: this.$store.state.search.location
     };
   },
   computed: {
@@ -80,27 +91,26 @@ export default {
       set() {
         this.$store.commit("search/toggle_filter");
       }
-    },
-    start_date: {
-      get() {
-        return this.$store.state.search.start_date;
-      },
-      set(val) {
-        this.$store.commit("search/set_start_date", val);
-      }
-    },
-    end_date: {
-      get() {
-        return this.$store.state.search.end_date;
-      },
-      set(val) {
-        this.$store.commit("search/set_end_date", val);
-      }
     }
   },
   methods: {
-    ...mapMutations("search", ["toggle_filter"]),
-    ...mapActions("search", ["refresh_data"])
+    ...mapMutations("search", [
+      "toggle_filter",
+      "set_start_date",
+      "set_end_date",
+      "set_location"
+    ]),
+    ...mapActions("search", ["refresh_data"]),
+    confirm() {
+      // pass the arguments to vuex
+      this.set_start_date(this.start_date);
+      this.set_end_date(this.end_date);
+      this.set_location(this.location);
+      // refresh those data
+      this.refresh_data();
+      // romove the dialog
+      this.toggle_filter();
+    }
   }
 };
 </script>
