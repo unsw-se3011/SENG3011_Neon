@@ -50,6 +50,14 @@ export default {
       state.reports = [...state.reports, ...value];
       state.waiting = false;
       // release the lock
+    },
+    add_neon_reports: (state, value) => {
+      value = value.map(el => {
+        el.id = "n" + el.id;
+        return el;
+      });
+      state.reports = [...state.reports, ...value];
+      state.waiting = false;
     }
   },
   actions: {
@@ -61,7 +69,7 @@ export default {
       next = next.replace("http://localhost:8000/v0", "");
 
       let ret = await axios.get(next);
-      commit("add_reports", ret.data.results);
+      commit("add_neon_reports", ret.data.results);
       // recursive self
       if (ret.data.next) {
         console.log(ret.data.next);
@@ -88,7 +96,7 @@ export default {
       // if (ret.data.next) {
       //   dispatch("fetch_reports", ret.data.next);
       // }
-      commit("add_reports", ret.data.results);
+      commit("add_neon_reports", ret.data.results);
       return ret;
     }
   }
