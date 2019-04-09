@@ -140,7 +140,7 @@ export default {
       /**
        * Fetch from neon project
        */
-      let ret = await axios.get("/reports/", {
+      let ret = await axios.get("/v0/reports/", {
         params: {
           start_date: start_date,
           end_date: end_date,
@@ -154,10 +154,9 @@ export default {
         dispatch("fetch_neon_reports", ret.data.next);
       }
 
-      dispatch("fetch_ramen_data");
-
       commit("add_neon_reports", ret.data.results);
 
+      dispatch("fetch_ramen_data");
       return ret;
     }
   }
