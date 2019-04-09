@@ -30,7 +30,7 @@
                 </v-list-tile-content>
               </v-list-tile>
             </template>
-            <v-list-tile v-for="(child, i) in item.children" :key="i" @click>
+            <v-list-tile v-for="(child, i) in item.children" :key="i">
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-tile-action>
@@ -39,7 +39,11 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else :key="item.text" @click>
+          <v-list-tile
+            v-else
+            :key="item.text"
+            :to="item.href ? { name: item.href } : null"
+          >
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -87,7 +91,7 @@ export default {
     show_filter: false,
     drawer: true,
     items: [
-      { icon: "contacts", text: "Reports" },
+      { icon: "contacts", text: "Reports", href: "home" },
       { icon: "history", text: "Outbreaks" },
       { icon: "content_copy", text: "Map" },
 
@@ -96,7 +100,10 @@ export default {
         "icon-alt": "keyboard_arrow_down",
         text: "User",
         model: false,
-        children: [{ text: "Profile" }, { icon: "settings", text: "Settings" }]
+        children: [
+          { icon: "person", text: "Profile" },
+          { icon: "settings", text: "Settings" }
+        ]
       },
       { icon: "chat_bubble", text: "Send feedback" },
       { icon: "help", text: "Help" },

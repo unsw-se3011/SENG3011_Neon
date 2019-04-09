@@ -31,7 +31,10 @@
       Carly: This event should have more care
     </p>
     <h3>Related</h3>
-    <h5>{{ search_term }} from {{ search_start | showDate }}</h5>
+    <h5>
+      {{ search_term }} from {{ search_start | showDate }} to
+      {{ search_end | showDate }}
+    </h5>
     <relatedNews
       :start_date="search_start"
       :end_date="search_end"
