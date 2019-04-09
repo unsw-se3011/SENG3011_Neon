@@ -60,10 +60,15 @@
         prepend-inner-icon="search"
         v-model="key_term"
         label="Search"
-        class="pl-5 hidden-sm-and-down"
+        class="pl-5 hidden-xs-and-down"
         @change="refresh_data"
       ></v-text-field>
-      <v-btn icon flat @click.stop="toggle_filter()">
+      <v-btn
+        icon
+        flat
+        @click.stop="toggle_filter()"
+        class="hidden-xs-and-down"
+      >
         <v-icon>filter_list</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -87,34 +92,23 @@ export default {
     show_filter: false,
     drawer: true,
     items: [
-      { icon: "contacts", text: "Contacts" },
-      { icon: "history", text: "Frequently contacted" },
-      { icon: "content_copy", text: "Duplicates" },
+      { icon: "contacts", text: "Reports" },
+      { icon: "history", text: "Outbreaks" },
+      { icon: "content_copy", text: "Map" },
+
       {
         icon: "keyboard_arrow_up",
         "icon-alt": "keyboard_arrow_down",
-        text: "Labels",
-        model: true,
-        children: [{ icon: "add", text: "Create label" }]
-      },
-      {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "More",
+        text: "User",
         model: false,
         children: [
-          { text: "Import" },
-          { text: "Export" },
-          { text: "Print" },
-          { text: "Undo changes" },
-          { text: "Other contacts" }
+          { text: "Profile" },
+          {  icon: "settings",text: "Settings" },
         ]
       },
-      { icon: "settings", text: "Settings" },
       { icon: "chat_bubble", text: "Send feedback" },
       { icon: "help", text: "Help" },
       { icon: "phonelink", text: "App downloads" },
-      { icon: "keyboard", text: "Go to the old version" }
     ]
   }),
   props: {
