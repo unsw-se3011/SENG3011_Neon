@@ -6,22 +6,24 @@
       {{ outbreak.end_date | showDate }}
     </h5>
     <h3>Infected Chart</h3>
-      <ve-scatter :data="infected_data" :settings="chartSettings"></ve-scatter>
+    <ve-scatter :data="infected_data" :settings="chartSettings"></ve-scatter>
     <h2>Report List</h2>
     <reportList />
   </v-container>
 </template>
 
 <script>
-
 import { mapState } from "vuex";
 import reportList from "@/components/report/List";
 export default {
   data() {
-    return { name: "", waiting: true, outbreak: {}, 
-    chartSettings : {
-      xAxisType:'time'
-    }
+    return {
+      name: "",
+      waiting: true,
+      outbreak: {},
+      chartSettings: {
+        xAxisType: "time"
+      }
     };
   },
   computed: {
@@ -38,33 +40,36 @@ export default {
       this.reports.forEach(el => {
         re_list = [...re_list, ...el.report_events];
       });
-      re_list = re_list.filter(el => el.event_type && el.number_affected && el.number_affected < 10000);
-      let event_dict = {}
+      re_list = re_list.filter(
+        el => el.event_type && el.number_affected && el.number_affected < 10000
+      );
+      let event_dict = {};
       re_list.forEach(el => {
-        let this_date = el.start_date.substring(0,10)
-        if( ! event_dict[this_date]){
-          // new record 
-          event_dict[this_date] =  {}
+        let this_date = el.start_date.substring(0, 10);
+        if (!event_dict[this_date]) {
+          // new record
+          event_dict[this_date] = {};
         }
-        event_dict[this_date][el.event_type] = el.number_affected
-      })
+        event_dict[this_date][el.event_type] = el.number_affected;
+      });
       // format the ouput
-      return event_dict
+      return event_dict;
     },
-    infected_data(){
-      let infected = []
-      Object.keys(this.event_dict).sort()
-      .forEach((date) => {
-        if(this.event_dict[date]["Infected"]){
-          infected.push({
-            date: date.substring(0,12),
-            "Infected": this.event_dict[date]["Infected"]
-          })
-        }
-      })
-      
-      // assemble the data 
-      return {columns:['date',"Infected"], rows:infected}
+    infected_data() {
+      let infected = [];
+      Object.keys(this.event_dict)
+        .sort()
+        .forEach(date => {
+          if (this.event_dict[date]["Infected"]) {
+            infected.push({
+              date: date.substring(0, 12),
+              Infected: this.event_dict[date]["Infected"]
+            });
+          }
+        });
+
+      // assemble the data
+      return { columns: ["date", "Infected"], rows: infected };
     }
   },
   mounted() {

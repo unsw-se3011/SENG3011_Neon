@@ -1,5 +1,5 @@
 import Vue from "vue";
-import VCharts from 'v-charts'
+import VCharts from "v-charts";
 import "./plugins/axios";
 import "./plugins/vuetify";
 import App from "./App.vue";
