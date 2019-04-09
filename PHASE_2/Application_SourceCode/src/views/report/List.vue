@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <h2>Report List</h2>
+    <h1 class="headline">Report List</h1>
     <v-progress-circular
       indeterminate
       color="primary"
