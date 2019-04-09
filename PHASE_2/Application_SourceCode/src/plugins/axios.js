@@ -11,9 +11,7 @@ import axios from "axios";
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   baseURL:
-    process.env.baseURL ||
-    process.env.apiUrl ||
-    "http://neon.whiteboard.house/v0/"
+    process.env.baseURL || process.env.apiUrl || "http://neon.whiteboard.house/"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
