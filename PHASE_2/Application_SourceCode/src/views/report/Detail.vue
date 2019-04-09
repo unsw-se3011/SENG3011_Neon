@@ -116,9 +116,9 @@ export default {
        * Fetch the relative id from our backend
        */
       ramen_id = ramen_id[0];
-      // assign the report and article 
+      // assign the report and article
       this.report = this.reports.find(el => el.id == ramen_id);
-      this.article = this.report.article
+      this.article = this.report.article;
       console.log(this.report);
       this.waiting = false;
     }

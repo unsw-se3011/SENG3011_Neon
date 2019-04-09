@@ -92,7 +92,7 @@ export default {
     drawer: true,
     items: [
       { icon: "contacts", text: "Reports", href: "home" },
-      { icon: "history", text: "Outbreaks" },
+      { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
       { icon: "content_copy", text: "Map" },
 
       {

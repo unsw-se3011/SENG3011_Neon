@@ -42,6 +42,11 @@ export default {
     set_end_date: (state, value) => (state.end_date = value),
     set_location: (state, value) => (state.location = value),
     set_key_term: (state, value) => (state.key_term = value),
+    set_by_outbreak: (state, outbreak) => {
+      state.start_date = outbreak.start_date;
+      state.end_date = outbreak.end_date;
+      state.key_term = outbreak.key_term;
+    },
     // to support multiple api, we need introduce
     // async mechanism here
     commit_waiting: state => {
@@ -145,9 +150,9 @@ export default {
       });
 
       // this action probably will overflow the device
-      // if (ret.data.next) {
-      //   dispatch("fetch_neon_reports", ret.data.next);
-      // }
+      if (ret.data.next) {
+        dispatch("fetch_neon_reports", ret.data.next);
+      }
 
       dispatch("fetch_ramen_data");
 
