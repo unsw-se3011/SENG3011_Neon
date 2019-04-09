@@ -61,7 +61,7 @@
       <v-card-actions>
         <v-btn flat color="primary">More</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="toggle_filter">Cancel</v-btn>
+        <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
         <v-btn flat @click="confirm">Save</v-btn>
       </v-card-actions>
     </v-card>
@@ -101,6 +101,14 @@ export default {
       "set_location"
     ]),
     ...mapActions("search", ["refresh_data"]),
+    cancel(){
+      // reset the value to default one 
+      this.start_date=this.$store.state.search.start_date,
+      this.end_date=this.$store.state.search.end_date,
+      this.location=this.$store.state.search.location
+      // toggle and not to show
+      this.toggle_filter()
+    },
     confirm() {
       // pass the arguments to vuex
       this.set_start_date(this.start_date);
