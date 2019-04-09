@@ -1,6 +1,12 @@
 <template>
   <v-container grid-list-xs v-if="!waiting">
-    <h1 class="headline">{{ article.headline }}</h1>
+    <h1 class="headline">
+      {{ article.headline }}
+      <v-btn flat color="success" :href="article.url">
+        go Original
+        <v-icon>launch</v-icon>
+      </v-btn>
+    </h1>
     <h5 class="info--text">{{ article.date_of_publication | showDate }}</h5>
     <p>
       {{ article.main_text }}
