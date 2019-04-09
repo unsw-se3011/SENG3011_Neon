@@ -114,10 +114,15 @@ export default {
       this.set_start_date(this.start_date);
       this.set_end_date(this.end_date);
       this.set_location(this.location);
-      // refresh those data
-      this.refresh_data();
+
       // romove the dialog
       this.toggle_filter();
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      } else {
+        // refresh those data
+        this.refresh_data();
+      }
     }
   }
 };

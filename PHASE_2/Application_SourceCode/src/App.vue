@@ -61,14 +61,9 @@
         v-model="key_term"
         label="Search"
         class="pl-5 hidden-xs-and-down"
-        @change="refresh_data"
+        @keydown="try_search"
       ></v-text-field>
-      <v-btn
-        icon
-        flat
-        @click.stop="toggle_filter()"
-        class="hidden-xs-and-down"
-      >
+      <v-btn icon flat @click.stop="toggle_filter()" class="hidden-xs-and-down">
         <v-icon>filter_list</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -101,14 +96,11 @@ export default {
         "icon-alt": "keyboard_arrow_down",
         text: "User",
         model: false,
-        children: [
-          { text: "Profile" },
-          {  icon: "settings",text: "Settings" },
-        ]
+        children: [{ text: "Profile" }, { icon: "settings", text: "Settings" }]
       },
       { icon: "chat_bubble", text: "Send feedback" },
       { icon: "help", text: "Help" },
-      { icon: "phonelink", text: "App downloads" },
+      { icon: "phonelink", text: "App downloads" }
     ]
   }),
   props: {
@@ -127,7 +119,17 @@ export default {
   },
   methods: {
     ...mapMutations("search", ["toggle_filter"]),
-    ...mapActions("search", ["refresh_data"])
+    ...mapActions("search", ["refresh_data"]),
+    try_search(event) {
+      if (event.key == "Enter") {
+        // if it's not in the index, go to index to show the result
+        if (this.$route.path != "/") {
+          this.$router.push("/");
+        } else {
+          this.refresh_data();
+        }
+      }
+    }
   },
   components: {
     filterDialog
