@@ -6,7 +6,7 @@
       {{ outbreak.end_date | showDate }}
     </h5>
     <h3>Infected Chart</h3>
-      <ve-line :data="infected_data" :settings="chartSettings"></ve-line>
+      <ve-scatter :data="infected_data" :settings="chartSettings"></ve-scatter>
     <h2>Report List</h2>
     <reportList />
   </v-container>
@@ -38,7 +38,7 @@ export default {
       this.reports.forEach(el => {
         re_list = [...re_list, ...el.report_events];
       });
-      re_list = re_list.filter(el => el.event_type && el.number_affected);
+      re_list = re_list.filter(el => el.event_type && el.number_affected && el.number_affected < 10000);
       let event_dict = {}
       re_list.forEach(el => {
         let this_date = el.start_date.substring(0,10)
