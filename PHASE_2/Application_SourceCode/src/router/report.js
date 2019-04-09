@@ -3,12 +3,12 @@ export default [
     path: "/",
     name: "home",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/ReportList.vue")
+      import(/* webpackChunkName: "about" */ "@/views/report/List.vue")
   },
   {
-    path: "/reports/detail/",
+    path: "/reports/detail/:id",
     name: "reportDetail",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/ReportList.vue")
+      import(/* webpackChunkName: "about" */ "@/views/report/Detail.vue")
   }
 ];

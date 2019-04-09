@@ -8691,6 +8691,11 @@ vue-cli-plugin-axios@^0.0.4:
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-axios/-/vue-cli-plugin-axios-0.0.4.tgz#29d4eb48275c7fe15b92e1fd5d95fbe2a966436f"
   integrity sha512-p2b/fvPJuPBnvU8027PAAuU5DiOzUn2lku8XLG/f6c8FU0N+/MXWZAlOuHhqd9e7+KIZitwe/c8qlmv7TglbTg==
 
+vue-cli-plugin-moment@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-moment/-/vue-cli-plugin-moment-0.1.1.tgz#457a0cafc9cd5aa0b8d9017cbd43dd9ddf1452ae"
+  integrity sha512-4IaEjKKSMP2AbizTO735vaZ2H3nTgdcOoFAHpKnW1VHjGu+n1iAI4WwZsKmQCbemMpmG0ehEqEdciYAtezZ0NA==
+
 vue-cli-plugin-vuetify@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-0.5.0.tgz#14c9a61884da58cf6aaf8ff3309044931907f184"

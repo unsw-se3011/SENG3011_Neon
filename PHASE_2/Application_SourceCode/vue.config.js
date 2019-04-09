@@ -8,5 +8,11 @@ module.exports = {
 
   pwa: {
     themeColor: "#2196F3"
+  },
+
+  pluginOptions: {
+    moment: {
+      locales: ["au"]
+    }
   }
 };
