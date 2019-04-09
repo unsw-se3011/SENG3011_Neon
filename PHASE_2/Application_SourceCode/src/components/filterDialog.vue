@@ -101,13 +101,13 @@ export default {
       "set_location"
     ]),
     ...mapActions("search", ["refresh_data"]),
-    cancel(){
-      // reset the value to default one 
-      this.start_date=this.$store.state.search.start_date,
-      this.end_date=this.$store.state.search.end_date,
-      this.location=this.$store.state.search.location
+    cancel() {
+      // reset the value to default one
+      (this.start_date = this.$store.state.search.start_date),
+        (this.end_date = this.$store.state.search.end_date),
+        (this.location = this.$store.state.search.location);
       // toggle and not to show
-      this.toggle_filter()
+      this.toggle_filter();
     },
     confirm() {
       // pass the arguments to vuex
