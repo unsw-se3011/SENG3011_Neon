@@ -11,16 +11,16 @@
     <p>
       {{ article.main_text }}
     </p>
-    <div v-if="report.disease.length != 0">
+    <div v-if="report.disease && report.disease.length != 0">
       <h3>Disease</h3>
       <p>{{ report.disease.join(", ") }}</p>
     </div>
-    <div v-if="report.syndrome.length != 0">
+    <div v-if="report.syndrome && report.syndrome.length != 0">
       <h3>Syndrome</h3>
       <p>{{ report.syndrome.join(", ") }}</p>
     </div>
     <div></div>
-    <div v-if="report.report_events.length != 0">
+    <div v-if="report.report_events && report.report_events.length != 0">
       <h3>Events</h3>
       <div v-for="re in report.report_events" :key="re.event_type">
         <reportEvent :event="re" />
@@ -46,7 +46,7 @@
 <script>
 import reportEvent from "@/components/reportEventCard.vue";
 import relatedNews from "@/components/relatedNews.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -56,6 +56,7 @@ export default {
     };
   },
   computed: {
+    ...mapState("search", ["reports"]),
     search_start() {
       // algorithem to minux 15 days from publish
       // let stamp = new Date(this.article.date_of_publication).getTime();
@@ -101,6 +102,7 @@ export default {
     let id = this.$route.params.id;
     // try to match the neon id
     let neon_id = /^n([0-9]+)/.exec(id);
+    let ramen_id = /^r([0-9]+)/.exec(id);
     if (neon_id) {
       neon_id = neon_id[1];
       // fetch the report from backend
@@ -108,8 +110,17 @@ export default {
       this.report = ret.data;
       this.article = this.report.article;
       this.waiting = false;
-    } else {
-      // pass, to suppport multiple api
+    } else if (ramen_id) {
+      /**
+       * support the ramen api
+       * Fetch the relative id from our backend
+       */
+      ramen_id = ramen_id[0];
+      // assign the report and article 
+      this.report = this.reports.find(el => el.id == ramen_id);
+      this.article = this.report.article
+      console.log(this.report);
+      this.waiting = false;
     }
   },
   components: {
