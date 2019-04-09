@@ -5,15 +5,14 @@
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
     </h5>
-    {{ chartData }}
-
+    <h3>Infected Chart</h3>
+      <ve-line :data="infected_data" :settings="chartSettings"></ve-line>
     <h2>Report List</h2>
     <reportList />
   </v-container>
 </template>
 
 <script>
-  // <ve-line :data="chartData" :settings="chartSettings"></ve-line>
 
 import { mapState } from "vuex";
 import reportList from "@/components/report/List";
@@ -28,7 +27,7 @@ export default {
   computed: {
     ...mapState("outbreak", ["outbreaks"]),
     ...mapState("search", ["reports"]),
-    chartData() {
+    event_dict() {
       /**
        * to filter the data can be plot to chart
        * and process it to correct format
@@ -50,17 +49,22 @@ export default {
         event_dict[this_date][el.event_type] = el.number_affected
       })
       // format the ouput
-      return {
-        columns: [
-          "date",
-          "Presence",
-          "Death",
-          "Infected",
-          "Hospitalised",
-          "Recovered"
-        ],
-        rows: event_dict
-      };
+      return event_dict
+    },
+    infected_data(){
+      let infected = []
+      Object.keys(this.event_dict).sort()
+      .forEach((date) => {
+        if(this.event_dict[date]["Infected"]){
+          infected.push({
+            date: date.substring(0,12),
+            "Infected": this.event_dict[date]["Infected"]
+          })
+        }
+      })
+      
+      // assemble the data 
+      return {columns:['date',"Infected"], rows:infected}
     }
   },
   mounted() {

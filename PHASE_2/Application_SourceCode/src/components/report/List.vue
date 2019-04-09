@@ -6,7 +6,7 @@
       v-if="waiting"
     ></v-progress-circular>
     <v-layout row wrap>
-      <v-flex v-for="report in reports" :key="report.id" md6 xl4 xm12 pr-2 pb-2>
+      <v-flex v-for="report in reports" :key="report.id" md6 xl4 xm12 pr-3 pb-3>
         <v-card :to="{ name: 'reportDetail', params: { id: report.id } }">
           <v-card-title primary-title>
             <div>
