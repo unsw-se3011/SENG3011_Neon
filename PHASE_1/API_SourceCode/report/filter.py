@@ -72,11 +72,13 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
                 request.query_params.get("end_date", None)
             )
         except Exception as e:
+            if view.kwargs.get('pk', None): 
+                return queryset
+            # else: filter error 
             # not input start_date or end_date
             raise ValidationError({
                 'date': 'Both start date and end date are reuiqred.'
             })
-            return queryset
 
         if start_date > end_date:
             # validate both is in order

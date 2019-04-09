@@ -28,8 +28,8 @@ SYNDROME_MAP = {
 }
 
 
-BASE_URL = 'http://neon.whiteboard.house/v0/'
-# BASE_URL = 'http://localhost:8000/v0/'
+# BASE_URL = 'http://neon.whiteboard.house/v0/'
+BASE_URL = 'http://localhost:8000/v0/'
 
 THREAD_COUNT = 4
 
