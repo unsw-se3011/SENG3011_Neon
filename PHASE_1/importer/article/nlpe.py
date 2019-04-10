@@ -12,6 +12,21 @@ import json
 import geograpy
 from word2number import w2n
 from const import *
+import numpy as np
+
+
+def get_similarity(x, y):
+    count = 0
+    i = 0
+    j = 0
+    length = 0
+    for j in y:
+        length = length+1
+    for i in x:
+        if i in y:
+            count = count+1
+    similarity = round(count/length, 2)
+    return similarity
 
 
 class Nlpe(object):
@@ -103,12 +118,20 @@ class Nlpe(object):
         # syndrome
         # syndrome match
         syndrome_set = set()
+        DONE_SYNDROME = set()
         #syndrome2 = list()
         for word, pos in self.pos_tags:
             #print(word, pos)
-            if word in SYNDROME:
+            if word in MATCH_SYNDROME:
                 syndrome_set.add(word)
-        return [t for t in syndrome_set]
+        for keys in SYNDROME:
+            # improve the get_similarity function later
+            similarity = get_similarity(syndrome_set, SYNDROME[keys])
+            print(similarity)
+        # get syndrome the similarity more then 0.75
+            if similarity > 0.1:
+                DONE_SYNDROME.add(keys)
+        return [t for t in DONE_SYNDROME]
 
     def get_disease(self):
         # disease match

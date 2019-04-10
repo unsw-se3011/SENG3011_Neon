@@ -163,14 +163,113 @@ with open('world-cities.csv', 'r') as csvfile:
 Syndrome parser support 
 """
 ATOMIC_SYNDROME = {
-    'syndrome_word': 'atom_sydrome_name'
+    'Encephalitis': 'encephalitis',
+    'haemorrhagic': 'haemorrhagic fever',
+    'AFP': 'acute flacid paralysis',
+    'gastroenteritis': 'acute gastroenteritis',
+    'SARS': 'acute respiratory syndrome',
+    'ILI': 'influenza-like illness',
+    'AFR': 'acute fever and rash',
+    'FUO': 'fever of unknown origin',
+    'meningitis': 'meningitis',
+    'Headache': 'Headache',
+    'Fever': 'Fever',
+    'muscles': 'Aches in muscles',
+    'weakness': 'weakness',
+    'Chills': 'Chills',
+    'sore': 'sore throat',
+    'appetite': 'loss of appetite',
+    'rash': 'rash',
+    'diarrhoea': 'diarrhoea',
+    'paralysis': 'paralysis',
+    'Nausea': 'Nausea, vomiting or both',
+    'vomiting': 'Nausea, vomiting or both',
+    'Confusion': 'Confusion',
+    'Malaise': 'Malaise',
+    'nausea': 'nausea',
+    'breathlessness': 'breathlessness',
+    'fretfulness': 'fretfulness',
+    'flu-like': 'flu-like syndrome',
+    'vomiting': 'vomiting',
+    'photophobia': 'photophobia'
 }
 
+KEY_SYNDROME = []
+VALUE_SYNDROME = []
+for keys in ATOMIC_SYNDROME:
+    KEY_SYNDROME.append(keys)
+    VALUE_SYNDROME.append(ATOMIC_SYNDROME[keys])
+tagged_sent = pos_tag(KEY_SYNDROME)
+WNL = WordNetLemmatizer()
+LEMMAS_SYNDROME = []
+for tag in tagged_sent:
+    wordnet_pos = get_wordnet_pos(tag[1]) or wordnet.NOUN
+    LEMMAS_SYNDROME.append(WNL.lemmatize(tag[0], pos=wordnet_pos))
+# get all noun_keys into new map with value
+MATCH_SYNDROME = dict(zip(LEMMAS_SYNDROME, VALUE_SYNDROME))
+#
 
 SYNDROME = {
-    'syndrome_name': [
-        'atom_sydrome_name1',
-        'atom_sydrome_name2',
-        'atom_sydrome_name3'
+    'encephalitis': [
+        'encephalitis',
+        'Headache',
+        'Fever'
+        'Aches in muscles',
+        'weakness'
+    ],
+    'haemorrhagic fever': [
+        'haemorrhagic fever',
+        'Fever',
+        'Chills',
+        'sore throat',
+        'loss of appetite'
+        'rash',
+        'muscle pains',
+        'diarrhoea'
+    ],
+    'acute flacid paralysis': [
+        'acute flacid paralysis',
+        'weakness',
+        'paralysis'
+    ],
+    'acute gastroenteritis': [
+        'acute gastroenteritis',
+        'Abdominal cramps and pain',
+        'Nausea, vomiting or both',
+        'Low-grade fever'
+    ],
+    'acute respiratory syndrome': [
+        'acute respiratory syndrome',
+        'Chills',
+        'Stiff muscles',
+        'Body aches and pains',
+        'Skin rash',
+        'Confusion',
+        'Malaise',
+        'breathlessness'
+    ],
+    'influenza-like illness': [
+        'influenza-like illness',
+        'ARI',
+        'flu-like syndrome',
+        'dry cough',
+        'nausea'
+    ],
+    'acute fever and rash': [
+        'acute fever and rash',
+        'Fever',
+        'rash'
+    ],
+    'fever of unknown origin': [
+        'fever of unknown origin',
+    ],
+    'meningitis': [
+        'meningitis',
+        'refusing feeds',
+        'fretfulness',
+        'high moaning cry',
+        'vomiting',
+        'purple–red skin rash',
+        'photophobia'
     ]
 }
