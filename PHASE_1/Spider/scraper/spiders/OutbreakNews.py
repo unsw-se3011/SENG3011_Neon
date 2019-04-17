@@ -35,21 +35,25 @@ class OutebreaknewsSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            # 'http://outbreaknewstoday.com/category/us-news/',
-            # 'http://outbreaknewstoday.com/category/latin-america-and-the-caribbean/',
-            # 'http://outbreaknewstoday.com/category/animal-diseases/'
+            'http://outbreaknewstoday.com/category/us-news/',
+            'http://outbreaknewstoday.com/category/latin-america-and-the-caribbean/',
+            'http://outbreaknewstoday.com/category/animal-diseases/'
         ]
-        edge_urls=[
-            'http://outbreaknewstoday.com/possible-ebola-exposure-arrive-nebraska-47761/',
-            'http://outbreaknewstoday.com/cdcs-frieden-zika-infections-appear-to-be-increasing-rapidly-in-puerto-rico-51464/',
-            'http://outbreaknewstoday.com/invasive-asian-longhorn-tick-confirmed-pennsylvania-86598/',
-            'http://outbreaknewstoday.com/chikungunya-2nd-travel-associated-case-reported-dallas-45898/',
-            'http://outbreaknewstoday.com/caribbean-island-countries-trained-to-respond-rapidly-to-imported-measles-58466/'
-        ]
-        # for url in urls:
-        #     yield scrapy.Request(url=url, callback=self.parse_site)
-        for url in edge_urls:
-            yield scrapy.Request(url=url, callback=self.parse_article)
+        
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse_site)
+
+        # edge_urls=[
+        #     'http://outbreaknewstoday.com/possible-ebola-exposure-arrive-nebraska-47761/',
+        #     'http://outbreaknewstoday.com/cdcs-frieden-zika-infections-appear-to-be-increasing-rapidly-in-puerto-rico-51464/',
+        #     'http://outbreaknewstoday.com/invasive-asian-longhorn-tick-confirmed-pennsylvania-86598/',
+        #     'http://outbreaknewstoday.com/chikungunya-2nd-travel-associated-case-reported-dallas-45898/',
+        #     'http://outbreaknewstoday.com/caribbean-island-countries-trained-to-respond-rapidly-to-imported-measles-58466/',
+        #     'http://outbreaknewstoday.com/african-swine-fever-vietnam-reports-1st-outbreaks-guangxi-province-china-55191/'
+        # ]
+        
+        # for url in edge_urls:
+        #     yield scrapy.Request(url=url, callback=self.parse_article)
             
 
     def parse_site(self, response):
@@ -89,12 +93,16 @@ class OutebreaknewsSpider(scrapy.Spider):
         bad += response.css('script *::text').getall()
         # listen link is not needed
         bad += response.css('p strong::text').getall()
-        # Listen advertise we don't want 
-        bad += filter(listen_filter.search, bad)
-        # power press link should remove 
+        # # power press link should remove 
         bad += response.css('p.powerpress_links *::text').getall()
         bad += response.css('div.powerpress_player *::text').getall()
 
+        # filter out
+        text = [t for t in text if t not in bad]
+
+        # listen link is not needed
+        bad = response.css('p strong::text').getall()
+        bad = filter(listen_filter.search, bad)
         # filter out
         text = [t for t in text if t not in bad]
 
@@ -108,14 +116,18 @@ class OutebreaknewsSpider(scrapy.Spider):
         # reduce empty
         text = [t for t in text if len(t) > 0]
 
+        # fetch img 
+
+
         yield {
             'headline': replace_unicode(response.css('div.posttitle h1::text').get()),
             'date_of_publication':  str(FuzzTime(date, hour=True)),
             'main_text': ' '.join(text),
-            'all_text': ' '.join(
-                map(lambda x: replace_unicode(x), response.css(
-                    'div.postcontent *::text').getall()
-                    )
-            ),
-            'url': response.url
+            # 'all_text': ' '.join(
+            #     map(lambda x: replace_unicode(x), response.css(
+            #         'div.postcontent *::text').getall()
+            #         )
+            # ),
+            'url': response.url,
+            'img': response.css('div.postcontent figure>img::attr(src)').get() or ''
         }
