@@ -35,12 +35,22 @@ class OutebreaknewsSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'http://outbreaknewstoday.com/category/us-news/',
-            'http://outbreaknewstoday.com/category/latin-america-and-the-caribbean/',
-            'http://outbreaknewstoday.com/category/animal-diseases/'
+            # 'http://outbreaknewstoday.com/category/us-news/',
+            # 'http://outbreaknewstoday.com/category/latin-america-and-the-caribbean/',
+            # 'http://outbreaknewstoday.com/category/animal-diseases/'
         ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse_site)
+        edge_urls=[
+            'http://outbreaknewstoday.com/possible-ebola-exposure-arrive-nebraska-47761/',
+            'http://outbreaknewstoday.com/cdcs-frieden-zika-infections-appear-to-be-increasing-rapidly-in-puerto-rico-51464/',
+            'http://outbreaknewstoday.com/invasive-asian-longhorn-tick-confirmed-pennsylvania-86598/',
+            'http://outbreaknewstoday.com/chikungunya-2nd-travel-associated-case-reported-dallas-45898/',
+            'http://outbreaknewstoday.com/caribbean-island-countries-trained-to-respond-rapidly-to-imported-measles-58466/'
+        ]
+        # for url in urls:
+        #     yield scrapy.Request(url=url, callback=self.parse_site)
+        for url in edge_urls:
+            yield scrapy.Request(url=url, callback=self.parse_article)
+            
 
     def parse_site(self, response):
         """ 
@@ -72,19 +82,19 @@ class OutebreaknewsSpider(scrapy.Spider):
 
         # all the text
         text = response.css('div.postcontent *::text').getall()
+
         # text need to remove
         bad = response.css('ul li strong a::text').getall()
-        # filter out
-        text = [t for t in text if t not in bad]
-
         # script is not needed
-        bad = response.css('script::text').getall()
-        # filter out
-        text = [t for t in text if t not in bad]
-
+        bad += response.css('script *::text').getall()
         # listen link is not needed
-        bad = response.css('p strong::text').getall()
-        bad = filter(listen_filter.search, bad)
+        bad += response.css('p strong::text').getall()
+        # Listen advertise we don't want 
+        bad += filter(listen_filter.search, bad)
+        # power press link should remove 
+        bad += response.css('p.powerpress_links *::text').getall()
+        bad += response.css('div.powerpress_player *::text').getall()
+
         # filter out
         text = [t for t in text if t not in bad]
 
@@ -94,6 +104,7 @@ class OutebreaknewsSpider(scrapy.Spider):
                 replace_unicode(el)
             ), text
         )]
+
         # reduce empty
         text = [t for t in text if len(t) > 0]
 
