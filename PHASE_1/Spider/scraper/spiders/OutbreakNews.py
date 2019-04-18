@@ -129,5 +129,5 @@ class OutebreaknewsSpider(scrapy.Spider):
             #         )
             # ),
             'url': response.url,
-            'img': response.css('div.postcontent figure>img::attr(src)').get() or ''
+            'img': response.css('div.postcontent figure img::attr(src)').get() or ''
         }

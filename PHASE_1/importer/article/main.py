@@ -21,8 +21,7 @@ def parse_article(article):
     people = nl.get_people()
     date = nl.get_date()
 
-    print(
-        json.dumps(
+    return json.dumps(
             {
                 'article': article,
                 'date': date,
@@ -32,8 +31,7 @@ def parse_article(article):
                 'syndrome': syndrome,
                 'disease': disease
             }
-        ) + '\n'
-    )
+        )
 
 
 # print("imhere")
@@ -58,5 +56,7 @@ if __name__ == "__main__":
 
     it = iter(fileinput.input(files=args.file))
 
-    with multiprocessing.Pool() as pool:
-        pool.map(parse_article, it)
+    p =  multiprocessing.Pool()
+    res = p.map(parse_article, it)
+    for r in res:
+        print(r)
