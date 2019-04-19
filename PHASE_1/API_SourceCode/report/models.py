@@ -119,7 +119,7 @@ class Outbreak(models.Model):
     key_term = models.ForeignKey(Disease, on_delete= models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
-    img = models.URLField(blank = True)
+    img = models.URLField(max_length= 1024,blank = True)
 
     class Meta:
         verbose_name = _("outbreak")
