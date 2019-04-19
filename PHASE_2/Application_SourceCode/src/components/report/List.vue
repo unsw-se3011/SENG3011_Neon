@@ -5,7 +5,11 @@
       color="primary"
       v-if="waiting"
     ></v-progress-circular>
-    <v-layout row wrap>
+    <v-layout row wrap v-else>
+      <v-flex xs12>
+        <h4>{{ count }} reporst within {{date_range}} days
+        </h4>
+      </v-flex>
       <v-flex v-for="report in reports" :key="report.id" md6 xl4 xm12 pr-3 pb-3>
         <v-card :to="{ name: 'reportDetail', params: { id: report.id } }">
           <v-img
@@ -43,12 +47,25 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  computed: mapState("search", ["reports", "waiting"]),
+  computed: {
+    ...mapState("search", [
+      "reports",
+      "waiting",
+      "count",
+      "start_date",
+      "end_date"
+    ]),
+    date_range() {
+      if(this.waiting || !this.start_date || !this.end_date){
+        return 0
+      }
+      let sd = new Date(this.start_date);
+      let ed = new Date(this.end_date);
+      return (ed.getTime() - sd.getTime())/86400000
+    }
+  },
   methods: {
     ...mapActions("search", ["refresh_data"])
   },
-  mounted() {
-    this.refresh_data();
-  }
 };
 </script>

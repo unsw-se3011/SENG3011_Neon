@@ -22,6 +22,7 @@ function initial() {
     end_date: toDate(date_now),
     location: "",
     key_term: "",
+    count: 0,
     reports: [],
     // this for the make up id from ramen
     ramen_id: 0
@@ -89,7 +90,8 @@ export default {
       // push the constructed report to database
       state.reports = [...state.reports, ...reports];
       state.waiting = false;
-    }
+    },
+    set_count: (state, count) => (state.count = count)
   },
   actions: {
     fetch_neon_reports: async ({ commit, dispatch }, next) => {
@@ -157,6 +159,7 @@ export default {
       // if (ret.data.next) {
       //   dispatch("fetch_neon_reports", ret.data.next);
       // }
+      commit("set_count", ret.data.count);
 
       commit("add_neon_reports", ret.data.results);
 

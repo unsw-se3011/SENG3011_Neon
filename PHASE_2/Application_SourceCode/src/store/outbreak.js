@@ -3,20 +3,7 @@ import axios from "axios";
 function initial() {
   return {
     waiting: true,
-    outbreaks: [
-      {
-        id: 1,
-        key_term: "zika",
-        start_date: "2013-10-30",
-        end_date: "2016-10-30"
-      },
-      {
-        id: 2,
-        key_term: "Ebola",
-        start_date: "2013-12-14",
-        end_date: "2016-01-14"
-      }
-    ]
+    outbreaks: []
   };
 }
 
@@ -44,6 +31,7 @@ export default {
       commit("add_outbreaks", ret.data);
 
       return ret;
-    }
+    },
+    get_detail: (state, id) => axios.get("/v0/outbreaks/" + id)
   }
 };

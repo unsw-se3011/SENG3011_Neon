@@ -141,6 +141,9 @@ export default {
   },
   components: {
     filterDialog
+  },
+  mounted(){
+    this.$store.dispatch('search/refresh_data')
   }
 };
 </script>

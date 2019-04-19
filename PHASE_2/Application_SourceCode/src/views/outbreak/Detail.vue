@@ -6,9 +6,13 @@
       {{ outbreak.end_date | showDate }}
     </h5>
     <h3>Infected Chart</h3>
-    <ve-scatter :data="infected_data" :settings="chartSettings"></ve-scatter>
+    <ve-scatter
+      v-if="!waiting"
+      :data="infected_data"
+      :settings="chartSettings"
+    ></ve-scatter>
     <h2>Report List</h2>
-    <reportList />
+    <reportList v-if="!waiting" />
   </v-container>
 </template>
 
@@ -72,14 +76,19 @@ export default {
       return { columns: ["date", "Infected"], rows: infected };
     }
   },
-  mounted() {
+  async mounted() {
     // console.log(this.$route.params.id)
-    let out = this.outbreaks.find(el => el.id == this.$route.params.id);
-    this.outbreak = out;
-    this.name = out.key_term;
-    this.$store.commit("search/set_by_outbreak", out);
+
+    let ret = await this.$store.dispatch(
+      "outbreak/get_detail",
+      this.$route.params.id
+    );
+    this.outbreak = ret.data;
+    this.name = this.outbreak.key_term;
+    this.$store.commit("search/set_by_outbreak", this.outbreak);
     // force frontend db to refresh data
     this.$store.dispatch("search/refresh_data", true);
+    this.waiting = false;
   },
   components: {
     reportList
