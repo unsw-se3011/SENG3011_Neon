@@ -76,7 +76,6 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
                 'date': str(e)
             })
         except Exception as e:
-            raise e 
             if view.kwargs.get('pk', None): 
                 return queryset
             # else: filter error 

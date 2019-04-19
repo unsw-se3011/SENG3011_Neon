@@ -97,13 +97,13 @@ export default {
        * self recursing to fetch the data as a background activity
        */
       // remove the base url to get ride of cor
-      next = next.replace("http://localhost:8000/v0", "");
+      next = next.replace("http://localhost:8000", "");
 
       let ret = await axios.get(next);
       commit("add_neon_reports", ret.data.results);
+
       // recursive self
       if (ret.data.next) {
-        console.log(ret.data.next);
         dispatch("fetch_neon_reports", ret.data.next);
       }
     },
