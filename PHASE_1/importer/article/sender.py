@@ -70,7 +70,7 @@ def mk_article(data):
         "url": article['url'],
         "headline": article['headline'],
         "main_text": article['main_text'],
-        "img": ""
+        "img": article['img']
     }
 
 
