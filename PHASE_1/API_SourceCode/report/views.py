@@ -47,7 +47,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Report.objects.all()
+    queryset = Report.objects.order_by('-article__date_of_publication')
     serializer_class = ReportSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (
