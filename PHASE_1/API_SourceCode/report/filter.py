@@ -71,7 +71,12 @@ class ReportEventDatetimeRangeFilter(BaseFilterBackend):
             end_date = parse_datetime(
                 request.query_params.get("end_date", None)
             )
+        except ValueError as e:
+            raise ValidationError({
+                'date': str(e)
+            })
         except Exception as e:
+            raise e 
             if view.kwargs.get('pk', None): 
                 return queryset
             # else: filter error 
