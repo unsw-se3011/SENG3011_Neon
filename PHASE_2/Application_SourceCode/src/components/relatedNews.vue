@@ -10,7 +10,11 @@
         pa-2
       >
         <v-card :href="new_obj.url">
-          <v-img :src="new_obj.urlToImage" v-if="new_obj.urlToImage" height="150px">
+          <v-img
+            :src="new_obj.urlToImage"
+            v-if="new_obj.urlToImage"
+            height="150px"
+          >
           </v-img>
           <v-card-title primary-title>
             <div>

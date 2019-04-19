@@ -121,7 +121,7 @@ export default {
         this.$router.push("/");
       } else {
         // refresh those data
-        // it must changed 
+        // it must changed
         this.refresh_data(true);
       }
     }
