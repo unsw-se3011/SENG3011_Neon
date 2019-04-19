@@ -8,6 +8,8 @@
     <v-layout row wrap>
       <v-flex v-for="report in reports" :key="report.id" md6 xl4 xm12 pr-3 pb-3>
         <v-card :to="{ name: 'reportDetail', params: { id: report.id } }">
+          <v-img :src="report.article.img" v-if="report.article.img" height="150px">
+          </v-img>
           <v-card-title primary-title>
             <div>
               <h3 class="headline mb-0">

@@ -10,8 +10,8 @@
         pa-2
       >
         <v-card :href="new_obj.url">
-          <v-card-media :src="new_obj.urlToImage" height="150px">
-          </v-card-media>
+          <v-img :src="new_obj.urlToImage" v-if="new_obj.urlToImage" height="150px">
+          </v-img>
           <v-card-title primary-title>
             <div>
               <h3 class="headline mb-0">{{ new_obj.title }}</h3>

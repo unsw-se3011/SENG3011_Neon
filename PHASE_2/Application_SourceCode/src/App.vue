@@ -133,7 +133,8 @@ export default {
         if (this.$route.path != "/") {
           this.$router.push("/");
         } else {
-          this.refresh_data();
+          // we press enter, it must search
+          this.refresh_data(true);
         }
       }
     }

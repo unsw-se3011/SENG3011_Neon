@@ -15,6 +15,7 @@
 <script>
 import { mapState } from "vuex";
 import reportList from "@/components/report/List";
+import { truncate } from 'fs';
 export default {
   data() {
     return {
@@ -78,6 +79,8 @@ export default {
     this.outbreak = out;
     this.name = out.key_term;
     this.$store.commit("search/set_by_outbreak", out);
+    // force frontend db to refresh data 
+    this.$store.dispatch("search/refresh_data", true);
   },
   components: {
     reportList

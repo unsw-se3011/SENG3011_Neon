@@ -129,7 +129,11 @@ export default {
       commit("add_ramen_reports", ret.data);
     },
 
-    refresh_data: async ({ state, commit, dispatch }) => {
+    refresh_data: async ({ state, commit, dispatch }, force = false) => {
+      if (force == false && state.reports.length != 0) {
+        // we don't force list to update
+        return;
+      }
       // should fetch two database
       // from date format to iso format
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
@@ -150,9 +154,9 @@ export default {
       });
 
       // this action probably will overflow the device
-      if (ret.data.next) {
-        dispatch("fetch_neon_reports", ret.data.next);
-      }
+      // if (ret.data.next) {
+      //   dispatch("fetch_neon_reports", ret.data.next);
+      // }
 
       commit("add_neon_reports", ret.data.results);
 
