@@ -56,8 +56,10 @@ class ReportViewSet(viewsets.ModelViewSet):
     )
 
     search_fields = (
-        'article__headline', 'article__main_text',
-        'disease__name', 'syndrome__name',
+        'article__headline',
+        'article__main_text',
+        'disease__name', 
+        'syndrome__name',
     )
     filterset_fields = (
         'article__headline',

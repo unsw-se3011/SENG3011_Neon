@@ -17,7 +17,7 @@ function initial() {
   return {
     filter_show: false,
     search_key: "",
-    waiting: true,
+    waiting: false,
     start_date: toDate(year_before),
     end_date: toDate(date_now),
     location: "",
@@ -132,7 +132,12 @@ export default {
     },
 
     refresh_data: async ({ state, commit, dispatch }, force = false) => {
-      if (force == false && state.reports.length != 0) {
+      if (force == true) {
+        commit("commit_waiting");
+      } else if (
+        (force == false && state.reports.length != 0) ||
+        this.waiting == true
+      ) {
         // we don't force list to update
         return;
       }
@@ -142,7 +147,6 @@ export default {
       let end_date = new Date(Date.parse(state.end_date)).toISOString();
 
       // start the transaction of db update
-      commit("commit_waiting");
       /**
        * Fetch from neon project
        */
@@ -163,7 +167,7 @@ export default {
 
       commit("add_neon_reports", ret.data.results);
 
-      dispatch("fetch_ramen_data");
+      // dispatch("fetch_ramen_data");
       return ret;
     }
   }

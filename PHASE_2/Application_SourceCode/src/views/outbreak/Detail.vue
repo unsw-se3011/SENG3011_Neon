@@ -11,8 +11,13 @@
       :data="infected_data"
       :settings="chartSettings"
     ></ve-scatter>
-    <h2>Report List</h2>
-    <reportList v-if="!waiting" />
+
+    {{ infected_data }}
+    <div v-if="!waiting">
+      
+      <h2>Report List</h2>
+      <reportList  />
+    </div>
   </v-container>
 </template>
 

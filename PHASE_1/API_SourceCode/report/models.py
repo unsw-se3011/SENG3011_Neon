@@ -1,6 +1,7 @@
 from django.urls import reverse 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
 
 YEAR = "Y"
 MONTH = "M"
@@ -30,7 +31,7 @@ class Article(models.Model):
     p_fuzz = models.CharField(
         max_length=1, choices=fuzz_choice)
     main_text = models.TextField()
-    img = models.URLField(blank=True)
+    img = models.URLField(max_length=1024,blank=True)
 
     def __str__(self):
         return self.headline
@@ -135,3 +136,49 @@ class Outbreak(models.Model):
     def get_absolute_url(self):
         return reverse("outbreak_detail", kwargs={"pk": self.pk})
     
+    @classmethod
+    def static(cls, outbreak_id, event_type = INFECTED):
+        # get the outbreak object 
+        out = cls.objects.get(pk = outbreak_id)
+
+        # recreate the filter of report event 
+        query_set = ReportEvent.objects.filter(
+            Q(
+                start_date__gte=out.start_date,
+                start_date__lte=out.end_date
+            ) |
+            Q(
+                end_date__gte=out.start_date,
+                end_date__lte=out.end_date
+            ) |
+            Q(
+                start_date__lte=out.start_date,
+                end_date__gte=out.end_date
+            )
+        ).filter(
+            e_type = event_type
+        ).filter(
+            Q(report__article__main_text__icontains= out.key_term)|
+            Q(report__article__main_text__icontains = out.key_term)|
+            Q(report__disease__name__icontains = out.key_term)|
+            Q(report__syndrome__name__icontains = out.key_term)
+        ).filter(
+            # number affect not null filter
+            number_affected__isnull=False
+        ).order_by('start_date').distinct()
+
+        # organize the data to form the chart 
+        day_dict = {} 
+        
+        for re in query_set:
+            date_str = re.start_date.strftime("%Y-%m-%d")
+            if date_str not in day_dict:
+                day_dict[date_str] = {
+                    re.event_type_full : re.number_affected
+                }
+            else :
+                day_dict[date_str][re.event_type_full ] = \
+                    re.number_affected
+
+
+        return day_dict
