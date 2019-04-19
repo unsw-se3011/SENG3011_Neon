@@ -1,4 +1,6 @@
+from django.urls import reverse 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 YEAR = "Y"
 MONTH = "M"
@@ -110,3 +112,26 @@ class ReportEvent(models.Model):
     @property
     def event_type_full(self):
         return EVENT_TYPE_MAP[self.e_type]
+
+
+class Outbreak(models.Model):
+
+    key_term = models.ForeignKey(Disease, on_delete= models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    img = models.URLField(blank = True)
+
+    class Meta:
+        verbose_name = _("outbreak")
+        verbose_name_plural = _("outbreaks")
+        # these three must be unique, 
+        # otherwise it doesn't make sense 
+        unique_together = (
+            "key_term",
+            "start_date",
+            "end_date"
+        )
+
+    def get_absolute_url(self):
+        return reverse("outbreak_detail", kwargs={"pk": self.pk})
+    
