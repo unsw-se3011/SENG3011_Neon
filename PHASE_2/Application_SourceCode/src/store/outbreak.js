@@ -29,9 +29,18 @@ export default {
       commit("commit_waiting");
       let ret = await axios.get("/v0/outbreaks/");
       commit("add_outbreaks", ret.data);
-
       return ret;
     },
-    get_detail: (state, id) => axios.get("/v0/outbreaks/" + id)
+    async get_detail(state, id) {
+      let p = await Promise.all([
+        axios.get("/v0/outbreaks/" + id),
+        axios.get(`/v0/outbreaks/${id}/chart/`)
+      ]);
+      // merge two request together
+      let ret = p[0];
+      ret.data.chart = p[1].data;
+      // console.log(ret);
+      return ret;
+    }
   }
 };

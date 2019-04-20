@@ -132,15 +132,13 @@ export default {
     },
 
     refresh_data: async ({ state, commit }, force = false) => {
-      if (force == true) {
-        commit("commit_waiting");
-      } else if (
-        (force == false && state.reports.length != 0) ||
-        this.waiting == true
-      ) {
+      if (force == false && state.reports.length != 0) {
         // we don't force list to update
         return;
       }
+      commit("commit_waiting");
+
+      console.log(state.reports)
       // should fetch two database
       // from date format to iso format
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
@@ -164,7 +162,6 @@ export default {
       //   dispatch("fetch_neon_reports", ret.data.next);
       // }
       commit("set_count", ret.data.count);
-
       commit("add_neon_reports", ret.data.results);
 
       // dispatch("fetch_ramen_data");
