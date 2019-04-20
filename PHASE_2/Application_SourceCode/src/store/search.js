@@ -20,6 +20,8 @@ function initial() {
     end_date: toDate(date_now),
     location: "",
     key_term: "",
+    // next link for add data
+    next: "",
     count: 0,
     reports: [],
     // this for the make up id from ramen
@@ -67,6 +69,7 @@ export default {
       state.reports = [...state.reports, ...value];
       state.waiting = false;
     },
+    set_next_link: (state, next) => (state.next = next),
     inc_ramen_id: state => (state.ramen_id += 1),
     add_ramen_reports: (state, data) => {
       let reports = [];
@@ -92,20 +95,23 @@ export default {
     set_count: (state, count) => (state.count = count)
   },
   actions: {
-    fetch_neon_reports: async ({ commit, dispatch }, next) => {
+    fetch_neon_next: async ({ state, commit }) => {
       /**
        * self recursing to fetch the data as a background activity
        */
+
+      if (!state.next) {
+        // doesn't have next page to fetch
+        return;
+      }
+
       // remove the base url to get ride of cor
-      next = next.replace("http://localhost:8000", "");
+      let next = state.next.replace("http://localhost:8000/v0", "");
 
       let ret = await window.axios.get(next);
+      // set the state
       commit("add_neon_reports", ret.data.results);
-
-      // recursive self
-      if (ret.data.next) {
-        dispatch("fetch_neon_reports", ret.data.next);
-      }
+      commit("set_next_link", ret.data.next);
     },
     fetch_ramen_data: async ({ state, commit }) => {
       /**
@@ -160,6 +166,7 @@ export default {
       //   dispatch("fetch_neon_reports", ret.data.next);
       // }
       commit("set_count", ret.data.count);
+      commit("set_next_link", ret.data.next);
       commit("add_neon_reports", ret.data.results);
 
       // dispatch("fetch_ramen_data");

@@ -9,7 +9,7 @@
       <v-flex xs12>
         <h4>{{ count }} reporst within {{ date_range }} days</h4>
       </v-flex>
-      <v-flex v-for="report in reports" :key="report.id" md6 xl4 xm12 pr-3 pb-3>
+      <v-flex v-for="report in reports_page" :key="report.id" md6 xl4 xm12 pr-3 pb-3>
         <v-card :to="{ name: 'reportDetail', params: { id: report.id } }">
           <v-img
             :src="report.article.img"
@@ -43,6 +43,10 @@
           </v-card-title>
         </v-card>
       </v-flex>
+      {{this.reports.length}}
+      <v-flex xs12 class="text-xs-center" >
+        <v-pagination :length="length" v-model="page"></v-pagination>
+      </v-flex>
     </v-layout>
   </div>
 </template>
@@ -50,13 +54,18 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
+  data(){
+    return {
+      page_rec: 1
+    }
+  },
   computed: {
     ...mapState("search", [
       "reports",
       "waiting",
       "count",
       "start_date",
-      "end_date"
+      "end_date",
     ]),
     date_range() {
       if (this.waiting || !this.start_date || !this.end_date) {
@@ -65,10 +74,31 @@ export default {
       let sd = new Date(this.start_date);
       let ed = new Date(this.end_date);
       return (ed.getTime() - sd.getTime()) / 86400000;
+    },
+    page:{
+      get(){ return this.page_rec},
+      async set(val) {
+        this.page_rec = val
+        while (this.page_rec > Math.ceil(this.reports.length/ 12)) {
+          // recursive to the correct page 
+          await this.fetch_neon_next();
+        }
+        return val
+      }
+    },
+    length(){
+      return Math.ceil(this.count  / 12);
+    },
+    reports_page() {
+      if (this.waiting){
+        return [];
+      }
+      return this.reports.slice((this.page -1)*12,  this.page*12 )
+      
     }
   },
   methods: {
-    ...mapActions("search", ["refresh_data"])
+    ...mapActions("search", ["refresh_data","fetch_neon_next"])
   }
 };
 </script>

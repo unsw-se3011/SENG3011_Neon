@@ -30,7 +30,6 @@
         <b>{{ m.user }}</b>
         {{ m.msg }}
       </p>
-      
     </div>
     <h3>Related</h3>
     <h5>
