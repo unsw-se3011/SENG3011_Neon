@@ -1,5 +1,3 @@
-import axios from "axios";
-
 /**
  * This is for attach the standard seng apis and provide the search
  * functionality with it
@@ -101,7 +99,7 @@ export default {
       // remove the base url to get ride of cor
       next = next.replace("http://localhost:8000", "");
 
-      let ret = await axios.get(next);
+      let ret = await window.axios.get(next);
       commit("add_neon_reports", ret.data.results);
 
       // recursive self
@@ -117,7 +115,7 @@ export default {
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
       let end_date = new Date(Date.parse(state.end_date)).toISOString();
 
-      let ret = await axios.get(
+      let ret = await window.axios.get(
         "https://sneg-ramen.herokuapp.com/api/articles",
         {
           params: {
@@ -148,7 +146,7 @@ export default {
       /**
        * Fetch from neon project
        */
-      let ret = await axios.get("/v0/reports/", {
+      let ret = await window.axios.get("/reports/", {
         params: {
           start_date: start_date,
           end_date: end_date,

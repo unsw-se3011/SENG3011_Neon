@@ -1,5 +1,3 @@
-import axios from "axios";
-
 function initial() {
   return {
     waiting: true,
@@ -27,14 +25,14 @@ export default {
   actions: {
     async refresh_data({ commit }) {
       commit("commit_waiting");
-      let ret = await axios.get("/v0/outbreaks/");
+      let ret = await window.axios.get("/outbreaks/");
       commit("add_outbreaks", ret.data);
       return ret;
     },
     async get_detail(state, id) {
       let p = await Promise.all([
-        axios.get("/v0/outbreaks/" + id),
-        axios.get(`/v0/outbreaks/${id}/chart/`)
+        window.axios.get("/outbreaks/" + id),
+        window.axios.get(`/outbreaks/${id}/chart/`)
       ]);
       // merge two request together
       let ret = p[0];

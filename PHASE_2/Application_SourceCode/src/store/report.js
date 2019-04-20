@@ -9,7 +9,7 @@ const news_key = "62353b10678448e0b9a20d3f89dd3fb8";
 export default {
   namespaced: true,
   actions: {
-    get_neon_report: (state, id) => axios.get(`/v0/reports/${id}/`),
+    get_neon_report: (state, id) => axios.get(`/reports/${id}/`),
     get_relate_news: (state, event) =>
       axios.get("https://newsapi.org/v2/everything", {
         params: {

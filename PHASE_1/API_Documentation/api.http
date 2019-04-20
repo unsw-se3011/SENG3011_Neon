@@ -1,4 +1,4 @@
-@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTQ1MjMwNTUsImVtYWlsIjoiIn0.hk8Y9COkjVRJ_ps2VB3QVPM2B3pLVpskfenwkpXp_yM
+@auth = JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTU3NzQ2OTcsImVtYWlsIjoiIn0.lSPRSlKMkUZmqZhZ5MB25g2MIcmt8-oPHvxP7u1Bwxw
 @baseUrl = http://localhost:8000/v0/
 
 
@@ -10,7 +10,14 @@ Content-Type: application/json
 	"password": "apple123"
 }
 
+###
+# refresh token 
+POST {{baseUrl}}jwt_refresh/ HTTP/1.1
+Content-Type: application/json
 
+{
+    "token": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5lb24iLCJleHAiOjE1NTU3NzQ3NzksImVtYWlsIjoiIn0.JQteKKmW1J8nyvSvngwNWXo8R5MV3wqriu5_qHwpZW4"
+}
 
 ###
 

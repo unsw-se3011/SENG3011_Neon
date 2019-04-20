@@ -72,7 +72,8 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat :to="{ name: 'login' }">Login</v-btn>
+        <v-btn v-if="!username" flat :to="{ name: 'login' }">Login</v-btn>
+        <v-btn flat v-else>{{ username }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -84,7 +85,7 @@
 
 <script>
 import filterDialog from "@/components/filterDialog.vue";
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   data: () => ({
@@ -114,6 +115,7 @@ export default {
     source: String
   },
   computed: {
+    ...mapState("auth", ["username"]),
     // double bind to vuex state
     key_term: {
       get() {
@@ -127,6 +129,7 @@ export default {
   methods: {
     ...mapMutations("search", ["toggle_filter"]),
     ...mapActions("search", ["refresh_data"]),
+    ...mapMutations("auth", "clear_all"),
     try_search(event) {
       if (event.key == "Enter") {
         // if it's not in the index, go to index to show the result
@@ -137,6 +140,10 @@ export default {
           this.refresh_data(true);
         }
       }
+    },
+    logout() {
+      this.clear_all();
+      this.$router.push("/");
     }
   },
   components: {
