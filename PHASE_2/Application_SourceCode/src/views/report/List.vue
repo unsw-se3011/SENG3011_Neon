@@ -12,9 +12,8 @@ export default {
     reportListComp
   },
 
-  mounted(){
+  mounted() {
     this.$store.dispatch("search/refresh_data");
-    
   }
 };
 </script>

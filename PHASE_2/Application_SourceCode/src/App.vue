@@ -142,8 +142,7 @@ export default {
   components: {
     filterDialog
   },
-  mounted() {
-  }
+  mounted() {}
 };
 </script>
 

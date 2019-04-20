@@ -19,15 +19,19 @@
           </v-img>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">
+              <h3 class="headline mb-0">{{ report.article.headline }}</h3>
+              <h5>{{ report.article.date_of_publication | showDate }}</h5>
+              <div>
                 Observed
                 <span v-for="re in report.report_events" :key="re.id">
                   {{ re.number_affected }} {{ re.event_type }}
                 </span>
-                make by
-                {{ report.disease.join(", ") }}
-              </h3>
-              <div>
+                <span v-if="report.disease">
+                  made by
+                  {{ report.disease.join(", ") }}.
+                </span>
+                <span v-else>.</span>
+                <br />
                 <div v-if="report.syndrome.length != 0">
                   Causes {{ report.syndrome.join(", ") }} <br />
                 </div>

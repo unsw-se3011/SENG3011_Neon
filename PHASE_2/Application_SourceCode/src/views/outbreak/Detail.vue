@@ -30,13 +30,11 @@ export default {
       chartSettings: {
         xAxisType: "time"
       },
-      chart_data:{
-
-      }
+      chart_data: {}
     };
   },
   computed: {
-    ...mapState("outbreak", ["outbreaks"]),
+    ...mapState("outbreak", ["outbreaks"])
   },
   async mounted() {
     // console.log(this.$route.params.id)
