@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 YEAR = "Y"
 MONTH = "M"
@@ -70,8 +71,7 @@ class Report(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     disease = models.ManyToManyField(Disease, blank=True)
     syndrome = models.ManyToManyField(Syndrome, blank=True)
-    # this may need to change
-    comment = models.TextField(blank=True)
+
 
 
 PRESENCE = "P"
@@ -172,3 +172,20 @@ class Outbreak(models.Model):
         day_dict = {} 
         
         return query_set
+
+
+class Message(models.Model):
+    # link to a report 
+    report = models.ForeignKey(Report, on_delete = models.CASCADE)
+    msg = models.CharField(max_length = 1024)
+    user= models.ForeignKey(User, on_delete = models.PROTECT)
+
+    class Meta:
+        verbose_name = _("message")
+        verbose_name_plural = _("messages")
+
+    def __str__(self):
+        return self.msg
+
+    def get_absolute_url(self):
+        return reverse("message_detail", kwargs={"pk": self.pk})

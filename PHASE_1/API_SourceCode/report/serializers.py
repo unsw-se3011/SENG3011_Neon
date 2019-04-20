@@ -1,5 +1,5 @@
 from .models import Report, ReportEvent, Location,\
-    Article, Disease, Syndrome,Outbreak
+    Article, Disease, Syndrome, Outbreak, Message
 from rest_framework import serializers, validators
 from django.db import models
 from django import forms
@@ -76,7 +76,7 @@ class ReportEventSerializer(serializers.ModelSerializer):
         return report_id.id
 
     def validate_location(self, location):
-        # dump the get or create 
+        # dump the get or create
         location = LocationSerializer().create(location)
 
         return location
@@ -131,6 +131,26 @@ class ArticleSerializer(serializers.ModelSerializer):
         )
 
 
+class MessageSerializer(serializers.ModelSerializer):
+    # report = serializers.PrimaryKeyRelatedField(
+    #     queryset=Report.objects.all(),
+    #     many=False,
+    #     write_only=True
+    # )
+    user = serializers.CharField(
+        # source='username',
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = Message
+        fields = (
+            'report',
+            'msg',
+            'user'
+        )
+
+
 class ReportSerializer(serializers.ModelSerializer):
     # Reportevent details
     report_events = ReportEventSerializer(
@@ -147,6 +167,9 @@ class ReportSerializer(serializers.ModelSerializer):
     syndrome = serializers.PrimaryKeyRelatedField(
         queryset=Syndrome.objects.all(), many=True
     )
+    comment = MessageSerializer(
+        many=True, read_only=True, source='message_set'
+    )
 
     class Meta:
         model = Report
@@ -161,10 +184,11 @@ class ReportSerializer(serializers.ModelSerializer):
             'report_events'
         )
 
+
 class OutbreakSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model =  Outbreak
+        model = Outbreak
         fields = (
             'id',
             'key_term',
