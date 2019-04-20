@@ -8,9 +8,7 @@
       </v-btn>
     </h1>
     <h5 class="info--text">{{ article.date_of_publication | showDate }}</h5>
-    <p>
-      {{ article.main_text }}
-    </p>
+    <p>{{ article.main_text }}</p>
     <div v-if="report.disease && report.disease.length != 0">
       <h3>Disease</h3>
       <p>{{ report.disease.join(", ") }}</p>
@@ -26,10 +24,13 @@
         <reportEvent :event="re" />
       </div>
     </div>
-    <h3>Comment</h3>
-    <p>
-      Carly: This event should have more care
-    </p>
+    <div v-if="report.comment.length != 0">
+      <h3>Comment</h3>
+      <p v-for="m in report.comment" :key="m.msg">
+        <b>{{ m.user }}</b>
+        {{ m.msg }}
+      </p>
+    </div>
     <h3>Related</h3>
     <h5>
       {{ search_term }} from {{ search_start | showDate }} to

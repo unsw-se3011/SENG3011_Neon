@@ -20,7 +20,7 @@
           required
         />
         <p>
-          New to Whiteboard?
+          New to Project Neon?
           <router-link :to="{ name: 'register' }"
             >Create an account.</router-link
           >
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     // map the login action from vuex
-    ...mapActions("auth", ["loginByCredential", "getUserDetail"]),
+    ...mapActions("auth", ["loginByCredential"]),
     login() {
       // pass the user login credential
       this.loginByCredential({

@@ -7,11 +7,11 @@
           <v-img :src="out.img" v-if="out.img" height="200px"> </v-img>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">{{ out.key_term }} Outbreak</h3>
-              <div>
-                From {{ out.start_date | showDate }} to
-                {{ out.end_date | showDate }}
-              </div>
+              <h3 class="headline mb-0">
+                From {{ out.start_date | showYearMonth }} to
+                {{ out.end_date | showYearMonth }} <br />
+                {{ out.key_term }} Outbreak
+              </h3>
             </div>
           </v-card-title>
         </v-card>

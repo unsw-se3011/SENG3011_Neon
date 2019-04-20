@@ -15,6 +15,10 @@ Vue.filter("showDate", s => {
   return moment(s).format("YYYY MMM DD");
 });
 
+Vue.filter("showYearMonth", s => {
+  return moment(s).format("YYYY MMM");
+});
+
 Vue.filter("showLocation", lo => {
   if (!lo) {
     return "";

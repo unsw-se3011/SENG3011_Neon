@@ -128,7 +128,7 @@ class SyndromeViewSet(viewsets.ModelViewSet):
 
 
 class OutbreakViewSet(viewsets.ModelViewSet):
-    queryset = Outbreak.objects.all()
+    queryset = Outbreak.objects.order_by('-end_date')
     serializer_class = OutbreakSerializer
 
     @action(detail=True, methods=['GET'], name='chart_data')
@@ -171,5 +171,5 @@ class OutbreakViewSet(viewsets.ModelViewSet):
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
+    queryset = Message.objects.order_by('-end_date')
     serializer_class = MessageSerializer

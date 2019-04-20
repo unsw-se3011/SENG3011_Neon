@@ -132,11 +132,11 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    # report = serializers.PrimaryKeyRelatedField(
-    #     queryset=Report.objects.all(),
-    #     many=False,
-    #     write_only=True
-    # )
+    report = serializers.PrimaryKeyRelatedField(
+        queryset=Report.objects.all(),
+        many=False,
+        write_only=True
+    )
     user = serializers.CharField(
         # source='username',
         default=serializers.CurrentUserDefault()

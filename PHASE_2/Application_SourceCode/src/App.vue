@@ -72,7 +72,7 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat>Login</v-btn>
+        <v-btn flat :to="{ name: 'login' }">Login</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
