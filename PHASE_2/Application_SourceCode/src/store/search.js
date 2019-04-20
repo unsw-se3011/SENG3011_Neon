@@ -138,7 +138,7 @@ export default {
       }
       commit("commit_waiting");
 
-      console.log(state.reports);
+      // console.log(state.reports);
       // should fetch two database
       // from date format to iso format
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
