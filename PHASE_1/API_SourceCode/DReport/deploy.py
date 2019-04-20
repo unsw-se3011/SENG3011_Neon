@@ -145,4 +145,5 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 
-SEARCH_PARAM = "key`terms"
+SEARCH_PARAM = "key_terms"
+JWT_ALLOW_REFRESH = True

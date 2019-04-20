@@ -28,7 +28,7 @@ Vue.filter("showLocation", lo => {
       return str + `${lo.city} ${lo.state}, ${lo.country}`;
     }
     // else only have country
-    return str + lo.country;
+    return str + lo.country + ".";
   }
 });
 

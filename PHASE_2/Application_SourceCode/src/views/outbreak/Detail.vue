@@ -13,7 +13,7 @@
     ></ve-scatter>
 
     <h2 class="my-1">Map</h2>
-    <mapComp :chartData="chart_data.map_arr" />
+    <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
     <div class="my-1" v-if="!waiting">
       <h2>Report List</h2>

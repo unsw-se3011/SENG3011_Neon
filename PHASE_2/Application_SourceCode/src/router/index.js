@@ -10,5 +10,10 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [...report, ...outbreak, ...auth]
+  routes: [
+    ...report,
+    ...outbreak,
+    ...auth,
+    { path: "*", redirect: { name: "home" } }
+  ]
 });

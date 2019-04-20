@@ -50,7 +50,8 @@ function createTokenRefreshIntercept() {
       _axios.interceptors.response.eject(interceptor);
       return _axios
         .post("/jwt_refresh/", {
-          refresh_token: localStorage.getItem("token")
+          // format and pass the old token
+          token: localStorage.getItem("token").substr(4)
         })
         .then(response => {
           localStorage.setItem("token", "JWT " + response.data.token);
@@ -62,9 +63,9 @@ function createTokenRefreshIntercept() {
           return _axios(error.response.config);
         })
         .catch(error => {
-          localStorage.removeItem("token");
-          // this line may not work
-          this.router.push("/auth/login");
+          // push to logout to vall vuex to update state
+          console.log("try to logout");
+          window.router.push("/auth/logout");
           return Promise.reject(error);
         })
         .finally(createTokenRefreshIntercept);

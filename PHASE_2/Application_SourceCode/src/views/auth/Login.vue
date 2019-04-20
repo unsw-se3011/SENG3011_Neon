@@ -64,7 +64,7 @@ export default {
             this.$router.push(this.$route.query.redirect);
           } else {
             // go to previous page, if it's user direct to login
-            this.$router.go(-1);
+            this.$router.push("/");
           }
         })
         .catch(() => {

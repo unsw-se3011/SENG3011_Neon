@@ -36,7 +36,7 @@
                   Causes {{ report.syndrome.join(", ") }} <br />
                 </div>
                 <span v-for="re in report.report_events" :key="re.id">
-                  {{ re.location | showLocation }}.
+                  {{ re.location | showLocation }}
                 </span>
               </div>
             </div>

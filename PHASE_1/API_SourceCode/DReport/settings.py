@@ -148,3 +148,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 SEARCH_PARAM = "keyterms"
+JWT_ALLOW_REFRESH = True
