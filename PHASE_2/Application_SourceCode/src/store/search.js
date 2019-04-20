@@ -131,7 +131,7 @@ export default {
       commit("add_ramen_reports", ret.data);
     },
 
-    refresh_data: async ({ state, commit, dispatch }, force = false) => {
+    refresh_data: async ({ state, commit }, force = false) => {
       if (force == true) {
         commit("commit_waiting");
       } else if (

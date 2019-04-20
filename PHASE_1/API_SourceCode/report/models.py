@@ -155,8 +155,9 @@ class Outbreak(models.Model):
                 start_date__lte=out.start_date,
                 end_date__gte=out.end_date
             )
-        ).filter(
-            e_type = event_type
+        )\
+        .filter(
+            # e_type = event_type
         ).filter(
             Q(report__article__main_text__icontains= out.key_term)|
             Q(report__article__main_text__icontains = out.key_term)|
@@ -170,15 +171,4 @@ class Outbreak(models.Model):
         # organize the data to form the chart 
         day_dict = {} 
         
-        for re in query_set:
-            date_str = re.start_date.strftime("%Y-%m-%d")
-            if date_str not in day_dict:
-                day_dict[date_str] = {
-                    re.event_type_full : re.number_affected
-                }
-            else :
-                day_dict[date_str][re.event_type_full ] = \
-                    re.number_affected
-
-
-        return day_dict
+        return query_set

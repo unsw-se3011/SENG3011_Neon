@@ -4,6 +4,9 @@ from rest_framework import viewsets
 from .serializers import ReportSerializer, ReportEventSerializer, LocationSerializer, ArticleSerializer
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+# support custom actions
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
@@ -127,4 +130,27 @@ class SyndromeViewSet(viewsets.ModelViewSet):
 class OutbreakViewSet(viewsets.ModelViewSet):
     queryset = Outbreak.objects.all()
     serializer_class = OutbreakSerializer
+
+    @action(detail = True, methods= ['GET'], name='chart_data')
+    def chart(self, request, pk=None):
+        query_set = Outbreak.static(pk)
+        day_dict = {}
+        # show logic 
+        for re in query_set:
+            date_str = re.start_date.strftime("%Y-%m-%d")
+            if date_str not in day_dict:
+                day_dict[date_str] = {
+                    re.event_type_full : re.number_affected,
+                    'date':date_str 
+                }
+            else :
+                day_dict[date_str][re.event_type_full ] = \
+                    re.number_affected
+
+
+        # return the filtered result 
+        return Response(
+            [day_dict[d] for d in day_dict]
+
+        )
     

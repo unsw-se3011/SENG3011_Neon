@@ -14,9 +14,8 @@
 
     {{ infected_data }}
     <div v-if="!waiting">
-      
       <h2>Report List</h2>
-      <reportList  />
+      <reportList />
     </div>
   </v-container>
 </template>
