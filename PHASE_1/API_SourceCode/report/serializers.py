@@ -1,4 +1,5 @@
-from .models import Report, ReportEvent, Location, Article, Disease, Syndrome
+from .models import Report, ReportEvent, Location,\
+    Article, Disease, Syndrome,Outbreak
 from rest_framework import serializers, validators
 from django.db import models
 from django import forms
@@ -158,4 +159,16 @@ class ReportSerializer(serializers.ModelSerializer):
             'comment',
             'article',
             'report_events'
+        )
+
+class OutbreakSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model =  Outbreak
+        fields = (
+            'id',
+            'key_term',
+            'start_date',
+            'end_date',
+            'img'
         )

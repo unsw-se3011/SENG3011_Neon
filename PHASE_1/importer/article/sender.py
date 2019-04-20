@@ -31,7 +31,7 @@ SYNDROME_MAP = {
 # BASE_URL = 'http://neon.whiteboard.house/v0/'
 BASE_URL = 'http://localhost:8000/v0/'
 
-THREAD_COUNT = 4
+THREAD_COUNT = 1
 
 token = ""
 timer = None
@@ -70,7 +70,7 @@ def mk_article(data):
         "url": article['url'],
         "headline": article['headline'],
         "main_text": article['main_text'],
-        "img": ""
+        "img": article['img']
     }
 
 

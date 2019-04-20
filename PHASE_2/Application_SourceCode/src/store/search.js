@@ -17,11 +17,12 @@ function initial() {
   return {
     filter_show: false,
     search_key: "",
-    waiting: true,
+    waiting: false,
     start_date: toDate(year_before),
     end_date: toDate(date_now),
     location: "",
     key_term: "",
+    count: 0,
     reports: [],
     // this for the make up id from ramen
     ramen_id: 0
@@ -89,7 +90,8 @@ export default {
       // push the constructed report to database
       state.reports = [...state.reports, ...reports];
       state.waiting = false;
-    }
+    },
+    set_count: (state, count) => (state.count = count)
   },
   actions: {
     fetch_neon_reports: async ({ commit, dispatch }, next) => {
@@ -97,13 +99,13 @@ export default {
        * self recursing to fetch the data as a background activity
        */
       // remove the base url to get ride of cor
-      next = next.replace("http://localhost:8000/v0", "");
+      next = next.replace("http://localhost:8000", "");
 
       let ret = await axios.get(next);
       commit("add_neon_reports", ret.data.results);
+
       // recursive self
       if (ret.data.next) {
-        console.log(ret.data.next);
         dispatch("fetch_neon_reports", ret.data.next);
       }
     },
@@ -129,14 +131,20 @@ export default {
       commit("add_ramen_reports", ret.data);
     },
 
-    refresh_data: async ({ state, commit, dispatch }) => {
+    refresh_data: async ({ state, commit }, force = false) => {
+      if (force == false && state.reports.length != 0) {
+        // we don't force list to update
+        return;
+      }
+      commit("commit_waiting");
+
+      console.log(state.reports);
       // should fetch two database
       // from date format to iso format
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
       let end_date = new Date(Date.parse(state.end_date)).toISOString();
 
       // start the transaction of db update
-      commit("commit_waiting");
       /**
        * Fetch from neon project
        */
@@ -150,13 +158,13 @@ export default {
       });
 
       // this action probably will overflow the device
-      if (ret.data.next) {
-        dispatch("fetch_neon_reports", ret.data.next);
-      }
-
+      // if (ret.data.next) {
+      //   dispatch("fetch_neon_reports", ret.data.next);
+      // }
+      commit("set_count", ret.data.count);
       commit("add_neon_reports", ret.data.results);
 
-      dispatch("fetch_ramen_data");
+      // dispatch("fetch_ramen_data");
       return ret;
     }
   }

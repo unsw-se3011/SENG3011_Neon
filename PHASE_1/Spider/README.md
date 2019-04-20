@@ -12,6 +12,12 @@ pip install -r requirments.txt
 
 ```
 
+In debian, we need to install lib-db
+
+```
+sudo apt install lib-db
+```
+
 ## ProMed
 
 Promed doesn't use standard way as html, we need find another way out. Also scraper doesn't design fairly well.

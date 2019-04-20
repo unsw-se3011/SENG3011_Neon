@@ -10,6 +10,10 @@ import reportListComp from "@/components/report/List.vue";
 export default {
   components: {
     reportListComp
+  },
+
+  mounted() {
+    this.$store.dispatch("search/refresh_data");
   }
 };
 </script>
