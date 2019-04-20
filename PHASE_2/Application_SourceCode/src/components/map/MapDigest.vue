@@ -12,20 +12,23 @@
 import { GChart } from "vue-google-charts";
 
 export default {
+  props: {
+    chartData: Array
+  },
   data() {
     return {
       // map api key
       api_key: "AIzaSyB6IaopsDWBemevu37s39weiIuF0Y8_cgY",
       // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [
-        ["Country", "Affected"],
-        ["Germany", 200],
-        ["United States", 300],
-        ["Brazil", 400],
-        ["Canada", 500],
-        ["France", 600],
-        ["RU", 700]
-      ],
+      // chartData: [
+      //   ["Country", "Affected"],
+      //   ["Germany", 200],
+      //   ["United States", 300],
+      //   ["Brazil", 400],
+      //   ["Canada", 500],
+      //   ["France", 600],
+      //   ["RU", 700]
+      // ],
       chartOptions: {},
       settings: {
         packages: ["geochart"],

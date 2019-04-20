@@ -135,6 +135,7 @@ class OutbreakViewSet(viewsets.ModelViewSet):
     def chart(self, request, pk=None):
         query_set = Outbreak.static(pk)
         day_dict = {}
+        country_dict =  {}
         shown_key = set()
         # show logic 
         for re in query_set:
@@ -150,10 +151,20 @@ class OutbreakViewSet(viewsets.ModelViewSet):
                 day_dict[date_str][re.event_type_full ] = \
                     re.number_affected
 
+            if re.location:
+                if re.location.country not in country_dict:
+                    country_dict[re.location.country] = 0
+                country_dict[re.location.country] += re.number_affected
+        
+        
+
         ret = {
             # calculate only for the shown reusults 
             'columns': ['date']+[k for k in shown_key],
-            'rows':[day_dict[d] for d in day_dict]
+            'rows':[day_dict[d] for d in day_dict],
+            'map_arr': [["Country", "Affected"]]+ [
+                [k, country_dict[k]] for k in country_dict
+            ]
         }
         # return the filtered result 
         return Response(
