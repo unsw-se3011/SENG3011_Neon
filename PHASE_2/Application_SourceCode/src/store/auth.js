@@ -14,13 +14,14 @@ export default {
   namespaced: true,
   state: initial,
   mutations: {
-    ADD_TOKEN: (state, token) => {
+    ADD_TOKEN: (state, data) => {
       // store this token to local storage
       // with 4.5 minutes of expire
       let expire = new Date().getTime() + 270000;
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", data.access);
+      localStorage.setItem("refresh", data.refresh);
       localStorage.setItem("expire", expire);
-      state.token = token;
+      state.token = data.access;
       state.expire = expire;
     },
     ADD_USER: (state, { username, first_name, last_name, id }) => {
@@ -52,7 +53,7 @@ export default {
         res = await window.axios.post("/jwt/", credential);
         // add this token to store
         // modify the auth type
-        commit("ADD_TOKEN", "JWT " + res.data.token);
+        commit("ADD_TOKEN", "Bearer " + res.data);
         // use this token to do axios request
         window.axios.defaults.headers.common["Authorization"] = state.token;
       } catch (error) {
@@ -72,16 +73,16 @@ export default {
         password: user.password
       });
     },
-    async refreshToken({ state, commit }) {
-      if (state.expire != "" && state.expire < new Date().getTime()) {
-        // the token is exprie, we fetch a new token
-        let ret = await window.axios.post("/jwt_refresh/", {
-          token: state.token
-        });
-        commit("ADD_TOKEN", "JWT " + ret.data.token);
-        return ret;
-      }
-    },
+    // async refreshToken({ state, commit }) {
+    //   if (state.expire != "" && state.expire < new Date().getTime()) {
+    //     // the token is exprie, we fetch a new token
+    //     let ret = await window.axios.post("/jwt_refresh/", {
+    //       token: state.token
+    //     });
+    //     commit("ADD_TOKEN", "Bearer " + ret.data.access);
+    //     return ret;
+    //   }
+    // },
     async editUser(state, user) {
       let ret = await window.axios.put(`/users/${user.id}/`, user);
       return ret;

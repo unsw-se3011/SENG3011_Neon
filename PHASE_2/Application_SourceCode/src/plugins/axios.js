@@ -51,21 +51,21 @@ function createTokenRefreshIntercept() {
       return _axios
         .post("/jwt_refresh/", {
           // format and pass the old token
-          token: localStorage.getItem("token").substr(4)
+          refresh: localStorage.getItem("token").substr(7)
         })
         .then(response => {
           localStorage.setItem("token", "JWT " + response.data.token);
           // set the axios to the new item
           error.response.config.headers["Authorization"] =
-            "JWT " + response.data.token;
+            "JWT " + response.data.access;
           _axios.defaults.headers.common["Authorization"] =
-            "JWT " + response.data.token;
+            "JWT " + response.data.access;
           return _axios(error.response.config);
         })
         .catch(error => {
           // push to logout to vall vuex to update state
           console.log("try to logout");
-          window.router.push("/auth/logout");
+          this.$router.push("/auth/logout");
           return Promise.reject(error);
         })
         .finally(createTokenRefreshIntercept);
