@@ -29,7 +29,10 @@ export default {
       //   ["France", 600],
       //   ["RU", 700]
       // ],
-      chartOptions: {},
+      chartOptions: {
+        backgroundColor: "",
+        colors: ["#FFCDD2", "#F44336"]
+      },
       settings: {
         packages: ["geochart"],
         mapsApiKey: "AIzaSyB6IaopsDWBemevu37s39weiIuF0Y8_cgY"
