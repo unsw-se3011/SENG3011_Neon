@@ -171,5 +171,5 @@ class OutbreakViewSet(viewsets.ModelViewSet):
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.order_by('-end_date')
+    queryset = Message.objects.all()
     serializer_class = MessageSerializer

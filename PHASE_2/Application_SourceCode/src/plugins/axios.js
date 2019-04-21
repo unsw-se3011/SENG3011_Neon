@@ -5,7 +5,9 @@ import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
-axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
+axios.defaults.headers.common["Authorization"] = localStorage.getItem("token")
+  ? "Bearer " + localStorage.getItem("token")
+  : "";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
@@ -41,7 +43,7 @@ function createTokenRefreshIntercept() {
     error => {
       // Do something with response error
       console.log(error.status);
-      if (error.response.status !== 401) {
+      if (error.response.status !== 403) {
         return Promise.reject(error);
       }
       console.log("try to solve the expire");
@@ -51,21 +53,24 @@ function createTokenRefreshIntercept() {
       return _axios
         .post("/jwt_refresh/", {
           // format and pass the old token
-          refresh: localStorage.getItem("token").substr(7)
+          refresh: localStorage.getItem("refresh")
         })
         .then(response => {
-          localStorage.setItem("token", "JWT " + response.data.token);
+          // console.log(localStorage.getItem('token'))
+          // console.log(response.data.access)
+          localStorage.setItem("token", response.data.access);
           // set the axios to the new item
           error.response.config.headers["Authorization"] =
-            "JWT " + response.data.access;
+            "Bearer " + response.data.access;
           _axios.defaults.headers.common["Authorization"] =
-            "JWT " + response.data.access;
+            "Bearer " + response.data.access;
+          // this can fix the another base url append
+          error.response.config.baseURL = "";
           return _axios(error.response.config);
         })
         .catch(error => {
           // push to logout to vall vuex to update state
-          console.log("try to logout");
-          this.$router.push("/auth/logout");
+          window.location.pathname = "/auth/logout/";
           return Promise.reject(error);
         })
         .finally(createTokenRefreshIntercept);

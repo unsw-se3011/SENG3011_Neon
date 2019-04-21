@@ -53,9 +53,12 @@ export default {
         res = await window.axios.post("/jwt/", credential);
         // add this token to store
         // modify the auth type
-        commit("ADD_TOKEN", "Bearer " + res.data);
+        commit("ADD_TOKEN", res.data);
+        console.log(res.data);
+        console.log(state);
         // use this token to do axios request
-        window.axios.defaults.headers.common["Authorization"] = state.token;
+        window.axios.defaults.headers.common["Authorization"] =
+          "Bearer " + state.token;
       } catch (error) {
         // logout
         Router.push("/auth/login");
