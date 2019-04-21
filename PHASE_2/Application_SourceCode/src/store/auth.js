@@ -1,5 +1,3 @@
-import Router from "vue-router";
-
 function initial() {
   return {
     id: localStorage.getItem("uid"),
@@ -54,14 +52,15 @@ export default {
         // add this token to store
         // modify the auth type
         commit("ADD_TOKEN", res.data);
-        console.log(res.data);
-        console.log(state);
+        // console.log(res.data);
+        // console.log(state);
         // use this token to do axios request
         window.axios.defaults.headers.common["Authorization"] =
           "Bearer " + state.token;
       } catch (error) {
         // logout
-        Router.push("/auth/login");
+        // console.log("credential try to logout")
+        this.$router.push("/auth/login");
       }
       // fetch the user detail into frontend
       dispatch("getUserDetail");

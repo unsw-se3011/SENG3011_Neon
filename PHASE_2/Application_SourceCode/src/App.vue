@@ -73,7 +73,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn v-if="!username" flat :to="{ name: 'login' }">Login</v-btn>
-        <v-menu offset-y>
+        <v-menu offset-y v-else>
           <v-btn flat v-if="username" slot="activator">{{ username }}</v-btn>
           <v-list>
             <v-list-tile :to="{ name: 'logout' }">
