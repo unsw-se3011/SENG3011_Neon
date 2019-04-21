@@ -87,7 +87,7 @@ def refresh_token():
         data={"username": "neon", "password": "apple123"}
     )
     old_token = token
-    token = "JWT " + response.json()['token']
+    token = "Bearer " + response.json()['access']
 
     if old_token != token:
         print("get Refreshed token")

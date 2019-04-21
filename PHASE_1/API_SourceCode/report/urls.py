@@ -1,17 +1,22 @@
 from django.conf.urls import url, include
-from .views import ReportViewSet,\
-    ReportEventViewSet,\
-    LocationViewSet,\
-    ArticleViewSet,\
-    UserViewSet,\
-    DiseaseViewSet,\
-    SyndromeViewSet,\
-    OutbreakViewSet,\
+from .views import (
+    ReportViewSet,
+    ReportEventViewSet,
+    LocationViewSet,
+    ArticleViewSet,
+    UserViewSet,
+    DiseaseViewSet,
+    SyndromeViewSet,
+    OutbreakViewSet,
     MessageViewSet
+)
 from rest_framework import routers
-from django.urls import path
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-from rest_framework import permissions
+# from django.urls import path
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 # register viewset
 router = routers.DefaultRouter()
@@ -26,7 +31,7 @@ router.register(r'outbreaks', OutbreakViewSet)
 router.register(r'message', MessageViewSet)
 
 urlpatterns = [
-    path('jwt/', obtain_jwt_token),
-    url(r'^jwt_refresh/', refresh_jwt_token),
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(r'^jwt/$', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    url(r'^jwt_refresh/$', TokenRefreshView.as_view(), name='token_refresh'),
 ]
