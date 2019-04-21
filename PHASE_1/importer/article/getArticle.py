@@ -7,9 +7,10 @@ import os
 import fileinput
 from json import loads, dumps
 
+
 def get_line_count(file_name):
-    output = os.popen('wc '+ file_name).read()
-    # read the output as an array 
+    output = os.popen('wc ' + file_name).read()
+    # read the output as an array
     output = [t for t in output.split(' ') if t != '']
     return int(output[0])
 
@@ -39,10 +40,10 @@ if __name__ == "__main__":
 
     lines = get_line_count(args.file)
 
-    while len(need_fetch)< args.article_count:
+    while len(need_fetch) < args.article_count:
         need_fetch.add(random.randrange(lines))
 
-    # sort the randomly generated number to increase the fetch performance 
+    # sort the randomly generated number to increase the fetch performance
     lines = [t for t in need_fetch]
     lines.sort()
 
@@ -52,17 +53,31 @@ if __name__ == "__main__":
     article_arr = []
 
     while True:
-        # fetch the correspond lines 
+        # fetch the correspond lines
         try:
             article = next(it)
             if i in lines:
-                # we need this article 
-                article_arr.append(loads(article))
+                # we need this article
+                article = loads(article)
+                report = {
+                    'disease': ['sss'],
+                    'syndrome': ['sss'],
+                    'reported_events': [
+                        {
+                            'type': 'Recovered',
+                            'start_date': '2018-12-01T00:00:00',
+                            'end_date': '2018-12-01T00:00:00',
+                            'location': '',
+                            'number-affected': 10
+                        }
+                    ]
+                }
+                article['reports'] = [report]
+                article_arr.append(article)
         except StopIteration as e:
-            # end of iteration, we don't need to do anything 
+            # end of iteration, we don't need to do anything
             break
-        
-        
-        i += 1 
-    # dump the random article 
+
+        i += 1
+    # dump the random article
     print(dumps(article_arr))
