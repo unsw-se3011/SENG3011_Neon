@@ -8,9 +8,7 @@
       </v-btn>
     </h1>
     <h5 class="info--text">{{ article.date_of_publication | showDate }}</h5>
-    <p>
-      {{ article.main_text }}
-    </p>
+    <p>{{ article.main_text }}</p>
     <div v-if="report.disease && report.disease.length != 0">
       <h3>Disease</h3>
       <p>{{ report.disease.join(", ") }}</p>
@@ -26,10 +24,15 @@
         <reportEvent :event="re" />
       </div>
     </div>
-    <h3>Comment</h3>
-    <p>
-      Carly: This event should have more care
-    </p>
+    <div>
+      <h3>Comment</h3>
+      <commentList
+        v-if="username"
+        :msg_list="report.comment"
+        :report_id="report_id"
+        @change="update_neon"
+      />
+    </div>
     <h3>Related</h3>
     <h5>
       {{ search_term }} from {{ search_start | showDate }} to
@@ -45,6 +48,7 @@
 
 <script>
 import reportEvent from "@/components/reportEventCard.vue";
+import CommentList from "@/components/report/CommentList.vue";
 import relatedNews from "@/components/relatedNews.vue";
 import { mapActions, mapState } from "vuex";
 export default {
@@ -57,6 +61,7 @@ export default {
   },
   computed: {
     ...mapState("search", ["reports"]),
+    ...mapState("auth", ["username"]),
     search_start() {
       // algorithem to minux 15 days from publish
       // let stamp = new Date(this.article.date_of_publication).getTime();
@@ -92,32 +97,43 @@ export default {
       }
       // failover
       return "zika";
+    },
+    is_neon() {
+      let id = this.$route.params.id;
+      let neon_id = /^n([0-9]+)/.exec(id);
+      if (neon_id) {
+        return true;
+      }
+      return false;
+    },
+    report_id() {
+      return parseInt(this.$route.params.id.substr(1));
     }
   },
 
   methods: {
-    ...mapActions("report", ["get_neon_report"])
-  },
-  async mounted() {
-    let id = this.$route.params.id;
-    // try to match the neon id
-    let neon_id = /^n([0-9]+)/.exec(id);
-    let ramen_id = /^r([0-9]+)/.exec(id);
-    if (neon_id) {
-      neon_id = neon_id[1];
+    ...mapActions("report", ["get_neon_report"]),
+    async update_neon() {
       // fetch the report from backend
-      let ret = await this.get_neon_report(neon_id);
+      let ret = await this.get_neon_report(this.report_id);
       this.report = ret.data;
       this.article = this.report.article;
       this.waiting = false;
-    } else if (ramen_id) {
+    }
+  },
+  async mounted() {
+    let re_src = this.$route.params.id.substr(0, 1);
+
+    if (this.is_neon) {
+      this.update_neon();
+    } else if (re_src == "r") {
       /**
        * support the ramen api
        * Fetch the relative id from our backend
        */
-      ramen_id = ramen_id[0];
+      this.report_id;
       // assign the report and article
-      this.report = this.reports.find(el => el.id == ramen_id);
+      this.report = this.reports.find(el => el.id == this.report_id);
       this.article = this.report.article;
       console.log(this.report);
       this.waiting = false;
@@ -125,7 +141,8 @@ export default {
   },
   components: {
     reportEvent,
-    relatedNews
+    relatedNews,
+    CommentList
   }
 };
 </script>

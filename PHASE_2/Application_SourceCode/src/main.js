@@ -15,6 +15,10 @@ Vue.filter("showDate", s => {
   return moment(s).format("YYYY MMM DD");
 });
 
+Vue.filter("showYearMonth", s => {
+  return moment(s).format("YYYY MMM");
+});
+
 Vue.filter("showLocation", lo => {
   if (!lo) {
     return "";
@@ -24,7 +28,7 @@ Vue.filter("showLocation", lo => {
       return str + `${lo.city} ${lo.state}, ${lo.country}`;
     }
     // else only have country
-    return str + lo.country;
+    return str + lo.country + ".";
   }
 });
 

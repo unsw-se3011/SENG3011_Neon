@@ -31,7 +31,7 @@ SYNDROME_MAP = {
 # BASE_URL = 'http://neon.whiteboard.house/v0/'
 BASE_URL = 'http://localhost:8000/v0/'
 
-THREAD_COUNT = 1
+THREAD_COUNT = 4
 
 token = ""
 timer = None
@@ -87,7 +87,7 @@ def refresh_token():
         data={"username": "neon", "password": "apple123"}
     )
     old_token = token
-    token = "JWT " + response.json()['token']
+    token = "Bearer " + response.json()['access']
 
     if old_token != token:
         print("get Refreshed token")
@@ -99,7 +99,7 @@ def refresh_token():
 
     print("set up another timer")
     # set up another timer for next refresh
-    timer = threading.Timer(30, refresh_token)
+    timer = threading.Timer(270, refresh_token)
     timer.start()
 
 

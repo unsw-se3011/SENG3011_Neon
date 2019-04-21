@@ -37,7 +37,7 @@
             </v-flex>
           </v-layout>
           <v-btn type="submit" v-if="!isEdit">Register</v-btn>
-          <v-btn type="submit" v-else>Save</v-btn>
+          <v-btn type="submit" color="success" v-else>Save</v-btn>
         </form>
       </v-flex>
     </v-layout>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 // import postCard from "@/components/helper/addressInput";
 export default {
   data() {
@@ -55,11 +55,12 @@ export default {
       password: "",
       first_name: "",
       last_name: "",
-      show: false
+      show: false,
+      snackbar: false,
+      snackText: ""
     };
   },
   computed: {
-    ...mapState(["api_state"]),
     isEdit() {
       // if the name is profile Edit, then this is an edit page
       return this.$route.name == "ProfileEdit";
@@ -100,7 +101,7 @@ export default {
             this.$router.push(this.$route.query.redirect);
           } else {
             // go to previous page, if it's user direct to login
-            this.$router.go(-2);
+            this.$router.go(-3);
           }
         });
       }
@@ -109,9 +110,7 @@ export default {
           this.snackText = err.response.data.username[0];
         }
         this.snackbar = true;
-        this.snackbarColor = "error";
         this.error = err.response.data;
-        this.$store.commit("API_READY");
       });
     }
   },
@@ -123,12 +122,7 @@ export default {
         this.location = res.data.location;
         this.tel = res.data.tel;
         this.id = res.data.id;
-        // and let this page could be render
-        this.$store.commit("API_READY");
       });
-    } else {
-      // and let this page could be render
-      this.$store.commit("API_READY");
     }
   },
   components: {}

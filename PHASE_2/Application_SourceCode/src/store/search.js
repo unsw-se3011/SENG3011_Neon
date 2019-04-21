@@ -1,5 +1,3 @@
-import axios from "axios";
-
 /**
  * This is for attach the standard seng apis and provide the search
  * functionality with it
@@ -22,6 +20,8 @@ function initial() {
     end_date: toDate(date_now),
     location: "",
     key_term: "",
+    // next link for add data
+    next: "",
     count: 0,
     reports: [],
     // this for the make up id from ramen
@@ -69,6 +69,7 @@ export default {
       state.reports = [...state.reports, ...value];
       state.waiting = false;
     },
+    set_next_link: (state, next) => (state.next = next),
     inc_ramen_id: state => (state.ramen_id += 1),
     add_ramen_reports: (state, data) => {
       let reports = [];
@@ -94,20 +95,23 @@ export default {
     set_count: (state, count) => (state.count = count)
   },
   actions: {
-    fetch_neon_reports: async ({ commit, dispatch }, next) => {
+    fetch_neon_next: async ({ state, commit }) => {
       /**
        * self recursing to fetch the data as a background activity
        */
-      // remove the base url to get ride of cor
-      next = next.replace("http://localhost:8000", "");
 
-      let ret = await axios.get(next);
-      commit("add_neon_reports", ret.data.results);
-
-      // recursive self
-      if (ret.data.next) {
-        dispatch("fetch_neon_reports", ret.data.next);
+      if (!state.next) {
+        // doesn't have next page to fetch
+        return;
       }
+
+      // remove the base url to get ride of cor
+      let next = state.next.replace("http://localhost:8000/v0", "");
+
+      let ret = await window.axios.get(next);
+      // set the state
+      commit("add_neon_reports", ret.data.results);
+      commit("set_next_link", ret.data.next);
     },
     fetch_ramen_data: async ({ state, commit }) => {
       /**
@@ -117,7 +121,7 @@ export default {
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
       let end_date = new Date(Date.parse(state.end_date)).toISOString();
 
-      let ret = await axios.get(
+      let ret = await window.axios.get(
         "https://sneg-ramen.herokuapp.com/api/articles",
         {
           params: {
@@ -138,7 +142,7 @@ export default {
       }
       commit("commit_waiting");
 
-      console.log(state.reports);
+      // console.log(state.reports);
       // should fetch two database
       // from date format to iso format
       let start_date = new Date(Date.parse(state.start_date)).toISOString();
@@ -148,7 +152,7 @@ export default {
       /**
        * Fetch from neon project
        */
-      let ret = await axios.get("/v0/reports/", {
+      let ret = await window.axios.get("/reports/", {
         params: {
           start_date: start_date,
           end_date: end_date,
@@ -162,6 +166,7 @@ export default {
       //   dispatch("fetch_neon_reports", ret.data.next);
       // }
       commit("set_count", ret.data.count);
+      commit("set_next_link", ret.data.next);
       commit("add_neon_reports", ret.data.results);
 
       // dispatch("fetch_ramen_data");

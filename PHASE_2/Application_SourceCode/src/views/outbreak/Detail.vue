@@ -5,13 +5,17 @@
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
     </h5>
-    <h3>Infected Chart</h3>
+
     <ve-scatter
       v-if="!waiting"
       :data="chart_data"
       :settings="chartSettings"
     ></ve-scatter>
-    <div v-if="!waiting">
+
+    <h2 class="my-1">Map</h2>
+    <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
+
+    <div class="my-1" v-if="!waiting">
       <h2>Report List</h2>
       <reportList />
     </div>
@@ -21,6 +25,7 @@
 <script>
 import { mapState } from "vuex";
 import reportList from "@/components/report/List";
+import mapComp from "@/components/map/MapDigest.vue";
 export default {
   data() {
     return {
@@ -52,7 +57,8 @@ export default {
     this.waiting = false;
   },
   components: {
-    reportList
+    reportList,
+    mapComp
   }
 };
 </script>

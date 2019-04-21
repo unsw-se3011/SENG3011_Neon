@@ -12,7 +12,7 @@ response = requests.post(
     'http://localhost:8000/v0/jwt/',
     data={"username": "neon", "password": "apple123"}
 )
-token = "JWT " + response.json()['token']
+token = "Bearer " + response.json()['access']
 
 
 def mk_request(endpoint, data):
