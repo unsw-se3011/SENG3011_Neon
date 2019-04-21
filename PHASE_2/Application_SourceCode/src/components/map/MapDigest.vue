@@ -30,6 +30,7 @@ export default {
       //   ["RU", 700]
       // ],
       chartOptions: {
+        height: window.innerHeight * 0.5,
         backgroundColor: "",
         colors: ["#FFCDD2", "#F44336"]
       },
