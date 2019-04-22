@@ -46,6 +46,9 @@ export default {
   computed: {
     ...mapState("bookmark", ["bookmark_ids"]),
     report_id() {
+      if (typeof this.report.id == "number") {
+        return this.report.id;
+      }
       return parseInt(this.report.id.substr(1));
     },
     in_bookmark() {

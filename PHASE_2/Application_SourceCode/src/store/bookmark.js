@@ -1,6 +1,6 @@
 function initial() {
   return {
-    waiting: false,
+    waiting: true,
     bookmarks: [],
     bookmark_ids: []
   };
@@ -30,6 +30,8 @@ export default {
     async refresh_data({ commit }) {
       if (!localStorage.getItem("token")) {
         // only the login one can have bookmark
+        // nothing to fetch
+        commit("set_bookmark", []);
         return;
       }
       commit("commit_waiting");

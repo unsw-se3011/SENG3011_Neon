@@ -102,7 +102,8 @@ export default {
     items: [
       { icon: "contacts", text: "Reports", href: "home" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
-      { icon: "content_copy", text: "Map" },
+      { icon: "map", text: "Map" },
+      { icon: "content_copy", text: "Bookmark", href: "bookmarkList" },
 
       {
         icon: "keyboard_arrow_up",
