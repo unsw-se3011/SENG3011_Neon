@@ -8,7 +8,8 @@ from .views import (
     DiseaseViewSet,
     SyndromeViewSet,
     OutbreakViewSet,
-    MessageViewSet
+    MessageViewSet,
+    BookmarkViewSet,
 )
 from rest_framework import routers
 # from django.urls import path
@@ -29,6 +30,7 @@ router.register(r'diseases', DiseaseViewSet)
 router.register(r'syndromes', SyndromeViewSet)
 router.register(r'outbreaks', OutbreakViewSet)
 router.register(r'message', MessageViewSet)
+router.register(r'bookmark', BookmarkViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

@@ -189,3 +189,26 @@ class Message(models.Model):
 
     def get_absolute_url(self):
         return reverse("message_detail", kwargs={"pk": self.pk})
+
+class Bookmark(models.Model):
+    """
+    Link the bookmarks 
+    """
+    report = models.ForeignKey(Report, on_delete = models.CASCADE)
+    user= models.ForeignKey(User, on_delete = models.PROTECT)
+
+
+    class Meta:
+        verbose_name = _("bookmark")
+        verbose_name_plural = _("bookmarks")
+        unique_together = ('report', 'user')
+
+    def __str__(self):
+        return str(self.user) + " with "+ str(self.report.id)
+
+    def get_absolute_url(self):
+        return reverse("bookmark_detail", kwargs={"pk": self.pk})
+
+    @classmethod
+    def get_Bookmarked(cls, user):
+        return cls.objects.filter(user = user)

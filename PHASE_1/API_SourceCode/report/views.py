@@ -130,6 +130,7 @@ class SyndromeViewSet(viewsets.ModelViewSet):
 class OutbreakViewSet(viewsets.ModelViewSet):
     queryset = Outbreak.objects.order_by('-end_date')
     serializer_class = OutbreakSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     @action(detail=True, methods=['GET'], name='chart_data')
     def chart(self, request, pk=None):
@@ -173,3 +174,23 @@ class OutbreakViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+class BookmarkViewSet(viewsets.ModelViewSet):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def list(self, request):
+        # rewrite and fetch only the current user's book mark 
+        if request.user and request.user.is_authenticated:
+            # this will reduce the amount of data need to transfer
+            return Response(
+                [
+                    b.report.pk 
+                    for b in Bookmark.get_Bookmarked(request.user)
+                ])
+        # else: not authenticated
+        # raise not authenticated
+        raise NotAuthenticated()
