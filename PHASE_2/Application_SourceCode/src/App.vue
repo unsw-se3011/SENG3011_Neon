@@ -142,10 +142,9 @@ export default {
         // if it's not in the index, go to index to show the result
         if (this.$route.path != "/") {
           this.$router.push("/");
-        } else {
-          // we press enter, it must search
-          this.refresh_data(true);
         }
+        // we press enter, it must search
+        this.refresh_data(true);
       }
     },
     logout() {

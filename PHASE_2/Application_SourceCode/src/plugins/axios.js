@@ -42,11 +42,11 @@ function createTokenRefreshIntercept() {
     },
     error => {
       // Do something with response error
-      console.log(error.status);
+      // console.log(error.status);
       if (error.response.status !== 403) {
         return Promise.reject(error);
       }
-      console.log("try to solve the expire");
+      // console.log("try to solve the expire");
       // eject this  interceptor to prevent loop
       // when some edge case
       _axios.interceptors.response.eject(interceptor);
