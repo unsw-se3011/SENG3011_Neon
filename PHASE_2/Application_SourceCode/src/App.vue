@@ -66,7 +66,7 @@
         prepend-inner-icon="search"
         v-model="key_term"
         label="Search"
-        class="pl-5 hidden-sm-and-down neon-round"
+        class="pl-5 ml-5 hidden-sm-and-down neon-round"
         style=" border-radius: 20px;"
         @keydown="try_search"
       ></v-text-field>
