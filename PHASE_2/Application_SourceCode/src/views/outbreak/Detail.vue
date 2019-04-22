@@ -3,10 +3,10 @@
     <h2 class="display-1 font-weight-medium font-weight-medium">
       {{ name }} Outbreak
     </h2>
-    <h5>
+    <h4>
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
-    </h5>
+    </h4>
 
     <ve-scatter
       v-if="!waiting"
@@ -14,7 +14,7 @@
       :settings="chartSettings"
     ></ve-scatter>
 
-    <h2 class="my-1">Map</h2>
+    <h1 class="my-1 font-weight-medium">Map</h1>
     <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
     <div class="my-1" v-if="!waiting">

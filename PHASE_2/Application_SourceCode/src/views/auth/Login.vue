@@ -4,6 +4,7 @@
       <h1>Login</h1>
       <v-form v-model="valid" @submit.prevent="login">
         <v-text-field
+          outline
           v-model="username"
           label="Username"
           required
@@ -12,6 +13,7 @@
         />
         <v-text-field
           v-model="password"
+          outline
           :type="show ? 'text' : 'password'"
           label="Password"
           :append-icon="show ? 'visibility' : 'visibility_off'"
@@ -26,7 +28,7 @@
           >
         </p>
         <p>{{ error }}</p>
-        <v-btn type="submit">Login</v-btn>
+        <v-btn outline color="success" round type="submit">Login</v-btn>
       </v-form>
     </v-flex>
   </v-layout>

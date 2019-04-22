@@ -4,6 +4,7 @@ import Router from "vue-router";
 import report from "./report";
 import outbreak from "./outbreak";
 import auth from "./auth.js";
+import bookmark from "./bookmark.js";
 
 Vue.use(Router);
 
@@ -14,6 +15,7 @@ export default new Router({
     ...report,
     ...outbreak,
     ...auth,
-    { path: "*", redirect: { name: "home" } }
+    ...bookmark,
+    { path: "*", redirect: { name: "reportList" } }
   ]
 });

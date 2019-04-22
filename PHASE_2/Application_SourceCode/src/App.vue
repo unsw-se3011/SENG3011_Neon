@@ -66,10 +66,11 @@
         prepend-inner-icon="search"
         v-model="key_term"
         label="Search"
-        class="pl-5 hidden-xs-and-down"
+        class="pl-5 ml-5 hidden-sm-and-down neon-round"
+        style=" border-radius: 20px;"
         @keydown="try_search"
       ></v-text-field>
-      <v-btn icon flat @click.stop="toggle_filter()" class="hidden-xs-and-down">
+      <v-btn icon flat @click.stop="toggle_filter()" class="hidden-sm-and-down">
         <v-icon>filter_list</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -99,9 +100,10 @@ export default {
     show_filter: false,
     drawer: true,
     items: [
-      { icon: "contacts", text: "Reports", href: "home" },
+      { icon: "contacts", text: "Reports", href: "reportList" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
-      { icon: "content_copy", text: "Map" },
+      { icon: "map", text: "Map" },
+      { icon: "content_copy", text: "Bookmark", href: "bookmarkList" },
 
       {
         icon: "keyboard_arrow_up",
@@ -166,5 +168,15 @@ h3,
 h4,
 h5 {
   font-weight: 300 !important;
+}
+.v-card,
+.v-text-field.v-text-field--enclosed .v-text-field__details,
+.v-text-field.v-text-field--enclosed > .v-input__control > .v-input__slot,
+.v-text-field--outline > .v-input__control > .v-input__slot,
+.v-btn--round {
+  border-radius: 8px;
+}
+.v-btn {
+  margin: 0;
 }
 </style>

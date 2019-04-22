@@ -1,5 +1,14 @@
-from .models import Report, ReportEvent, Location,\
-    Article, Disease, Syndrome, Outbreak, Message
+from .models import (
+    Report,
+    ReportEvent,
+    Location,
+    Article,
+    Disease,
+    Syndrome,
+    Outbreak,
+    Message,
+    Bookmark
+)
 from rest_framework import serializers, validators
 from django.db import models
 from django import forms
@@ -195,4 +204,19 @@ class OutbreakSerializer(serializers.ModelSerializer):
             'start_date',
             'end_date',
             'img'
+        )
+
+class BookmarkSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(
+        # source='username',
+        default=serializers.CurrentUserDefault(),
+        # we don't need to read this 
+        write_only = True
+    )
+
+    class Meta:
+        model = Bookmark
+        fields = (
+            'report',
+            'user'
         )
