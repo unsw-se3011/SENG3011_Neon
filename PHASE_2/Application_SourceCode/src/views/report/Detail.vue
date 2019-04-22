@@ -6,6 +6,7 @@
         go Original
         <v-icon>launch</v-icon>
       </v-btn>
+      <BookmarkBtn :report_id="report_id" />
     </h1>
     <h5 class="info--text">{{ article.date_of_publication | showDate }}</h5>
     <p style="line-height:250%; font-size:1.35em">{{ article.main_text }}</p>
@@ -50,6 +51,8 @@
 import reportEvent from "@/components/reportEventCard.vue";
 import CommentList from "@/components/report/CommentList.vue";
 import relatedNews from "@/components/relatedNews.vue";
+import BookmarkBtn from "@/components/bookmark/Btn.vue";
+
 import { mapActions, mapState } from "vuex";
 export default {
   data() {
@@ -142,7 +145,8 @@ export default {
   components: {
     reportEvent,
     relatedNews,
-    CommentList
+    CommentList,
+    BookmarkBtn
   }
 };
 </script>

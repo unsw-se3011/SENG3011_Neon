@@ -6,19 +6,11 @@
       <div>
         <h3 class="headline mb-0">
           {{ report.article.headline }}
-          <v-btn
-            :color="in_bookmark ? 'blue-grey' : 'blue-grey lighten-3'"
-            flat
-            v-if="username"
-            icon
-            @click.prevent="toggle"
-          >
-            <v-icon>
-              {{ in_bookmark ? "star" : "star_border" }}
-            </v-icon>
-          </v-btn>
         </h3>
-        <h5>{{ report.article.date_of_publication | showDate }}</h5>
+        <h5>
+          {{ report.article.date_of_publication | showDate }}
+          <BookmarkBtn :report_id="report_id" />
+        </h5>
         <div>
           Observed
           <span v-for="re in report.report_events" :key="re.id">
@@ -43,29 +35,23 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import BookmarkBtn from "@/components/bookmark/Btn.vue";
+import { mapState } from "vuex";
 export default {
   props: {
     report: Object
   },
   computed: {
     ...mapState("bookmark", ["bookmark_ids"]),
-    ...mapState("auth", ["username"]),
     report_id() {
       if (typeof this.report.id == "number") {
         return this.report.id;
       }
       return parseInt(this.report.id.substr(1));
-    },
-    in_bookmark() {
-      return this.bookmark_ids.includes(this.report_id);
     }
   },
-  methods: {
-    ...mapActions("bookmark", ["toggle_bookmark"]),
-    toggle() {
-      this.toggle_bookmark(this.report_id);
-    }
+  components: {
+    BookmarkBtn
   }
 };
 </script>

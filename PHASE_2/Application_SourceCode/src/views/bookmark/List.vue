@@ -49,7 +49,12 @@ export default {
       if (this.waiting) {
         return [];
       }
-      return this.bookmarks.slice((this.page - 1) * 12, this.page * 12);
+      return this.bookmarks
+        .slice((this.page - 1) * 12, this.page * 12)
+        .map(el => {
+          el.id = "n" + el.id;
+          return el;
+        });
     }
   },
   methods: {
