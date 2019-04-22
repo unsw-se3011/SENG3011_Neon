@@ -1,6 +1,8 @@
 <template>
   <v-container grid-list-sm>
-    <h2 class="headline">{{ name }} Outbreak</h2>
+    <h2 class="headline font-weight-medium font-weight-medium">
+      {{ name }} Outbreak
+    </h2>
     <h5>
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
@@ -16,7 +18,7 @@
     <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
     <div class="my-1" v-if="!waiting">
-      <h2>Report List</h2>
+      <h2 class="font-weight-medium">Report List</h2>
       <reportList />
     </div>
   </v-container>

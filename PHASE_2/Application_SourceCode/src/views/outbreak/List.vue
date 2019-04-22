@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <h2 class="headline">Outbreak List</h2>
+    <h2 class="headline font-weight-medium">Outbreak List</h2>
     <v-layout row wrap v-if="waiting == false">
       <v-flex v-for="out in outbreaks" :key="out.id" md6 xl4 pa-2>
         <v-card :to="{ name: 'outbreakDetail', params: { id: out.id } }">

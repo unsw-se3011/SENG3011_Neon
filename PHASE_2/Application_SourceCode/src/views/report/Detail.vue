@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs v-if="!waiting">
-    <h1 class="headline">
+    <h1 class="headline font-weight-medium">
       {{ article.headline }}
       <v-btn flat color="success" :href="article.url">
         go Original
