@@ -14,6 +14,8 @@ export default {
 
   mounted() {
     this.$store.dispatch("search/refresh_data");
+    // I may need a book mark array
+    this.$store.dispatch("bookmark/refresh_data");
   }
 };
 </script>

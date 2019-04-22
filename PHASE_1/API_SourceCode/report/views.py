@@ -12,6 +12,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
 from .filter import ReportEventDatetimeRangeFilter, KeytermFilter, LocationFilter
+from rest_framework import status
 
 import traceback
 
@@ -186,11 +187,29 @@ class BookmarkViewSet(viewsets.ModelViewSet):
         # rewrite and fetch only the current user's book mark 
         if request.user and request.user.is_authenticated:
             # this will reduce the amount of data need to transfer
-            return Response(
-                [
-                    b.report.pk 
-                    for b in Bookmark.get_Bookmarked(request.user)
-                ])
+            qs = ReportSerializer(
+                Report.objects.filter(id__in = [
+                        b.report.pk 
+                        for b in Bookmark.get_Bookmarked(request.user)
+                    ]
+                ),
+                many = True
+            )
+            return Response(qs.data)
         # else: not authenticated
         # raise not authenticated
+        raise NotAuthenticated()
+
+
+    def destroy(self, request, *args, **kwargs):
+        if request.user and request.user.is_authenticated:
+            try:
+                # redirect pk as report id 
+                instance = Bookmark.objects.get(
+                    user = request.user,
+                    report = self.kwargs['pk'])
+                self.perform_destroy(instance)
+            except Exception as identifier:
+                pass
+            return Response(status=status.HTTP_204_NO_CONTENT)
         raise NotAuthenticated()

@@ -18,38 +18,7 @@
         pr-3
         pb-3
       >
-        <v-card :to="{ name: 'reportDetail', params: { id: report.id } }">
-          <v-img
-            :src="report.article.img"
-            v-if="report.article.img"
-            height="200px"
-          >
-          </v-img>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">{{ report.article.headline }}</h3>
-              <h5>{{ report.article.date_of_publication | showDate }}</h5>
-              <div>
-                Observed
-                <span v-for="re in report.report_events" :key="re.id">
-                  {{ re.number_affected }} {{ re.event_type }}
-                </span>
-                <span v-if="report.disease">
-                  made by
-                  {{ report.disease.join(", ") }}.
-                </span>
-                <span v-else>.</span>
-                <br />
-                <div v-if="report.syndrome.length != 0">
-                  Causes {{ report.syndrome.join(", ") }} <br />
-                </div>
-                <span v-for="re in report.report_events" :key="re.id">
-                  {{ re.location | showLocation }}
-                </span>
-              </div>
-            </div>
-          </v-card-title>
-        </v-card>
+        <reportCard :report="report" />
       </v-flex>
       <v-flex xs12 class="text-xs-center">
         <v-progress-linear :indeterminate="page_loading" v-if="page_loading" />
@@ -60,6 +29,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import reportCard from "@/components/report/ReportCard.vue";
 
 export default {
   data() {
@@ -112,6 +82,9 @@ export default {
   },
   methods: {
     ...mapActions("search", ["refresh_data", "fetch_neon_next"])
+  },
+  components: {
+    reportCard
   }
 };
 </script>
