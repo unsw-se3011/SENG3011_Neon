@@ -5,14 +5,14 @@
     "url": "http://outbreaknewstoday.com/maine-possible-rabies-exposure-bangor-linked-bat-55077/",
     "img": "http://outbreaknewstoday.com/wp-content/uploads/2014/08/4631_lores.jpg",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["rabies"],
+        "syndrome": ["acute fever and rash"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2019-03-01T00:00:00",
+            "end_date": "2019-03-23T00:00:00",
+            "location": "Maine",
+            "number-affected": null
         }]
     }]
 }, {
@@ -22,15 +22,146 @@
     "url": "http://outbreaknewstoday.com/cdc-identifies-16-states-affected-ground-beef-salmonella-outbreak-98803/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["Salmonella"],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Hospitalized",
+            "start_date": "2018-10-01T00:00:00",
+            "end_date": "2018-10-01T00:00:00",
+            "location": "The United States",
+            "number-affected": 14
         }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Arizona",
+                "number-affected": 15
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Colorado",
+                "number-affected": 12
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Utah",
+                "number-affected": 6
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Montana",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "California",
+                "number-affected": 4
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Nevada",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Ohio",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "South Dakota",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Wyoming",
+                "number-affected": 2
+            }
+        ]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Idaho",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Iowa",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Indiana",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Oregon",
+                "number-affected": 1
+            }]
     }]
 }, {
     "headline": "Puerto Rico reports 3 more chikungunya deaths, Colombia case count climbs",
@@ -39,15 +170,35 @@
     "url": "http://outbreaknewstoday.com/puerto-rico-reports-3-more-chikungunya-deaths-colombia-case-count-climbs-79222/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["chikungunya"],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Death",
+            "start_date": "2015-01-01T00:00:00",
+            "end_date": "2015-02-01T00:00:00",
+            "location": "Colombia",
+            "number-affected": 13
         }]
+    },{
+        "disease": ["chikungunya"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2013-01-01T00:00:00",
+                "end_date": "2013-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 1182857
+            }]
+    },{
+        "disease": ["chikungunya"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2014-01-01T00:00:00",
+                "end_date": "2014-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 26336
+            }]
     }]
 }, {
     "headline": "Colombia to look at Zika-microcephaly link",
@@ -56,15 +207,36 @@
     "url": "http://outbreaknewstoday.com/colombia-to-look-at-zika-microcephaly-link-22422/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2015-12-01T00:00:00",
+            "end_date": "2015-12-20T00:00:00",
+            "location": "Brazil",
+            "number-affected": 640
         }]
+    },{
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2009-01-01T00:00:00",
+                "end_date": "2015-12-31T00:00:00",
+                "location": "",
+                "number-affected": 837
+            }
+        ]
+    },{
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2015-11-01T00:00:00",
+                "end_date": "2015-11-29T00:00:00",
+                "location": "Colombia",
+                "number-affected": 1000
+            }]
     }]
 }, {
     "headline": "Canada: Bison anthrax outbreak, Centre for Food Virology established",
@@ -73,14 +245,14 @@
     "url": "http://outbreaknewstoday.com/canada-bison-anthrax-outbreak-centre-for-food-virology-established-40133/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["anthrax"],
+        "syndrome": ["acute fever and rash"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2015-07-01T00:00:00",
+            "end_date": "2015-07-23T00:00:00",
+            "location": "Canada",
+            "number-affected": 100
         }]
     }]
 }, {
@@ -90,15 +262,25 @@
     "url": "http://outbreaknewstoday.com/southern-nevada-man-1st-human-west-nile-virus-case-2017/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["West Nile virus"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2016-01-01T00:00:00",
+            "end_date": "2016-12-31T00:00:00",
+            "location": "Southern Nevada",
+            "number-affected": 444
         }]
+    },{
+        "disease": ["West Nile virus"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2016-01-01T00:00:00",
+                "end_date": "2016-12-31T00:00:00",
+                "location": "Southern Nevada",
+                "number-affected": 10074
+            }]
     }]
 }, {
     "headline": "Washington: Nine confirmed or probable mumps cases reported in Auburn area",
@@ -107,13 +289,13 @@
     "url": "http://outbreaknewstoday.com/washington-nine-confirmed-probable-mumps-cases-reported-auburn-area-23014/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["mumps"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
         "reported_events": [{
             "type": "Recovered",
             "start_date": "2018-12-01T00:00:00",
             "end_date": "2018-12-01T00:00:00",
-            "location": "",
+            "location": "King County",
             "number-affected": 10
         }]
     }]
@@ -124,14 +306,14 @@
     "url": "http://outbreaknewstoday.com/bolivia-reports-1st-bubonic-plague-case-year-north-la-paz-27202/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["plague"],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Death",
+            "start_date": "2018-02-26T00:00:00",
+            "end_date": "2018-02-26T00:00:00",
+            "location": "Bolivia",
+            "number-affected": 1
         }]
     }]
 }, {
@@ -141,15 +323,177 @@
     "url": "http://outbreaknewstoday.com/florida-arbovirus-totals-zika-dengue-and-chikungunya-more-miami-mosquitoes-zika-positive-10626/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
+        "disease": ["Zika"],
         "syndrome": ["sss"],
         "reported_events": [{
             "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
+            "start_date": "2016-08-24T00:00:00",
+            "end_date": "2016-09-09T00:00:00",
             "location": "",
-            "number-affected": 10
+            "number-affected": 3
         }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Colombia",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Costa Rica",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Brazil",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Cuba",
+                "number-affected": 7
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Dominican Republic",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Indonesia",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Singapore",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Alachua",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Broward",
+                "number-affected": 8
+            }
+        ]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Clay",
+                "number-affected": 2
+            }
+        ]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Manatee",
+                "number-affected": 9
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Palm beach",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Non-Florida",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Palm Beach",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Jamaica",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-01-01T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "",
+                "number-affected": 616
+            }]
     }]
 }, {
     "headline": "Montana reports 1st human West Nile virus cases of 2016",
@@ -158,15 +502,26 @@
     "url": "http://outbreaknewstoday.com/montana-reports-1st-human-west-nile-virus-cases-of-2016/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["west nile virus"],
+        "syndrome": ["acute fever and rash"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2016-08-27T00:00:00",
+            "end_date": "2016-08-27T00:00:00",
+            "location": "Dawson County",
+            "number-affected": 4
         }]
+    },{
+        "disease": ["west nile virus"],
+        "syndrome": ["acute fever and rash"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2003-01-01T00:00:00",
+                "end_date": "2007-01-01T00:00:00",
+                "location": "Montana",
+                "number-affected": 200
+            }
+        ]
     }]
 }, {
     "headline": "Zika cases eclipse 1000 in the US, still no local transmission",
@@ -175,15 +530,25 @@
     "url": "http://outbreaknewstoday.com/zika-cases-eclipse-1000-in-the-us-still-no-local-transmission-89173/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["Zika"],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2016-07-01T00:00:00",
+            "end_date": "2016-07-08T00:00:00",
+            "location": "The United States",
+            "number-affected": 1132
         }]
+    },{
+        "disease": ["Zika"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-06-30T00:00:00",
+                "end_date": "2016-06-30T00:00:00",
+                "location": "The United States",
+                "number-affected": 320
+            }]
     }]
 }, {
     "headline": "Indiana schools report 36 mumps cases",
@@ -192,15 +557,25 @@
     "url": "http://outbreaknewstoday.com/indiana-schools-report-36-mumps-cases-32676/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["mumps"],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Presence",
+            "start_date": "2016-02-01T00:00:00",
+            "end_date": "2016-03-13T00:00:00",
+            "location": "Indiana",
+            "number-affected": 36
         }]
+    },{
+        "disease": ["mumps"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Presence",
+            "start_date": "2016-03-04T00:00:00",
+            "end_date": "2016-03-04T00:00:00",
+            "location": "Indiana",
+            "number-affected": 250
+            }]
     }]
 }, {
     "headline": "Wisconsin reports four additional Elizabethkingia case in past week",
@@ -209,13 +584,13 @@
     "url": "http://outbreaknewstoday.com/wisconsin-reports-four-additional-elizabethkingia-case-in-past-week-36269/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["unknown"],
+        "syndrome": ["fever of unknown origin"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
+            "type": "Presence",
+            "start_date": "2016-03-01T00:00:00",
+            "end_date": "2016-13-08T00:00:00",
+            "location": "Wisconsin",
             "number-affected": 10
         }]
     }]
@@ -226,15 +601,26 @@
     "url": "http://outbreaknewstoday.com/illinois-reports-west-nile-virus-deaths-in-cook-kendall-counties-68320/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": [""],
+        "syndrome": ["haemorrhagic fever"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Death",
+            "start_date": "2015-08-01T00:00:00",
+            "end_date": "2015-08-25T00:00:00",
+            "location": "Kendall Counties",
+            "number-affected": 5
         }]
+    },{
+        "disease": [""],
+        "syndrome": ["haemorrhagic fever"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2014-01-01T00:00:00",
+            "end_date": "2014-12-31T00:00:00",
+            "location": "Kendall Counties",
+            "number-affected": 44
+            }
+        ]
     }]
 }, {
     "headline": "The Lyme and Tick-Borne Disease Prevention, Education, and Research Act of 2015 introduced by Sens. Blumenthal, Ayotte",
@@ -243,15 +629,25 @@
     "url": "http://outbreaknewstoday.com/the-lyme-and-tick-borne-disease-prevention-education-and-research-act-of-2015-introduced-by-sens-blumenthal-ayotte-62247/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": [""],
+        "syndrome": [""],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Infected",
+            "start_date": "2013-01-01T00:00:00",
+            "end_date": "2013-12-31T00:00:00",
+            "location": "New Hampshire",
+            "number-affected": null
         }]
+    },{
+        "disease": ["Lyme disease"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2015-01-01T00:00:00",
+                "end_date": "2015-06-08T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
     }]
 }, {
     "headline": "Flu Shots: Influenza A (H3N2) virus drift affecting vaccination effectiveness",
@@ -260,15 +656,37 @@
     "url": "http://outbreaknewstoday.com/flu-shots-influenza-a-h3n2-virus-drift-affecting-vaccination-effectiveness-71588/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["influenza a/h3n2"],
+        "syndrome": [""],
         "reported_events": [{
             "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "start_date": "2014-10-01T00:00:00",
+            "end_date": "2014-11-22T00:00:00",
+            "location": "The United States",
+            "number-affected": null
         }]
+    },
+    { 
+        "disease": ["influenza a/h3n2"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2009-07-01T00:00:00",
+                "end_date": "2012-01-01T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
+    },
+    {
+        "disease": ["influenza a/h1n1"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2009-07-01T00:00:00",
+                "end_date": "2012-01-01T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
     }]
 }, {
     "headline": "WHO physician infected with Ebola released from Emory, 8 Ebola patients treated in US",
@@ -277,14 +695,14 @@
     "url": "http://outbreaknewstoday.com/who-physician-infected-with-ebola-released-from-emory-8-ebola-patients-treated-in-us-79669/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
+        "disease": ["ebola haemorrhagic fever"],
         "syndrome": ["sss"],
         "reported_events": [{
             "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "start_date": "2014-08-01T00:00:00",
+            "end_date": "2014-10-15T00:00:00",
+            "location": "The United States",
+            "number-affected": 8
         }]
     }]
 }, {
@@ -294,14 +712,14 @@
     "url": "http://outbreaknewstoday.com/nh-health-officials-recommend-flu-shot-after-announcing-the-first-positive-influenza-test-result-62249/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["influenza"],
+        "syndrome": ["haemorrhagic fever","influenza-like illness","acute fever and rash"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Death",
+            "start_date": "2014-01-01T00:00:00",
+            "end_date": "2014-12-31T00:00:00",
+            "location": "The United States",
+            "number-affected": 23000
         }]
     }]
 }, {
@@ -311,14 +729,35 @@
     "url": "http://outbreaknewstoday.com/third-ebola-infected-american-headed-to-nebraska-friday-15793/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["ebola haemorrhagic fever"],
+        "syndrome": ["acute fever and rash","acute flacid paralysis"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Hospitalised",
+            "start_date": "2019-01-01T00:00:00",
+            "end_date": "2019-12-31T00:00:00",
+            "location": "Liberia",
+            "number-affected": 6
+        },
+        {
+            "disease": ["ebola haemorrhagic fever"],
+            "syndrome": ["acute fever and rash","acute flacid paralysis"],
+            "reported_events": [{
+                    "type": "Infected",
+                    "start_date": "2019-01-01T00:00:00",
+                    "end_date": "2019-12-31T00:00:00",
+                    "location": "Liberia",
+                    "number-affected": 3
+                }]
+    },{
+        "disease": ["ebola haemorrhagic fever"],
+        "syndrome": ["acute fever and rash","acute flacid paralysis"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2019-01-01T00:00:00",
+                "end_date": "2019-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 5
+            }]
         }]
     }]
 }, {
@@ -328,14 +767,36 @@
     "url": "http://outbreaknewstoday.com/peanut-butter-recalled-due-to-possible-salmonella-98748/",
     "img": "",
     "reports": [{
-        "disease": ["sss"],
-        "syndrome": ["sss"],
+        "disease": ["salmonellosis"],
+        "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
         "reported_events": [{
-            "type": "Recovered",
-            "start_date": "2018-12-01T00:00:00",
-            "end_date": "2018-12-01T00:00:00",
-            "location": "",
-            "number-affected": 10
+            "type": "Presence",
+            "start_date": "2014-08-19T00:00:00",
+            "end_date": "2014-08-19T00:00:00",
+            "location": "Canada",
+            "number-affected": null
+        }]
+    },
+    {
+    "disease": ["salmonellosis"],
+    "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
+    "reported_events": [{
+            "type": "Presence",
+            "start_date": "2014-08-19T00:00:00",
+            "end_date": "2014-08-19T00:00:00",
+            "location": "Hong Kong",
+            "number-affected": null
+        }]
+    },
+    {
+    "disease": ["salmonellosis"],
+    "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
+    "reported_events": [{
+                "type": "Presence",
+                "start_date": "2014-08-19T00:00:00",
+                "end_date": "2014-08-19T00:00:00",
+                "location": "The United States",
+                "number-affected": null
         }]
     }]
 }]
