@@ -23,7 +23,7 @@
         >
           <reportCard :report="report" />
         </v-flex>
-        <v-flex xs12 class="text-xs-center">
+        <v-flex xs12 class="text-xs-center" v-if="length > 1">
           <v-pagination :length="length" v-model="page" />
         </v-flex>
       </v-layout>

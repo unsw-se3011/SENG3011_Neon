@@ -20,7 +20,7 @@
       >
         <reportCard :report="report" />
       </v-flex>
-      <v-flex xs12 class="text-xs-center">
+      <v-flex xs12 class="text-xs-center" v-if="length > 1">
         <v-progress-linear :indeterminate="page_loading" v-if="page_loading" />
         <v-pagination :length="length" v-model="page" />
       </v-flex>
