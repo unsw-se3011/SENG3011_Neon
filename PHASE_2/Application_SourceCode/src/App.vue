@@ -56,7 +56,9 @@
     </v-navigation-drawer>
     <v-toolbar color="blue" dark fixed app clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Project Neon</v-toolbar-title>
+      <v-toolbar-title>
+        <span class="font-weight-light">Project</span>Neon
+      </v-toolbar-title>
       <v-text-field
         flat
         solo-inverted
@@ -76,9 +78,7 @@
         <v-menu offset-y v-else>
           <v-btn flat v-if="username" slot="activator">{{ username }}</v-btn>
           <v-list>
-            <v-list-tile :to="{ name: 'logout' }">
-              Logout
-            </v-list-tile>
+            <v-list-tile :to="{ name: 'logout' }">Logout</v-list-tile>
           </v-list>
         </v-menu>
       </v-toolbar-items>

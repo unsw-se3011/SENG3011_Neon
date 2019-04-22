@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-sm>
-    <h2 class="headline font-weight-medium font-weight-medium">
+    <h2 class="display-1 font-weight-medium font-weight-medium">
       {{ name }} Outbreak
     </h2>
     <h5>
