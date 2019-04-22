@@ -100,7 +100,7 @@ export default {
     show_filter: false,
     drawer: true,
     items: [
-      { icon: "contacts", text: "Reports", href: "home" },
+      { icon: "contacts", text: "Reports", href: "reportList" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
       { icon: "map", text: "Map" },
       { icon: "content_copy", text: "Bookmark", href: "bookmarkList" },

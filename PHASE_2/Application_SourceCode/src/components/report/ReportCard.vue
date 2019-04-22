@@ -6,8 +6,13 @@
       <div>
         <h3 class="headline mb-0">
           {{ report.article.headline }}
-          {{ report.id }}
-          <v-btn color="success" flat icon @click.prevent="toggle">
+          <v-btn
+            :color="in_bookmark ? 'blue-grey' : 'blue-grey lighten-3'"
+            flat
+            v-if="username"
+            icon
+            @click.prevent="toggle"
+          >
             <v-icon>
               {{ in_bookmark ? "star" : "star_border" }}
             </v-icon>
@@ -45,6 +50,7 @@ export default {
   },
   computed: {
     ...mapState("bookmark", ["bookmark_ids"]),
+    ...mapState("auth", ["username"]),
     report_id() {
       if (typeof this.report.id == "number") {
         return this.report.id;
