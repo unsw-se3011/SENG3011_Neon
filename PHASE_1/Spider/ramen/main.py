@@ -4,7 +4,7 @@ import requests
 from json import dumps
 import re
 import datetime
-
+import csv 
 
 # https://sneg-ramen.herokuapp.com/api/articles?skip=0&limit=50&start_date=2000-01-01T00%3A00%3A00&end_date=2020-03-31T01%3A56%3A55
 
@@ -36,6 +36,23 @@ EVENT_TYPE_MAP = {
     'hospitalised': HOSPITALISED,
     'recovered': RECOVERED,
 }
+
+
+
+def dd(str):
+    print(str)
+    exit(0)
+
+# import city to memory 
+CITIES = []
+with open('world-cities.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        row = list(row.items())
+        CITIES.append({
+            'city': row[0][1], 'country': row[1][1], 'state': row[2][1]
+        })
+
 
 
 class FuzzDate(object):
@@ -78,6 +95,8 @@ class ReportParser(object):
 
     def parseReportEvent(self, re ):
         fd = FuzzDate(re['date'])
+
+        # dd(fd.get_fuzz_level())
         re['start_date'] = fd.get_datetime()
         re['start_date_fuzz'] = fd.get_fuzz_level()
         re['end_date'] = fd.get_datetime()
@@ -89,6 +108,7 @@ class ReportParser(object):
     def dumps (self):
         return dumps(self.report)
 
+
 def mk_request(page =0 ):
     res = requests.get(
         'https://sneg-ramen.herokuapp.com/api/articles', params={
@@ -98,6 +118,7 @@ def mk_request(page =0 ):
             'limit': (page + 1)* 50
         }
     )
+
     for article in res.json():
         # replace the \n to ' '
         article['main_text'] = article['main_text'].replace('\n',' ')
