@@ -1,8 +1,8 @@
 FROM node:10 AS frontend-build
 WORKDIR /app/
 ADD PHASE_2/Application_SourceCode/ /app/
-RUN npm install 
-RUN npm run build 
+RUN yarn install 
+RUN yarn build 
 
 # production stage
 FROM nginx:stable-alpine as production-stage
