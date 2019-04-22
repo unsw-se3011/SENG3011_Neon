@@ -140,7 +140,7 @@ class ReportParser(object):
 def mk_request(page=0):
     res = requests.get(
         'https://sneg-ramen.herokuapp.com/api/articles', params={
-            'start_date': '1980-01-01T00:00:00',
+            'start_date': '1900-01-01T00:00:00',
             'end_date': '2020-01-01T00:00:00',
             'skip': page * 50,
             'limit':  50
