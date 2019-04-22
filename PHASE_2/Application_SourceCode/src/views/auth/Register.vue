@@ -14,6 +14,7 @@
           </v-snackbar>
           <v-text-field
             v-model="username"
+            outline
             label="Username"
             required
             autofocus
@@ -21,6 +22,7 @@
           />
           <v-text-field
             v-model="password"
+            outline
             :type="show ? 'text' : 'password'"
             label="Password"
             :append-icon="show ? 'visibility' : 'visibility_off'"
@@ -30,13 +32,25 @@
           />
           <v-layout row wrap>
             <v-flex xs12 md6>
-              <v-text-field v-model="first_name" label="First Name" required />
+              <v-text-field
+                outline
+                v-model="first_name"
+                label="First Name"
+                required
+              />
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field v-model="last_name" label="Last Name" required />
+              <v-text-field
+                outline
+                v-model="last_name"
+                label="Last Name"
+                required
+              />
             </v-flex>
           </v-layout>
-          <v-btn type="submit" v-if="!isEdit">Register</v-btn>
+          <v-btn type="submit" outline color="blue" round v-if="!isEdit"
+            >Register</v-btn
+          >
           <v-btn type="submit" color="success" v-else>Save</v-btn>
         </form>
       </v-flex>
