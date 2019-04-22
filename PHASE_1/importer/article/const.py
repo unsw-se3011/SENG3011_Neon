@@ -110,7 +110,7 @@ DISEASE_NOUN = {
     "VZV": "varicella",
     "WNV": "west nile virus",
     "EYE": "yellow fever",
-    "Yersinia": "yersiniosis",
+    # "Yersinia": "yersiniosis",
     "yersiniosis": "yersiniosis",
     "zika": "zika",
     "Legionella": "legionares",
@@ -182,8 +182,8 @@ ATOMIC_SYNDROME = {
     'rash': 'rash',
     'diarrhoea': 'diarrhoea',
     'paralysis': 'paralysis',
-    'Nausea': 'Nausea, vomiting or both',
-    'vomiting': 'Nausea, vomiting or both',
+    'Nausea': 'Nausea',
+    # 'vomiting': 'Nausea, vomiting or both',
     'Confusion': 'Confusion',
     'Malaise': 'Malaise',
     'nausea': 'nausea',
@@ -235,7 +235,8 @@ SYNDROME = {
     'acute gastroenteritis': [
         'acute gastroenteritis',
         'Abdominal cramps and pain',
-        'Nausea, vomiting or both',
+        'Nausea',
+        'vomiting',
         'Low-grade fever'
     ],
     'acute respiratory syndrome': [
@@ -273,3 +274,6 @@ SYNDROME = {
         'photophobia'
     ]
 }
+
+if __name__ == "__main__":
+    print(MATCH_SYNDROME)

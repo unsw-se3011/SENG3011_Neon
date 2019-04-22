@@ -15,15 +15,15 @@ from const import *
 import numpy as np
 
 
-def get_similarity(syndrome_set, SYNDROME[keys]):
+def get_similarity(syndrome_set, atom_syn_arr):
     count = 0
     i = 0
     j = 0
     length = 0
-    for j in SYNDROME[keys]:
+    for j in atom_syn_arr:
         length = length+1
     for i in syndrome_set:
-        if i in SYNDROME[keys]:
+        if i in atom_syn_arr:
             count = count+1
     similarity = round(count/length, 2)
     return similarity
