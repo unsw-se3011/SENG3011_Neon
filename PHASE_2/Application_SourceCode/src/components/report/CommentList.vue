@@ -4,7 +4,7 @@
       <b>{{ msg.user }}</b>
       {{ msg.msg }}
     </p>
-    <v-form @submit.prevent="submit">
+    <v-form @submit.prevent="submit" class="my-0">
       <v-layout row wrap>
         <v-flex xs12>
           <v-text-field

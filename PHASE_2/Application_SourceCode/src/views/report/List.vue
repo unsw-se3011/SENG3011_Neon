@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <h1 class="headline">Report List</h1>
+    <h1 class="display-1 font-weight-medium">Report List</h1>
     <reportListComp />
   </v-container>
 </template>
