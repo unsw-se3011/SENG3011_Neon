@@ -37,6 +37,30 @@ EVENT_TYPE_MAP = {
 }
 
 
+# Two not support disease
+DISEASE_MAP = {
+    'rubella': 'rubella',
+    'measles': 'measles',
+    'lassa fever': 'lassa fever',
+    'rabies': 'rabies',
+    'ebola': 'ebola haemorrhagic fever',
+    'h7n9': 'influenza a/h7n9',
+    'typhoid fever': 'thypoid fever',
+    'unknown': 'unknown',
+    'rift valley fever': 'rift valley fever',
+    'polio': 'poliomyelitis',
+    'brucellosis': 'brucellosis',
+    'cholera': 'cholera',
+    'monkeypox': 'monkeypox',
+    'hepatitis a': 'hepatitis a',
+    'hantavirus': 'hantavirus',
+    'salmonella': 'salmonellosis',
+    'psittacosis': None,
+    'yellow fever': 'yellow fever',
+    'leptospirosis': None
+}
+
+
 def dd(str):
     print(str)
     exit(0)
@@ -87,7 +111,20 @@ class ReportParser(object):
         temp_list = []
         for t in self.report['reported_events']:
             temp_list += self.parseReportEvent(t)
+
+        for t in temp_list:
+            if not t['location']:
+                del t['location']
+
         self.report['report_events'] = temp_list
+
+        # remap the disease and deprecate it's syndrome
+        self.report['syndrome'] = []
+        # map and remove empty
+        self.report['disease'] = \
+            [DISEASE_MAP[d] for d in self.report['disease']]
+        self.report['disease'] = \
+            [t for t in self.report['disease'] if t]
 
         del self.report['reported_events']
         # print(dumps(temp_list))
@@ -97,13 +134,13 @@ class ReportParser(object):
 
         # dd(fd.get_fuzz_level())
         re['start_date'] = fd.get_datetime()
-        re['start_date_fuzz'] = fd.get_fuzz_level()
+        re['sd_fuzz'] = fd.get_fuzz_level()
         re['end_date'] = fd.get_datetime()
-        re['end_date_fuzz'] = fd.get_fuzz_level()
+        re['ed_fuzz'] = fd.get_fuzz_level()
         # we don't need the old date anymore
         del re['date']
 
-        re['type'] = EVENT_TYPE_MAP[re['type']]
+        re['e_type'] = EVENT_TYPE_MAP[re['type']]
 
         ls = LocationSet()
         # ramen have two level location, both name location
@@ -121,7 +158,9 @@ class ReportParser(object):
             for l in ls.location_list:
                 # do some calculation
                 re_copy = {**re}
+
                 re_copy['location'] = l
+
                 re_copy['number_affected'] = \
                     ceil(re['number-affected'] / len(ls.location_list))
                 tmp_list.append(re_copy)
@@ -140,6 +179,7 @@ class ReportParser(object):
         else:
             re['location'] = None
         #    dd("last call " + re)
+
         return [re]
 
     def dumps(self):

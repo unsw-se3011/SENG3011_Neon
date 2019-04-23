@@ -44,6 +44,49 @@ SYNDROME_MAP = {
     'haemorrhagic fever': 'Haemorrhagic Fever'
 }
 
+DISEASE_MAP = {
+    'influenza a/h1n2': 'influenza a/h1n2',
+    'listeriosis': 'listeriosis',
+    'ebola haemorrhagic fever': 'ebola haemorrhagic fever',
+    'rift valley fever': 'rift valley fever',
+    'ehec (e.coli)': 'ehec (e.coli)',
+    'salmonellosis': 'salmonellosis',
+    'influenza a/h3n2': 'influenza a/h3n2',
+    'influenza a/h7n9': 'influenza a/h7n9',
+    'marburg virus disease': 'marburg virus disease',
+    'thypoid fever': 'thypoid fever',
+    'nipah virus': 'nipah virus',
+    'diphteria': 'diphteria',
+    'hepatitis d': 'hepatitis d',
+    'west nile virus': 'west nile virus',
+    'influenza a/h2n2': 'influenza a/h2n2',
+    'hepatitis c': 'hepatitis c',
+    'lassa fever': 'lassa fever',
+    'malaria': 'malaria',
+    'mers-cov': 'mers-cov',
+    'hepatitis b': 'hepatitis b',
+    'poliomyelitis': 'poliomyelitis',
+    'monkeypox': 'monkeypox',
+    'chikungunya': 'chikungunya',
+    'hantavirus': 'hantavirus',
+    'plague': 'plague',
+    'cholera': 'cholera',
+    'unknown': 'unknown',
+    'enterovirus 71 infection': 'enterovirus 71 infection',
+    'measles': 'measles',
+    'influenza a/h5n1': 'influenza a/h5n1',
+    'meningococcal': None,
+    'dengue': 'dengue',
+    'influenza a/h9n2': 'influenza a/h9n2',
+    'crimean-congo haemorrhagic fever': 'crimean-congo haemorrhagic fever',
+    'influenza a/h3n5': 'influenza a/h3n5',
+    'zika': 'zika',
+    'hepatitis e': 'hepatitis e',
+    'hepatitis a': 'hepatitis a',
+    'influenza a/h1n1': 'influenza a/h1n1',
+    'yellow fever': 'yellow fever',
+}
+
 
 def dd(str):
     print(str)
@@ -95,11 +138,18 @@ class ReportParser(object):
         temp_list = []
         for t in self.report['reported_events']:
             temp_list += self.parseReportEvent(t)
+        for t in temp_list:
+            if not t['location']:
+                del t['location']
+
         self.report['report_events'] = temp_list
         # map the syndrome to correct one
         self.report['syndrome'] = \
             [SYNDROME_MAP[s] for s in self.report['syndrome']]
-
+        self.report['disease'] = \
+            [DISEASE_MAP[s] for s in self.report['disease']]
+        self.report['disease'] = \
+            [d for d in self.report['disease'] if d]
         del self.report['reported_events']
         # print(dumps(self.dumps()))
 
@@ -108,13 +158,14 @@ class ReportParser(object):
 
         # dd(fd.get_fuzz_level())
         re['start_date'] = fd.get_datetime()
-        re['start_date_fuzz'] = fd.get_fuzz_level()
+        re['sd_fuzz'] = fd.get_fuzz_level()
         re['end_date'] = fd.get_datetime()
-        re['end_date_fuzz'] = fd.get_fuzz_level()
+        re['ed_fuzz'] = fd.get_fuzz_level()
         # we don't need the old date anymore
         del re['date']
 
-        re['type'] = EVENT_TYPE_MAP[re['type']]
+        re['e_type'] = EVENT_TYPE_MAP[re['type']]
+        del(re['type'])
 
         ls = LocationSet()
 
