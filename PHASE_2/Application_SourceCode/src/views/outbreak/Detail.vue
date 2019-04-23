@@ -14,6 +14,8 @@
       :settings="chartSettings"
     ></ve-scatter>
 
+    <ve-histogram v-if="!waiting" :data="hist_data"></ve-histogram>
+
     <h1 class="my-1 font-weight-medium">Map</h1>
     <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
@@ -37,7 +39,8 @@ export default {
       chartSettings: {
         xAxisType: "time"
       },
-      chart_data: {}
+      chart_data: {},
+      hist_data: {}
     };
   },
   computed: {
@@ -52,6 +55,8 @@ export default {
     );
     this.outbreak = ret.data;
     this.chart_data = this.outbreak.chart;
+    this.hist_data = this.outbreak.chart;
+    this.hist_data.rows = this.hist_data.mon_rows;
     this.name = this.outbreak.key_term;
     this.$store.commit("search/set_by_outbreak", this.outbreak);
     // force frontend db to refresh data

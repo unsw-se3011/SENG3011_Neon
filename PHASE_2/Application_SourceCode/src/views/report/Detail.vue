@@ -26,7 +26,12 @@
       </div>
     </div>
     <div>
-      <h2 class="font-weight-medium">Comment</h2>
+      <h2
+        class="font-weight-medium"
+        v-if="username || report.comment.length != 0"
+      >
+        Comment
+      </h2>
       <commentList
         v-if="username"
         :msg_list="report.comment"

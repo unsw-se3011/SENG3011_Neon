@@ -11,7 +11,7 @@
           {{ report.article.date_of_publication | showDate }}
           <BookmarkBtn :report_id="report_id" />
         </h4>
-        <div>
+        <div class="mt-1">
           Observed
           {{ event_digest }}
           <span v-if="report.disease">
@@ -86,7 +86,7 @@ export default {
         return (
           "In " +
           location_list.splice(0, 3).join("; ") +
-          ` and ${location_list.length} palces.`
+          ` and other ${location_list.length} palces.`
         );
       }
     }

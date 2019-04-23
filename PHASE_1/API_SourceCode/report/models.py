@@ -114,6 +114,39 @@ class ReportEvent(models.Model):
     def event_type_full(self):
         return EVENT_TYPE_MAP[self.e_type]
 
+    @classmethod
+    def static_set(cls, start_date, end_date, key_term = None):
+        # recreate the filter of report event 
+        query_set = cls.objects.filter(
+            Q(
+                start_date__gte=start_date,
+                start_date__lte=end_date
+            ) |
+            Q(
+                end_date__gte=start_date,
+                end_date__lte=end_date
+            ) |
+            Q(
+                start_date__lte=start_date,
+                end_date__gte=end_date
+            )
+        )\
+        .filter(
+            # e_type = event_type
+        ).filter(
+            # number affect not null filter
+            number_affected__isnull=False
+        ).order_by('start_date').distinct()
+        if key_term:
+            query_set = query_set.filter(
+                Q(report__article__main_text__icontains= key_term)|
+                Q(report__article__main_text__icontains = key_term)|
+                Q(report__disease__name__icontains = key_term)|
+                Q(report__syndrome__name__icontains = key_term)
+            )
+        return query_set
+
+
 
 class Outbreak(models.Model):
 

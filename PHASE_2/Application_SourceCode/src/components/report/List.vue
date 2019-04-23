@@ -5,7 +5,7 @@
       color="primary"
       v-if="waiting"
     ></v-progress-circular>
-    <v-layout row wrap v-else>
+    <v-layout row wrap v-else ref="ListTop">
       <v-flex xs12>
         <h3>{{ count }} reporst within {{ date_range }} days</h3>
       </v-flex>
@@ -22,7 +22,7 @@
       </v-flex>
       <v-flex xs12 class="text-xs-center" v-if="length > 1">
         <v-progress-linear :indeterminate="page_loading" v-if="page_loading" />
-        <v-pagination :length="length" v-model="page" />
+        <v-pagination :length="length" v-model="page" total-visible="12" />
       </v-flex>
     </v-layout>
   </div>
@@ -59,6 +59,8 @@ export default {
         return this.page_rec;
       },
       async set(val) {
+        // scroll to top element
+        window.scrollTo(0, this.$refs.ListTop.offsetTop - 44);
         this.page_rec = val;
         while (this.page_rec > Math.ceil(this.reports.length / 12)) {
           this.page_loading = true;

@@ -137,6 +137,7 @@ class OutbreakViewSet(viewsets.ModelViewSet):
     def chart(self, request, pk=None):
         query_set = Outbreak.static(pk)
         day_dict = {}
+        month_dict= {}
         country_dict = {}
         shown_key = set()
         # show logic
@@ -153,6 +154,17 @@ class OutbreakViewSet(viewsets.ModelViewSet):
                 day_dict[date_str][re.event_type_full] = \
                     re.number_affected
 
+            mon_str = date_str[0:7]
+            if mon_str not in month_dict:
+                month_dict[mon_str] = {
+                    re.event_type_full: re.number_affected,
+                    'date': mon_str
+                }
+            else:
+                month_dict[mon_str][re.event_type_full] = \
+                    re.number_affected
+
+
             if re.location:
                 if re.location.country not in country_dict:
                     country_dict[re.location.country] = 0
@@ -162,6 +174,7 @@ class OutbreakViewSet(viewsets.ModelViewSet):
             # calculate only for the shown reusults
             'columns': ['date']+[k for k in shown_key],
             'rows': [day_dict[d] for d in day_dict],
+            'mon_rows': [month_dict[d] for d in month_dict],
             'map_arr': [["Country", "Affected"]] + [
                 [k, country_dict[k]] for k in country_dict
             ]
@@ -170,6 +183,10 @@ class OutbreakViewSet(viewsets.ModelViewSet):
         return Response(
             ret
         )
+
+    # @action(detail = False, methods = ['GET'], name = 'gen_chart')
+    # def gen_chart(self, request):
+    #     pass
 
 
 class MessageViewSet(viewsets.ModelViewSet):

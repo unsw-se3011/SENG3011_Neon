@@ -104,22 +104,22 @@ export default {
     items: [
       { icon: "contacts", text: "Reports", href: "reportList" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
-      { icon: "map", text: "Map" },
+      // { icon: "map", text: "Map" },
       { icon: "content_copy", text: "Bookmark", href: "bookmarkList" },
 
-      {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "User",
-        model: false,
-        children: [
-          { icon: "person", text: "Profile" },
-          { icon: "settings", text: "Settings" }
-        ]
-      },
-      { icon: "chat_bubble", text: "Send feedback" },
-      { icon: "help", text: "Help" },
-      { icon: "phonelink", text: "App downloads" }
+      // {
+      //   icon: "keyboard_arrow_up",
+      //   "icon-alt": "keyboard_arrow_down",
+      //   text: "User",
+      //   model: false,
+      //   children: [
+      //     { icon: "person", text: "Profile" },
+      //     { icon: "settings", text: "Settings" }
+      //   ]
+      // },
+      // { icon: "chat_bubble", text: "Send feedback" },
+      // { icon: "help", text: "Help" },
+      // { icon: "phonelink", text: "App downloads" }
     ]
   }),
   props: {
