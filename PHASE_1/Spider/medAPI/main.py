@@ -105,7 +105,7 @@ class ReportParser(object):
         ls = LocationSet()
         # ramen have two level location, both name location
         [ls.add(l['location']) for l in re['location']]
-        print("Length of location   " + str(len(ls.location_list)))
+       # print("Length of location   " + str(len(ls.location_list)))
 
         if len(ls.location_list) > 1:
             #  we need to handle this type of location list
@@ -150,7 +150,7 @@ def mk_request():
     res.raise_for_status()
     for article in res.json():
         # replace the \n to ' '
-       print("NEXT ONE  ---------------")
+      # print("NEXT ONE  ---------------")
        
        if(article['main_text']) is None:
             continue
@@ -159,15 +159,15 @@ def mk_request():
        article['date_of_publication'] += "T00:00:00"
        article['main_text'] = article['main_text'].replace('\n', ' ')
     
-  #     del article['reports']['ReportID']
-   #    del article['reports']['comment']
-    #   del article['reports']['ArticleID']
+       del article['reports'][0]['ReportID']
+       del article['reports'][0]['comment']
+       del article['reports'][0]['ArticleID']
        article['report'] =\
           [ReportParser(report).dumps() for report in article['reports']]
 
        del article['reports']
 
-       print("heree " + dumps(article))
+       print(dumps(article))
 
 if __name__ == "__main__":
     mk_request()
