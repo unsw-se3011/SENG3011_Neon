@@ -90,7 +90,7 @@ class ReportParser(object):
         self.report['report_events'] = temp_list
 
         del self.report['reported_events']
-        print(dumps(self.dumps()))
+        # print(dumps(self.dumps()))
 
     def parseReportEvent(self, re):
         fd = FuzzDate(re['date'])
