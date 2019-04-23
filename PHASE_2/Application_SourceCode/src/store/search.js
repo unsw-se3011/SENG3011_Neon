@@ -92,7 +92,16 @@ export default {
       state.reports = [...state.reports, ...reports];
       state.waiting = false;
     },
-    set_count: (state, count) => (state.count = count)
+    set_count: (state, count) => (state.count = count),
+    reset(state) {
+      // reset some key term
+      let date_now = new Date();
+      let year_before = new Date();
+      year_before.setFullYear(date_now.getFullYear() - 1);
+      state.reports = [];
+      state.start_date = toDate(year_before);
+      state.end_date = toDate(date_now);
+    }
   },
   actions: {
     fetch_neon_next: async ({ state, commit }) => {

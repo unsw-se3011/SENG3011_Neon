@@ -64,11 +64,13 @@
         solo-inverted
         hide-details
         prepend-inner-icon="search"
+        clearable
         v-model="key_term"
         label="Search"
         class="pl-5 ml-5 hidden-sm-and-down neon-round"
         style=" border-radius: 20px;"
-        @keydown="try_search"
+        @click:clear="clear_and_search"
+        @keydown.enter="try_search"
       ></v-text-field>
       <v-btn icon flat @click.stop="toggle_filter()" class="hidden-sm-and-down">
         <v-icon>filter_list</v-icon>
@@ -139,15 +141,18 @@ export default {
     ...mapMutations("search", ["toggle_filter"]),
     ...mapActions("search", ["refresh_data"]),
     ...mapMutations("auth", "clear_all"),
-    try_search(event) {
-      if (event.key == "Enter") {
-        // if it's not in the index, go to index to show the result
-        if (this.$route.path != "/") {
-          this.$router.push("/");
-        }
-        // we press enter, it must search
-        this.refresh_data(true);
+    async clear_and_search() {
+      await this.$store.commit("search/reset");
+      // this.refresh_data(true);
+      this.$router.push("/reports");
+    },
+    try_search() {
+      // if it's not in the index, go to index to show the result
+      if (this.$route.path != "/reports") {
+        this.$router.push("/reports");
       }
+      // we press enter, it must search
+      this.refresh_data(true);
     },
     logout() {
       this.clear_all();

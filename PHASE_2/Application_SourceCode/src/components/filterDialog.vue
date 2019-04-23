@@ -4,7 +4,7 @@
       <v-card-title class="grey lighten-4 py-4 title">Filters</v-card-title>
       <v-container grid-list-sm class="pa-4">
         <v-layout row wrap>
-          <v-flex xs6>
+          <v-flex xs6 pr-2>
             <v-menu
               ref="startdate_menu"
               :close-on-content-click="false"
@@ -17,16 +17,17 @@
               min-width="290px"
             >
               <v-text-field
+                outline
                 slot="activator"
                 v-model="start_date"
                 label="Start Date"
-                prepend-icon="event"
+                prepend-inner-icon="event"
                 readonly
               ></v-text-field>
               <v-date-picker v-model="start_date" landscape />
             </v-menu>
           </v-flex>
-          <v-flex xs6>
+          <v-flex xs6 pl-2>
             <v-menu
               ref="enddate_menu"
               :close-on-content-click="false"
@@ -39,10 +40,11 @@
               min-width="290px"
             >
               <v-text-field
+                outline
                 slot="activator"
                 v-model="end_date"
                 label="End Date"
-                prepend-icon="event"
+                prepend-inner-icon="event"
                 readonly
               ></v-text-field>
               <v-date-picker v-model="end_date" landscape />
@@ -50,19 +52,19 @@
           </v-flex>
           <v-flex sm12>
             <v-text-field
+              outline
               slot="activator"
               v-model="location"
               label="Location"
-              prepend-icon="place"
+              prepend-inner-icon="place"
             ></v-text-field>
           </v-flex>
         </v-layout>
       </v-container>
       <v-card-actions>
-        <v-btn flat color="primary">More</v-btn>
+        <v-btn flat color="warning" @click="cancel">Cancel</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-        <v-btn flat @click="confirm">Save</v-btn>
+        <v-btn flat color="primary" @click="confirm">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

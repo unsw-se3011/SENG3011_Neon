@@ -15,8 +15,8 @@
         md6
         xl4
         xm12
-        pr-3
-        pb-3
+        pr-4
+        pb-4
       >
         <reportCard :report="report" />
       </v-flex>

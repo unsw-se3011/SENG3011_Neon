@@ -3,10 +3,10 @@
     <h2 class="display-1 font-weight-medium font-weight-medium">
       {{ name }} Outbreak
     </h2>
-    <h4>
+    <h3>
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
-    </h4>
+    </h3>
 
     <ve-scatter
       v-if="!waiting"
