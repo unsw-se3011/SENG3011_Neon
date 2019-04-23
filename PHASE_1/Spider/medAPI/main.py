@@ -90,7 +90,7 @@ class ReportParser(object):
         self.report['report_events'] = temp_list
 
         del self.report['reported_events']
-        print(dumps(temp_list))
+        # print(dumps(temp_list))
 
     def parseReportEvent(self, re):
         fd = FuzzDate(re['date'])
@@ -111,8 +111,8 @@ class ReportParser(object):
         # print("Length of location   " + str(len(ls.location_list)))
 
         # print location list
-        print([l['location'] for l in re['location']])
-        print(ls.location_list)
+        # print([l['location'] for l in re['location']])
+        # print(ls.location_list)
         if len(ls.location_list) > 1:
             #  we need to handle this type of location list
             # split the number affect betweeen locations
@@ -173,7 +173,7 @@ def mk_request():
             [ReportParser(report).dumps() for report in article['reports']]
         del article['reports']
 
-        # print(dumps(article))
+        print(dumps(article))
 
 
 if __name__ == "__main__":
