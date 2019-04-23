@@ -196,7 +196,7 @@ class MessageViewSet(viewsets.ModelViewSet):
 
 
 class BookmarkViewSet(viewsets.ModelViewSet):
-    queryset = Bookmark.objects.all()
+    queryset = Bookmark.objects.order_by("-id")
     serializer_class = BookmarkSerializer
     permission_classes = (IsAuthenticated,)
 

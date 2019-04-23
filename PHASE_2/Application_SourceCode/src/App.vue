@@ -105,7 +105,7 @@ export default {
       { icon: "contacts", text: "Reports", href: "reportList" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
       // { icon: "map", text: "Map" },
-      { icon: "content_copy", text: "Bookmark", href: "bookmarkList" },
+      { icon: "content_copy", text: "Bookmark", href: "bookmarkList" }
 
       // {
       //   icon: "keyboard_arrow_up",

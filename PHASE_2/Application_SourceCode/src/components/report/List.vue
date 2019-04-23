@@ -7,7 +7,9 @@
     ></v-progress-circular>
     <v-layout row wrap v-else ref="ListTop">
       <v-flex xs12>
-        <h3>{{ count }} reporst within {{ date_range }} days</h3>
+        <h3>
+          <b>{{ count }}</b> reports within {{ date_range }} days.
+        </h3>
       </v-flex>
       <v-flex
         v-for="report in reports_page"

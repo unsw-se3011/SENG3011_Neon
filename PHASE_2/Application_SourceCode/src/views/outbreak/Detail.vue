@@ -7,17 +7,18 @@
       From {{ outbreak.start_date | showDate }} to
       {{ outbreak.end_date | showDate }}
     </h3>
+    <h2 class="my-1 font-weight-medium">Map</h2>
+    <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
+    <h2 class="my-1 font-weight-medium">Daily Chart</h2>
     <ve-scatter
       v-if="!waiting"
       :data="chart_data"
       :settings="chartSettings"
     ></ve-scatter>
 
+    <h2 class="my-1 font-weight-medium">Monthly Histogram</h2>
     <ve-histogram v-if="!waiting" :data="hist_data"></ve-histogram>
-
-    <h1 class="my-1 font-weight-medium">Map</h1>
-    <mapComp :chartData="chart_data.map_arr" style="max-height:500px" />
 
     <div class="my-1" v-if="!waiting">
       <h2 class="font-weight-medium">Report List</h2>
