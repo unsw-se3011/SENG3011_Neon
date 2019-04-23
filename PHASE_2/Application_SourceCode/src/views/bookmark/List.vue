@@ -10,7 +10,7 @@
       ></v-progress-circular>
       <v-layout row wrap v-else>
         <v-flex xs12>
-          <h4>{{ bookmarks.length }} reporst</h4>
+          <h3>{{ bookmarks.length }} reports.</h3>
         </v-flex>
         <v-flex
           v-for="report in reports_page"

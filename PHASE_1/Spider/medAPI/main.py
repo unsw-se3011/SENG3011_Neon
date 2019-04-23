@@ -65,6 +65,12 @@ def dd(str):
     print(str)
     exit(0)
 
+CLEANRX = re.compile('<.*?>')
+def cleanhtml(raw_html):
+  cleantext = re.sub(CLEANRX, '', raw_html)
+  return cleantext
+
+
 
 class FuzzDate(object):
     def __init__(self, date_str):
@@ -206,6 +212,10 @@ def mk_request(page):
         del article['ArticleID']
         article['date_of_publication'] += "T00:00:00"
         article['main_text'] = article['main_text'].replace('\n', ' ')
+        # clean the html tags 
+        article['main_text'] = cleanhtml(article['main_text'])
+        article['headline'] = cleanhtml(article['headline'])
+        
 
         del article['reports'][0]['ReportID']
         del article['reports'][0]['comment']

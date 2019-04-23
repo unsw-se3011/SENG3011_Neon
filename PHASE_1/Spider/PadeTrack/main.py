@@ -92,6 +92,10 @@ def dd(str):
     print(str)
     exit(0)
 
+CLEANRX = re.compile('<.*?>')
+def cleanhtml(raw_html):
+  cleantext = re.sub(CLEANRX, '', raw_html)
+  return cleantext
 
 class FuzzDate(object):
     def __init__(self, date_str):
@@ -219,6 +223,9 @@ def mk_request():
 
         # parse the report
         o['main_text'] = o['main_text'].replace('\n', '')
+        # remove html tags from it 
+        o['main_text'] = cleanhtml(o['main_text'])
+        o['headline'] = cleanhtml(o['headline'])
         o['report'] = [ReportParser(report).dumps() for report in o['reports']]
         del o['reports']
 

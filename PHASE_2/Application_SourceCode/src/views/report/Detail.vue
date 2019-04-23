@@ -21,7 +21,7 @@
     <div></div>
     <div v-if="report.report_events && report.report_events.length != 0">
       <h2 class="font-weight-medium">Reported Events</h2>
-      <div v-for="(re, index) in report.report_events" :key="`re-${index}`" >
+      <div v-for="(re, index) in report.report_events" :key="`re-${index}`">
         <reportEvent :event="re" />
       </div>
     </div>

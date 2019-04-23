@@ -29,9 +29,10 @@ SYNDROME_MAP = {
 
 
 # BASE_URL = 'http://neon.whiteboard.house/v0/'
-BASE_URL = 'http://localhost:8000/v0/'
+# BASE_URL = 'http://localhost:8000/v0/'
+BASE_URL = 'http://192.168.1.22:8000/v0/'
 
-THREAD_COUNT = 1
+THREAD_COUNT = 4
 
 token = ""
 timer = None

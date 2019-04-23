@@ -143,8 +143,7 @@ export default {
     ...mapMutations("auth", "clear_all"),
     async clear_and_search() {
       await this.$store.commit("search/reset");
-      // this.refresh_data(true);
-      this.$router.push("/reports");
+      this.try_search();
     },
     try_search() {
       // if it's not in the index, go to index to show the result
