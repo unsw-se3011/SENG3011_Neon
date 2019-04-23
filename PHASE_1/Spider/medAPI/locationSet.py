@@ -45,7 +45,7 @@ class LocationSet(object):
             place.lower()
 
             # map the place string to place object
-            if place == low_city:
+            if place in low_city:
                 place_obj = {
                     'country': city_dict['country'],
                     'state': city_dict['state'],
@@ -53,14 +53,14 @@ class LocationSet(object):
                     'name': city_dict['city'],
                 }
                 break
-            elif place == low_state:
+            elif place in low_state:
                 place_obj = {
                     'country': city_dict['country'],
                     'state': city_dict['state'],
                     'name': city_dict['state'],
                 }
                 break
-            elif place == low_country:
+            elif place in low_country:
                 place_obj = {
                     'country': city_dict['country'],
                     'name': city_dict['country'],
@@ -101,4 +101,12 @@ if __name__ == "__main__":
     ls = LocationSet()
     ls.add("Brazil")
     ls.add("Brazilia")
+    print(ls.location_list)
+    ls.add("China")
+    ls.add("Shanghai")
+    print(ls.location_list)
+
+    ls = LocationSet()
+    ls.add("Shanghai")
+    ls.add("Zhejiang")
     print(ls.location_list)

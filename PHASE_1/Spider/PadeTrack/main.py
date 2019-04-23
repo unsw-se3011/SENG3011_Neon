@@ -35,10 +35,13 @@ EVENT_TYPE_MAP = {
     'hospitalised': HOSPITALISED,
     'recovered': RECOVERED,
 }
+
+
 def dd(str):
     print(str)
     exit(0)
-    
+
+
 class FuzzDate(object):
     def __init__(self, date_str):
         self.date_str = date_str
@@ -50,7 +53,7 @@ class FuzzDate(object):
             res = re.search(
                 r'([0-9]{4})-([0-9x]{1,2})-([0-9x]{1,2}) ([0-9x]{1,2}):([0-9x]{1,2}):([0-9x]{1,2})', self.date_str)
             self.date_group = [t for t in res.groups()]
-        
+
         # count how much field is fuzzy and replace it
         self.fuzz_count = 0
         new_date_group = []
@@ -87,11 +90,11 @@ class ReportParser(object):
         self.report['report_events'] = temp_list
 
         del self.report['reported_events']
-        print(self.dumps())
+        print(dumps(self.dumps()))
 
     def parseReportEvent(self, re):
         fd = FuzzDate(re['date'])
-       
+
         # dd(fd.get_fuzz_level())
         re['start_date'] = fd.get_datetime()
         re['start_date_fuzz'] = fd.get_fuzz_level()
@@ -106,7 +109,7 @@ class ReportParser(object):
 
         # ramen have two level location, both name location
         [ls.add(l['location']) for l in re['location']]
-       
+
         if len(ls.location_list) > 1:
             #  we need to handle this type of location list
             # split the number affect betweeen locations
@@ -122,10 +125,6 @@ class ReportParser(object):
 
             return tmp_list
 
-            print("Dump the error")
-            print(re['location'])
-            print(re['number_affected'])
-            dd(ls.location_list)
         elif ls.location_list:
 
             # use the first location in the list
@@ -139,6 +138,7 @@ class ReportParser(object):
     def dumps(self):
         return self.report
 
+
 def mk_request():
     res = requests.get(
         'http://api.pandetrack.online/listall/reports',
@@ -150,10 +150,14 @@ def mk_request():
     # exit(0)
    # print(data["articles"])
     for o in data["articles"]:
+        # standerdise the publicationdate
+        fd = FuzzDate(o['date_of_publication'])
+        o['date_of_publication'] = fd.get_datetime()
+        o['p_fuzz'] = fd.get_fuzz_level()
 
+        # parse the report
         o['main_text'] = o['main_text'].replace('\n', '')
         o['report'] = [ReportParser(report).dumps() for report in o['reports']]
-
         del o['reports']
 
         print(dumps(o))

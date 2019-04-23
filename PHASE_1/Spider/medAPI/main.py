@@ -35,10 +35,13 @@ EVENT_TYPE_MAP = {
     'hospitalised': HOSPITALISED,
     'recovered': RECOVERED,
 }
+
+
 def dd(str):
     print(str)
     exit(0)
-    
+
+
 class FuzzDate(object):
     def __init__(self, date_str):
         self.date_str = date_str + "Txx:xx:xx"
@@ -50,7 +53,7 @@ class FuzzDate(object):
             res = re.search(
                 r'([0-9]{4})-([0-9x]{1,2})-([0-9x]{1,2}) ([0-9x]{1,2}):([0-9x]{1,2}):([0-9x]{1,2})', self.date_str)
             self.date_group = [t for t in res.groups()]
-        
+
         # count how much field is fuzzy and replace it
         self.fuzz_count = 0
         new_date_group = []
@@ -91,7 +94,7 @@ class ReportParser(object):
 
     def parseReportEvent(self, re):
         fd = FuzzDate(re['date'])
-       
+
         # dd(fd.get_fuzz_level())
         re['start_date'] = fd.get_datetime()
         re['start_date_fuzz'] = fd.get_fuzz_level()
@@ -106,7 +109,7 @@ class ReportParser(object):
 
         # ramen have two level location, both name location
         [ls.add(l['location']) for l in re['location']]
-       
+
         if len(ls.location_list) > 1:
             #  we need to handle this type of location list
             # split the number affect betweeen locations
@@ -139,9 +142,10 @@ class ReportParser(object):
     def dumps(self):
         return self.report
 
+
 def mk_request():
     res = requests.get(
-         'https://med-api-seng3011-csb.herokuapp.com/articles', params={
+        'https://med-api-seng3011-csb.herokuapp.com/articles', params={
             'startDate': '2000-01-01T00:00:00',
             'endDate': '2019-04-23T00:00:00',
         }
@@ -150,16 +154,17 @@ def mk_request():
     res.raise_for_status()
     for article in res.json():
         # replace the \n to ' '
-     #  print("NEXT ONE  ---------------")
-       if(article['main_text']) is None:
-           continue
-       article['main_text'] = article['main_text'].replace('\n', ' ')
-       article['report'] =\
-          [ReportParser(report).dumps() for report in article['reports']]
+        #  print("NEXT ONE  ---------------")
+        if(article['main_text']) is None:
+            continue
+        article['main_text'] = article['main_text'].replace('\n', ' ')
+        article['report'] =\
+            [ReportParser(report).dumps() for report in article['reports']]
 
-       del article['reports']
+        del article['reports']
 
-     #  print("heree " + dumps(article))
+        print(dumps(article))
+
 
 if __name__ == "__main__":
     mk_request()
