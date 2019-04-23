@@ -7,7 +7,7 @@
       <v-layout align-center justify-center wrap py-5>
         <v-flex xs10>
           <h1 class="display-2 font-weight-light mb-4 text-xs-center">
-            Let the Project Neon help you detect epidemic.
+            Let Project Neon help you detect epidemic.
           </h1>
         </v-flex>
         <v-flex xs12>
@@ -38,7 +38,7 @@
 
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">Richful Dataset in Speed</h3>
+                <h3 class="headline mb-0">Rich Dataset in Seconds</h3>
                 <div>
                   We watch CDC, WHO and Outbreak News Today to empower our
                   backend. We not only provided the richest dataset but also
