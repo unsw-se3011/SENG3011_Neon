@@ -8,25 +8,25 @@
       </v-btn>
       <BookmarkBtn :report_id="report_id" />
     </h1>
-    <h5 class="info--text">{{ article.date_of_publication | showDate }}</h5>
+    <h3 class="info--text">{{ article.date_of_publication | showDate }}</h3>
     <p style="line-height:250%; font-size:1.35em">{{ article.main_text }}</p>
     <div v-if="report.disease && report.disease.length != 0">
-      <h3 class="font-weight-medium">Disease</h3>
+      <h2 class="font-weight-medium">Disease</h2>
       <p>{{ report.disease.join(", ") }}</p>
     </div>
     <div v-if="report.syndrome && report.syndrome.length != 0">
-      <h3 class="font-weight-medium">Syndrome</h3>
+      <h2 class="font-weight-medium">Syndrome</h2>
       <p>{{ report.syndrome.join(", ") }}</p>
     </div>
     <div></div>
     <div v-if="report.report_events && report.report_events.length != 0">
-      <h3 class="font-weight-medium">Events</h3>
-      <div v-for="re in report.report_events" :key="re.event_type">
+      <h2 class="font-weight-medium">Reported Events</h2>
+      <div v-for="(re, index) in report.report_events" :key="`re-${index}`" >
         <reportEvent :event="re" />
       </div>
     </div>
     <div>
-      <h3 class="font-weight-medium">Comment</h3>
+      <h2 class="font-weight-medium">Comment</h2>
       <commentList
         v-if="username"
         :msg_list="report.comment"
@@ -34,11 +34,11 @@
         @change="update_neon"
       />
     </div>
-    <h3 class="font-weight-medium my-1">Related</h3>
-    <h5>
+    <h2 class="font-weight-medium my-1">Related</h2>
+    <h3>
       {{ search_term }} from {{ search_start | showDate }} to
       {{ search_end | showDate }}
-    </h5>
+    </h3>
     <relatedNews
       :start_date="search_start"
       :end_date="search_end"

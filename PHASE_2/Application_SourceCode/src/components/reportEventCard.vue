@@ -1,7 +1,7 @@
 <template>
-  <v-card class="my-2">
+  <v-card class="my-3">
     <v-card-title primary-title>
-      <div>
+      <div class="pa-1">
         <h3 class="headline mb-0">
           {{ event.numer_affected }} {{ event.event_type }}
         </h3>
