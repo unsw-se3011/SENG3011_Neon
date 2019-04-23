@@ -8,10 +8,10 @@ import time
 import fileinput
 from traceback import print_exc
 
-# BASE_URL = 'http://neon.whiteboard.house/v0/'
-BASE_URL = 'http://localhost:8000/v0/'
+BASE_URL = 'http://neon.whiteboard.house/v0/'
+#BASE_URL = 'http://localhost:8000/v0/'
 
-THREAD_COUNT = 1
+THREAD_COUNT = 6
 
 
 PRESENCE = "P"
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     # import disease
     it = iter(fileinput.input(files=args.file))
 
-    for i in range(THREAD_COUNT):
+    for i in range(THREAD_COUNT*2):
         workers.append(Worker(it))
 
     # print(mk_report(loads(next(it))))
