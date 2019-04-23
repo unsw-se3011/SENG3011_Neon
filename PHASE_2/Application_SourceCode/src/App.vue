@@ -54,17 +54,17 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="blue" dark fixed app clipped-left>
+    <v-toolbar color="blue" dark fixed app clipped-left :flat="is_flat">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>
         <span class="font-weight-light">Project</span>Neon
       </v-toolbar-title>
       <v-text-field
-        flat
         solo-inverted
         hide-details
         prepend-inner-icon="search"
         clearable
+        flat
         v-model="key_term"
         label="Search"
         class="pl-5 ml-5 hidden-sm-and-down neon-round"
@@ -100,7 +100,7 @@ import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   data: () => ({
     show_filter: false,
-    drawer: true,
+    drawer: false,
     items: [
       { icon: "contacts", text: "Reports", href: "reportList" },
       { icon: "history", text: "Outbreaks", href: "outbreakIndex" },
@@ -135,6 +135,9 @@ export default {
       set(val) {
         this.$store.commit("search/set_key_term", val);
       }
+    },
+    is_flat() {
+      return this.$route.name == "index";
     }
   },
   methods: {
@@ -161,7 +164,12 @@ export default {
   components: {
     filterDialog
   },
-  mounted() {}
+  mounted() {
+    // console.log(this.$route.name)
+    // if (this.$route.name == "index") {
+    //   this.drawer =false
+    // }
+  }
 };
 </script>
 

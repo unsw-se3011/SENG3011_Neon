@@ -16,6 +16,6 @@ export default new Router({
     ...outbreak,
     ...auth,
     ...bookmark,
-    { path: "*", redirect: { name: "reportList" } }
+    { path: "*", redirect: { name: "index" } }
   ]
 });

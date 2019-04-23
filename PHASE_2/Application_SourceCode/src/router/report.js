@@ -1,5 +1,12 @@
 export default [
   {
+    path: "/",
+    name: "index",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/views/report/Index.vue")
+  },
+
+  {
     path: "/reports/",
     name: "reportList",
     component: () =>
