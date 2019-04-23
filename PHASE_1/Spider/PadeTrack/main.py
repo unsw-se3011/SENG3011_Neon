@@ -36,6 +36,14 @@ EVENT_TYPE_MAP = {
     'recovered': RECOVERED,
 }
 
+# they only use lower
+SYNDROME_MAP = {
+    'meningitis': 'Meningitis',
+    'influenza-like illness': 'Influenza-like illness',
+    'acute respiratory syndrome': 'Acute respiratory syndrome',
+    'haemorrhagic fever': 'Haemorrhagic Fever'
+}
+
 
 def dd(str):
     print(str)
@@ -88,6 +96,9 @@ class ReportParser(object):
         for t in self.report['reported_events']:
             temp_list += self.parseReportEvent(t)
         self.report['report_events'] = temp_list
+        # map the syndrome to correct one
+        self.report['syndrome'] = \
+            [SYNDROME_MAP[s] for s in self.report['syndrome']]
 
         del self.report['reported_events']
         # print(dumps(self.dumps()))

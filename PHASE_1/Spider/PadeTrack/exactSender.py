@@ -150,6 +150,9 @@ class Worker(threading.Thread):
 
         # send the request through the network
         ret = mk_request('articles', article)
+
+        # print(dumps(report))
+        # exit()
         self.id = ret.json()['id']
 
     def send_report(self):
@@ -159,8 +162,6 @@ class Worker(threading.Thread):
             # attach article id
             report['article_id'] = self.id
 
-            print(dumps(report))
-            exit()
             # push request
             try:
                 mk_request('reports', report)

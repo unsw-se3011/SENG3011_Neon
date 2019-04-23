@@ -146,11 +146,12 @@ class ReportParser(object):
         return self.report
 
 
-def mk_request():
+def mk_request(page):
     res = requests.get(
         'https://med-api-seng3011-csb.herokuapp.com/articles', params={
-            'startDate': '2000-01-01T00:00:00',
-            'endDate': '2019-04-23T00:00:00',
+            'startDate': '1980-01-01T00:00:00',
+            'endDate': '2020-04-23T00:00:00',
+            'limit':  1000
         }
     )
 
@@ -174,7 +175,9 @@ def mk_request():
         del article['reports']
 
         print(dumps(article))
+    if len(res.json()) != 50:
+        exit()
 
 
 if __name__ == "__main__":
-    mk_request()
+    mk_request(0)
