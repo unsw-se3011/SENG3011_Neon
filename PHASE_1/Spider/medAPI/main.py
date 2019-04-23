@@ -90,7 +90,7 @@ class ReportParser(object):
         self.report['report_events'] = temp_list
 
         del self.report['reported_events']
-     #   print(self.dumps())
+        print(dumps(temp_list))
 
     def parseReportEvent(self, re):
         fd = FuzzDate(re['date'])
@@ -106,10 +106,13 @@ class ReportParser(object):
         re['type'] = EVENT_TYPE_MAP[re['type']]
 
         ls = LocationSet()
-
         # ramen have two level location, both name location
         [ls.add(l['location']) for l in re['location']]
+        # print("Length of location   " + str(len(ls.location_list)))
 
+        # print location list
+        print([l['location'] for l in re['location']])
+        print(ls.location_list)
         if len(ls.location_list) > 1:
             #  we need to handle this type of location list
             # split the number affect betweeen locations
@@ -136,7 +139,7 @@ class ReportParser(object):
             re['location'] = ls.location_list[0]
         else:
             re['location'] = None
-       # dd("last call " + re)
+        #    dd("last call " + re)
         return [re]
 
     def dumps(self):
@@ -154,16 +157,23 @@ def mk_request():
     res.raise_for_status()
     for article in res.json():
         # replace the \n to ' '
-        #  print("NEXT ONE  ---------------")
+        # print("NEXT ONE  ---------------")
+
         if(article['main_text']) is None:
             continue
+
+        del article['ArticleID']
+        article['date_of_publication'] += "T00:00:00"
         article['main_text'] = article['main_text'].replace('\n', ' ')
+
+        del article['reports'][0]['ReportID']
+        del article['reports'][0]['comment']
+        del article['reports'][0]['ArticleID']
         article['report'] =\
             [ReportParser(report).dumps() for report in article['reports']]
-
         del article['reports']
 
-        print(dumps(article))
+        # print(dumps(article))
 
 
 if __name__ == "__main__":

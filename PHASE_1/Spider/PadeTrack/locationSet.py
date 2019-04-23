@@ -37,12 +37,23 @@ class LocationSet(object):
         return None
 
     def add(self, place: str):
+        place = place.strip()
+        if not place:
+            return False
+
         place_obj = {}
         for city_dict in CITIES:
             low_city = city_dict['city']
             low_country = city_dict['country']
             low_state = city_dict['state']
-            place.lower()
+            place = place.lower()
+            low_city = low_city.lower()
+            low_country = low_country.lower()
+            low_state = low_state.lower()
+            # print(low_city)
+            # print(place + "!=" + low_city)
+            # print(place + "!=" + low_country)
+            # print(place + "!=" + low_state)
 
             # map the place string to place object
             if place in low_city:
@@ -109,4 +120,10 @@ if __name__ == "__main__":
     ls = LocationSet()
     ls.add("Shanghai")
     ls.add("Zhejiang")
+    print(ls.location_list)
+
+    ls = LocationSet()
+    ls.add('california')
+    ls.add('minnesota')
+    ls.add('wisconsin')
     print(ls.location_list)
