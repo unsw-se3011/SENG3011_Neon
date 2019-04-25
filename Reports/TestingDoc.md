@@ -169,3 +169,10 @@ Overall, the output of for all testing had no major problems. One improvement fo
 However, in white-box testing the response of filter is run out of time and failed the test. We change the logic of filter implementation and hence solve the problem of overtime.
 
 Also in the performance testing, the database that we used is not support high volume of visiting, so we change database from sqlite to postgresql for better performance.
+
+## Platform Testing 
+**Testing	processes	used	in	the	development	of	the	platform.**
+
+**Output of testing**
+- Output1 :
+- Improvement action1 :

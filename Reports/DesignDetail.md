@@ -343,3 +343,16 @@ By using Docker, we can:
 - Provide a unified environment in all phases of development.
 - Automate the process of setting up the virtual environment.
 - Don't need to change the toolchain when facing a different situation.
+
+## 2.Platform	Design
+**Requirements	of	the	API	and	the	analytics	platform**
+
+**Software	architecture**
+
+**Additional information** <br>
+Extra API usage: 
+  - Google News API (as related news data source)
+  - Team CSB (CDC based datasource)
+  - Team PandeTrack (WHO based datasource)
+
+Algorithms employed
