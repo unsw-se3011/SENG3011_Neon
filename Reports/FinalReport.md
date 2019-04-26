@@ -18,10 +18,11 @@ Continuous runtime environemnt by docker
   - Major achievements in project  
     - Development of an usable, reliable API by ourself.
     - Extract major information from website by Scrapy
-    - Using NLPE to increase the accuracy of Scrapy
+    - Using NLPE to process the data from Scrapy
     - Using Vue to develop a website in a short time period
     - Format the data from other group's API hence it can use in our website
     - Using Swagger to document our API
+    - Using Docker, Docker-compose and Kubernetes to standardize our runtime envrionement
 
   - Issues/problems encountered
     - Some report's main text still have unexpected characters and format
@@ -35,5 +36,15 @@ Continuous runtime environemnt by docker
   - What kind of skills you wish you had before the workshop
     - Python Scrapy
     - Basic database development and management
+    - CI/CD (continuous integration and continuous delivery)
+    - Data anlayze algorithm
+    - Natrual languague data extraction
 
   - Would you do it any differently now ?
+    - Pay more resource on Natural Language part
+    - Scrape more data source at the begining
+    - Develop more algorithm on anlayze our data
+    - Thinking more way to express our data
+    - More detailed documentation on our API
+    - More edge case testing of our backend
+    - Focus more on deliverable rather than development build steps
