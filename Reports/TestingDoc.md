@@ -171,8 +171,20 @@ However, in white-box testing the response of filter is run out of time and fail
 Also in the performance testing, the database that we used is not support high volume of visiting, so we change database from sqlite to postgresql for better performance.
 
 ## Platform Testing 
-**Testing	processes	used	in	the	development	of	the	platform.**
+**Testing	processes used in the development of the	platform.** <br>
+We are mainly using manual test in Platform testing. <br><br>
 
 **Output of testing**
-- Output1 :
-- Improvement action1 :
+- **Output 1** : Observed unexpected characters in the main text of report.
+- **Improvement action 1** : Use NLPE to increase our  accuracy of Scrapy. <br> <br>
+- **Output 2** : Observed missing the number of affected population and disease name in some of our report title.
+- **Improvement action 2** : Instead of using the fixed information from the article as our report article we use the headline of the article as our report title.<br> <br>
+
+-  **Output 3** : Observed the graph could not present until we refresh the page of outbreak detail page.
+-   **Improvement action 3** : Realised that it is a logic error of lazy loading hence we moved the graph generator to backend instead of doing it in frontend. <br> <br>
+  
+-   **Output 4** : Observed that using search bar in report detail's page returns previous search results. In other words, search functions could not response when we use in report's detail page.
+-   **Improvement action 4** : The response bug was found in frontend search bar component. The input from user should be listened throughout the process of accessing our website. <br><br>
+
+
+  
