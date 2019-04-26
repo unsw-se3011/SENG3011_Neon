@@ -345,9 +345,12 @@ By using Docker, we can:
 - Don't need to change the toolchain when facing a different situation.
 
 ## 2.Platform	Design
-**Requirements	of	the	API	and	the	analytics	platform**
+**Requirements of the API and the analytics platform**
+
 
 **Software	architecture**
+
+**How it integrates with	your API at	a high level such as	how	you	communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data	retrieved	and	visualized.**
 
 **Additional information** <br>
 Extra API usage: 
