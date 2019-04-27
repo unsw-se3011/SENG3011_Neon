@@ -7,7 +7,11 @@
 **Software	architecture**
 
 
-**How it integrates with	your API at	a high level such as	how	you	communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data	retrieved	and	visualized.**
+**How it integrates with your API at	a high level such as how you communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data retrieved and	visualized.**
+
+For the implenmentation of other team's API, we use Python to request all the data from the APIs by passing a wide time range as the parameters e.g. 1980-01-01T00:00:00 to 2019-04-23T00:00:00. Then we restructure their JSON to fit in our website. Such as change the date's format and the location JSON format. Then store it into our database and waiting for the call from web application. On the other hand, we use Google charts to visualize our numbers from the field of numbers of affected in report events.  <br> <br>
+
+As the client side, server listen to the client input through the whole process of accessing. After server get the user input it will use frontend to communicate with the database and place the return's detail to the website.
 
 
 

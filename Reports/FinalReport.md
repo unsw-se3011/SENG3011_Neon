@@ -2,8 +2,8 @@
 
 ## key benefits/achievements of the project relating back to the design/implementation
 
-Realtime data anlayze system by python
-Natural Language Parser Engine by Nlpe
+Realtime data anlayze system by python <br>
+Natural Language Parser Engine by Nlpe <br>
 Continuous runtime environemnt by docker
 
 
@@ -11,7 +11,8 @@ Continuous runtime environemnt by docker
 ## Team organisation and conclusion/appraisal of your work  
 
 - Responsibilities/organization of the team
-  - Ruofei.Huang
+  - Ruofei.Huang  <br>
+ ----- ADD SOMETHING ------
   - Xinze.Song
   - Ziqing.Yan  
   Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
