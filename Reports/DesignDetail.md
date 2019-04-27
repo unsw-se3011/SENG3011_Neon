@@ -9,9 +9,9 @@
 
 **How it integrates with your API at	a high level such as how you communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data retrieved and	visualized.**
 
-For the implenmentation of other team's API, we use Python to request all the data from the APIs by passing a wide time range as the parameters e.g. 1980-01-01T00:00:00 to 2019-04-23T00:00:00. Then we restructure their JSON to fit in our website. Such as change the date's format and the location JSON format. Then store it into our database and waiting for the call from web application. On the other hand, we use Google charts to visualize our numbers from the field of numbers of affected in report events.  <br> <br>
+For the implementation of other team's API, we used Python to request all the data from the APIs by passing a wide time range as the parameters e.g. 1980-01-01T00:00:00 to 2019-04-23T00:00:00. Then we restructured their JSON to fit into our website. For example, we had to change the date's format and the location JSON format. Then store it into our database and wait for the call from web application. On the other hand, we use Google charts to visualize our numbers from the field of numbers of affected in report events.  <br> <br>
 
-As the client side, server listen to the client input through the whole process of accessing. After server get the user input it will use frontend to communicate with the database and place the return's detail to the website.
+From the client side, the server listens to the client input through the whole process of accessing. After the tserver gets the user input, it will use frontend to communicate with the database and place the return's detail to the website.
 
 
 
@@ -22,7 +22,7 @@ Extra API usage:
   - Team CSB (CDC based datasource)
   - Team PandeTrack (WHO based datasource)
 
-Algorithms employed
+Algorithms employed:
 
 
 ## API Module Development
@@ -35,22 +35,22 @@ We decided to develop a WEB API using REST base communication and secure by HTTP
 
 Design details discuss in our group meetings, and we are following these steps:
 
-1. Discuss overall service structure thorugh building ER diagrams which allows everyone to have a good understanding of our project goal and theme
+1. Discuss overall service structure through building ER diagrams which allows everyone to have a good understanding of our project goal and theme
 2. Identify the iteration pattern between server and client
 3. Design how to decouple the data
 4. List all the API endpoints needed and the parameters and data requirements for them
 5. Decide what endpoints we need to include
-6. Collect fake data to start scraping infomation off outbreaknewstoday.com
+6. Collect fake data to start scraping information off outbreaknewstoday.com
 
 ### Implementing API endpoints
 
 The implementation steps are as follow:
 
 1. Design the ER diagram
-   - Deisgn be table structure
+   - Design be table structure
    - Design basic relationship between each model
    - Design which field will include
-   - Design what table cotain which field
+   - Design what table contain which field
 2. Map the ER diagram to models in Django
     - Map the relationship as Django relationships (one-to-many, many-to-many or even one-to-one)
     - Map the field as Django Model field in different type
@@ -62,7 +62,7 @@ The implementation steps are as follow:
 4. Register ViewSet to route in Django
     - Map a ViewSet as an API-endpoint in Django
 5. Testing our endpoint
-    - Create REST-Client interative documents
+    - Create REST-Client interactive documents
     - Create Django's unit-test
 6. Include the filter Middleware to support Search and filter
     - Install the filter and search middleware
@@ -83,7 +83,7 @@ We plan to use these to document our API:
 We plan to do these to help us test our backend API:
 
 - We will build our endpoint test cases by Django Unit Test
-- We will not only develop test cases for our internal method using unit tests as well as useing manual black-box testing to test our API from sample database to ensure the right output
+- We will not only develop test cases for our internal method using unit tests as well as using manual black-box testing to test our API from sample database to ensure the right output
 - We will also implement the CI/CD pipeline to ensure the ordering of structured tests to be checked when publishing to our website
 
 ## Running our API in Web Service Mode
@@ -95,7 +95,7 @@ While SOAP is an official protocol, REST is an architectural style; it lays down
 Therefore, our agents follow a clear RESTful design because REST has a more flexible architecture which is reliable and secure.
 
 The REST architecture allows API providers to deliver data in multiple formats like HTML and JSON.
-Our memssage format is JSON because it is easily consumed by other applications. The lightweight and human-readable JSON format is ideal for data interchange over the internet.
+Our message format is JSON because it is easily consumed by other applications. The lightweight and human-readable JSON format is ideal for data interchange over the internet.
 
 ## Passing Parameters to our API Module
 
@@ -103,7 +103,7 @@ We will use query string parameters to pass requests and we will inspect the URI
 
 We did not choose to send parameters in the body of a POST request because in REST API development, using POST to pass parameters is a deviation from the standard. When POST request are executed in the body, the client is actually submitting a new document to the remote host. Since we do not need to submit new information to the server for searching articles, body POST request is not that suitable in passing parameters to API development.
 
-While using query string parameters to pass requests is more appropriate, there are risks involing a too long URL string. When there are too many query string parameters and the URL is longer than the maxUrlLength (250 characters) for HTTP request, the request is aborted due to security reasons. However, since the only types of parameters needed for our requests are Date&Time, Keyterms and Location, this is not an issue for our API.
+While using query string parameters to pass requests is more appropriate, there are risks involving a too long URL string. When there are too many query string parameters and the URL is longer than the maxUrlLength (250 characters) for HTTP request, the request is aborted due to security reasons. However, since the only types of parameters needed for our requests are Date&Time, Keyterms and Location, this is not an issue for our API.
 
 
 Users have to input 3 main information strings:
@@ -214,7 +214,7 @@ http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-
 1. Search in Location Hierarchy
    - Store each hierarchy of match location into backend as four fields in location table
    - When matching in NLPE, we match to its full hierarchy from a dataset  
-2. The Perforamance issue in NLPE
+2. Performance issues in NLPE
    - We localise our computation request from NLPE
    - NLPE as another client to the backend
    - Use multi-processing to speed up NLPE
@@ -357,7 +357,7 @@ Also, we will use our home server to host the scrapy and NLPE. Because running t
 - The internal code may change a lot
 - Doesn't need to run in 24\*7
 
-Furthermore, we will follow the tech trend of containerlize our service. Because DevOps is facing:
+Furthermore, we will follow the tech trend of containerize  our service. Because DevOps is facing:
 
 - Diverge environment between develop, testing and deploy environment.
 - Diverge toolchain between frontend, backend, database and testing.
