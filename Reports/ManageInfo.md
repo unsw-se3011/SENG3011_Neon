@@ -25,21 +25,21 @@
 
 ### Assigned Responsibility (Iter. 2)
 
-| Name         | Responsibility                               |
-| :----------- | :------------------------------------------- |
-| Huiyue ZHANG | Documents>Deliverable>Design Detail          |
-| Ruofei HUANG | Documents>Deliverable>Management Information |
-| Xinze SONG   | Data Extraction>NLPE>*                       |
-| Ziqing YAN   | Frontend>Normal INterface>\*                 |
+| Name         | Responsibility                                                            |
+| :----------- | :------------------------------------------------------------------------ |
+| Huiyue ZHANG | Documents>Deliverable>Design Detail                                       |
+| Ruofei HUANG | Documents>Deliverable>Management Information                              |
+| Xinze SONG   | Data Extraction>NLPE>\*                                                   |
+| Ziqing YAN   | Frontend>Normal INterface>\*, Documents>Deliverable>Testing Documentation |
 
 ### Assigned Responsibility (Iter. 3)
 
-| Name         | Responsibility |
-| :----------- | :------------- |
-| Huiyue ZHANG |                |
-| Ruofei HUANG |                |
-| Xinze SONG   |                |
-| Ziqing YAN   |                |
+| Name         | Responsibility                                         |
+| :----------- | :----------------------------------------------------- |
+| Huiyue ZHANG |                                                        |
+| Ruofei HUANG | Data Extraction>OAU>\*                                 |
+| Xinze SONG   | Data Extraction>NLPE>\*                                |
+| Ziqing YAN   | Frontend>Normal INterface>\*,Frontend>Map Interface>\* |
 
 ## Iteration Plan
 
@@ -74,7 +74,7 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Feb 20     | Decision of api, work distribution, mentoring time; start of User Story and Entity Relationship Diagram, Github, documenting.                                  |
 | Feb 21     | Decision of meeting time                                                                                                                                       |
 | Feb 22     | Finish up User Story, setting up new tasks.                                                                                                                    |
-| Feb 25~26  | Inreamental progress, scraped ProMed’s metadata, data model, vue pages.                                                                                       |
+| Feb 25~26  | Inreamental progress, scraped ProMed’s metadata, data model, vue pages.                                                                                        |
 | Feb 27     | Group Meeting and mentoring session, scrape all the data from Outbreak news today, front-end progress is checked, backen has a hard time to set up those APIs. |
 | Feb 28     | Some backend endpoint is setted up, learning nltk for data extraction.                                                                                         |
 | Mar 1      | Modify repo structure for D1, backend enpoint rush                                                                                                             |
@@ -98,4 +98,12 @@ Google Doc allow us to edit a same time. It's very suitable for us to work toget
 | Mar 27     | Swagger need imporvement, reduce the enpoint in the document and add expect value. Need to impove the NLPE for more parser. Need to add a img url for article. |
 | Mar 27     | Swagger document start to redo. Location logic need to modify. Teststing document and log file clarifications. Search component in frontend.                   |
 | Mar 29     | Expose log file, add img url in backend. Half way of the swagger documents.                                                                                    |
-| Mar 31     | Merge the spacy into master. Swagger document and server is setted up. Tweaked the location filter.                                                            |
+| Mar 31     | Merge the nlpe into master. Swagger document and server is setted up. Tweaked the location filter.                                                             |
+| Apr 1      | Refactor part of nlpe code, create a JSON client for parser, import data to server, deploy on server.                                                          |
+| Apr 2      | Quick fix on sender and bugs on backend.                                                                                                                       |
+| Apr 3      | Bugs on the backend, need more detail on the architecture.                                                                                                     |
+| Apr 3      | Frontend release plan, next week's meeting's plan, some unclear about demenstration, imporve disease parser in nlpe, backend quickfix.                         |
+| Apr 5      | Merge the improvement of NLPE                                                                                                                                  |
+| Apr 6      | Releasing the frontend, improvement on the json client for NLPE.                                                                                               |
+| Apr 7      | Frontend improment, demonstration's documents.                                                                                                                 |
+| Apr 8      | Frontend progress is behind, restart a branch to do it.                                                                                                        |
