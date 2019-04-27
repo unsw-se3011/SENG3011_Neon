@@ -14,6 +14,7 @@ Continuous runtime environemnt by docker
   - Ruofei.Huang  <br>
  ----- ADD SOMETHING ------
   - Xinze.Song
+  
     Design a simple backend frame and in charge of the NLPE calculation to extract texts from the targeted articles as well as outputing them to a json format file.
   - Ziqing.Yan  
   Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
