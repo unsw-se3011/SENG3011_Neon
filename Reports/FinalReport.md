@@ -2,25 +2,26 @@
 
 ## key benefits/achievements of the project relating back to the design/implementation
 
-Realtime data anlayze system by python <br>
-Natural Language Parser Engine by Nlpe <br>
+Realtime data anlayze system by python  
+Natural Language Parser Engine by Nlpe  
 Continuous runtime environemnt by docker
 
-
-
-## Team organisation and conclusion/appraisal of your work  
+## Team organisation and conclusion/appraisal of your work
 
 - Responsibilities/organization of the team
-  - Ruofei.Huang  <br>
- ----- ADD SOMETHING ------
+  - Ruofei.Huang  
+    ----- ADD SOMETHING ------
   - Xinze.Song
-  
+
     Design a simple backend frame and in charge of the NLPE calculation to extract texts from the targeted articles as well as outputing them to a json format file.
+
   - Ziqing.Yan  
-  Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
+    Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
   - Huiyue.Zhang
-- How did the project go in your opinion  
-  - Major achievements in project  
+- How did the project go in your opinion
+
+  - Major achievements in project
+
     - Development of an usable, reliable API by ourself.
     - Extract major information from website by Scrapy
     - Using NLPE to process the data from Scrapy
@@ -30,6 +31,7 @@ Continuous runtime environemnt by docker
     - Using Docker, Docker-compose and Kubernetes to standardize our runtime envrionement
 
   - Issues/problems encountered
+
     - Some report's main text still have unexpected characters and format
     - Some report's title missing number of affected people or disease name which makes the title not make sense
     - Could not reponse to the user input in report detail page.
@@ -39,6 +41,7 @@ Continuous runtime environemnt by docker
     - API did not provide useful error message when it receive incorrect parameter
 
   - What kind of skills you wish you had before the workshop
+
     - Python Scrapy
     - Basic database development and management
     - CI/CD (continuous integration and continuous delivery)
