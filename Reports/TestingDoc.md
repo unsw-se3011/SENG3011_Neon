@@ -172,7 +172,7 @@ Also in the performance testing, the database that we used is not support high v
 
 ## Platform Testing 
 **Testing	processes used in the development of the	platform.** <br>
-We are mainly using manual test in Platform testing. <br><br>
+We mainly use black-box testing in developing the frontend platform. This is because a user friendly interface is extremely essential in the design, hence manual testing for correctness is vital. <br><br>
 
 **Output of testing**
 - **Output 1** : Observed unexpected characters in the main text of report.
@@ -180,7 +180,7 @@ We are mainly using manual test in Platform testing. <br><br>
 - **Output 2** : Observed missing the number of affected population and disease name in some of our report title.
 - **Improvement action 2** : Instead of using the fixed information from the article as our report article we use the headline of the article as our report title.<br> <br>
 
--  **Output 3** : Observed the graph could not present until we refresh the page of outbreak detail page.
+-  **Output 3** : Observed the graphs were not correctly showen until we refresh the page of outbreak detail page.
 -   **Improvement action 3** : Realised that it is a logic error of lazy loading hence we moved the graph generator to backend instead of doing it in frontend. <br> <br>
   
 -   **Output 4** : Observed that using search bar in report detail's page returns previous search results. In other words, search functions could not response when we use in report's detail page.

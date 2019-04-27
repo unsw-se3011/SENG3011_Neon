@@ -1,10 +1,12 @@
 # Summary
 
-## key benefits/achievements of your project relating back to your design/implementation
+## key benefits/achievements of the project relating back to the design/implementation
 
 Realtime data anlayze system by python
 Natural Language Parser Engine by Nlpe
 Continuous runtime environemnt by docker
+
+
 
 ## Team organisation and conclusion/appraisal of your work  
 
