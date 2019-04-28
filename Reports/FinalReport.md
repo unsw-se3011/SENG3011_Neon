@@ -2,13 +2,13 @@
 
 ## Key benefits/achievements of the project
 
+
 Throughout the history, public health are high concerns for health experts, researchers and governments.
 
 Project Neon will track many disease reports from resource worldwide including OutbreaksNewsToday,  CDC, WHO, and Google News API, extract the important information through Scrapping and NLPE to provide advanced analysis presented in a user-friendly interface. 
 
-By collecting a huge amount of data from the internet and extracting the summary report, we develop methods to track reports and estimate outbreaks and epidemics to capture global health hazards and help risk reduction. 
+By collecting a huge amount of data from the internet and extracting the summary report, we develop methods to track reports and estimate outbreaks and epidemics to capture global health hazards and help risk reduction.  
 
-<br>
 Our design separates the API into 3 parts.
 
 Firstly, we use Scrapy to help us extract the data from the official website. In this part we also need additional management from this raw data such as mapping into the format we want as well as extract the useful information; hence we use Natural Language Parser Engine using NLPE. Through NLPE and Scrapy, we accomplished the extraction of raw data from websites as well as condense that raw data into only the necessary information to improve usability for our clients.
@@ -19,21 +19,22 @@ After we mapping all the data into the table of mySQL, we analyse the data in re
 
 Also, throughout our development, we used Docker, a continuous runtime environment system to ensure all parts of our system are functional and running without errors. This is to improve our websites' reliabability and usability as well as help us track the flow of our design.
 
-
-
-## Team organisation and conclusion/appraisal of your work  
+## Team organisation and conclusion/appraisal of your work
 
 - Responsibilities/organization of the team
-  - Ruofei.Huang  <br>
- ----- ADD SOMETHING ------
+  - Ruofei.Huang  
+    ----- ADD SOMETHING ------
   - Xinze.Song
-  
+
     Design a simple backend frame and in charge of the NLPE calculation to extract texts from the targeted articles as well as outputing them to a json format file.
+
   - Ziqing.Yan  
-  Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
+    Testing both backend and frontend also provide advices about the UI design and implenmentation. Report writing and documentation.
   - Huiyue.Zhang
-- How did the project go in your opinion  
-  - Major achievements in project  
+- How did the project go in your opinion
+
+  - Major achievements in project
+
     - Development of an usable, reliable API by ourself.
     - Extract major information from website by Scrapy
     - Using NLPE to process the data from Scrapy
@@ -43,6 +44,7 @@ Also, throughout our development, we used Docker, a continuous runtime environme
     - Using Docker, Docker-compose and Kubernetes to standardize our runtime envrionement
 
   - Issues/problems encountered
+
     - Some report's main text still have unexpected characters and format
     - Some report's title missing number of affected people or disease name which makes the title not make sense
     - Could not reponse to the user input in report detail page.
@@ -52,6 +54,7 @@ Also, throughout our development, we used Docker, a continuous runtime environme
     - API did not provide useful error message when it receive incorrect parameter
 
   - What kind of skills you wish you had before the workshop
+
     - Python Scrapy
     - Basic database development and management
     - CI/CD (continuous integration and continuous delivery)

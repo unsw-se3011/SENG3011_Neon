@@ -1,29 +1,28 @@
 # Design Detail
 
-## Platform	Design
-**Requirements of the API and the analytics platform**
+## Platform Design
 
+![Design Detail](img/Architecture.png)
 
-**Software	architecture**
+### Requirements of the API and the analytics platform
 
+### Software architecture
 
-**How it integrates with your API at	a high level such as how you communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data retrieved and	visualized.**
+### How it integrates with your API at a high level such as how you communicate with the API, data conversion practice at client web application and any mapping you do between data retrieved and visualized
 
-For the implementation of other team's API, we used Python to request all the data from the APIs by passing a wide time range as the parameters e.g. 1980-01-01T00:00:00 to 2019-04-23T00:00:00. Then we restructured their JSON to fit into our website. For example, we had to change the date's format and the location JSON format. Then store it into our database and wait for the call from web application. On the other hand, we use Google charts to visualize our numbers from the field of numbers of affected in report events.  <br> <br>
+For the implementation of other team's API, we used Python to request all the data from the APIs by passing a wide time range as the parameters e.g. 1980-01-01T00:00:00 to 2019-04-23T00:00:00. Then we restructured their JSON to fit into our website. For example, we had to change the date's format and the location JSON format. Then store it into our database and wait for the call from web application. On the other hand, we use Google charts to visualize our numbers from the field of numbers of affected in report events.
 
 From the client side, the server listens to the client input through the whole process of accessing. After the tserver gets the user input, it will use frontend to communicate with the database and place the return's detail to the website.
 
+### Additional information
 
+Extra API usage:
 
-
-**Additional information** <br>
-Extra API usage: 
-  - Google News API (as related news data source)
-  - Team CSB (CDC based datasource)
-  - Team PandeTrack (WHO based datasource)
+- Google News API (as related news data source)
+- Team CSB (CDC based datasource)
+- Team PandeTrack (WHO based datasource)
 
 Algorithms employed:
-
 
 ## API Module Development
 
@@ -52,23 +51,23 @@ The implementation steps are as follow:
    - Design which field will include
    - Design what table contain which field
 2. Map the ER diagram to models in Django
-    - Map the relationship as Django relationships (one-to-many, many-to-many or even one-to-one)
-    - Map the field as Django Model field in different type
+   - Map the relationship as Django relationships (one-to-many, many-to-many or even one-to-one)
+   - Map the field as Django Model field in different type
 3. Develop the Serializer and ViewSet class for the models
-    - Map the Model's field to serializer's field
-    - Define custom model serilizers
-    - Define the create method in different model
-    - Attach Serializer to ViewSet
+   - Map the Model's field to serializer's field
+   - Define custom model serilizers
+   - Define the create method in different model
+   - Attach Serializer to ViewSet
 4. Register ViewSet to route in Django
-    - Map a ViewSet as an API-endpoint in Django
+   - Map a ViewSet as an API-endpoint in Django
 5. Testing our endpoint
-    - Create REST-Client interactive documents
-    - Create Django's unit-test
+   - Create REST-Client interactive documents
+   - Create Django's unit-test
 6. Include the filter Middleware to support Search and filter
-    - Install the filter and search middleware
-    - Define the model-field need to be search in each model in their own ViewSet
+   - Install the filter and search middleware
+   - Define the model-field need to be search in each model in their own ViewSet
 7. Testing filter functionality
-    - Use REST Client to do some basic test
+   - Use REST Client to do some basic test
 
 ### Documentation
 
@@ -99,12 +98,11 @@ Our message format is JSON because it is easily consumed by other applications. 
 
 ## Passing Parameters to our API Module
 
-We will use query string parameters to pass requests and we will inspect the URI query part to gain access to these parameter values. 
+We will use query string parameters to pass requests and we will inspect the URI query part to gain access to these parameter values.
 
 We did not choose to send parameters in the body of a POST request because in REST API development, using POST to pass parameters is a deviation from the standard. When POST request are executed in the body, the client is actually submitting a new document to the remote host. Since we do not need to submit new information to the server for searching articles, body POST request is not that suitable in passing parameters to API development.
 
 While using query string parameters to pass requests is more appropriate, there are risks involving a too long URL string. When there are too many query string parameters and the URL is longer than the maxUrlLength (250 characters) for HTTP request, the request is aborted due to security reasons. However, since the only types of parameters needed for our requests are Date&Time, Keyterms and Location, this is not an issue for our API.
-
 
 Users have to input 3 main information strings:
 
@@ -122,17 +120,17 @@ Users have to input 3 main information strings:
 
 3. Location (string format):
 
-   - Location: xxx 
-        - Where xxx is a string of the place user is interested in - Our API will automatically find all the parent of that location.
-        - E.g. If location=Kensington, our API will auto complete:
-            - Suburb = Kensington
-            - City = Sydney
-            - State = NSW
-            - Country = Australia  
-        - E.g. If location= NSW, our API will auto complete:
-            - State = NSW
-            - Country = Australia
-        - Hence our website will return all articles within NSW, including Kensington and Sydney.
+   - Location: xxx
+     - Where xxx is a string of the place user is interested in - Our API will automatically find all the parent of that location.
+     - E.g. If location=Kensington, our API will auto complete:
+       - Suburb = Kensington
+       - City = Sydney
+       - State = NSW
+       - Country = Australia
+     - E.g. If location= NSW, our API will auto complete:
+       - State = NSW
+       - Country = Australia
+     - Hence our website will return all articles within NSW, including Kensington and Sydney.
 
 ## Collecting Results from Our API Module
 
@@ -213,7 +211,7 @@ http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-
 
 1. Search in Location Hierarchy
    - Store each hierarchy of match location into backend as four fields in location table
-   - When matching in NLPE, we match to its full hierarchy from a dataset  
+   - When matching in NLPE, we match to its full hierarchy from a dataset
 2. Performance issues in NLPE
    - We localise our computation request from NLPE
    - NLPE as another client to the backend
@@ -357,7 +355,7 @@ Also, we will use our home server to host the scrapy and NLPE. Because running t
 - The internal code may change a lot
 - Doesn't need to run in 24\*7
 
-Furthermore, we will follow the tech trend of containerize  our service. Because DevOps is facing:
+Furthermore, we will follow the tech trend of containerize our service. Because DevOps is facing:
 
 - Diverge environment between develop, testing and deploy environment.
 - Diverge toolchain between frontend, backend, database and testing.
@@ -368,4 +366,3 @@ By using Docker, we can:
 - Provide a unified environment in all phases of development.
 - Automate the process of setting up the virtual environment.
 - Don't need to change the toolchain when facing a different situation.
-
