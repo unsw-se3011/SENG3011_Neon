@@ -8,7 +8,7 @@
 
 ### Dependency Graph
 
-![Dependency Graph](img/dependency.png)
+![Dependency Graph](img/dependency.PNG)
 
 ### Critical Path
 
