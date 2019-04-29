@@ -1,11 +1,34 @@
 # Design Detail
 
 ## Platform	Design
-**Requirements of the API and the analytics platform**
-  
+**Requirements of the API and the analytics platform**  
+    We choose Vue as our frontend platform however we use Python scripts to request the data from APIs both our team's and other team's. Then we stored into our database and sparate into tables and rows hence we use Vue to call out the database. We expect the whole JSON under our team's format. Such as: 
+
+    [
+        {
+            "url" : ,
+            "date_of_publication": ,
+            "headline": ,
+            "main_text": ,
+            "reports": [{
+                "type": ,
+                "start_date": ,
+                "end_date": ,
+                "location": [{
+                    city: "string",
+                    country: "string",
+                }]
+                number_affected: ,
+            }],
+            "comment": "string",
+        }
+    ]  
+
+After we change these format we could easily import these data into our website. 
+
 
 **Software	architecture**
-
+  ![Design Detail](img/Architecture.png)
 
 **How it integrates with your API at	a high level such as how you communicate	with the API, data conversion practice	at client web application and	any	mapping	you	do	between	data retrieved and	visualized.**
 
