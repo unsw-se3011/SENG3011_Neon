@@ -19,7 +19,9 @@ After we mapping all the data into the table of mySQL, we analyse the data in re
 
 Also, throughout our development, we used Docker, a continuous runtime environment system to ensure all parts of our system are functional and running without errors. This is to improve our websites' reliabability and usability as well as help us track the flow of our design.
 
+In the part of website development we use Vue to help us build up the frontend quickly.   
 
+The component library of Vue provides a rich source of UI design. We import the Google charts to vitualised our data. Also the Javascript based language helps we import our data into the website. 
 
 ## Team organisation and conclusion/appraisal of your work  
 
