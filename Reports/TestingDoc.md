@@ -13,7 +13,7 @@ We mainly used black-box testing in developing the frontend platform. This is be
 - **Output 2** : Observed missing the number of affected population and disease name in some of our report title.
 - **Improvement action 2** : Instead of using the extracted information summary from the article as our report article, we use the headline of the article as our report title to distinguish different articles.<br> <br>
 
--  **Output 3** : Observed the graphs were not correctly showen until we refresh the page of outbreak detail page.
+-  **Output 3** : Observed the graphs were not correctly shown until we refresh the page of outbreak detail page.
 -   **Improvement action 3** : Realised that it is a logic error of lazy loading hence we moved the graph generator to backend instead of doing it in frontend. <br> <br>
   
 -   **Output 4** : Observed that using search bar in report detail's page returns previous search results. In other words, search functions could not response when we use in report's detail page.
@@ -25,7 +25,7 @@ We mainly used black-box testing in developing the frontend platform. This is be
 
 Initially, we must run our backend in address: [http://localhost:8000/](http://localhost:8000/) waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing.  
-By Swagger, we need to open the url of [http://neon.whiteboard.house/swagger/#/Report/get*reports*](http://localhost:8000/) and simply test by typing in the request body for each function. However there is no any specific requirements for Swagger.  
+By Swagger, we need to open the url of [http://neon.whiteboard.house/swagger/#/Report/get*reports*](http://localhost:8000/) and simply test by typing in the request body for each function. However, there is no any specific requirements for Swagger.  
 For Django unit tests, we can follow these steps:
 
 ```bash
@@ -161,7 +161,7 @@ Terminal testing result:
 ![django-1](img/result-1.PNG)
 Virtual studio test example:
 ![django](img/result.PNG)
-Also JMeter tests are stored in PHASE_1 TestScripts in testing branch and examples are decribed below in performance testing section
+Also JMeter tests are stored in PHASE_1 TestScripts in testing branch and examples are described below in performance testing section
 Input example :
 ![white-box1](img/white-1.PNG)
 Output example :
@@ -173,7 +173,7 @@ Output example :
 
 - Testing average time for requesting, by record the time for each response in 10 times and expected the average time will not be longer than 1s for all test cases
   ![10 times testing](img/test1.PNG)
-- Regular testing for each endpoint, by record the detail of response time inclding time_total, throughput, handshake, transmit. Each endpoint will be requested only single time, also the expected for total time will not longer than 1s for all test cases
+- Regular testing for each endpoint, by record the detail of response time inclding time_total, throughput, handshake, transmit. Each endpoint will be requested only single time, also the expected for total time will be no longer than 1s for all test cases
   ![all testing](img/test2-1.PNG)
   ![all testing](img/test2-2.PNG)
 
