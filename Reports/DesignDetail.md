@@ -45,8 +45,6 @@ Extra API usage:
   - Team CSB (CDC based datasource)
   - Team PandeTrack (WHO based datasource)
 
-Algorithms employed:
-
 
 ## API Module Development
 
