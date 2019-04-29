@@ -62,10 +62,10 @@ The component library of Vue provides a rich source of UI design. We import the 
     - Natrual languague data extraction
 
   - Would you do it any differently now ?
-    - Pay more resource on Natural Language part
-    - Scrape more data source at the begining
-    - Develop more algorithm on anlayze our data
-    - Thinking more way to express our data
+    - Focus on Scrapy and words processing
+    - Scrape more data at the beginning
+    - Develop more algorithms to anlayze our data
+    - Use multiple forms to present our data 
     - More detailed documentation on our API
-    - More edge case testing of our backend
+    - Develop more cases to testing of our backend
     - Focus more on deliverable rather than development build steps

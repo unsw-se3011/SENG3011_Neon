@@ -21,7 +21,7 @@ We mainly used black-box testing in developing the frontend platform. This is be
 
 
 
-## Testing environment
+## Testing environment (API Testing)
 
 Initially, we must run our backend in address: [http://localhost:8000/](http://localhost:8000/) waiting for request.
 Then we use tools or scripts passing through the inputs and request the url base on the address for testing.  
