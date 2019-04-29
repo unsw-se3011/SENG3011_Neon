@@ -2,7 +2,8 @@
 
 ## Platform	Design
 **Requirements of the API and the analytics platform**  
-    We choose Vue as our frontend platform however we use Python scripts to request the data from  both our team's and the other teams' APIs. Then we stored it into our database and sparate into tables and rows. After the database storage process, we use Vue to call out the database. We expect the whole JSON under our team's format. Such as: 
+
+We choose Vue as our frontend platform however we use Python scripts to request the data from  both our team's and the other teams' APIs. Then we stored it into our database and sparate into tables and rows. After the database storage process, we use Vue to call out the database. We expect the whole JSON under our team's format. Such as: 
 
     [
         {
