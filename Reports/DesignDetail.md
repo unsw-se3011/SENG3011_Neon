@@ -2,7 +2,7 @@
 
 ## Platform	Design
 **Requirements of the API and the analytics platform**  
-    We choose Vue as our frontend platform however we use Python scripts to request the data from APIs both our team's and other team's. Then we stored into our database and sparate into tables and rows hence we use Vue to call out the database. We expect the whole JSON under our team's format. Such as: 
+    We choose Vue as our frontend platform however we use Python scripts to request the data from  both our team's and the other teams' APIs. Then we stored it into our database and sparate into tables and rows. After the database storage process, we use Vue to call out the database. We expect the whole JSON under our team's format. Such as: 
 
     [
         {
@@ -45,7 +45,7 @@ Extra API usage:
   - Team CSB (CDC based datasource)
   - Team PandeTrack (WHO based datasource)
 
-Algorithms employed:
+
 
 
 ## API Module Development
@@ -177,7 +177,7 @@ Also, at `options` filed, we are specified the action user can take by their per
 Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
 ```
 
-If they are not logined, or the object doesn't have that action, they will be restrited in some actions.
+If they are not loged in, or the object doesn't have that action, they will be restricted in some actions.
 
 ```
 Allow: GET, HEAD, OPTIONS
@@ -213,7 +213,7 @@ Further more, some status has extended meaning when we following RESTful design.
 
 #### Query String
 
-This part is description about the information packed in the query string (URL) when usign `GET` HTTP method. Format are as follow:
+This part is description about the information packed in the query string (URL) when using `GET` HTTP method. Format are as follow:
 
 | Field name | Format                                  |             Example |
 | :--------- | --------------------------------------- | ------------------: |
@@ -226,7 +226,7 @@ This part is description about the information packed in the query string (URL) 
 | city       | String                                  |              Sydney |
 
 (Currently, we design our location is as four hirachical level, store in backend.)  
-We will join these parameter by HTTP standard. Hence, the sample request is:
+We will join these parameters by HTTP standard. Hence, the sample request is:
 
 ```
 http://projectneon.app/v0/reports/?start_date=2015-10-01T08:45:10&end_date=2015-11-01T19:37:12&keyterm=Anthrax,Zika&continent=Oceania&country=Australia&state=NSW&city=Sydney
@@ -359,7 +359,7 @@ We use yarn as our default package manager. It provides
 
 Also, we will use Vue-UI to help us in our development.
 
-- Provide curtial infromation about compiled output
+- Provide crutial information about compiled output
 - User-friendly interface
 - Package management tool remaps to Web-UI.
 
@@ -370,7 +370,7 @@ We have purchased Vultr VPS to host all our frontend and backend server. Some ad
 - It is cheap
 - It is like a real machine
 - It can be built as a docker host
-- It has ublic IP
+- It has public IP
 - It has high availability
 
 Also, we will use our home server to host the scrapy and NLPE. Because running these tasks are:
