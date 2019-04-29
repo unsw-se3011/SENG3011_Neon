@@ -1,10 +1,15 @@
 # Summary
 
-## key benefits/achievements of the project relating back to the design/implementation
-
-Realtime data anlayze system by python <br>
+## Key benefits/achievements of the project relating back to the design/implementation
+Backend:  
+Realtime data anlayze system by Python <br>
 Natural Language Parser Engine by Nlpe <br>
-Continuous runtime environemnt by docker
+Continuous runtime environemnt by Docker <br>
+
+Frontend:  
+  - Understand that the readability of the articles/reports will highly affect the user experience
+  - 
+  
 
 
 

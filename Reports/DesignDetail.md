@@ -2,7 +2,7 @@
 
 ## Platform	Design
 **Requirements of the API and the analytics platform**
-
+  
 
 **Software	architecture**
 
