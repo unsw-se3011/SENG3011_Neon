@@ -1,0 +1,802 @@
+[{
+    "headline": "Maine: Possible rabies exposure in Bangor linked to bat",
+    "date_of_publication": "2019-03-23Txx:xx:xx",
+    "main_text": "Maine Center for Disease Control and Prevention (CDC) issued a health advisory Friday concerning a possible rabies exposure. Myotis lucifugus, or Little Brown Bat/CDC They report investigating the circumstances surrounding a rabid bat in the general area outside the Shaw House in Bangor on the weekend of March 16 and 17. The bat tested positive for rabies at Maine\u2019s Health and Environmental Testing Laboratory (HETL). The live bat was found in the vicinity of the Shaw House, a homeless youth shelter in Bangor. It was passed among several individuals who handled it with their bare hands across several locations in the Bangor area. Those who had direct skin contact with the bat, who did not wear gloves or use a cloth or other barrier between them and the bat, are at risk of acquiring rabies. Rabies is fatal. Individuals who had direct skin contact with the bat should start rabies prophylaxis as soon as possible including RIG and the rabies vaccine. Maine CDC is continuing to monitor for additional contacts and will continue to provide recommendations as necessary. Rabies post-exposure prophylaxis (PEP) is the best method of protection against rabies after exposure.",
+    "url": "http://outbreaknewstoday.com/maine-possible-rabies-exposure-bangor-linked-bat-55077/",
+    "img": "http://outbreaknewstoday.com/wp-content/uploads/2014/08/4631_lores.jpg",
+    "reports": [{
+        "disease": ["rabies"],
+        "syndrome": ["acute fever and rash"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2019-03-01T00:00:00",
+            "end_date": "2019-03-23T00:00:00",
+            "location": "Maine",
+            "number-affected": null
+        }]
+    }]
+}, {
+    "headline": "CDC Identifies 16 States Affected By Ground Beef Salmonella Outbreak",
+    "date_of_publication": "2018-10-05Txx:xx:xx",
+    "main_text": "By:  Jory D. Lange, Jr. 14 people have been hospitalized in a Salmonella outbreak that has prompted a nationwide recall of ground beef products manufactured by JBS Tolleson, Inc.  So far, the CDC has been notified of 57 people with Salmonella food poisoning in this outbreak.  Illnesses have been identified in 16 states: Arizona (15 people); Colorado (12 people); Utah (6 people); Montana (5 people); California (4 people); Nevada (2 people); Ohio (2 people); South Dakota (2 people); Wyoming (2 people); and 1 person each in Idaho, Iowa, Illinois, Indiana, Kentucky, Minnesota, and Oregon.  Because it can take two or more weeks for Salmonella infections to be reported to the CDC, the case count may continue to rise. According to the CDC , \u201cepidemiologic and traceback evidence indicates that ground beef produced by JBS Tolleson, Inc. is a likely source of this outbreak.\u201d 14 people have been hospitalized.  No deaths have been reported as part of this outbreak. Any consumers with ground beef in their refrigerators or freezers should check the product for establishment number \u201cEST. 267\u201d.  If your ground meat has this establishment number, the CDC advises you to contact the store where you bought it to find out if it is part of the JBS Tolleson ground beef recall. Children under the age of 5, adults over the age of 65, and anyone with a weakened immune system are especially at risk of developing severe complications from Salmonella infections.",
+    "url": "http://outbreaknewstoday.com/cdc-identifies-16-states-affected-ground-beef-salmonella-outbreak-98803/",
+    "img": "",
+    "reports": [{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Hospitalized",
+            "start_date": "2018-10-01T00:00:00",
+            "end_date": "2018-10-01T00:00:00",
+            "location": "The United States",
+            "number-affected": 14
+        }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Arizona",
+                "number-affected": 15
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Colorado",
+                "number-affected": 12
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Utah",
+                "number-affected": 6
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Montana",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "California",
+                "number-affected": 4
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [ ""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Nevada",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Ohio",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "South Dakota",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Wyoming",
+                "number-affected": 2
+            }
+        ]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Idaho",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Iowa",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Indiana",
+                "number-affected": 1
+            }]
+    },{
+        "disease": ["Salmonella"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2018-10-01T00:00:00",
+                "end_date": "2018-10-01T00:00:00",
+                "location": "Oregon",
+                "number-affected": 1
+            }]
+    }]
+}, {
+    "headline": "Puerto Rico reports 3 more chikungunya deaths, Colombia case count climbs",
+    "date_of_publication": "2015-02-02Txx:xx:xx",
+    "main_text": "The number of fatalities related to the mosquito borne virus, chikungunya, has increased by three in Puerto Rico, according to a Departamento de Salud de Puerto Rico release (computer translated). Puerto Rico/CIA This brings the island country\u2019s total to 13 deaths. Health officials report a cumulative total of chikungunya cases for 2014 at 26,336. More than two dozen cases have been reported as of the first week of 2015. In Colombia, the chikungunya case count continues to increase weekly. According to the Pan American Health Organization report Friday, Colombia saw an additional 14,000 cases, bringing that country\u2019s total to more than 127,000. The outbreak total of local transmission in the Americas since Dec. 2013 is now at 1,182,857. Chikungunya is a viral disease transmitted by the bite of infected mosquitoes such as Aedes aegypti and Aedes albopictus. It can cause high fever , join and muscle pain , and headache. Chikungunya does not often result in death, but the joint pain may last for months or years and may become a cause of chronic pain and disability. There is no specific treatment for chikungunya infection, nor any vaccine to prevent it. Pending the development of a new vaccine, the only effective means of prevention is to protect individuals against mosquito bites. For more infectious disease news and information ,",
+    "url": "http://outbreaknewstoday.com/puerto-rico-reports-3-more-chikungunya-deaths-colombia-case-count-climbs-79222/",
+    "img": "",
+    "reports": [{
+        "disease": ["chikungunya"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Death",
+            "start_date": "2015-01-01T00:00:00",
+            "end_date": "2015-02-01T00:00:00",
+            "location": "Colombia",
+            "number-affected": 13
+        }]
+    },{
+        "disease": ["chikungunya"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2013-01-01T00:00:00",
+                "end_date": "2013-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 1182857
+            }]
+    },{
+        "disease": ["chikungunya"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2014-01-01T00:00:00",
+                "end_date": "2014-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 26336
+            }]
+    }]
+}, {
+    "headline": "Colombia to look at Zika-microcephaly link",
+    "date_of_publication": "2015-12-20Txx:xx:xx",
+    "main_text": "The Government, through the National Institute of Health (NIH), is conducting special surveillance for neurological manifestations related to Zika virus, according to a Minsalud report (computer translated). Colombia/CIA The Minister of Health and Social Protection, Alejandro Gaviria Uribe explained that since the beginning of the Zika outbreak in Turbaco (Bol\u00edvar) and reports of cases in French Polynesia and Brazil with neurological disorders and Zika fever, the NIH established the notification and monitoring of such cases. With the discovery in Brazil, the Pan American Health Organization (PAHO / WHO) issued last December 1 an epidemiological alert, which notes an increase of 20 times the rate of microcephaly seen in previous years. Colombia averaging more than 1000 Zika cases weekly for the past month The Minister further said that for two weeks before issuing the alert PAHO by the Ministry of Health and the INS, in collaboration with the multilateral organization ago began the study to determine whether or not the relationship of Zika virus with cases of microcephaly in Colombia. In the respective protocol development and construction of the baseline was conducted from the individual Registry provision of health (RIPS), according to data from 2009-2015 have been 837 cases of children with microcephaly, for an annual average of 129 cases. The study will show whether the presence of the virus Zika will increase the annual average. Related: Suspected microcephaly cases in Brazil rise by 640 in past week Zika virus-microcephaly link confirmed, 1st Zika deaths reported: Brazil MOH Transfusion-associated Zika virus reported in Brazil",
+    "url": "http://outbreaknewstoday.com/colombia-to-look-at-zika-microcephaly-link-22422/",
+    "img": "",
+    "reports": [{
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2015-12-01T00:00:00",
+            "end_date": "2015-12-20T00:00:00",
+            "location": "Brazil",
+            "number-affected": 640
+        }]
+    },{
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2009-01-01T00:00:00",
+                "end_date": "2015-12-31T00:00:00",
+                "location": "",
+                "number-affected": 837
+            }
+        ]
+    },{
+        "disease": ["Zika"],
+        "syndrome": ["acute fever and rash","haemorrhagic fever"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2015-11-01T00:00:00",
+                "end_date": "2015-11-29T00:00:00",
+                "location": "Colombia",
+                "number-affected": 1000
+            }]
+    }]
+}, {
+    "headline": "Canada: Bison anthrax outbreak, Centre for Food Virology established",
+    "date_of_publication": "2015-07-23Txx:xx:xx",
+    "main_text": "Officials with Parks Canada have confirmed an anthrax outbreak that has killed dozens of bison at Wood Buffalo National Park in northeastern Alberta and southern Northwest Territories. According to a CBC report, fifty-two bison have died in the latest outbreak at Canada\u2019s largest park. Stuart MacMillan with Parks Canada is advising people to avoid carcasses, \u201cWhat we advise people to do is if they do see a carcass, don\u2019t approach it, report it to the Park office so that we know where it is.\u201d He does go on to say that the risk for humans is quite low. Kenya: Anthrax outbreak kills more than 100 animals at Lake Nakuru National Park In other news, the Government of Canada announced the establishment of the Food Virology National Reference Centre at the Canadian Food Inspection Agency (CFIA) laboratory in St. Hyacinthe, Quebec. This CFIA reference centre will enhance Canada\u2019s ability to effectively detect viral contaminants in food, such as noroviruses and hepatitis A. Also announced was an agreement between the CFIA and G\u00e9nome Qu\u00e9bec that will develop genomics-based analytical methods for pathogen detection and epidemiological support. This partnership is expected to lead to the development of more precise, molecular-based methods for identifying specific strains of foodborne viruses. Minister of Health, Rona Ambrose said: Our Government has a strong record at improving food safety and we are working to further strengthen it by enhancing Canada\u2019s expertise in food virology. This will allow the CFIA and its partners to better manage emerging issues and respond to food safety incidents and emergencies. Norovirus/CDC",
+    "url": "http://outbreaknewstoday.com/canada-bison-anthrax-outbreak-centre-for-food-virology-established-40133/",
+    "img": "",
+    "reports": [{
+        "disease": ["anthrax"],
+        "syndrome": ["acute fever and rash"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2015-07-01T00:00:00",
+            "end_date": "2015-07-23T00:00:00",
+            "location": "Canada",
+            "number-affected": 100
+        }]
+    }]
+}, {
+    "headline": "Southern Nevada man is 1st human West Nile virus case of 2017",
+    "date_of_publication": "2017-05-19Txx:xx:xx",
+    "main_text": "The Southern Nevada Health District is reporting its first human case of West Nile virus in Southern Nevada in 2017. The individual, a male over the age of 50, has the more serious neuroinvasive form of the illness. The Health District will not provide additional information regarding this individual. There were two reported West Nile cases and three cases of St. Louis Encephalitis, a similar mosquito-borne illness, in 2016. \u201cMosquito bites and the diseases spread by infected mosquitoes are preventable,\u201d said Dr. Joe Iser, Chief Health Officer for the Health District. \u201cSouthern Nevada residents can take preventive measures against mosquito bites and simple steps to eliminate mosquito breeding sources around their homes to protect themselves, their families, and communities.\u201d West Nile virus is spread through the bites of infected mosquitoes that have acquired the virus by feeding on infected birds. The illness is not spread person to person. Many people with the virus will have no symptoms or very mild clinical symptoms of illness. Mild symptoms include fever, headache, body aches, nausea, vomiting, and sometimes swollen lymph glands or a skin rash on the chest, stomach, and back. In some cases, the virus can cause severe neurologic illness and even death. The Southern Nevada Health District\u2019s Vector Surveillance Program regularly tests mosquito pools for West Nile, St. Louis Encephalitis, and Western Equine Encephalitis. To date, 444 mosquito traps have been set and 10,074 mosquitoes submitted to the Nevada Department of Agriculture Animal Disease Laboratory for analysis. All mosquitoes submitted have been negative for disease. The program also conducts surveillance for Aedes aegypti and Aedes albopictus mosquitoes, the two species known to spread the Zika virus. These mosquitoes have not been detected in Southern Nevada, but have been found in neighboring states. The Health District recommends the following to prevent mosquito bites and to eliminate breeding sources: Use Environmental Protection Agency (EPA)-registered insect repellants containing DEET, Picaridin, IR3535, Oil of lemon eucalyptus (OLE), or 2-undecanone. Wear pants and long-sleeved shirts to reduce mosquito exposure when outdoors. Eliminate areas of standing water around your home, including non-circulating ponds, \u201cgreen\u201d swimming pools, and accumulated sprinkler runoff, which support mosquito breeding.",
+    "url": "http://outbreaknewstoday.com/southern-nevada-man-1st-human-west-nile-virus-case-2017/",
+    "img": "",
+    "reports": [{
+        "disease": ["West Nile virus"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2016-01-01T00:00:00",
+            "end_date": "2016-12-31T00:00:00",
+            "location": "Southern Nevada",
+            "number-affected": 444
+        }]
+    },{
+        "disease": ["West Nile virus"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2016-01-01T00:00:00",
+                "end_date": "2016-12-31T00:00:00",
+                "location": "Southern Nevada",
+                "number-affected": 10074
+            }]
+    }]
+}, {
+    "headline": "Washington: Nine confirmed or probable mumps cases reported in Auburn area",
+    "date_of_publication": "2016-11-30Txx:xx:xx",
+    "main_text": "Public Health \u2013 Seattle & King County has reported nine confirmed or probable mumps cases in King County, all in the Auburn area, with an additional five cases being investigated. Mumps virus/CDC Eight of the nine mumps cases are among children between 8-17 years of age, with one adult case, 23 years of age. No one has been hospitalized and all of the children have recovered. All of the children were up-to-date on MMR vaccine. Because mumps is highly contagious, mumps outbreaks can occur even in vaccinated populations because a minority of people don\u2019t respond to the vaccine and remain susceptible. \u201cVaccination provides very good protection, but not 100%.  MMR vaccine is on average 85% protective for mumps after two doses,\u201d said Dr. Jeff Duchin, Health Officer for Public Health \u2013 Seattle & King County. \u201c85% protection is very good and vaccination is the most important step to protect children and adults against mumps, which can be a painful experience, and its uncommon serious complications including meningitis and, inflammation of the brain, testes, ovaries, and other organs.\u201d Mumps is an illness caused by a virus that can cause fever, headache, and swelling of the cheeks and jaw. Most people recover from mumps in a few weeks. In rare cases, mumps can lead to more serious complications that may require hospitalization, including inflammation of the brain and spinal cord and deafness. Up to 30% of people with mumps infection will have no symptoms.",
+    "url": "http://outbreaknewstoday.com/washington-nine-confirmed-probable-mumps-cases-reported-auburn-area-23014/",
+    "img": "",
+    "reports": [{
+        "disease": ["mumps"],
+        "syndrome": ["haemorrhagic fever","encephalitis"],
+        "reported_events": [{
+            "type": "Recovered",
+            "start_date": "2018-12-01T00:00:00",
+            "end_date": "2018-12-01T00:00:00",
+            "location": "King County",
+            "number-affected": 10
+        }]
+    }]
+}, {
+    "headline": "Bolivia reports 1st bubonic plague case of year north of La Paz",
+    "date_of_publication": "2018-04-18Txx:xx:xx",
+    "main_text": "An 81-year-old woman died on February 26 in the municipality of Apolo, north of La Paz, due to a plague of bubonic plague and thus confirms the first case of this type of disease in 2018, according to a La Razon report (computer translated) . Health officials perform the active search for rodents and evaluated homes in the communities of Machua, Los Altos, Alto Humaca and Suturi, where they also trained residents on the symptoms of the disease, its consequences and how to disinfect vulnerable areas with insecticides. Plague is an infectious disease caused by the bacterium, Yersinia pestis. It is found inanimals throughout the world, most commonly rats but other rodents like ground squirrels, prairie dogs , chipmunks, rabbits and voles. Fleas typically serve as the vector of plague. Human cases have been linked to the domestic cats and dogs that brought infected fleas into the house. People can also get infected through direct contact with an infected animal, through inhalation and in the case of pneumonic plague, person to person. Yersinia pestis is treatable with antibiotics if started early enough. Treat your snoring problem and get quiet sleep, guaranteed! There are three forms of human plague; bubonic, septicemic and pneumonic. This is the most common form. In this form, the bacteria enter the body through the bite of an infected flea or rodent. Here the bacteria infect the lymphatic system. After a few days to week, the person will experience fever , chills, weakness, and swollen lymph glands. These are called buboes. Untreated bubonic plague is fatal about half the time. This form is also contracted from a flea or rodent bite. Sometimes it appears subsequent to untreated bubonic or pneumonic plague. It involves bloodstream dissemination to all areas of the body. Buboes do not occur. Symptoms are endotoxic shock and disseminated intravascular coagulation. Untreated septicemic plague is nearly always fatal. Probably the most serious form of plague and it\u2019s when the bacteria infect the lungs and cause pneumonia . It is contracted when the bacteria is inhaled (primary) or develops when bubonic or septicemic plague spreads to the lungs. Pneumonic plague is contagious and can be transmitted person to person. It is highly communicable under appropriate climate conditions, overcrowding and cool temperatures. Untreated pneumonic plague is frequently fatal.",
+    "url": "http://outbreaknewstoday.com/bolivia-reports-1st-bubonic-plague-case-year-north-la-paz-27202/",
+    "img": "",
+    "reports": [{
+        "disease": ["plague"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Death",
+            "start_date": "2018-02-26T00:00:00",
+            "end_date": "2018-02-26T00:00:00",
+            "location": "Bolivia",
+            "number-affected": 1
+        }]
+    }]
+}, {
+    "headline": "Florida arbovirus totals: Zika, dengue and chikungunya; More Miami mosquitoes Zika positive",
+    "date_of_publication": "2016-09-10Txx:xx:xx",
+    "main_text": "While Zika virus dominates the news, Florida has also seen other, related mosquito borne diseases this year via travel. Let\u2019s start with dengue fever. Aedes aegypti/CDC Forty cases of dengue with onset in 2016 have been reported in individuals with travel history to a dengue endemic country in the two weeks prior to onset. Countries of origin were: Brazil (3), Colombia (3), Costa Rica (5), Cuba (7), Dominican Republic (2), El Salvador, Ghana, Haiti (3), Honduras, Indonesia, Jamaica (5), Mexico, Puerto Rico (2), St. Barthelemy, Singapore, and Venezuela (3). Counties reporting cases were: Alachua (2), Brevard, Broward (8), Clay, Columbia, Hillsborough (2), Lee, Manatee, Miami-Dade (9), Monroe, Orange (5), Pinellas (2), Palm Beach (2), Sarasota, and Seminole (3). Two cases were reported in non-Florida residents. In addition, one case of locally acquired dengue fever has been reported in Monroe County , with onset in May. This case was reported in a non-Florida resident. Six cases of chikungunya with onset in 2016 have been reported in individuals with travel history to a chikungunya endemic country in the two weeks prior to onset. Countries of origin were Bahamas/Mexico, Bolivia (2), Brazil (2), and Jamaica. Counties reporting cases were Broward, Duval, Hillsborough, Palm Beach (2), and Pinellas. No local transmission of chikungunya has been reported in 2016 to date. , 616 travel associated cases, including 84 cases in pregnant women and 56 locally transmitted cases have been reported. The countries of origin accounting for the most travel associated cases include Puerto Rico, the Dominican Republic and Jamaica. In related news, the Florida Department of Agriculture and Consumer Services announced today that it has detected Zika in another mosquito sample from the same small area in Miami Beach, where it was announced on Sept. 1 that three other samples had tested positive for Zika. All samples have consisted of Aedes aeqypti mosquitoes and are from an area where increased trapping and intensified mosquito control measures have already been underway since the Florida Department of Health determined local transmission had occurred. \u201cThis find underscores the continued need already underway in Miami-Dade to employ an aggressive and comprehensive mosquito control strategy,\u201d stated Commissioner of Agriculture Adam H. Putnam. \u201cOnly with a multi-faceted approach to controlling the Zika-carrying mosquito will we be able to protect Floridians and visitors.\u201d",
+    "url": "http://outbreaknewstoday.com/florida-arbovirus-totals-zika-dengue-and-chikungunya-more-miami-mosquitoes-zika-positive-10626/",
+    "img": "",
+    "reports": [{
+        "disease": ["Zika"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+            "type": "Recovered",
+            "start_date": "2016-08-24T00:00:00",
+            "end_date": "2016-09-09T00:00:00",
+            "location": "",
+            "number-affected": 3
+        }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Colombia",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Costa Rica",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Brazil",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Cuba",
+                "number-affected": 7
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Dominican Republic",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Indonesia",
+                "number-affected": 5
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Singapore",
+                "number-affected": 3
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Alachua",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Broward",
+                "number-affected": 8
+            }
+        ]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Clay",
+                "number-affected": 2
+            }
+        ]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Manatee",
+                "number-affected": 9
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Palm beach",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Dengue"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Non-Florida",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Palm Beach",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-08-24T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "Jamaica",
+                "number-affected": 2
+            }]
+    },{
+        "disease": ["Chikungunya"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+                "type": "Recovered",
+                "start_date": "2016-01-01T00:00:00",
+                "end_date": "2016-09-09T00:00:00",
+                "location": "",
+                "number-affected": 616
+            }]
+    }]
+}, {
+    "headline": "Montana reports 1st human West Nile virus cases of 2016",
+    "date_of_publication": "2016-08-27Txx:xx:xx",
+    "main_text": "The Montana Department of Public Health and Human Services (DPHHS) reported on the first human West Nile virus (WNV) cases of the year on Thursday. Four cases of West Nile Virus (WNV) have been reported, three from Dawson County and one from Garfield have been identified.  In addition to the human cases, one equine case in Petroleum County and mosquitos in Lake, Prairie, Phillips and Valley counties have tested positive for the virus. WNV is transmitted to humans by infected mosquitos through bites. Most, about 4 out of 5, people infected will experience no symptoms and develop immunity. About 1 in 5 infected people develop a low grade fever, headache and muscle aches that begin a week or two after becoming infected.  Generally, no treatment is needed. However, in less than 1 percent of infected people, serious, life-threatening symptoms develop including headache, rash, high fever, stiff neck, mental confusion, and other symptoms. Individuals who develop any of these symptoms should see their health-care provider immediately. Mid to late summer is prime time for transmission of WNV and public health officials encourage everyone to take steps to avoid mosquito bites and prevent infection with West Nile Virus (WNV). Public health officials want to remind the public that while WNV is a concern in Montana, Zika virus is not. In fact, the mosquitos that carry Zika virus have not been found in Montana or neighboring states. To minimize risk of WNV, experts recommend reducing mosquito populations by removing mosquito breeding areas in and around the home. Simple steps such as draining bird-baths, wading pools or any container with still water every few days will minimize breeding sites. Because it is not possible to eliminate all breeding sites, people are reminded to follow specific recommendations to avoid being bitten. This includes wearing and safely using insect repellent when outdoors and wearing pants and long-sleeved shirts when possible. The 4 D\u2019s of West Nile Virus prevention should be followed to reduce the chance of mosquito bites. / : Peak mosquitos biting hours are dusk to dawn.  Limit outdoor activity during those times. If you must be outside, be sure to protect yourself from bites. : Wear long-sleeved shirts and pants to reduce the amount of exposed skin. Cover exposed skin with a repellant containing the chemical DEET, which is most effective against mosquito bites. : Empty any containers holding standing water because they can be excellent breeding grounds for virus-carrying mosquitoes. The number of WNV human cases in Montana varies from year to year. Over 200 cases were reported in 2003 and 2007, but generally the average is about 10 reported human infections each year. Cases reported are more likely to be those that are severe and about one-third of Montana cases required hospitalization. \u201cNo one can predict the severity of WNV season,\u201d said Christine Mulgrew, DPHHS WNV Program Manager. \u201cBut we can protect ourselves from mosquito bites and eliminate breeding sites around your home.\u201d According to the Centers for Disease Control and Prevention (CDC), as of Aug. 23, 301 total WNV cases from 43 states have been reported, including seven deaths.",
+    "url": "http://outbreaknewstoday.com/montana-reports-1st-human-west-nile-virus-cases-of-2016/",
+    "img": "",
+    "reports": [{
+        "disease": ["west nile virus"],
+        "syndrome": ["acute fever and rash"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2016-08-27T00:00:00",
+            "end_date": "2016-08-27T00:00:00",
+            "location": "Dawson County",
+            "number-affected": 4
+        }]
+    },{
+        "disease": ["west nile virus"],
+        "syndrome": ["acute fever and rash"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2003-01-01T00:00:00",
+                "end_date": "2007-01-01T00:00:00",
+                "location": "Montana",
+                "number-affected": 200
+            }
+        ]
+    }]
+}, {
+    "headline": "Zika cases eclipse 1000 in the US, still no local transmission",
+    "date_of_publication": "2016-07-08Txx:xx:xx",
+    "main_text": "The number of Zika virus cases reported in the United States increased by 198 during the past week, putting the total imported cases to 1132, according to Centers for Disease Control and Prevention (CDC) data. An additional sexually transmitted Zika case (14) and an additional case of Guillain-Barr\u00e9 syndrome (GBS), the 5th, was also reported. Through July 6, New York has accounted for 25 percent of cases, while Florida has seen 18 percent of cases reported nationally. Alaska, Idaho, Wyoming and the Dakotas are the only states not to report any cases. The number of cases in pregnant women with any laboratory evidence of possible Zika virus infection are 320 as of June 30. There has also been one laboratory acquired case reported .",
+    "url": "http://outbreaknewstoday.com/zika-cases-eclipse-1000-in-the-us-still-no-local-transmission-89173/",
+    "img": "",
+    "reports": [{
+        "disease": ["Zika"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2016-07-01T00:00:00",
+            "end_date": "2016-07-08T00:00:00",
+            "location": "The United States",
+            "number-affected": 1132
+        }]
+    },{
+        "disease": ["Zika"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2016-06-30T00:00:00",
+                "end_date": "2016-06-30T00:00:00",
+                "location": "The United States",
+                "number-affected": 320
+            }]
+    }]
+}, {
+    "headline": "Indiana schools report 36 mumps cases",
+    "date_of_publication": "2016-03-13Txx:xx:xx",
+    "main_text": "Three Indiana schools have reported 36 mumps cases since February, according to the Indiana State Department of Health. As of Friday, the following breakdown was reported: Indiana University (12), Butler University (21) and IUPUI (3). Indiana counties/Cool10191 According to the Centers for Disease Control and Prevention (CDC), as of Mar. 4, 250 mumps cases were reported nationally. Vaccines: FDA researchers on the mumps and pertussis vaccines Mumps is spread by droplets of saliva or mucus from the mouth, nose, or throat of an infected person, usually when the person coughs, sneezes or talks. Items used by an infected person, such as cups or soft drink cans, can also be contaminated with the virus, which may spread to others if those items are shared. Symptoms typically appear 16-18 days after infection, but this period can range from 12-25 days after infection. It is usually a mild disease, but can occasionally cause serious complications. The most common complication is inflammation of the testicles (orchitis) in males who have reached puberty; rarely does this lead to fertility problems. Other rare complications include inflammation of the brain and/or tissue covering the brain and spinal cord(encephalitis/meningitis), inflammation of the ovaries (oophoritis) and/or breasts (mastitis) infemales who have reached puberty and deafness. Anyone who is not immune from either previous mumps infection or from vaccination can get mumps. Mumps can be prevented with MMR (measles-mumps-rubella) vaccine. Most children and young adults have received at least 1 dose of MMR vaccine. Two doses of MMR vaccine are more effective than 1 dose.",
+    "url": "http://outbreaknewstoday.com/indiana-schools-report-36-mumps-cases-32676/",
+    "img": "",
+    "reports": [{
+        "disease": ["mumps"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Presence",
+            "start_date": "2016-02-01T00:00:00",
+            "end_date": "2016-03-13T00:00:00",
+            "location": "Indiana",
+            "number-affected": 36
+        }]
+    },{
+        "disease": ["mumps"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Presence",
+            "start_date": "2016-03-04T00:00:00",
+            "end_date": "2016-03-04T00:00:00",
+            "location": "Indiana",
+            "number-affected": 250
+            }]
+    }]
+}, {
+    "headline": "Wisconsin reports four additional Elizabethkingia case in past week",
+    "date_of_publication": "2016-03-09Txx:xx:xx",
+    "main_text": "In a about a large outbreak of Elizabethkingia anophelis in southeastern and southern Wisconsin, The Wisconsin Department of Health Services (DHS) has reported an additional four cases of the bloodstream infection, bringing the outbreak total to 48. Wisconsin map/National Atlas of the United States While 18 patients who tested positive for the Elizabethkingia infection in this outbreak have died, it has not been determined if the cause is the bacterial infection, or the patients\u2019 other serious health conditions, or both. One additional county reported case(s) bringing the total to 12\u2013Case patients reside in Columbia, Dane, Dodge, Fond du Lac, Jefferson, Milwaukee, Ozaukee, Racine, Sauk, Sheboygan, Washington and Waukesha counties. Health officials say the majority of patients acquiring this infection are over the age of 65, and all patients have a history of at least one underlying serious illness. At this time, the source of these infections is unknown and the Department is working diligently to contain this outbreak. It was reported last week that the Center for Disease Control and Prevention (CDC) saw the outbreak as \u201cvery worrisome\u201d as typically there are 5-10 cases per state, per year, so this outbreak is quite large. Elizabethkingia are opportunistic pathogens preferentially causing illness among immune-compromised individuals or patients with underlying medical conditions, and infection is associated with high mortality. Therefore, early detection and treatment with an effective antibiotic regimen is important to increase the probability of good outcomes. The index of suspicion for Elizabethkingia infections should be high among patients with multiple co-morbid conditions, particularly malignancy, diabetes mellitus, chronic renal disease or end-stage renal disease on dialysis, alcohol dependence, alcoholic cirrhosis, immune compromising conditions or immunosuppressive treatment.",
+    "url": "http://outbreaknewstoday.com/wisconsin-reports-four-additional-elizabethkingia-case-in-past-week-36269/",
+    "img": "",
+    "reports": [{
+        "disease": ["unknown"],
+        "syndrome": ["fever of unknown origin"],
+        "reported_events": [{
+            "type": "Presence",
+            "start_date": "2016-03-01T00:00:00",
+            "end_date": "2016-13-08T00:00:00",
+            "location": "Wisconsin",
+            "number-affected": 10
+        }]
+    }]
+}, {
+    "headline": "Illinois reports West Nile virus deaths in Cook, Kendall counties",
+    "date_of_publication": "2015-09-02Txx:xx:xx",
+    "main_text": "Health officials in Illinois have reported the first human West Nile virus deaths of 2015 in elderly residents in Cook and Kendall counties. The Cook County Department of Public Health reported a resident in their 90\u2019s became ill at the end of August and has died.  Separately, the Kendall County Health Department reported a resident in their 70\u2019s became ill at the end of July and has died. \u201cAlthough we\u2019re getting closer to the end of summer, you still can be at risk of getting West Nile virus,\u201d said Illinois Department of Public Health Nirav D. Shah, M.D., J.D.  \u201cIt\u2019s important for everyone to continue taking precautions like wearing insect repellent and staying indoors between dusk and dawn.\u201d The Illinois Department of Public Health (IDPH) reported Last year there were 44 human cases, including four deaths.  Cases in human are underreported. West Nile virus is transmitted through the bite of a mosquito that has picked up the virus by feeding on an infected bird.  Common symptoms include fever, nausea, headache and muscle aches.  Symptoms may last from a few days to a few weeks.  However, four out of five people infected with West Nile virus will not show any symptoms.  In rare cases, severe illness including meningitis or encephalitis, or even death, can occur.  People older than 50 and immunocompromised individuals are at higher risk for severe illness from West Nile Virus.",
+    "url": "http://outbreaknewstoday.com/illinois-reports-west-nile-virus-deaths-in-cook-kendall-counties-68320/",
+    "img": "",
+    "reports": [{
+        "disease": [""],
+        "syndrome": ["haemorrhagic fever"],
+        "reported_events": [{
+            "type": "Death",
+            "start_date": "2015-08-01T00:00:00",
+            "end_date": "2015-08-25T00:00:00",
+            "location": "Kendall Counties",
+            "number-affected": 5
+        }]
+    },{
+        "disease": [""],
+        "syndrome": ["haemorrhagic fever"],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2014-01-01T00:00:00",
+            "end_date": "2014-12-31T00:00:00",
+            "location": "Kendall Counties",
+            "number-affected": 44
+            }
+        ]
+    }]
+}, {
+    "headline": "The Lyme and Tick-Borne Disease Prevention, Education, and Research Act of 2015 introduced by Sens. Blumenthal, Ayotte",
+    "date_of_publication": "2015-06-08Txx:xx:xx",
+    "main_text": "Senators Richard Blumenthal (D-Conn.) and Kelly Ayotte (R.-N.H.) introduced legislation Thursday to increase public awareness and strengthen efforts to combat tick-borne diseases \u2013 a significant threat to public health. The Lyme and Prevention, Education, and Research Act of 2015 would help ensure the necessary resources are dedicated to fighting tick-borne diseases. Ixodes scapularis, a Black-legged tick/CDC Blumenthal said, \u201c Now that the weather is warmer, people will be spending much more time outdoors. Unfortunately, more time outside \u2013 especially in wooded areas that are so common in my home state of Connecticut \u2013 also means more exposure to tick-borne illnesses, like Lyme disease \u2013 a pernicious and insidious public health threat. I am proud of re-introduce a measure that will address the need for a strong national effort to fight these diseases as they become more rampant in the warmer months. By making improvements to reporting methods and diagnostic tools, as well as creating a national advisory body that brings together patients, scientists, and policymakers, this legislation will make critical improvements to prevention and treatment methods .\u201d Ayotte said, \u201c According to the Centers for Disease Control and Prevention, in 2013, New Hampshire had the second highest incidence rate of Lyme disease in the country.  Our legislation will help address this troubling statistic by creating a strong national effort to fight this disease, which is dangerous if untreated.  Our bill would create a Tick-Borne Diseases Committee comprised of physicians, scientific experts, patients, and Lyme advocates to focus on improving reporting methods, developing better diagnostic tools, ensuring better coordination of efforts, and working to improve prevention and treatment methods related to Lyme and other tick-borne diseases .\u201d Joining Blumenthal and Ayotte as co-sponsors are U.S. Senators Charles E. Schumer (D-N.Y.), Kirsten Gillibrand (D-N.Y.), Christopher Coons (D-Del.), Jack Reed (D-R.I.), Sheldon Whitehouse (D-R.I.), Amy Klobuchar (D-Minn.), and Bob Casey (D-Penn.). 95% of Lyme disease cases occur in Connecticut, New Hampshire, New York, Delaware, Rhode Island, Pennsylvania, Minnesota, Vermont, Virginia, New Jersey, Maine, Maryland, Massachusetts, and Wisconsin",
+    "url": "http://outbreaknewstoday.com/the-lyme-and-tick-borne-disease-prevention-education-and-research-act-of-2015-introduced-by-sens-blumenthal-ayotte-62247/",
+    "img": "",
+    "reports": [{
+        "disease": [""],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Infected",
+            "start_date": "2013-01-01T00:00:00",
+            "end_date": "2013-12-31T00:00:00",
+            "location": "New Hampshire",
+            "number-affected": null
+        }]
+    },{
+        "disease": ["Lyme disease"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2015-01-01T00:00:00",
+                "end_date": "2015-06-08T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
+    }]
+}, {
+    "headline": "Flu Shots: Influenza A (H3N2) virus drift affecting vaccination effectiveness",
+    "date_of_publication": "2014-12-04Txx:xx:xx",
+    "main_text": "The Centers for Disease Control and Prevention (CDC) advised clinicians yesterday that the 2014-2015 seasonal flu shot may not be as effective as originally thought as the major circulating strain this year has mutated to the point reduced protection is being provided. 3D influenza/CDC This happened as flu season in the US starts to pick up. The predominant strain seen thus far this flu season, as in past flu seasons, has been H3N2 influenza A. However, federal health officials say influenza viral characterization data indicates that 48% of the influenza A (H3N2) viruses collected and analyzed in the United States from October 1 through November 22, 2014 were antigenically \u201clike\u201d the 2014-2015 influenza A (H3N2) vaccine component, but that 52% were antigenically different (drifted) from the H3N2 vaccine virus. In past seasons during which predominant circulating influenza viruses have been antigenically drifted, decreased vaccine effectiveness has been observed. However, vaccination has been found to provide some protection against drifted viruses. Though reduced, this cross-protection might reduce the likelihood of severe outcomes such as hospitalization and death. In addition, vaccination will offer protection against circulating influenza strains that have not undergone significant antigenic drift from the vaccine viruses (such as influenza A (H1N1) and B viruses). :  Trivalent influenza vaccines will contain hemagglutinin (HA) derived from an A/California/7/2009 (H1N1)-like virus, an A/Texas/50/2012 (H3N2)-like virus, and a B/Massachusetts/2/2012-like (Yamagata lineage) virus. Quadrivalent influenza vaccines will contain these antigens, and also a B/Brisbane/60/2008-like (Victoria lineage) virus. The CDC reports the drifted H3N2 viruses were first detected in late March 2014, after World Health Organization (WHO) recommendations for the 2014-2015 Northern Hemisphere vaccine had been made in mid-February. CDC officials still advise physicians to encourage all patients 6 months and older who have not yet received an influenza vaccine this season to be vaccinated against influenza. In addition, they re-emphasize the importance of the use of neuraminidase inhibitor antiviral medications, oseltamivir (Tamiflu\u00ae) and zanamivir (Relenza\u00ae, when indicated for treatment and prevention of influenza, as an adjunct to vaccination. For more infectious disease news and information,",
+    "url": "http://outbreaknewstoday.com/flu-shots-influenza-a-h3n2-virus-drift-affecting-vaccination-effectiveness-71588/",
+    "img": "",
+    "reports": [{
+        "disease": ["influenza a/h3n2"],
+        "syndrome": [""],
+        "reported_events": [{
+            "type": "Recovered",
+            "start_date": "2014-10-01T00:00:00",
+            "end_date": "2014-11-22T00:00:00",
+            "location": "The United States",
+            "number-affected": null
+        }]
+    },
+    { 
+        "disease": ["influenza a/h3n2"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2009-07-01T00:00:00",
+                "end_date": "2012-01-01T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
+    },
+    {
+        "disease": ["influenza a/h1n1"],
+        "syndrome": [""],
+        "reported_events": [{
+                "type": "Presence",
+                "start_date": "2009-07-01T00:00:00",
+                "end_date": "2012-01-01T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+            }]
+    }]
+}, {
+    "headline": "WHO physician infected with Ebola released from Emory, 8 Ebola patients treated in US",
+    "date_of_publication": "2014-10-20Txx:xx:xx",
+    "main_text": "An unnamed American physician (Patient X) who was working with the World Health Organization (WHO) in Sierra Leone, where he contracted Ebola Virus Disease (EVD), was declared free from Ebola virus and was released from Emory University Hospital on Sunday. Ebola virus He was the fourth Ebola patient transported to the United States and the 3rd patient to be treated at Emory. In a statement from Emory today, the patient arrived on Sept. 9 stricken with EVD . He was discharged from the hospital on Oct. 19, 2014. In coordination with the CDC and Georgia Department of Public Health, the patient was determined to be free of virus and to pose no public health threat. The patient has asked to remain anonymous and left the hospital for an undisclosed location. He will make a statement at a later date. The patient was treated in the Serious Communicable Disease Unit in Emory University Hospital. Last Wednesday, the unnamed physician patient released the following statement: Given the national focus on Ebola, particularly with the diagnosis in two healthcare workers, I want to share the news that I am recovering from this disease, and that I anticipate being discharged very soon, free from the Ebola virus and able to return safely to my family and to my community. As a result of the virus, my condition worsened and I became critically ill soon after I arrived at Emory. Through rigorous medical treatment, skillful nursing, and the full support of a healthcare team, I am well on the way to a full recovery. I want the public to know that although Ebola is a serious, complex disease, it is possible to recover and return to a healthy life. I wish to retain my anonymity for now, but I anticipate sharing more information in future weeks as I complete my recovery. The 8 people who were Ebola Virus Disease patients in the United States of America include: 1. 33-year-old Samaritan\u2019s Purse physician, Dr. Kent Brantly was the first Ebola patient to be treated in the United State s. Brantly was infected with Ebola in Liberia and transported to Emory University Hospital on Aug. 2. Dr. Brantly was discharged on Aug. 21. 2. SIM USA missionary worker, Mrs Nancy Writebol , was transported to Emory University Hospital on Aug. 5 for treatment. She worked alongside Dr Brantly in Liberia. Mrs Writebol was discharged from the hospital on Aug. 19. 3. 51-year-old SIM USA physician, Dr. Rick Sacra arrived at the Nebraska Medical Center for Ebola treatment on Sept. 5 after contracting Ebola in Liberia. He was released on Sept. 25 after testing negative for the virus. 4. The fourth EVD case in the US was the unnamed WHO physician (Patient X) who arrived at Emory on Sept. 9 and was discharged on Oct. 19. He contracted the viral disease in Sierra Leone. 5. Liberian national, Thomas Eric Duncan , was admitted to Texas Health Presbyterian Hospital of Dallas on Sept. 28. He was confirmed positive for EVD on Sept. 30, the first person to test positive for the virus in the US. Unfortunately, on Oct. 8, Mr Duncan succumbed to the lethal virus becoming the first Ebola fatality on US soil. 6. NBC freelance cameraman, 33-year-old Ashoka Mukpo , contracted EVD in Liberia when on assignment with NBC News Chief Medical Editor and Correspondent Dr. Nancy Snyderman. Mr. Mukpo arrived at Nebraska Medical Center on Oct. 6 for treatment. He is currently hospitalized. 7. Four days after the death of Thomas Duncan, 26-year-old Texas Health Presbyterian Hospital of Dallas nurse, Nina Pham , tested positive for EVD, becoming the first person to contract Ebola in the United States. She contracted EVD while treating Mr. Duncan. Ms Pham is currently being treated at the National Institutes of Health in Bethesda. 8. On Oct. 15, a second Texas Health Presbyterian Hospital of Dallas nurse, 29-year-old Amber Vinson , tested positive for Ebola, the second secondary case of EVD due to treating Mr. Duncan. Ms. Vinson is currently being treated at Emory University Hospital.",
+    "url": "http://outbreaknewstoday.com/who-physician-infected-with-ebola-released-from-emory-8-ebola-patients-treated-in-us-79669/",
+    "img": "",
+    "reports": [{
+        "disease": ["ebola haemorrhagic fever"],
+        "syndrome": ["sss"],
+        "reported_events": [{
+            "type": "Recovered",
+            "start_date": "2014-08-01T00:00:00",
+            "end_date": "2014-10-15T00:00:00",
+            "location": "The United States",
+            "number-affected": 8
+        }]
+    }]
+}, {
+    "headline": "NH health officials recommend flu shot after announcing the first positive influenza test result",
+    "date_of_publication": "2014-09-09Txx:xx:xx",
+    "main_text": "The annual influenza (flu) season is about to begin and the New Hampshire Department of Health and Human Services (DHHS) is announcing the first positive influenza test result identified in the State Public Health Laboratories (PHL). This finding means that the influenza virus is circulating in the community and DHHS is encouraging all New Hampshire residents to be vaccinated against the flu at their earliest convenience, especially those who are at increased risk of complications. 3D influenza/CDC \u201cThis positive lab result for influenza in a New Hampshire resident is slightly earlier than usual,\u201d said Dr. Jos\u00e9 Montero, \u201cbut this is the third year in a row that we have had to make the announcement in September. Every flu season is different and flu is very unpredictable, but I want to remind everyone that an annual flu vaccine is the first and best way to protect against influenza.\u201d Influenza can be a serious disease of the lungs, nose, and throat. The illness is spread from person to person through the air by coughing and sneezing. Typical flu symptoms include fever, headache, extreme tiredness, dry cough, sore throat, runny or stuffy nose, and muscle aches. An average of 23,000 people die each year in the United States due to influenza. Last flu season in New Hampshire, 14 influenza-related deaths were reported. The vaccine itself does not give you the flu and is very safe. The flu season usually lasts from October through May, so the Centers for Disease Control and Prevention (CDC) and DHHS recommend that everyone who is at least six months of age be vaccinated as soon as they can early in the season. The vaccine is available in the traditional shot form for people six months of age and older and in a nasal mist form for healthy people aged 2\u201349 years who are not pregnant. Residents are encouraged to check with schools, pharmacies, their healthcare provider, or wherever is the most convenient location to be vaccinated. \u201cIt is especially important that certain targeted groups be vaccinated for their own safety; however, other groups, such as health care and child care providers, should receive the vaccine to protect others. Here in New Hampshire, 93% of hospital healthcare workers were vaccinated last year.\u201d While everyone should get a flu vaccine this season, it is especially important for some people to get vaccinated for their own safety, including the following groups: Children aged 6 months through 4 years of age Pregnant women Adults 65 years of age or older People who are immunosuppressed People of any age with certain chronic medical conditions, including asthma, heart disease, diabetes, or chronic lung disease People who live with or care for those at high risk of flu complications should also be vaccinated including: Health care workers Household contacts of persons at high risk of complications from the flu Household contacts and out-of-home caregivers of children younger than 6 months of age (these children are too young to be vaccinated)",
+    "url": "http://outbreaknewstoday.com/nh-health-officials-recommend-flu-shot-after-announcing-the-first-positive-influenza-test-result-62249/",
+    "img": "",
+    "reports": [{
+        "disease": ["influenza"],
+        "syndrome": ["haemorrhagic fever","influenza-like illness","acute fever and rash"],
+        "reported_events": [{
+            "type": "Death",
+            "start_date": "2014-01-01T00:00:00",
+            "end_date": "2014-12-31T00:00:00",
+            "location": "The United States",
+            "number-affected": 23000
+        }]
+    }]
+}, {
+    "headline": "Third Ebola infected American headed to Nebraska Friday",
+    "date_of_publication": "2014-09-04Txx:xx:xx",
+    "main_text": "International Christian mission organization SIM announced today that missionary doctor Rick Sacra, recently infected with the Ebola virus while serving in Liberia, is being flown to The Nebraska Medical Center in Omaha, Neb., for treatment. 3rd US Ebola patient, Dr. Rick Sacra, headed to Omaha, NE for treatment/SIM USA Dr. Sacra is expected to arrive in Omaha Friday morning and begin treatment in the hospital\u2019s Biocontainment Patient Care Unit. Sacra will be the third Ebola-infected American to be brought back to the US fro Treatment for the lethal virus. The Nebraska Medical Center said today The U.S. State Department requested the services of the hospital in the treatment of Dr. Sacra. Nebraska is one of four places in the US that have the biocontainment facilities and expert staff to handle such patient\u2013the other three being Emory University in Atlanta that is operated by the Centers for Disease Control, the National Institutes of Health in Bethesda, Md., and the Rocky Mountain Laboratory in Montana. \u201cThis unit was specifically designed to care for patients of this nature and is staffed with infectious disease experts who have prepared for years for situations like this one,\u201d said Phil Smith, MD, medical director of the Biocontainment Unit. \u201cThe unit is sealed, guarded and secure. It\u2019s separate from other patient care areas, and just like the facility at Emory University, which successfully treated two Americans with Ebola last month, we are uniquely prepared to handle infectious diseases here.\u201d \u201cWe want everyone to know that every precaution is being taken in transporting this patient here and caring for them once they arrive,\u201d said Angela Hewlett, MD, associate medical director of the Biocontainment Unit. \u201cThis is one of the safest places in the country for this patient to be treated, both for the public and for the medical professionals providing care.\u201d The president of SIM USA, Bruce Johnson said, \u201cRick was receiving excellent care from our SIM/ELWA staff in Liberia at our Ebola 2 Care Center. They all love and admire him deeply. However, The Nebraska Medical Center provides advanced monitoring equipment and wider availability of treatment options. \u201cSIM\u2019s global family from over 50 countries is extremely grateful for the generous cooperation of many agencies and organizations in the U.S. and in Liberia which made it possible for Rick to be brought to Omaha. It took an exceptional effort across many organizations to make this happen. We particularly thank the U.S. Department of State and its many agencies and The Nebraska Medical Center.\u201d",
+    "url": "http://outbreaknewstoday.com/third-ebola-infected-american-headed-to-nebraska-friday-15793/",
+    "img": "",
+    "reports": [{
+        "disease": ["ebola haemorrhagic fever"],
+        "syndrome": ["acute fever and rash","acute flacid paralysis"],
+        "reported_events": [{
+            "type": "Hospitalised",
+            "start_date": "2019-01-01T00:00:00",
+            "end_date": "2019-12-31T00:00:00",
+            "location": "Liberia",
+            "number-affected": 6
+        },
+        {
+            "disease": ["ebola haemorrhagic fever"],
+            "syndrome": ["acute fever and rash","acute flacid paralysis"],
+            "reported_events": [{
+                    "type": "Infected",
+                    "start_date": "2019-01-01T00:00:00",
+                    "end_date": "2019-12-31T00:00:00",
+                    "location": "Liberia",
+                    "number-affected": 3
+                }]
+    },{
+        "disease": ["ebola haemorrhagic fever"],
+        "syndrome": ["acute fever and rash","acute flacid paralysis"],
+        "reported_events": [{
+                "type": "Infected",
+                "start_date": "2019-01-01T00:00:00",
+                "end_date": "2019-12-31T00:00:00",
+                "location": "The United States",
+                "number-affected": 5
+            }]
+        }]
+    }]
+}, {
+    "headline": "Peanut butter recalled due to possible salmonella",
+    "date_of_publication": "2014-08-19Txx:xx:xx",
+    "main_text": "nSpired Natural Foods, Inc. is voluntarily recalling certain retail lots of Arrowhead Mills\u00ae Peanut Butters, MaraNatha\u00ae Almond Butters and Peanut Butters and specific private label nut butters (listed below) packaged in glass and plastic jars because they have the potential to be contaminated with Salmonella . Salmonella Salmonella is an organism that can cause serious and sometimes fatal infections in young children, frail or elderly people, and those with weakened immune systems. Healthy persons infected with Salmonella often experience fever, diarrhea (which may be bloody), nausea, vomiting and abdominal pain. In rare circumstances, infection with Salmonella can result in the organism getting into the bloodstream and producing more severe illnesses such as arterial infections (i.e., infected aneurysms), endocarditis and arthritis. The potential risk was brought to the Company\u2019s attention by the U.S. Food and Drug Administration following routine testing. The Company has received reports of four illnesses that may be associated with these specific products. nSpired Natural Foods, Inc. is committed to producing the highest quality products and our top priority is the safety of our consumers. For this reason we are initiating this voluntary recall of the products below as a precautionary measure ( see recalled products list ). The Company is currently working with customers and retailers to remove and destroy products with the above use-by dates from store shelves and warehouses. Products were distributed across the United States, Canada, Hong Kong, United Arab Emirates, and Dominican Republic. The products also were available for purchase on the internet.",
+    "url": "http://outbreaknewstoday.com/peanut-butter-recalled-due-to-possible-salmonella-98748/",
+    "img": "",
+    "reports": [{
+        "disease": ["salmonellosis"],
+        "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
+        "reported_events": [{
+            "type": "Presence",
+            "start_date": "2014-08-19T00:00:00",
+            "end_date": "2014-08-19T00:00:00",
+            "location": "Canada",
+            "number-affected": null
+        }]
+    },
+    {
+    "disease": ["salmonellosis"],
+    "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
+    "reported_events": [{
+            "type": "Presence",
+            "start_date": "2014-08-19T00:00:00",
+            "end_date": "2014-08-19T00:00:00",
+            "location": "Hong Kong",
+            "number-affected": null
+        }]
+    },
+    {
+    "disease": ["salmonellosis"],
+    "syndrome": ["haemorrhagic fever","encephalitis","acute gastroenteritis"],
+    "reported_events": [{
+                "type": "Presence",
+                "start_date": "2014-08-19T00:00:00",
+                "end_date": "2014-08-19T00:00:00",
+                "location": "The United States",
+                "number-affected": null
+        }]
+    }]
+}]

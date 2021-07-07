@@ -36,6 +36,11 @@ class OutebreaknewsSpider(scrapy.Spider):
     def start_requests(self):
         urls = [
             'http://outbreaknewstoday.com/category/us-news/',
+            'http://outbreaknewstoday.com/category/australia/',
+            'http://outbreaknewstoday.com/category/research/',
+            'http://outbreaknewstoday.com/category/africa/',
+            'http://outbreaknewstoday.com/category/asia/',
+            'http://outbreaknewstoday.com/category/europe/',
             'http://outbreaknewstoday.com/category/latin-america-and-the-caribbean/',
             'http://outbreaknewstoday.com/category/animal-diseases/'
         ]
